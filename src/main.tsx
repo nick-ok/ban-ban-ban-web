@@ -5,8 +5,12 @@ import App from './App.tsx';
 
 import './app/styles/index.css';
 
+import { AppProviders } from './app/providers/index.tsx';
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <AppProviders>
+      <App />
+    </AppProviders>
   </StrictMode>,
 );
