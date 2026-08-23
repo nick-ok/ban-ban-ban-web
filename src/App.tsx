@@ -1,31 +1,29 @@
-import { useTranslation } from '@/features/i18n';
+import { useNavigationStore } from '@/entities/navigation';
+import { PhoneFrame } from '@/widgets/phone-frame';
+
+const Scenes = {
+  lock: () => (
+    <div style={{ padding: 40, textAlign: 'center', color: '#888' }}>
+      LockScreen
+    </div>
+  ),
+  lobby: () => (
+    <div style={{ padding: 40, textAlign: 'center', color: '#888' }}>Lobby</div>
+  ),
+  game: () => (
+    <div style={{ padding: 40, textAlign: 'center', color: '#888' }}>Game</div>
+  ),
+} as const;
 
 function App() {
-  const { t, i18n } = useTranslation();
+  const scene = useNavigationStore((s) => s.scene);
+
+  const SceneComponent = Scenes[scene as keyof typeof Scenes] || Scenes.lock;
 
   return (
-    <div style={{ textAlign: 'center', padding: 40 }}>
-      <h1>{t('app.title')}</h1>
-
-      <p style={{ color: '#888' }}>{t('app.tagline')}</p>
-
-      <button
-        onClick={() =>
-          i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru')
-        }
-        style={{
-          marginTop: 24,
-          padding: '8px 16px',
-          border: '1px solid #333',
-          borderRadius: 8,
-          background: '#1a1a1a',
-          color: '#aaa',
-          cursor: 'pointer',
-        }}
-      >
-        {i18n.language.toUpperCase()}
-      </button>
-    </div>
+    <PhoneFrame>
+      <SceneComponent />
+    </PhoneFrame>
   );
 }
 
