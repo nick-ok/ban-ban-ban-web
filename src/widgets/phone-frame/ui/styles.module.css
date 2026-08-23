@@ -42,6 +42,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 30px;
+  container-type: inline-size;
 
   @media (width <=440px) {
     border-radius: 0;

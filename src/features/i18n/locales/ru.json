@@ -5,7 +5,7 @@
   },
   "screens": {
     "lock": {
-      "new_game": "Новая игра",
+      "newGame": "Новая игра",
       "continue": "Продложить",
       "settings": "Настройки"
     }

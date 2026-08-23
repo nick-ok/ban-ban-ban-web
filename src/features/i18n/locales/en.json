@@ -5,7 +5,7 @@
   },
   "screens": {
     "lock": {
-      "new_game": "New Game",
+      "newGame": "New Game",
       "continue": "Continue",
       "settings": "Settings"
     }
