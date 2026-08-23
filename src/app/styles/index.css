@@ -1,1 +1,8 @@
 @import './reset.css';
+
+#root {
+  isolation: isolate;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

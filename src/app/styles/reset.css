@@ -7,8 +7,7 @@
 }
 
 html,
-body,
-#root {
+body {
   height: 100%;
 }
 
@@ -23,7 +22,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   touch-action: none;
   user-select: none;
-  overflow: hidden;
 }
 
 input,
@@ -41,8 +39,4 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
-}
-
-#root {
-  isolation: isolate;
 }
