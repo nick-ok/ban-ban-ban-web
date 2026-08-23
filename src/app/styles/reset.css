@@ -32,6 +32,21 @@ select {
   font: inherit;
 }
 
+button,
+a,
+input,
+select,
+textarea,
+[role='button'] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus,
+a:focus,
+input:focus {
+  outline: none;
+}
+
 p,
 h1,
 h2,
