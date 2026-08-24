@@ -7,7 +7,9 @@
   "bracketSpacing": true,
   "arrowParens": "always",
   "endOfLine": "lf",
-  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports"
+  ],
   "importOrder": [
     "^(react|react-dom)(/.*)?$",
     "",
@@ -15,9 +17,12 @@
     "",
     "^@/(.*)$",
     "",
-    "^[./](?!.*\\.module\\.scss$)",
+    "^[./](?!.*\\.module\\.css$)",
     "",
-    "^.*\\.module\\.scss$"
+    "^.*\\.module\\.css$"
   ],
-  "importOrderParserPlugins": ["typescript", "jsx"]
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx"
+  ]
 }

@@ -6,8 +6,9 @@ import type { Variants } from 'motion/react';
 
 import { useNavigationStore } from '@/entities/navigation';
 import { useTranslation } from '@/features/i18n';
+import { GlassSurface } from '@/shared/ui';
 
-import styles from './styles.module.css';
+import styles from './LockScreen.module.css';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -85,18 +86,23 @@ export const LockScreen = () => {
 
         <motion.div className={styles.menu} variants={menuVariants}>
           {(['newGame', 'continue', 'settings'] as const).map((key) => (
-            <motion.button
+            <motion.div
               key={key}
-              className={styles.btn}
               variants={buttonVariants}
               whileTap={{ scale: 0.97 }}
               whileHover={{ scale: 1.01 }}
-              onPointerUp={() => {
-                if (key === 'newGame' || key === 'continue') setScene('lobby');
-              }}
             >
-              {t(`screens.lock.${key}`)}
-            </motion.button>
+              <GlassSurface
+                as="button"
+                className={styles.btn}
+                onPointerUp={() => {
+                  if (key === 'newGame' || key === 'continue')
+                    setScene('lobby');
+                }}
+              >
+                {t(`screens.lock.${key}`)}
+              </GlassSurface>
+            </motion.div>
           ))}
         </motion.div>
       </div>
