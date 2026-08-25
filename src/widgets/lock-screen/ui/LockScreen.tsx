@@ -89,7 +89,7 @@ export const LockScreen = () => {
             <motion.div
               key={key}
               variants={buttonVariants}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.99 }}
               whileHover={{ scale: 1.01 }}
             >
               <GlassSurface

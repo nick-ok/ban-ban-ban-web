@@ -1,0 +1,45 @@
+.wrapper {
+  width: 100%;
+}
+
+.wrapper[data-size='sm'] {
+  --pb-height: calc(var(--u) * 3.5);
+  --pb-font: calc(var(--u) * 2.2);
+}
+
+.wrapper[data-size='md'] {
+  --pb-height: calc(var(--u) * 5);
+  --pb-font: calc(var(--u) * 3);
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: var(--pb-height);
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: inherit;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.25);
+  z-index: 1;
+}
+
+.text {
+  position: relative;
+  z-index: 2;
+  font-size: var(--pb-font);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
