@@ -1,12 +1,19 @@
-import type { LocationIcon } from '@/entities/location/config/locations';
+import { motion } from 'motion/react';
+
+import type {
+  LocationIcon,
+  LocationID,
+} from '@/entities/location/config/locations';
+import { useNavigationStore } from '@/entities/navigation';
 import { Icon, ProgressBar } from '@/shared/ui';
 
 import styles from './AppGridItem.module.css';
 
 interface Props {
+  id: LocationID;
+  locationName: string;
   isLocked: boolean;
   icon: LocationIcon;
-  locationName: string;
   stats: {
     completed: number;
     total: number;
@@ -14,25 +21,40 @@ interface Props {
   };
 }
 
-export const AppGridItem = ({ isLocked, icon, locationName, stats }: Props) => {
+export const AppGridItem = ({
+  id,
+  locationName,
+  isLocked,
+  icon,
+  stats,
+}: Props) => {
+  const { navigateToPreview } = useNavigationStore();
+
   const scenarioProgress =
     stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0;
 
   return (
     <div className={styles.root}>
-      <button
+      <motion.button
+        layoutId={`app-bg-${id}`}
         className={styles.appButton}
         style={{ backgroundColor: icon.color }}
         disabled={isLocked}
+        whileTap={
+          isLocked ? {} : { scale: 0.95, transition: { duration: 0.1 } }
+        }
+        onClick={() => navigateToPreview(id)}
       >
-        <Icon name={icon.name} className={styles.appIcon} />
+        <motion.div layoutId={`app-icon-${id}`} className={styles.iconWrapper}>
+          <Icon name={icon.name} className={styles.appIcon} />
+        </motion.div>
 
         {isLocked && (
           <div className={styles.lockOverlay}>
             <Icon name="lock" size={30} />
           </div>
         )}
-      </button>
+      </motion.button>
 
       <div className={styles.label}>{locationName}</div>
 
