@@ -2,8 +2,8 @@ import { create, type StateCreator } from 'zustand';
 
 import type { LocationID } from '@/entities/location';
 import { COMPLETION_THRESHOLD, type ScenarioID } from '@/entities/scenario';
+import { withPersist } from '@/shared/lib/with-persist';
 
-import { withPersist } from '../lib/with-persist';
 import type { PlayerProgress, ScenarioResult } from './types';
 
 interface Actions {

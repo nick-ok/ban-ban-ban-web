@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import '@/app/styles/tokens.css';
 
-import styles from './styles.module.css';
+import styles from './PhoneFrame.module.css';
 
 export const PhoneFrame = ({ children }: PropsWithChildren) => {
   return (

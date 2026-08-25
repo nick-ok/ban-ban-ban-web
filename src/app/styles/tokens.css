@@ -19,6 +19,7 @@
   --space-8: calc(var(--u) * 8);
   --space-8: calc(var(--u) * 9);
   --space-10: calc(var(--u) * 10);
+  --space-20: calc(var(--u) * 20);
 
   --radius-sm: calc(var(--u) * 2);
   --radius-md: calc(var(--u) * 3);
