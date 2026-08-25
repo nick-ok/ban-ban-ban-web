@@ -107,18 +107,13 @@
 
 .btn {
   width: 100%;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-3) 0;
   color: #fff;
   font-family: inherit;
   font-size: var(--text-base);
   font-weight: bold;
   text-align: center;
-  cursor: pointer;
   transition: transform 0.1s;
-
-  &:active {
-    transform: scale(0.97);
-  }
 }
 
 @keyframes move-1 {

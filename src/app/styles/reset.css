@@ -23,6 +23,7 @@ body {
   touch-action: none;
   user-select: none;
   overflow-x: hidden;
+  background: #3f3f3f;
 }
 
 input,
@@ -45,6 +46,21 @@ button:focus,
 a:focus,
 input:focus {
   outline: none;
+}
+
+button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 p,
