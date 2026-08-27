@@ -1,10 +1,10 @@
 import type { PlayerProgress } from '@/entities/player-progress';
 
 import { SCENARIOS } from '../config/scenarios';
-import type { ScenarioID } from '../config/scenarios';
+import type { ScenarioId } from '../config/scenarios';
 
 export const isScenarioUnlocked = (
-  scenarioId: ScenarioID,
+  scenarioId: ScenarioId,
   progress: PlayerProgress,
 ): boolean => {
   const scenario = SCENARIOS.find((s) => s.id === scenarioId);

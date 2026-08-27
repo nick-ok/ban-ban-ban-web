@@ -1,5 +1,5 @@
-import { SCENARIOS, type ScenarioID } from '../config/scenarios';
+import { SCENARIOS, type ScenarioId } from '../config/scenarios';
 
-export const getScenarioById = (id: ScenarioID) => {
+export const getScenarioById = (id: ScenarioId) => {
   return SCENARIOS.find((s) => s.id === id);
 };

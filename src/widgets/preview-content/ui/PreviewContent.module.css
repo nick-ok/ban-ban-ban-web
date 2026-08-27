@@ -1,0 +1,107 @@
+.root {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  flex-shrink: 0;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.headerImageContainer {
+  position: absolute;
+  inset: 0;
+  transform-origin: top center;
+  will-change: filter, opacity;
+}
+
+.headerBg {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.headerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.headerContent {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-2);
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.locationIcon {
+  width: calc(var(--u) * 8);
+  height: auto;
+}
+
+.locationName {
+  font-size: var(--text-xl);
+  color: rgb(255, 255, 255);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.btns {
+  margin-top: var(--space-6);
+  padding: 0 var(--space-2);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.btn {
+  padding: var(--space-2) var(--space-6);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-weight: bold;
+  width: 50%;
+}
+
+.cancelBtn {
+  color: var(--color-primary);
+  background: white;
+}
+
+.startBtn {
+  background: var(--color-primary);
+}
+
+.content {
+  margin-top: var(--space-1);
+  flex-grow: 1;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: var(--space-2);
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.description {
+  padding: var(--space-2);
+  font-size: var(--text-base);
+}

@@ -1,9 +1,9 @@
-import type { LocationID } from '@/entities/location/config/locations';
-import type { ScenarioID } from '@/entities/scenario/config/scenarios';
+import type { LocationId } from '@/entities/location/config/locations';
+import type { ScenarioId } from '@/entities/scenario/config/scenarios';
 
 export interface Scenario {
-  id: ScenarioID;
-  locationId: LocationID;
+  id: ScenarioId;
+  locationId: LocationId;
   order: number;
   nameKey: string;
   descriptionKey: string;

@@ -33,7 +33,7 @@
     height: 28px;
     background: #000;
     border-radius: 0 0 14px 14px;
-    z-index: 10;
+    z-index: 100;
   }
 }
 

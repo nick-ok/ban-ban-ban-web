@@ -1,8 +1,8 @@
-import type { LocationID } from '@/entities/location';
+import type { LocationId } from '@/entities/location';
 
 export interface Scenario {
   id: string;
-  locationId: LocationID;
+  locationId: LocationId;
   order: number;
   nameKey: string;
   descriptionKey: string;
@@ -60,4 +60,4 @@ export const SCENARIOS: Scenario[] = [
   },
 ] as const;
 
-export type ScenarioID = (typeof SCENARIOS)[number]['id'];
+export type ScenarioId = (typeof SCENARIOS)[number]['id'];
