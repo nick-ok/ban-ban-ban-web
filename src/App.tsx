@@ -1,22 +1,23 @@
-import { AnimatePresence, motion } from 'motion/react';
-
 import { useNavigationStore } from '@/entities/navigation';
 import { PhoneFrame } from '@/widgets/phone-frame';
 
 import { LobbyScene } from './scenes/lobby';
 import { LockScene } from './scenes/lock';
+import { PreviewScene } from './scenes/preview';
+
+import styles from './App.module.css';
 
 const Placeholder = ({ name }: { name: string }) => (
   <div style={{ padding: 40, textAlign: 'center', color: '#888' }}>{name}</div>
 );
 
 const scenes = {
+  bootstrap: () => <Placeholder name="Bootstrap" />,
   lock: LockScene,
   lobby: LobbyScene,
-  game: () => <Placeholder name="Game" />,
-  bootstrap: () => <Placeholder name="Bootstrap" />,
-  preview: () => <Placeholder name="Preview" />,
+  preview: PreviewScene,
   briefing: () => <Placeholder name="Briefing" />,
+  game: () => <Placeholder name="Game" />,
   dayend: () => <Placeholder name="Day End" />,
 };
 
@@ -27,18 +28,9 @@ function App() {
 
   return (
     <PhoneFrame>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={scene}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          style={{ width: '100%', height: '100%' }}
-        >
-          <SceneComponent />
-        </motion.div>
-      </AnimatePresence>
+      <div className={styles.app}>
+        <SceneComponent />
+      </div>
     </PhoneFrame>
   );
 }

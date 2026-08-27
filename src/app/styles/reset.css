@@ -45,6 +45,7 @@ textarea,
 button:focus,
 a:focus,
 input:focus {
+  -webkit-tap-highlight-color: transparent;
   outline: none;
 }
 
@@ -57,6 +58,7 @@ button {
   text-align: center;
   appearance: none;
   -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
 
   &:focus-visible {
     outline: none;
