@@ -1,0 +1,15 @@
+.root {
+  padding-top: var(--space-10);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #737cff;
+  isolation: isolate;
+}
+
+.hud {
+  color: white;
+}

@@ -16,6 +16,7 @@ interface NavigationStore {
 export const useNavigationStore = create<NavigationStore>((set) => ({
   scene: 'lock',
   selectedLocationId: null,
+
   navigateToPreview: (locationId) =>
     set({ scene: 'preview', selectedLocationId: locationId }),
   closePreview: () => set({ scene: 'lobby', selectedLocationId: null }),
