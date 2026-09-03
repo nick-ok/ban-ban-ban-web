@@ -16,7 +16,7 @@ type Store = PlayerProgress & Actions;
 const createStore: StateCreator<Store> = (set) => ({
   scenarioResults: {},
   completedScenarioIds: [],
-  unlockedLocationIds: ['house-chat'],
+  unlockedLocationIds: ['loc1'],
 
   recordScenarioResult: (scenarioId, accuracy) => {
     set((state) => {

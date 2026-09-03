@@ -1,34 +1,30 @@
 import type { Location } from '../model/types';
 
-type LocationData = Omit<Location, 'id'> & { id: string };
-
-export const LOCATIONS: LocationData[] = [
+export const LOCATIONS = [
   {
-    id: 'house-chat',
+    id: 'loc1',
     name: 'HOA',
-    descriptionKey: 'locations.hoa.description',
+    descriptionKey: 'locations.loc1.description',
     icon: {
       name: 'hoa',
       color: '#e1d039',
     },
     previewImage: '/images/hoa.webp',
     background: 'linear-gradient(180deg, #1a0a2e 0%, #16213e 100%)',
-    scenarioIds: ['house-1', 'house-2', 'house-3'],
+    scenarioIds: ['loc1_sc1', 'loc1_sc2', 'loc1_sc3'],
     unlocksAfter: undefined,
   },
   {
-    id: 'spiritual-app',
+    id: 'loc2',
     name: 'Spirit Dev',
-    descriptionKey: 'locations.spiritual.description',
+    descriptionKey: 'locations.loc2.description',
     icon: {
       name: 'spiritual',
       color: '#fff',
     },
     previewImage: '/images/hoa.webp',
     background: 'linear-gradient(180deg, #0a2e1a 0%, #0e3b2f 100%)',
-    scenarioIds: ['spiritual-1', 'spiritual-2', 'spiritual-3'],
-    unlocksAfter: 'house-chat',
+    scenarioIds: ['loc2_sc1', 'loc2_sc2', 'loc2_sc3'],
+    unlocksAfter: 'loc2',
   },
-] as const;
-
-export type LocationId = (typeof LOCATIONS)[number]['id'];
+] as const satisfies readonly Location[];

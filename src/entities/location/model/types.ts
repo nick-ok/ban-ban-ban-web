@@ -1,7 +1,10 @@
+import type { ScenarioId } from '@/entities/scenario';
 import type { ParseKeys } from '@/features/i18n';
 import type { IconName } from '@/shared/ui';
 
-import type { LocationId } from '../config/locations';
+import type { LOCATION_IDS } from './constants';
+
+export type LocationId = (typeof LOCATION_IDS)[number];
 
 export interface LocationIcon {
   name: IconName;
@@ -15,6 +18,6 @@ export interface Location {
   icon: LocationIcon;
   previewImage: string;
   background: string;
-  scenarioIds: readonly string[];
+  scenarioIds: readonly ScenarioId[];
   unlocksAfter?: LocationId;
 }

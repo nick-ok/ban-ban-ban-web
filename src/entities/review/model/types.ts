@@ -1,4 +1,4 @@
-import type { LocationId } from '@/entities/location/config/locations';
+import type { LocationId } from '@/entities/location';
 
 export interface Review {
   id: string;

@@ -1,56 +1,112 @@
 import type { Scenario } from '../model/types';
 
-type ScenarioData = Omit<Scenario, 'id'> & { id: string };
-
-export const SCENARIOS: ScenarioData[] = [
+export const SCENARIOS = [
   {
-    id: 'house-1',
-    locationId: 'house-chat',
+    id: 'loc1_sc1',
+    locationId: 'loc1',
     order: 1,
     nameKey: 'scenarios.house1.name',
     descriptionKey: 'scenarios.house1.description',
     unlockThreshold: 0,
+    messageSpeedRange: [0.3, 0.8],
+    banRules: {
+      ban: [{ content: ['fwords'] }],
+      longBan: [{ user: ['anonymous'] }],
+    },
+    probabilities: {
+      ban: 0.3,
+      longBan: 0.2,
+      none: 0.5,
+    },
   },
   {
-    id: 'house-2',
-    locationId: 'house-chat',
+    id: 'loc1_sc2',
+    locationId: 'loc1',
     order: 2,
     nameKey: 'scenarios.house2.name',
     descriptionKey: 'scenarios.house2.description',
     unlockThreshold: 75,
+    messageSpeedRange: [0.3, 0.8],
+    banRules: {
+      ban: [],
+      longBan: [],
+    },
+    probabilities: {
+      ban: 0.4,
+      longBan: 0.1,
+      none: 0.5,
+    },
   },
   {
-    id: 'house-3',
-    locationId: 'house-chat',
+    id: 'loc1_sc3',
+    locationId: 'loc1',
     order: 3,
     nameKey: 'scenarios.house3.name',
     descriptionKey: 'scenarios.house3.description',
     unlockThreshold: 75,
+    messageSpeedRange: [0.3, 0.8],
+    banRules: {
+      ban: [],
+      longBan: [],
+    },
+    probabilities: {
+      ban: 0.4,
+      longBan: 0.1,
+      none: 0.5,
+    },
   },
   {
-    id: 'spiritual-1',
-    locationId: 'spiritual-app',
+    id: 'loc2_sc1',
+    locationId: 'loc2',
     order: 1,
     nameKey: 'scenarios.spiritual1.name',
     descriptionKey: 'scenarios.spiritual1.description',
     unlockThreshold: 75,
+    messageSpeedRange: [0.3, 0.8],
+    banRules: {
+      ban: [],
+      longBan: [],
+    },
+    probabilities: {
+      ban: 0.4,
+      longBan: 0.1,
+      none: 0.5,
+    },
   },
   {
-    id: 'spiritual-2',
-    locationId: 'spiritual-app',
+    id: 'loc2_sc2',
+    locationId: 'loc2',
     order: 2,
     nameKey: 'scenarios.spiritual2.name',
     descriptionKey: 'scenarios.spiritual2.description',
     unlockThreshold: 75,
+    messageSpeedRange: [0.3, 0.8],
+    banRules: {
+      ban: [],
+      longBan: [],
+    },
+    probabilities: {
+      ban: 0.4,
+      longBan: 0.1,
+      none: 0.5,
+    },
   },
   {
-    id: 'spiritual-3',
-    locationId: 'spiritual-app',
+    id: 'loc2_sc3',
+    locationId: 'loc2',
     order: 3,
     nameKey: 'scenarios.spiritual3.name',
     descriptionKey: 'scenarios.spiritual3.description',
     unlockThreshold: 75,
+    messageSpeedRange: [0.3, 0.8],
+    banRules: {
+      ban: [],
+      longBan: [],
+    },
+    probabilities: {
+      ban: 0.4,
+      longBan: 0.1,
+      none: 0.5,
+    },
   },
-] as const;
-
-export type ScenarioId = (typeof SCENARIOS)[number]['id'];
+] as const satisfies readonly Scenario[];

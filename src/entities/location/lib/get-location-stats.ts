@@ -1,6 +1,7 @@
 import type { PlayerProgress } from '@/entities/player-progress';
 
-import { LOCATIONS, type LocationId } from '../config/locations';
+import { LOCATIONS } from '../config/locations';
+import type { LocationId } from '../model/types';
 
 export const getLocationStats = (
   locationId: LocationId,

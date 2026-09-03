@@ -15,10 +15,10 @@
     }
   },
   "locations": {
-    "hoa": {
+    "loc1": {
       "description": "HOA chat description"
     },
-    "spiritual": {
+    "loc2": {
       "description": "Spiritual description"
     }
   }

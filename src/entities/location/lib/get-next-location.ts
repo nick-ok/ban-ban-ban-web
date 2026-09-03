@@ -1,5 +1,5 @@
 import { LOCATIONS } from '../config/locations';
-import type { LocationId } from '../config/locations';
+import type { LocationId } from '../model/types';
 
 export const getNextLocation = (
   currentLocationId: LocationId,
