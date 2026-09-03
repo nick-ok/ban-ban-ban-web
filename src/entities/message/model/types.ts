@@ -3,6 +3,8 @@ export type ContentType = 'normal' | 'blurred' | 'ad' | 'caps' | 'fwords';
 export type TitleType = 'empty' | 'hype' | 'dissent';
 export type MessageSide = 'left' | 'right';
 
+export type BanAction = 'ban' | 'long_ban' | 'none';
+
 export interface Message {
   id: string;
   user: UserType;
@@ -12,7 +14,7 @@ export interface Message {
     likes: number;
   };
   title: TitleType;
-  spawnTime: number;
-  speed: number;
   side: MessageSide;
+  speed: number;
+  banAction: BanAction;
 }

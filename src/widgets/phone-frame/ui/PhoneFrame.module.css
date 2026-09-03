@@ -9,11 +9,11 @@
 
   @media (width > 440px) {
     margin: auto;
-    max-width: 380px;
+    max-width: 400px;
     max-height: 760px;
     height: auto;
     min-height: auto;
-    aspect-ratio: 380 / 760;
+    aspect-ratio: 400 / 760;
     border: 2px solid #222;
     border-radius: 32px;
     box-shadow: 0 0 40px rgba(0, 255, 100, 0.06);

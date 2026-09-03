@@ -2,18 +2,9 @@ import { useEffect, useRef } from 'react';
 
 import * as PIXI from 'pixi.js';
 
+import { createPixiMessage } from '@/entities/message';
+
 import styles from './PixiStage.module.css';
-
-const setupGame = (app: PIXI.Application) => {
-  const graphics = new PIXI.Graphics();
-  graphics.rect(0, 0, 50, 50);
-  graphics.fill({ color: 0x00ffcc });
-
-  graphics.x = app.screen.width / 2 - 25;
-  graphics.y = app.screen.height / 2 - 25;
-
-  app.stage.addChild(graphics);
-};
 
 export const PixiStage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,8 +22,11 @@ export const PixiStage = () => {
         await appInstance.init({
           resizeTo: containerRef.current,
           backgroundAlpha: 0,
-          resolution: window.devicePixelRatio || 1,
+          resolution: Math.min(window.devicePixelRatio || 1, 2),
           autoDensity: true,
+          antialias: true,
+          roundPixels: true,
+          preference: 'webgpu',
         });
 
         if (isDestroyed) {
@@ -40,10 +34,19 @@ export const PixiStage = () => {
           return;
         }
 
+        const message = createPixiMessage({
+          side: 'left',
+          content: {
+            type: 'normal',
+            text: 'Привет',
+            likes: 100,
+          },
+        });
+
         pixiRef.current = appInstance;
         containerRef.current.appendChild(appInstance.canvas);
 
-        setupGame(appInstance);
+        pixiRef.current.stage.addChild(message);
       } catch (error) {
         console.error('PixiJS Init Error:', error);
       }
