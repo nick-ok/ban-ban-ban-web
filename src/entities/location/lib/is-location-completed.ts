@@ -1,11 +1,11 @@
 import type { PlayerProgress } from '@/entities/player-progress';
-import type { ScenarioID } from '@/entities/scenario';
+import type { ScenarioId } from '@/entities/scenario';
 
 import { LOCATIONS } from '../config/locations';
-import type { LocationID } from '../config/locations';
+import type { LocationId } from '../config/locations';
 
 export const isLocationCompleted = (
-  locationId: LocationID,
+  locationId: LocationId,
   progress: PlayerProgress,
 ): boolean => {
   const location = LOCATIONS.find((l) => l.id === locationId);
@@ -15,6 +15,6 @@ export const isLocationCompleted = (
   }
 
   return location.scenarioIds.every((id) =>
-    progress.completedScenarioIds.includes(id as ScenarioID),
+    progress.completedScenarioIds.includes(id as ScenarioId),
   );
 };

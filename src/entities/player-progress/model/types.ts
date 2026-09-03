@@ -1,5 +1,5 @@
-import type { LocationID } from '@/entities/location';
-import type { ScenarioID } from '@/entities/scenario';
+import type { LocationId } from '@/entities/location';
+import type { ScenarioId } from '@/entities/scenario';
 
 export interface ScenarioResult {
   bestAccuracy: number;
@@ -7,7 +7,7 @@ export interface ScenarioResult {
 }
 
 export interface PlayerProgress {
-  scenarioResults: Partial<Record<ScenarioID, ScenarioResult>>;
-  completedScenarioIds: ScenarioID[];
-  unlockedLocationIds: LocationID[];
+  scenarioResults: Partial<Record<ScenarioId, ScenarioResult>>;
+  completedScenarioIds: ScenarioId[];
+  unlockedLocationIds: LocationId[];
 }

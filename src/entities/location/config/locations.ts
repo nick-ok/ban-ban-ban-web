@@ -1,30 +1,17 @@
-import type { ScenarioID } from '@/entities/scenario';
-import type { IconName } from '@/shared/ui';
+import type { Location } from '../model/types';
 
-export interface Location {
-  id: string;
-  name: string;
-  descriptionKey: string;
-  icon: LocationIcon;
-  background: string;
-  scenarioIds: readonly ScenarioID[];
-  unlocksAfter?: string;
-}
+type LocationData = Omit<Location, 'id'> & { id: string };
 
-export interface LocationIcon {
-  name: IconName;
-  color: string;
-}
-
-export const LOCATIONS: Location[] = [
+export const LOCATIONS: LocationData[] = [
   {
     id: 'house-chat',
-    name: 'HOC',
-    descriptionKey: 'locations.houseChat.description',
+    name: 'HOA',
+    descriptionKey: 'locations.hoa.description',
     icon: {
-      name: 'hoc',
+      name: 'hoa',
       color: '#e1d039',
     },
+    previewImage: '/images/hoa.webp',
     background: 'linear-gradient(180deg, #1a0a2e 0%, #16213e 100%)',
     scenarioIds: ['house-1', 'house-2', 'house-3'],
     unlocksAfter: undefined,
@@ -37,10 +24,11 @@ export const LOCATIONS: Location[] = [
       name: 'spiritual',
       color: '#fff',
     },
+    previewImage: '/images/hoa.webp',
     background: 'linear-gradient(180deg, #0a2e1a 0%, #0e3b2f 100%)',
     scenarioIds: ['spiritual-1', 'spiritual-2', 'spiritual-3'],
     unlocksAfter: 'house-chat',
   },
 ] as const;
 
-export type LocationID = (typeof LOCATIONS)[number]['id'];
+export type LocationId = (typeof LOCATIONS)[number]['id'];

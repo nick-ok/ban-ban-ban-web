@@ -8,6 +8,18 @@
       "newGame": "New Game",
       "continue": "Continue",
       "settings": "Settings"
+    },
+    "preview": {
+      "start": "Start",
+      "cancel": "Cancel"
+    }
+  },
+  "locations": {
+    "hoa": {
+      "description": "HOA chat description"
+    },
+    "spiritual": {
+      "description": "Spiritual description"
     }
   }
 }

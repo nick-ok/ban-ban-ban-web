@@ -5,11 +5,13 @@ import { AnimatePresence, motion } from 'motion/react';
 
 import { LOCATIONS } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
-import { Icon } from '@/shared/ui';
+import { PreviewContent } from '@/widgets/preview-content';
+
+import { PreviewSceneSplash } from './PreviewSceneSplash';
 
 import styles from './PreviewScene.module.css';
 
-const SPLASH_DURATION = 600;
+const SPLASH_DURATION = 650;
 
 export const PreviewScene = () => {
   const { selectedLocationId, closePreview } = useNavigationStore();
@@ -35,32 +37,24 @@ export const PreviewScene = () => {
       layoutId={`app-bg-${selectedLocationId}`}
       className={clsx(styles.root, isReady ? styles.ready : styles.loading)}
       animate={{
-        backgroundColor: isReady ? '#121214' : location.icon.color,
+        backgroundColor: isReady ? '#4b4646' : location.icon.color,
       }}
+      exit={{ backgroundColor: location.icon.color }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <AnimatePresence>
-        {!isReady && (
-          <motion.div
-            className={styles.splash}
-            initial={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
-            animate={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
-            exit={{ opacity: 0, scale: 0.96, x: '-50%', y: '-50%' }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-          >
-            <Icon name={location.icon.name} size={64} />
-            <div className={styles.splashTitle}>{location.name}</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <PreviewSceneSplash
+        isReady={isReady}
+        iconName={location.icon.name}
+        title={location.name}
+      />
 
       <AnimatePresence>
         {isReady && (
           <motion.div
             className={styles.preview}
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 15 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{
               type: 'spring',
               damping: 25,
@@ -68,13 +62,7 @@ export const PreviewScene = () => {
               delay: 0.05,
             }}
           >
-            <p className={styles.description}>**{location.name}**</p>
-
-            <button className={styles.startButton} onClick={closePreview}>
-              CANCEL
-            </button>
-
-            <button className={styles.startButton}>RUN</button>
+            <PreviewContent onClose={closePreview} location={location} />
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,14 +1,14 @@
 import { create, type StateCreator } from 'zustand';
 
-import type { LocationID } from '@/entities/location';
-import { COMPLETION_THRESHOLD, type ScenarioID } from '@/entities/scenario';
+import type { LocationId } from '@/entities/location';
+import { COMPLETION_THRESHOLD, type ScenarioId } from '@/entities/scenario';
 import { withPersist } from '@/shared/lib/with-persist';
 
 import type { PlayerProgress, ScenarioResult } from './types';
 
 interface Actions {
-  recordScenarioResult: (scenarioId: ScenarioID, accuracy: number) => void;
-  unlockLocation: (locationId: LocationID) => void;
+  recordScenarioResult: (scenarioId: ScenarioId, accuracy: number) => void;
+  unlockLocation: (locationId: LocationId) => void;
 }
 
 type Store = PlayerProgress & Actions;

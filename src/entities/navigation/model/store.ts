@@ -1,14 +1,14 @@
 import { create } from 'zustand';
 
-import type { LocationID } from '@/entities/location';
+import type { LocationId } from '@/entities/location';
 
 export type Scene =
   'bootstrap' | 'lock' | 'lobby' | 'preview' | 'briefing' | 'game' | 'dayend';
 
 interface NavigationStore {
   scene: Scene;
-  selectedLocationId: LocationID | null;
-  navigateToPreview: (locationId: LocationID) => void;
+  selectedLocationId: LocationId | null;
+  navigateToPreview: (locationId: LocationId) => void;
   closePreview: () => void;
   setScene: (scene: Scene) => void;
 }

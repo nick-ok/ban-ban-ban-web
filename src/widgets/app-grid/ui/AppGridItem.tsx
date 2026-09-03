@@ -1,16 +1,13 @@
 import { motion } from 'motion/react';
 
-import type {
-  LocationIcon,
-  LocationID,
-} from '@/entities/location/config/locations';
+import type { LocationIcon, LocationId } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
 import { Icon, ProgressBar } from '@/shared/ui';
 
 import styles from './AppGridItem.module.css';
 
 interface Props {
-  id: LocationID;
+  id: LocationId;
   locationName: string;
   isLocked: boolean;
   icon: LocationIcon;

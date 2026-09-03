@@ -1,0 +1,32 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  user-select: none;
+
+  cursor: pointer;
+
+  transition: transform 0.1s ease;
+  will-change: transform;
+
+  &:active {
+    transform: scale(0.97);
+    transition: transform 0.05s ease;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    transform: none;
+  }
+}

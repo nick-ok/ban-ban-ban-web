@@ -1,8 +1,8 @@
-import type { LocationID } from '@/entities/location/config/locations';
+import type { LocationId } from '@/entities/location/config/locations';
 
 export interface Review {
   id: string;
-  locationId: LocationID;
+  locationId: LocationId;
   textKey: string;
   author: string;
   rating: 1 | 2 | 3 | 4 | 5;

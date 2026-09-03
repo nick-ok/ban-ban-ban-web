@@ -1,9 +1,9 @@
 import type { PlayerProgress } from '@/entities/player-progress';
 
-import { LOCATIONS, type LocationID } from '../config/locations';
+import { LOCATIONS, type LocationId } from '../config/locations';
 
 export const getLocationStats = (
-  locationId: LocationID,
+  locationId: LocationId,
   progress: PlayerProgress,
 ) => {
   const location = LOCATIONS.find((l) => l.id === locationId);

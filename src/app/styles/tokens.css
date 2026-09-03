@@ -24,4 +24,6 @@
   --radius-sm: calc(var(--u) * 2);
   --radius-md: calc(var(--u) * 3);
   --radius-lg: calc(var(--u) * 4);
+
+  --color-primary: #1f90f0;
 }
