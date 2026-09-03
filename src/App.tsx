@@ -1,6 +1,7 @@
 import { useNavigationStore } from '@/entities/navigation';
 import { PhoneFrame } from '@/widgets/phone-frame';
 
+import { GameScene } from './scenes/game';
 import { LobbyScene } from './scenes/lobby';
 import { LockScene } from './scenes/lock';
 import { PreviewScene } from './scenes/preview';
@@ -17,7 +18,7 @@ const scenes = {
   lobby: LobbyScene,
   preview: PreviewScene,
   briefing: () => <Placeholder name="Briefing" />,
-  game: () => <Placeholder name="Game" />,
+  game: GameScene,
   dayend: () => <Placeholder name="Day End" />,
 };
 

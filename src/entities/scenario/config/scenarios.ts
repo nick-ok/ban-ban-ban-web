@@ -1,15 +1,8 @@
-import type { LocationId } from '@/entities/location';
+import type { Scenario } from '../model/types';
 
-export interface Scenario {
-  id: string;
-  locationId: LocationId;
-  order: number;
-  nameKey: string;
-  descriptionKey: string;
-  unlockThreshold: number;
-}
+type ScenarioData = Omit<Scenario, 'id'> & { id: string };
 
-export const SCENARIOS: Scenario[] = [
+export const SCENARIOS: ScenarioData[] = [
   {
     id: 'house-1',
     locationId: 'house-chat',

@@ -11,10 +11,11 @@ import styles from './PreviewContent.module.css';
 
 interface Props {
   location: Location;
+  onStart: () => void;
   onClose: () => void;
 }
 
-export const PreviewContent = ({ location, onClose }: Props) => {
+export const PreviewContent = ({ location, onStart, onClose }: Props) => {
   const { t } = useTranslation();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -54,7 +55,7 @@ export const PreviewContent = ({ location, onClose }: Props) => {
           {t('screens.preview.cancel')}
         </Button>
 
-        <Button className={clsx(styles.btn, styles.startBtn)}>
+        <Button className={clsx(styles.btn, styles.startBtn)} onClick={onStart}>
           {t('screens.preview.start')}
         </Button>
       </div>

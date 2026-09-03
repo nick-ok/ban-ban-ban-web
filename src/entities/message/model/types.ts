@@ -1,0 +1,18 @@
+export type UserType = 'male' | 'female' | 'anonymous' | 'bot';
+export type ContentType = 'normal' | 'blurred' | 'ad' | 'caps' | 'fwords';
+export type TitleType = 'empty' | 'hype' | 'dissent';
+export type MessageSide = 'left' | 'right';
+
+export interface Message {
+  id: string;
+  user: UserType;
+  content: {
+    type: ContentType;
+    text: string;
+    likes: number;
+  };
+  title: TitleType;
+  spawnTime: number;
+  speed: number;
+  side: MessageSide;
+}

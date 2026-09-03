@@ -14,11 +14,15 @@ import styles from './PreviewScene.module.css';
 const SPLASH_DURATION = 650;
 
 export const PreviewScene = () => {
-  const { selectedLocationId, closePreview } = useNavigationStore();
+  const { selectedLocationId, closePreview, setScene } = useNavigationStore();
   const [phase, setPhase] = useState<'loading' | 'ready'>('loading');
 
   const location = LOCATIONS.find((l) => l.id === selectedLocationId);
   const isReady = phase === 'ready';
+
+  const handleStart = () => {
+    setScene('game');
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -62,7 +66,11 @@ export const PreviewScene = () => {
               delay: 0.05,
             }}
           >
-            <PreviewContent onClose={closePreview} location={location} />
+            <PreviewContent
+              onStart={handleStart}
+              onClose={closePreview}
+              location={location}
+            />
           </motion.div>
         )}
       </AnimatePresence>
