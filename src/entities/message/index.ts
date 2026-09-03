@@ -1,1 +1,9 @@
-export type { Message, UserType, ContentType, TitleType } from './model/types';
+export type {
+  Message,
+  UserType,
+  ContentType,
+  TitleType,
+  BanAction,
+} from './model/types';
+
+export { createPixiMessage } from './ui/GameMessage';

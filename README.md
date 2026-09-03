@@ -37,9 +37,14 @@
 │ │ │ ├── 📁 model
 │ │ │ │ ├── 🟨 types.ts
 │ │ ├── 📁 message
+│ │ │ ├── 📜 README.md
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 model
+│ │ │ │ ├── 🟨 constants.ts
 │ │ │ │ ├── 🟨 types.ts
+│ │ │ ├── 📁 ui
+│ │ │ │ ├── 🟨 Bubble.ts
+│ │ │ │ ├── 🟨 GameMessage.ts
 │ │ ├── 📁 navigation
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 model
@@ -77,6 +82,9 @@
 │ ├── 📁 scenes
 │ │ ├── 📁 game
 │ │ │ ├── 🟨 index.ts
+│ │ │ ├── 📁 ui
+│ │ │ │ ├── 🎨 GameScene.module.css
+│ │ │ │ ├── 🟦 GameScene.tsx
 │ │ ├── 📁 lobby
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 ui
@@ -136,6 +144,11 @@
 │ │ │ ├── 📁 ui
 │ │ │ │ ├── 🎨 PhoneFrame.module.css
 │ │ │ │ ├── 🟦 PhoneFrame.tsx
+│ │ ├── 📁 pixi-stage
+│ │ │ ├── 🟨 index.ts
+│ │ │ ├── 📁 ui
+│ │ │ │ ├── 🎨 PixiStage.module.css
+│ │ │ │ ├── 🟦 PixiStage.tsx
 │ │ ├── 📁 preview-content
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 ui

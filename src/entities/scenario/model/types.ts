@@ -2,23 +2,30 @@ import type { LocationId } from '@/entities/location/config/locations';
 import type { ContentType, TitleType, UserType } from '@/entities/message';
 import type { ScenarioId } from '@/entities/scenario/config/scenarios';
 
+export interface BanRule {
+  user?: UserType[];
+  content?: ContentType[];
+  title?: TitleType[];
+  likes?: {
+    min?: number;
+    max?: number;
+  };
+}
+
 export interface Scenario {
   id: ScenarioId;
   locationId: LocationId;
   order: number;
   nameKey: string;
   descriptionKey: string;
-  unlockThreshold: number;
-}
-
-export type BanAction = 'ban' | 'long_ban';
-
-export interface BanRule {
-  target: {
-    user?: UserType[];
-    content?: ContentType[];
-    title?: TitleType[];
-    minLikes?: number;
+  banRules: {
+    ban: BanRule[];
+    longBan: BanRule[];
   };
-  action: BanAction;
+  probabilities: {
+    ban: number;
+    longBan: number;
+    none: number;
+  };
+  unlockThreshold: number;
 }
