@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 
 import type { Scenario } from '@/entities/scenario';
+import { useGameStore } from '@/features/game';
 
 import { useGameLoop } from '../hooks/useGameLoop';
 import { usePixiApp } from '../hooks/usePixiApp';
@@ -16,13 +17,17 @@ interface Props {
 
 export const PixiStage = ({ scenario }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
-
   const app = usePixiApp(containerRef);
+
+  const isGameComplete = useGameStore((state) => state.isGameComplete);
+
+  const isLoopActive = !!scenario && !!app && !isGameComplete;
+
   const { spawnMessage } = useSpawnLogic(scenario, app);
 
   useGameLoop({
     app: app,
-    isActive: !!scenario && !!app,
+    isActive: isLoopActive,
     spawnInterval: SPAWN_INTERVAL,
     onSpawn: spawnMessage,
   });

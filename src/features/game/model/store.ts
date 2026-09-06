@@ -6,6 +6,9 @@ interface GameStore {
   stats: GameStats;
 
   gameTime: number;
+  dayDuration: number;
+  elapsedTime: number;
+
   isWorkingDayActive: boolean;
   isDayFinished: boolean;
 
@@ -17,7 +20,7 @@ interface GameStore {
   updateGameTime: (minutes: number) => void;
   finishWorkingDay: () => void;
 
-  startGame: () => void;
+  startGame: (params: { startTime: number; endTime: number }) => void;
   finishGame: (accuracy: number) => void;
   resetGame: () => void;
 }
@@ -35,7 +38,10 @@ const INITIAL_STATS: GameStats = {
 const INITIAL_STATE = {
   stats: INITIAL_STATS,
 
-  gameTime: 600,
+  gameTime: 0,
+  dayDuration: 0,
+  elapsedTime: 0,
+
   isWorkingDayActive: true,
   isDayFinished: false,
   isGameComplete: false,
@@ -55,7 +61,25 @@ export const useGameStore = create<GameStore>()((set) => ({
   },
 
   updateGameTime: (minutes) => {
-    set((state) => ({ gameTime: state.gameTime + minutes }));
+    set((state) => {
+      if (!state.isWorkingDayActive) {
+        return {};
+      }
+
+      const nextElapsed = state.elapsedTime + minutes;
+
+      if (nextElapsed >= state.dayDuration) {
+        return {
+          elapsedTime: state.dayDuration,
+          gameTime: state.gameTime + (state.dayDuration - state.elapsedTime),
+
+          isWorkingDayActive: false,
+          isDayFinished: true,
+        };
+      }
+
+      return { elapsedTime: nextElapsed, gameTime: state.gameTime + minutes };
+    });
   },
 
   finishWorkingDay: () => {
@@ -65,10 +89,13 @@ export const useGameStore = create<GameStore>()((set) => ({
     });
   },
 
-  startGame: () => {
+  startGame: ({ startTime, endTime }) => {
     set({
       ...INITIAL_STATE,
-      gameTime: 600,
+      gameTime: startTime,
+      elapsedTime: 0,
+      dayDuration: endTime - startTime,
+
       isWorkingDayActive: true,
       isDayFinished: false,
       isGameComplete: false,

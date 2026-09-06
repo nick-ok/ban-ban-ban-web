@@ -22,6 +22,9 @@ export interface Scenario {
   nameKey: string;
   descriptionKey: string;
   messageSpeedRange: number[];
+  // Время начала дня в минутах от 00:00 (например, 600 для 10:00)
+  startWorktime: number;
+  endWorktime: number;
   banRules: {
     ban: BanRule[];
     longBan: BanRule[];
