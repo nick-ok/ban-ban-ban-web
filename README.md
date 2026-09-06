@@ -35,10 +35,13 @@
 │ │ │ │ ├── 🟨 get-next-location.ts
 │ │ │ │ ├── 🟨 is-location-completed.ts
 │ │ │ ├── 📁 model
+│ │ │ │ ├── 🟨 constants.ts
 │ │ │ │ ├── 🟨 types.ts
 │ │ ├── 📁 message
 │ │ │ ├── 📜 README.md
 │ │ │ ├── 🟨 index.ts
+│ │ │ ├── 📁 lib
+│ │ │ │ ├── 🟨 create-message-by-scenario.ts
 │ │ │ ├── 📁 model
 │ │ │ │ ├── 🟨 constants.ts
 │ │ │ │ ├── 🟨 types.ts
@@ -63,12 +66,21 @@
 │ │ │ │ ├── 🟨 scenarios.ts
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 lib
+│ │ │ │ ├── 🟨 get-last-unlocked-location-scenario.ts
 │ │ │ │ ├── 🟨 get-scenario-by-id.ts
 │ │ │ │ ├── 🟨 get-scenarios-by-location.ts
 │ │ │ │ ├── 🟨 is-scenario-unlocked.ts
+│ │ │ │ ├── 🟨 time-to-minutes.ts
 │ │ │ ├── 📁 model
 │ │ │ │ ├── 🟨 types.ts
 │ ├── 📁 features
+│ │ ├── 📁 game
+│ │ │ ├── 🟨 index.ts
+│ │ │ ├── 📁 lib
+│ │ │ │ ├── 🟨 calculate-accuracy.ts
+│ │ │ ├── 📁 model
+│ │ │ │ ├── 🟨 store.ts
+│ │ │ │ ├── 🟨 types.ts
 │ │ ├── 📁 i18n
 │ │ │ ├── 📁 @types
 │ │ │ │ ├── 🟨 i18next.d.ts
@@ -83,6 +95,8 @@
 │ │ ├── 📁 game
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 ui
+│ │ │ │ ├── 🎨 GameClock.module.css
+│ │ │ │ ├── 🟦 GameClock.tsx
 │ │ │ │ ├── 🎨 GameScene.module.css
 │ │ │ │ ├── 🟦 GameScene.tsx
 │ │ ├── 📁 lobby
@@ -109,6 +123,7 @@
 │ │ │ │ ├── 🖼️ lock.svg
 │ │ │ │ ├── 🖼️ spiritual.svg
 │ │ ├── 📁 lib
+│ │ │ ├── 🟨 random-array-item.ts
 │ │ │ ├── 🟨 with-persist.ts
 │ │ ├── 📁 types
 │ │ │ ├── 🟨 svg.d.ts
@@ -145,6 +160,10 @@
 │ │ │ │ ├── 🎨 PhoneFrame.module.css
 │ │ │ │ ├── 🟦 PhoneFrame.tsx
 │ │ ├── 📁 pixi-stage
+│ │ │ ├── 📁 hooks
+│ │ │ │ ├── 🟨 useGameLoop.ts
+│ │ │ │ ├── 🟨 usePixiApp.ts
+│ │ │ │ ├── 🟨 useSpawnLogic.ts
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 ui
 │ │ │ │ ├── 🎨 PixiStage.module.css

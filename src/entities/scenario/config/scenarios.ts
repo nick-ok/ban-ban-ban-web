@@ -1,3 +1,4 @@
+import { timeToMinutes } from '../lib/time-to-minutes';
 import type { Scenario } from '../model/types';
 
 export const SCENARIOS = [
@@ -8,7 +9,9 @@ export const SCENARIOS = [
     nameKey: 'scenarios.house1.name',
     descriptionKey: 'scenarios.house1.description',
     unlockThreshold: 0,
-    messageSpeedRange: [0.3, 0.8],
+    messageSpeedRange: [0.3, 1],
+    startWorktime: timeToMinutes('10:00'),
+    endWorktime: timeToMinutes('11:00'),
     banRules: {
       ban: [{ content: ['fwords'] }],
       longBan: [{ user: ['anonymous'] }],
@@ -27,6 +30,8 @@ export const SCENARIOS = [
     descriptionKey: 'scenarios.house2.description',
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
+    startWorktime: timeToMinutes('10:00'),
+    endWorktime: timeToMinutes('18:00'),
     banRules: {
       ban: [],
       longBan: [],
@@ -45,6 +50,8 @@ export const SCENARIOS = [
     descriptionKey: 'scenarios.house3.description',
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
+    startWorktime: timeToMinutes('10:00'),
+    endWorktime: timeToMinutes('18:00'),
     banRules: {
       ban: [],
       longBan: [],
@@ -63,6 +70,8 @@ export const SCENARIOS = [
     descriptionKey: 'scenarios.spiritual1.description',
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
+    startWorktime: timeToMinutes('10:00'),
+    endWorktime: timeToMinutes('18:00'),
     banRules: {
       ban: [],
       longBan: [],
@@ -81,6 +90,8 @@ export const SCENARIOS = [
     descriptionKey: 'scenarios.spiritual2.description',
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
+    startWorktime: timeToMinutes('10:00'),
+    endWorktime: timeToMinutes('18:00'),
     banRules: {
       ban: [],
       longBan: [],
@@ -99,6 +110,8 @@ export const SCENARIOS = [
     descriptionKey: 'scenarios.spiritual3.description',
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
+    startWorktime: timeToMinutes('10:00'),
+    endWorktime: timeToMinutes('18:00'),
     banRules: {
       ban: [],
       longBan: [],

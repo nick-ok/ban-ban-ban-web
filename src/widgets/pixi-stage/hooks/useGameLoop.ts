@@ -3,6 +3,9 @@ import { useEffect, useRef } from 'react';
 import * as PIXI from 'pixi.js';
 
 import type { ExtendedPixiMessageContainer } from '@/entities/message';
+import { useGameStore } from '@/features/game';
+
+const GAME_MINUTES_PER_SECOND = 4;
 
 interface UseGameLoopOptions {
   app: PIXI.Application | null;
@@ -19,6 +22,12 @@ export const useGameLoop = ({
 }: UseGameLoopOptions) => {
   const spawnTimerRef = useRef<number>(0);
 
+  const isWorkingDayActive = useGameStore((state) => state.isWorkingDayActive);
+  const isDayFinished = useGameStore((state) => state.isDayFinished);
+
+  const updateGameTime = useGameStore((state) => state.updateGameTime);
+  const finishGame = useGameStore((state) => state.finishGame);
+
   const handler = (ticker: PIXI.Ticker) => {
     if (!app) {
       return;
@@ -28,9 +37,17 @@ export const useGameLoop = ({
 
     spawnTimerRef.current += deltaMS;
 
-    if (spawnTimerRef.current >= spawnInterval) {
-      spawnTimerRef.current = 0;
-      onSpawn();
+    if (isWorkingDayActive) {
+      const gameMinutesPassed = (deltaMS / 1000) * GAME_MINUTES_PER_SECOND;
+
+      updateGameTime(gameMinutesPassed);
+
+      spawnTimerRef.current += deltaMS;
+
+      if (spawnTimerRef.current >= spawnInterval) {
+        spawnTimerRef.current = 0;
+        onSpawn();
+      }
     }
 
     const stage = app.stage;
@@ -52,6 +69,10 @@ export const useGameLoop = ({
         stage.removeChild(child);
         child.destroy({ children: true });
       }
+    }
+
+    if (isDayFinished && stage.children.length === 0) {
+      finishGame(0);
     }
   };
 
