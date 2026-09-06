@@ -1,3 +1,5 @@
+import * as PIXI from 'pixi.js';
+
 export type UserType = 'male' | 'female' | 'anonymous' | 'bot';
 export type ContentType = 'normal' | 'blurred' | 'ad' | 'caps' | 'fwords';
 export type TitleType = 'empty' | 'hype' | 'dissent';
@@ -17,4 +19,8 @@ export interface Message {
   side: MessageSide;
   speed: number;
   banAction: BanAction;
+}
+
+export interface ExtendedPixiMessageContainer extends PIXI.Container {
+  messageData: Message;
 }

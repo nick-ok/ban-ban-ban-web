@@ -1,7 +1,7 @@
 import type { PlayerProgress } from '@/entities/player-progress';
 
 import { SCENARIOS } from '../config/scenarios';
-import type { ScenarioId } from '../config/scenarios';
+import type { ScenarioId } from '../model/types';
 
 export const isScenarioUnlocked = (
   scenarioId: ScenarioId,

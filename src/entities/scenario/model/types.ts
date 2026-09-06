@@ -1,6 +1,9 @@
-import type { LocationId } from '@/entities/location/config/locations';
+import type { LocationId } from '@/entities/location';
 import type { ContentType, TitleType, UserType } from '@/entities/message';
-import type { ScenarioId } from '@/entities/scenario/config/scenarios';
+
+import type { SCENARIO_IDS } from '../config/constants';
+
+export type ScenarioId = (typeof SCENARIO_IDS)[number];
 
 export interface BanRule {
   user?: UserType[];
@@ -18,6 +21,7 @@ export interface Scenario {
   order: number;
   nameKey: string;
   descriptionKey: string;
+  messageSpeedRange: number[];
   banRules: {
     ban: BanRule[];
     longBan: BanRule[];

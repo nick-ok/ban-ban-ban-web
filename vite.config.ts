@@ -27,4 +27,7 @@ export default defineConfig({
       '@': path.resolve(import.meta.dirname, './src'),
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1024,
+  },
 });

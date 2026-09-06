@@ -1,14 +1,15 @@
 import * as PIXI from 'pixi.js';
 
 import { BUBBLE_CONFIG } from '../model/constants';
-import type { Message } from '../model/types';
+import type { ExtendedPixiMessageContainer, Message } from '../model/types';
 import { createBubble } from './Bubble';
 
-export const createPixiMessage = ({
-  content,
-  side = 'left',
-}: Partial<Message>): PIXI.Container => {
-  const container = new PIXI.Container();
+export const createPixiMessage = (
+  message: Message,
+): ExtendedPixiMessageContainer => {
+  const container = new PIXI.Container() as ExtendedPixiMessageContainer;
+
+  const { content, side = 'left' } = message;
 
   const pixiText = new PIXI.Text({
     text: content?.text,
@@ -38,6 +39,11 @@ export const createPixiMessage = ({
   });
 
   pixiText.position.set(BUBBLE_CONFIG.padding, BUBBLE_CONFIG.padding);
+
+  container.messageData = message;
+
+  container.interactive = true;
+  container.cursor = 'pointer';
 
   container.addChild(bubble);
   container.addChild(pixiText);

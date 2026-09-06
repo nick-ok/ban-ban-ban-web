@@ -1,18 +1,42 @@
+import { useMemo } from 'react';
+
 import { useNavigationStore } from '@/entities/navigation';
+import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
+import {
+  getLastUnlockedLocationScenario,
+  getScenarioById,
+} from '@/entities/scenario';
 import { PixiStage } from '@/widgets/pixi-stage';
 
 import styles from './GameScene.module.css';
 
 export const GameScene = () => {
-  const { selectedLocationId } = useNavigationStore();
+  const { selectedLocationId, selectedScenarioId } = useNavigationStore();
+  const progress = usePlayerProgressStore();
+
+  const activeScenario = useMemo(() => {
+    if (selectedScenarioId !== null) {
+      return getScenarioById(selectedScenarioId);
+    }
+
+    return getLastUnlockedLocationScenario(
+      selectedLocationId ?? 'loc1',
+      progress,
+    );
+  }, [progress, selectedLocationId, selectedScenarioId]);
+
+  if (!activeScenario) {
+    return null;
+  }
 
   return (
     <div className={styles.root}>
       <div className={styles.hud}>
-        <h3>Локация: {selectedLocationId}</h3>
+        <h3>Location: {selectedLocationId}</h3>
+        <h4>Scenario: {activeScenario.id}</h4>
       </div>
 
-      <PixiStage />
+      <PixiStage scenario={activeScenario} />
     </div>
   );
 };

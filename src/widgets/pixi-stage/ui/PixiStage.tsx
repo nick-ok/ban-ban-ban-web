@@ -1,71 +1,31 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
-import * as PIXI from 'pixi.js';
+import type { Scenario } from '@/entities/scenario';
 
-import { createPixiMessage } from '@/entities/message';
+import { useGameLoop } from '../hooks/useGameLoop';
+import { usePixiApp } from '../hooks/usePixiApp';
+import { useSpawnLogic } from '../hooks/useSpawnLogic';
 
 import styles from './PixiStage.module.css';
 
-export const PixiStage = () => {
+const SPAWN_INTERVAL = 1500;
+
+interface Props {
+  scenario: Scenario;
+}
+
+export const PixiStage = ({ scenario }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const pixiRef = useRef<PIXI.Application | null>(null);
 
-  useEffect(() => {
-    let isDestroyed = false;
+  const app = usePixiApp(containerRef);
+  const { spawnMessage } = useSpawnLogic(scenario, app);
 
-    const initPixi = async () => {
-      if (!containerRef.current) return;
-
-      const appInstance = new PIXI.Application();
-
-      try {
-        await appInstance.init({
-          resizeTo: containerRef.current,
-          backgroundAlpha: 0,
-          resolution: Math.min(window.devicePixelRatio || 1, 2),
-          autoDensity: true,
-          antialias: true,
-          roundPixels: true,
-          preference: 'webgpu',
-        });
-
-        if (isDestroyed) {
-          appInstance.destroy(true, { children: true, texture: true });
-          return;
-        }
-
-        const message = createPixiMessage({
-          side: 'left',
-          content: {
-            type: 'normal',
-            text: 'Привет',
-            likes: 100,
-          },
-        });
-
-        pixiRef.current = appInstance;
-        containerRef.current.appendChild(appInstance.canvas);
-
-        pixiRef.current.stage.addChild(message);
-      } catch (error) {
-        console.error('PixiJS Init Error:', error);
-      }
-    };
-
-    initPixi();
-
-    return () => {
-      isDestroyed = true;
-
-      if (pixiRef.current) {
-        pixiRef.current.destroy(true, {
-          children: true,
-          texture: true,
-        });
-        pixiRef.current = null;
-      }
-    };
-  }, []);
+  useGameLoop({
+    app: app,
+    isActive: !!scenario && !!app,
+    spawnInterval: SPAWN_INTERVAL,
+    onSpawn: spawnMessage,
+  });
 
   return <div ref={containerRef} className={styles.container} />;
 };
