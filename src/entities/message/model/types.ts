@@ -5,7 +5,7 @@ export type ContentType = 'normal' | 'blurred' | 'ad' | 'caps' | 'fwords';
 export type TitleType = 'empty' | 'hype' | 'dissent';
 export type MessageSide = 'left' | 'right';
 
-export type BanAction = 'ban' | 'long_ban' | 'none';
+export type BanAction = 'ban' | 'longBan' | 'none';
 
 export interface Message {
   id: string;
@@ -23,4 +23,5 @@ export interface Message {
 
 export interface ExtendedPixiMessageContainer extends PIXI.Container {
   messageData: Message;
+  isPressed?: boolean;
 }

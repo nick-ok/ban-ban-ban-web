@@ -9,7 +9,7 @@ export interface BubbleOptions {
   color: number;
 }
 
-export const createBubble = ({
+export const createMessageBubble = ({
   width,
   height,
   side,

@@ -6,8 +6,7 @@ import {
   getLastUnlockedLocationScenario,
   getScenarioById,
 } from '@/entities/scenario';
-import { useGameStore } from '@/features/game';
-import { PixiStage } from '@/widgets/pixi-stage';
+import { GameStage, useGameStore } from '@/features/game';
 
 import { GameClock } from './GameClock';
 
@@ -51,7 +50,7 @@ export const GameScene = () => {
         <GameClock />
       </div>
 
-      <PixiStage scenario={activeScenario} />
+      <GameStage scenario={activeScenario} />
     </div>
   );
 };
