@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import type { Variants } from 'motion/react';
 
 import { useNavigationStore } from '@/entities/navigation';
+import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { useTranslation } from '@/features/i18n';
 import { GlassSurface } from '@/shared/ui';
 
@@ -44,13 +45,21 @@ const buttonVariants: Variants = {
 
 export const LockScene = () => {
   const { t, i18n } = useTranslation();
+
   const { setScene } = useNavigationStore();
+
+  const completedScenarios = usePlayerProgressStore(
+    (state) => state.completedScenarioIds,
+  );
+  const resetProgress = usePlayerProgressStore((state) => state.resetProgress);
+
   const [now, setNow] = useState(new Date());
 
-  useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
+  const hasSavedGame = completedScenarios.length > 0;
+
+  const menuBtns = (['newGame', 'continue', 'settings'] as const).filter(
+    (key) => key !== 'continue' || hasSavedGame,
+  );
 
   const timeStr = new Intl.DateTimeFormat(i18n.language, {
     hour: '2-digit',
@@ -63,6 +72,22 @@ export const LockScene = () => {
     day: 'numeric',
     month: 'long',
   }).format(now);
+
+  const handleMenuButtonClick = (key: 'newGame' | 'continue' | 'settings') => {
+    if (key === 'newGame') {
+      resetProgress();
+      setScene('lobby');
+    }
+
+    if (key === 'continue') {
+      setScene('lobby');
+    }
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <motion.div
@@ -85,7 +110,7 @@ export const LockScene = () => {
         </motion.div>
 
         <motion.div className={styles.menu} variants={menuVariants}>
-          {(['newGame', 'continue', 'settings'] as const).map((key) => (
+          {menuBtns.map((key) => (
             <motion.div
               key={key}
               variants={buttonVariants}
@@ -95,10 +120,7 @@ export const LockScene = () => {
               <GlassSurface
                 as="button"
                 className={styles.btn}
-                onPointerUp={() => {
-                  if (key === 'newGame' || key === 'continue')
-                    setScene('lobby');
-                }}
+                onPointerUp={() => handleMenuButtonClick(key)}
               >
                 {t(`screens.lock.${key}`)}
               </GlassSurface>

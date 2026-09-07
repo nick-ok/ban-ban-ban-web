@@ -15,6 +15,7 @@ const SPLASH_DURATION = 650;
 
 export const PreviewScene = () => {
   const { selectedLocationId, closePreview, setScene } = useNavigationStore();
+
   const [phase, setPhase] = useState<'loading' | 'ready'>('loading');
 
   const location = LOCATIONS.find((l) => l.id === selectedLocationId);
@@ -30,7 +31,7 @@ export const PreviewScene = () => {
     }, SPLASH_DURATION);
 
     return () => clearTimeout(timer);
-  }, [selectedLocationId]);
+  }, []);
 
   if (!location) {
     return null;

@@ -9,6 +9,7 @@ import type { PlayerProgress, ScenarioResult } from './types';
 interface Actions {
   recordScenarioResult: (scenarioId: ScenarioId, accuracy: number) => void;
   unlockLocation: (locationId: LocationId) => void;
+  resetProgress: () => void;
 }
 
 type Store = PlayerProgress & Actions;
@@ -49,6 +50,13 @@ const createStore: StateCreator<Store> = (set) => ({
         : [...state.unlockedLocationIds, locationId],
     }));
   },
+
+  resetProgress: () =>
+    set({
+      scenarioResults: {},
+      completedScenarioIds: [],
+      unlockedLocationIds: ['loc1'],
+    }),
 });
 
 export const usePlayerProgressStore = create<Store>()(

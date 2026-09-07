@@ -1,21 +1,23 @@
 import type { LocationId } from '@/entities/location';
 import type { PlayerProgress } from '@/entities/player-progress';
 
+import { SCENARIOS } from '../config/scenarios';
 import type { Scenario } from '../model/types';
-import { getScenariosByLocation } from './get-scenarios-by-location';
 
 export const getLastUnlockedLocationScenario = (
   locationId: LocationId,
   progress: PlayerProgress,
 ): Scenario => {
-  const result = getScenariosByLocation(locationId).find(
+  const locationScenarios = SCENARIOS.filter(
+    (s) => s.locationId === locationId,
+  );
+
+  const result = locationScenarios.find(
     (sc) => !progress.completedScenarioIds.includes(sc.id),
   );
 
   if (!result) {
-    const scenarios = getScenariosByLocation(locationId);
-
-    return scenarios[scenarios.length - 1];
+    return locationScenarios[locationScenarios.length - 1];
   }
 
   return result;

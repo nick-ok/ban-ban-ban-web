@@ -31,7 +31,7 @@ export const SCENARIOS = [
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
-    endWorktime: timeToMinutes('18:00'),
+    endWorktime: timeToMinutes('11:00'),
     banRules: {
       ban: [],
       longBan: [],
@@ -51,7 +51,7 @@ export const SCENARIOS = [
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
-    endWorktime: timeToMinutes('18:00'),
+    endWorktime: timeToMinutes('11:00'),
     banRules: {
       ban: [],
       longBan: [],
@@ -71,7 +71,7 @@ export const SCENARIOS = [
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
-    endWorktime: timeToMinutes('18:00'),
+    endWorktime: timeToMinutes('11:00'),
     banRules: {
       ban: [],
       longBan: [],
@@ -91,7 +91,7 @@ export const SCENARIOS = [
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
-    endWorktime: timeToMinutes('18:00'),
+    endWorktime: timeToMinutes('11:00'),
     banRules: {
       ban: [],
       longBan: [],
@@ -111,7 +111,7 @@ export const SCENARIOS = [
     unlockThreshold: 75,
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
-    endWorktime: timeToMinutes('18:00'),
+    endWorktime: timeToMinutes('11:00'),
     banRules: {
       ban: [],
       longBan: [],
