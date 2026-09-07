@@ -1,8 +1,11 @@
 import { create } from 'zustand';
 
+import type { ScenarioId } from '@/entities/scenario';
+
 import type { GameStats } from './types';
 
 interface GameStore {
+  currentScenarioId: ScenarioId | null;
   stats: GameStats;
 
   gameTime: number;
@@ -20,7 +23,11 @@ interface GameStore {
   updateGameTime: (minutes: number) => void;
   finishWorkingDay: () => void;
 
-  startGame: (params: { startTime: number; endTime: number }) => void;
+  startGame: (params: {
+    startTime: number;
+    endTime: number;
+    scenarioId: ScenarioId;
+  }) => void;
   finishGame: () => void;
   resetGame: () => void;
 }
@@ -35,6 +42,7 @@ const INITIAL_STATS: GameStats = {
 };
 
 const INITIAL_STATE = {
+  currentScenarioId: null,
   stats: INITIAL_STATS,
 
   gameTime: 0,
@@ -88,9 +96,10 @@ export const useGameStore = create<GameStore>()((set) => ({
     });
   },
 
-  startGame: ({ startTime, endTime }) => {
+  startGame: ({ startTime, endTime, scenarioId }) => {
     set({
       ...INITIAL_STATE,
+      currentScenarioId: scenarioId,
       gameTime: startTime,
       elapsedTime: 0,
       dayDuration: endTime - startTime,

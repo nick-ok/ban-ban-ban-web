@@ -46,8 +46,8 @@
 │ │ │ │ ├── 🟨 constants.ts
 │ │ │ │ ├── 🟨 types.ts
 │ │ │ ├── 📁 ui
-│ │ │ │ ├── 🟨 Bubble.ts
-│ │ │ │ ├── 🟨 GameMessage.ts
+│ │ │ │ ├── 🟨 create-game-message.ts
+│ │ │ │ ├── 🟨 create-message-bubble.ts
 │ │ ├── 📁 navigation
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 model
@@ -67,20 +67,27 @@
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 lib
 │ │ │ │ ├── 🟨 get-last-unlocked-location-scenario.ts
+│ │ │ │ ├── 🟨 get-next-scenario-to-unlock.ts
 │ │ │ │ ├── 🟨 get-scenario-by-id.ts
-│ │ │ │ ├── 🟨 get-scenarios-by-location.ts
-│ │ │ │ ├── 🟨 is-scenario-unlocked.ts
 │ │ │ │ ├── 🟨 time-to-minutes.ts
 │ │ │ ├── 📁 model
 │ │ │ │ ├── 🟨 types.ts
 │ ├── 📁 features
 │ │ ├── 📁 game
+│ │ │ ├── 📁 hooks
+│ │ │ │ ├── 🟨 useGameLoop.ts
+│ │ │ │ ├── 🟨 usePixiApp.ts
+│ │ │ │ ├── 🟨 useSpawnLogic.ts
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 lib
 │ │ │ │ ├── 🟨 calculate-accuracy.ts
+│ │ │ │ ├── 🟨 constants.ts
 │ │ │ ├── 📁 model
 │ │ │ │ ├── 🟨 store.ts
 │ │ │ │ ├── 🟨 types.ts
+│ │ │ ├── 📁 ui
+│ │ │ │ ├── 🎨 GameStage.module.css
+│ │ │ │ ├── 🟦 GameStage.tsx
 │ │ ├── 📁 i18n
 │ │ │ ├── 📁 @types
 │ │ │ │ ├── 🟨 i18next.d.ts
@@ -92,6 +99,11 @@
 │ │ │ │ ├── 🗂️ ru.json
 │ ├── 🟦 main.tsx
 │ ├── 📁 scenes
+│ │ ├── 📁 dayend
+│ │ │ ├── 🟨 index.ts
+│ │ │ ├── 📁 ui
+│ │ │ │ ├── 🎨 DayendScene.module.css
+│ │ │ │ ├── 🟦 DayendScene.tsx
 │ │ ├── 📁 game
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 ui
@@ -159,15 +171,6 @@
 │ │ │ ├── 📁 ui
 │ │ │ │ ├── 🎨 PhoneFrame.module.css
 │ │ │ │ ├── 🟦 PhoneFrame.tsx
-│ │ ├── 📁 pixi-stage
-│ │ │ ├── 📁 hooks
-│ │ │ │ ├── 🟨 useGameLoop.ts
-│ │ │ │ ├── 🟨 usePixiApp.ts
-│ │ │ │ ├── 🟨 useSpawnLogic.ts
-│ │ │ ├── 🟨 index.ts
-│ │ │ ├── 📁 ui
-│ │ │ │ ├── 🎨 PixiStage.module.css
-│ │ │ │ ├── 🟦 PixiStage.tsx
 │ │ ├── 📁 preview-content
 │ │ │ ├── 🟨 index.ts
 │ │ │ ├── 📁 ui

@@ -34,6 +34,7 @@ export const GameScene = () => {
       startGame({
         startTime: activeScenario.startWorktime,
         endTime: activeScenario.endWorktime,
+        scenarioId: activeScenario.id,
       });
     }
   }, [activeScenario, startGame]);
