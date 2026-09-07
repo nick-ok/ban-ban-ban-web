@@ -23,7 +23,7 @@ export const createMessageByScenario = (
 
   const textMap: Record<BanAction, string> = {
     ban: 'В бан его!',
-    long_ban: 'Забань его на долго!',
+    longBan: 'Забань его на долго!',
     none: 'Пущай живёт',
   };
 

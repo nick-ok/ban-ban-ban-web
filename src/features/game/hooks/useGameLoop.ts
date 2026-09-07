@@ -5,21 +5,15 @@ import * as PIXI from 'pixi.js';
 import type { ExtendedPixiMessageContainer } from '@/entities/message';
 import { useGameStore } from '@/features/game';
 
-const GAME_MINUTES_PER_SECOND = 4;
+import { GAME_MINUTES_PER_SECOND, SPAWN_INTERVAL } from '../lib/constants';
 
 interface UseGameLoopOptions {
   app: PIXI.Application | null;
   isActive: boolean;
-  spawnInterval: number;
   onSpawn: () => void;
 }
 
-export const useGameLoop = ({
-  app,
-  isActive,
-  spawnInterval,
-  onSpawn,
-}: UseGameLoopOptions) => {
+export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
   const spawnTimerRef = useRef<number>(0);
 
   const isWorkingDayActive = useGameStore((state) => state.isWorkingDayActive);
@@ -27,6 +21,8 @@ export const useGameLoop = ({
 
   const updateGameTime = useGameStore((state) => state.updateGameTime);
   const finishGame = useGameStore((state) => state.finishGame);
+
+  const incrementStat = useGameStore((state) => state.incrementStat);
 
   const handler = (ticker: PIXI.Ticker) => {
     if (!app) {
@@ -44,7 +40,7 @@ export const useGameLoop = ({
 
       spawnTimerRef.current += deltaMS;
 
-      if (spawnTimerRef.current >= spawnInterval) {
+      if (spawnTimerRef.current >= SPAWN_INTERVAL) {
         spawnTimerRef.current = 0;
         onSpawn();
       }
@@ -56,6 +52,10 @@ export const useGameLoop = ({
     const children = stage.children.slice() as ExtendedPixiMessageContainer[];
 
     for (const child of children) {
+      if (child.isPressed) {
+        continue;
+      }
+
       const speed = child.messageData?.speed ?? 0.5;
       const moveAmount = speed * (deltaMS / 1000) * 100;
 
@@ -64,7 +64,13 @@ export const useGameLoop = ({
       const bounds = child.getBounds();
 
       if (bounds.y + bounds.height < -margin) {
-        console.log('Handle miss', child.messageData);
+        const banAction = child.messageData.banAction;
+
+        if (banAction === 'ban') {
+          incrementStat('missed');
+        } else if (banAction === 'longBan') {
+          incrementStat('missedLong');
+        }
 
         stage.removeChild(child);
         child.destroy({ children: true });

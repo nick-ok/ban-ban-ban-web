@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import * as PIXI from 'pixi.js';
 
-import { createPixiMessage, type BanAction } from '@/entities/message';
+import { createGameMessage, type BanAction } from '@/entities/message';
 import { createMessageByScenario } from '@/entities/message/lib/create-message-by-scenario';
 import type { Scenario } from '@/entities/scenario';
 import { useGameStore } from '@/features/game';
@@ -28,11 +28,11 @@ export const useSpawnLogic = (
       rand <
       scenario.probabilities.ban + scenario.probabilities.longBan
     ) {
-      banAction = 'long_ban';
+      banAction = 'longBan';
     }
 
     const message = createMessageByScenario(scenario, banAction);
-    const container = createPixiMessage(message);
+    const container = createGameMessage(message);
 
     const stageWidth = app.renderer.width;
     const stageHeight = app.renderer.height;
@@ -43,9 +43,50 @@ export const useSpawnLogic = (
     container.x = message.side === 'left' ? 0 : stageWidth - containerWidth;
     container.y = stageHeight - containerHeight;
 
+    container.isPressed = false;
+
+    let holdTime = 0;
+    const targetTime = message.banAction === 'longBan' ? 1000 : 500;
+
+    const tickHandler = (ticker: PIXI.Ticker) => {
+      holdTime += ticker.elapsedMS;
+
+      if (holdTime >= targetTime) {
+        app.ticker.remove(tickHandler);
+
+        if (message.banAction === 'ban') {
+          incrementStat('banned');
+        } else if (message.banAction === 'longBan') {
+          incrementStat('longBanned');
+        } else {
+          incrementStat('wrongBanned');
+        }
+
+        app.stage.removeChild(container);
+        container.destroy({ children: true });
+      }
+    };
+
+    const handlePointerUp = () => {
+      if (!container.isPressed) {
+        return;
+      }
+
+      app.ticker.remove(tickHandler);
+      container.isPressed = false;
+      container.zIndex = 0;
+    };
+
     container.on('pointerdown', () => {
-      console.log('Handle tap', message);
+      container.isPressed = true;
+      container.zIndex = 10;
+      holdTime = 0;
+
+      app.ticker.add(tickHandler);
     });
+
+    container.on('pointerup', handlePointerUp);
+    container.on('pointerupoutside', handlePointerUp);
 
     app.stage.addChild(container);
 

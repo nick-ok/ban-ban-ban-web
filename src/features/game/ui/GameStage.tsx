@@ -7,20 +7,17 @@ import { useGameLoop } from '../hooks/useGameLoop';
 import { usePixiApp } from '../hooks/usePixiApp';
 import { useSpawnLogic } from '../hooks/useSpawnLogic';
 
-import styles from './PixiStage.module.css';
-
-const SPAWN_INTERVAL = 1500;
+import styles from './GameStage.module.css';
 
 interface Props {
   scenario: Scenario;
 }
 
-export const PixiStage = ({ scenario }: Props) => {
+export const GameStage = ({ scenario }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const app = usePixiApp(containerRef);
 
   const isGameComplete = useGameStore((state) => state.isGameComplete);
-
   const isLoopActive = !!scenario && !!app && !isGameComplete;
 
   const { spawnMessage } = useSpawnLogic(scenario, app);
@@ -28,9 +25,8 @@ export const PixiStage = ({ scenario }: Props) => {
   useGameLoop({
     app: app,
     isActive: isLoopActive,
-    spawnInterval: SPAWN_INTERVAL,
     onSpawn: spawnMessage,
   });
 
-  return <div ref={containerRef} className={styles.container} />;
+  return <div ref={containerRef} className={styles.root} />;
 };

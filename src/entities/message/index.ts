@@ -7,5 +7,5 @@ export type {
   ExtendedPixiMessageContainer,
 } from './model/types';
 
-export { createPixiMessage } from './ui/GameMessage';
+export { createGameMessage } from './ui/create-game-message';
 export { createMessageByScenario } from './lib/create-message-by-scenario';

@@ -2,9 +2,9 @@ import * as PIXI from 'pixi.js';
 
 import { BUBBLE_CONFIG } from '../model/constants';
 import type { ExtendedPixiMessageContainer, Message } from '../model/types';
-import { createBubble } from './Bubble';
+import { createMessageBubble } from './create-message-bubble';
 
-export const createPixiMessage = (
+export const createGameMessage = (
   message: Message,
 ): ExtendedPixiMessageContainer => {
   const container = new PIXI.Container() as ExtendedPixiMessageContainer;
@@ -31,7 +31,7 @@ export const createPixiMessage = (
   );
   const bubbleHeight = Math.max(textHeight + BUBBLE_CONFIG.padding * 2, 40);
 
-  const bubble = createBubble({
+  const bubble = createMessageBubble({
     width: bubbleWidth,
     height: bubbleHeight,
     side,
@@ -40,10 +40,11 @@ export const createPixiMessage = (
 
   pixiText.position.set(BUBBLE_CONFIG.padding, BUBBLE_CONFIG.padding);
 
-  container.messageData = message;
-
-  container.interactive = true;
+  container.eventMode = 'static';
   container.cursor = 'pointer';
+
+  container.messageData = message;
+  container.isPressed = false;
 
   container.addChild(bubble);
   container.addChild(pixiText);

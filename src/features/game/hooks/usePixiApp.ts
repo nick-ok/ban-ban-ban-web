@@ -1,5 +1,3 @@
-// widgets/pixi-stage/hooks/usePixiApp.ts
-
 import { useEffect, useRef, useState } from 'react';
 
 import * as PIXI from 'pixi.js';
@@ -29,6 +27,8 @@ export const usePixiApp = (
           antialias: true,
           roundPixels: true,
         });
+
+        appInstance.stage.sortableChildren = true;
 
         if (isDestroyed) {
           appInstance.destroy(true, { children: true, texture: true });
