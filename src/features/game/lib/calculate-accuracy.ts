@@ -1,14 +1,17 @@
 import type { GameStats } from '../model/types';
+import { K_MISSED, K_MISSED_LONG, K_WRONG_BAN } from './constants';
 
 export const calculateAccuracy = (stats: GameStats): number => {
-  const totalActions =
-    stats.banned + stats.longBanned + stats.wrongBanned + stats.wrongLongBanned;
+  const { total, wrongBanned, missedLong, missed } = stats;
 
-  if (totalActions === 0) {
-    return 0;
+  if (total === 0) {
+    return 100;
   }
 
-  const correctActions = stats.banned + stats.longBanned;
+  const totalPenalty =
+    wrongBanned * K_WRONG_BAN + missedLong * K_MISSED_LONG + missed * K_MISSED;
 
-  return Math.round((correctActions / totalActions) * 10000) / 100;
+  const accuracy = 100 * (1 - totalPenalty / total);
+
+  return Math.max(0, Math.round(accuracy));
 };

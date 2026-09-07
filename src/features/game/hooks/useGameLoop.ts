@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import * as PIXI from 'pixi.js';
 
 import type { ExtendedPixiMessageContainer } from '@/entities/message';
+import { useNavigationStore } from '@/entities/navigation';
 import { useGameStore } from '@/features/game';
 
 import { GAME_MINUTES_PER_SECOND, SPAWN_INTERVAL } from '../lib/constants';
@@ -16,8 +17,11 @@ interface UseGameLoopOptions {
 export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
   const spawnTimerRef = useRef<number>(0);
 
+  const setScene = useNavigationStore((state) => state.setScene);
+
   const isWorkingDayActive = useGameStore((state) => state.isWorkingDayActive);
   const isDayFinished = useGameStore((state) => state.isDayFinished);
+  const isGameComplete = useGameStore((state) => state.isGameComplete);
 
   const updateGameTime = useGameStore((state) => state.updateGameTime);
   const finishGame = useGameStore((state) => state.finishGame);
@@ -30,8 +34,6 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
     }
 
     const deltaMS = ticker.deltaMS;
-
-    spawnTimerRef.current += deltaMS;
 
     if (isWorkingDayActive) {
       const gameMinutesPassed = (deltaMS / 1000) * GAME_MINUTES_PER_SECOND;
@@ -78,7 +80,7 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
     }
 
     if (isDayFinished && stage.children.length === 0) {
-      finishGame(0);
+      finishGame();
     }
   };
 
@@ -96,4 +98,10 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
       spawnTimerRef.current = 0;
     };
   }, [isActive, handler, app]);
+
+  useEffect(() => {
+    if (isGameComplete) {
+      setScene('dayend');
+    }
+  }, [isGameComplete]);
 };

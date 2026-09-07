@@ -1,0 +1,13 @@
+.root {
+  color: white;
+  position: absolute;
+  inset: 0;
+  background-color: rgb(35, 31, 31);
+  padding: var(--space-10) var(--space-2) var(--space-2);
+}
+
+.stats {
+  border: 1px solid yellow;
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+}
