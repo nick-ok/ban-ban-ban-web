@@ -21,7 +21,7 @@ interface GameStore {
   finishWorkingDay: () => void;
 
   startGame: (params: { startTime: number; endTime: number }) => void;
-  finishGame: (accuracy: number) => void;
+  finishGame: () => void;
   resetGame: () => void;
 }
 
@@ -30,7 +30,6 @@ const INITIAL_STATS: GameStats = {
   banned: 0,
   longBanned: 0,
   wrongBanned: 0,
-  wrongLongBanned: 0,
   missed: 0,
   missedLong: 0,
 };
@@ -103,11 +102,10 @@ export const useGameStore = create<GameStore>()((set) => ({
     });
   },
 
-  finishGame: (accuracy) => {
+  finishGame: () => {
     set({
       isGameComplete: true,
       isWorkingDayActive: false,
-      accuracy,
     });
   },
 

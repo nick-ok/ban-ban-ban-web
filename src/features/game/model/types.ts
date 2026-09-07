@@ -3,7 +3,6 @@ export interface GameStats {
   banned: number;
   longBanned: number;
   wrongBanned: number;
-  wrongLongBanned: number;
   missed: number;
   missedLong: number;
 }
