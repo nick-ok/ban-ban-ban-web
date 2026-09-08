@@ -57,7 +57,7 @@ export const LockScene = () => {
 
   const hasSavedGame = completedScenarios.length > 0;
 
-  const menuBtns = (['newGame', 'continue', 'settings'] as const).filter(
+  const menuBtns = (['continue', 'newGame', 'settings'] as const).filter(
     (key) => key !== 'continue' || hasSavedGame,
   );
 

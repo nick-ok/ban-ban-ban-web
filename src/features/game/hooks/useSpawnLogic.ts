@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 import * as PIXI from 'pixi.js';
 
 import { createGameMessage, type BanAction } from '@/entities/message';
@@ -13,7 +11,7 @@ export const useSpawnLogic = (
 ) => {
   const incrementStat = useGameStore((state) => state.incrementStat);
 
-  const spawnMessage = useCallback(() => {
+  const spawnMessage = () => {
     if (!scenario || !app) {
       return;
     }
@@ -44,46 +42,22 @@ export const useSpawnLogic = (
     container.y = stageHeight - containerHeight;
 
     container.isPressed = false;
+    container.holdTime = 0;
+    container.targetTime = message.banAction === 'longBan' ? 1000 : 500;
 
-    let holdTime = 0;
-    const targetTime = message.banAction === 'longBan' ? 1000 : 500;
-
-    const tickHandler = (ticker: PIXI.Ticker) => {
-      holdTime += ticker.elapsedMS;
-
-      if (holdTime >= targetTime) {
-        app.ticker.remove(tickHandler);
-
-        if (message.banAction === 'ban') {
-          incrementStat('banned');
-        } else if (message.banAction === 'longBan') {
-          incrementStat('longBanned');
-        } else {
-          incrementStat('wrongBanned');
-        }
-
-        app.stage.removeChild(container);
-        container.destroy({ children: true });
-      }
-    };
+    container.on('pointerdown', () => {
+      container.isPressed = true;
+      container.zIndex = 10;
+    });
 
     const handlePointerUp = () => {
       if (!container.isPressed) {
         return;
       }
 
-      app.ticker.remove(tickHandler);
       container.isPressed = false;
       container.zIndex = 0;
     };
-
-    container.on('pointerdown', () => {
-      container.isPressed = true;
-      container.zIndex = 10;
-      holdTime = 0;
-
-      app.ticker.add(tickHandler);
-    });
 
     container.on('pointerup', handlePointerUp);
     container.on('pointerupoutside', handlePointerUp);
@@ -91,7 +65,7 @@ export const useSpawnLogic = (
     app.stage.addChild(container);
 
     incrementStat('total');
-  }, [scenario, app, incrementStat]);
+  };
 
   return { spawnMessage };
 };

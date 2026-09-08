@@ -24,4 +24,11 @@ export interface Message {
 export interface ExtendedPixiMessageContainer extends PIXI.Container {
   messageData: Message;
   isPressed?: boolean;
+  holdTime: number;
+  targetTime: number;
+
+  updateProgress: (percent: number) => void;
+
+  progressMask?: PIXI.Graphics;
+  messageHeight?: number;
 }
