@@ -16,7 +16,6 @@ interface UseGameLoopOptions {
 
 export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
   const spawnTimerRef = useRef<number>(0);
-
   const setScene = useNavigationStore((state) => state.setScene);
 
   const isWorkingDayActive = useGameStore((state) => state.isWorkingDayActive);
@@ -25,83 +24,118 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
 
   const updateGameTime = useGameStore((state) => state.updateGameTime);
   const finishGame = useGameStore((state) => state.finishGame);
-
   const incrementStat = useGameStore((state) => state.incrementStat);
 
-  const handler = (ticker: PIXI.Ticker) => {
-    if (!app) {
-      return;
-    }
+  const loopStateRef = useRef({ isWorkingDayActive, isDayFinished, onSpawn });
 
-    const deltaMS = ticker.deltaMS;
-
-    if (isWorkingDayActive) {
-      const gameMinutesPassed = (deltaMS / 1000) * GAME_MINUTES_PER_SECOND;
-
-      updateGameTime(gameMinutesPassed);
-
-      spawnTimerRef.current += deltaMS;
-
-      if (spawnTimerRef.current >= SPAWN_INTERVAL) {
-        spawnTimerRef.current = 0;
-        onSpawn();
-      }
-    }
-
-    const stage = app.stage;
-    const margin = 20;
-
-    const children = stage.children.slice() as ExtendedPixiMessageContainer[];
-
-    for (const child of children) {
-      if (child.isPressed) {
-        continue;
-      }
-
-      const speed = child.messageData?.speed ?? 0.5;
-      const moveAmount = speed * (deltaMS / 1000) * 100;
-
-      child.y -= moveAmount;
-
-      const bounds = child.getBounds();
-
-      if (bounds.y + bounds.height < -margin) {
-        const banAction = child.messageData.banAction;
-
-        if (banAction === 'ban') {
-          incrementStat('missed');
-        } else if (banAction === 'longBan') {
-          incrementStat('missedLong');
-        }
-
-        stage.removeChild(child);
-        child.destroy({ children: true });
-      }
-    }
-
-    if (isDayFinished && stage.children.length === 0) {
-      finishGame();
-    }
-  };
+  useEffect(() => {
+    loopStateRef.current = { isWorkingDayActive, isDayFinished, onSpawn };
+  }, [isWorkingDayActive, isDayFinished, onSpawn]);
 
   useEffect(() => {
     if (!app || !isActive) {
       return;
     }
 
-    const ticker = app.ticker;
+    const handler = (ticker: PIXI.Ticker) => {
+      const elapsedMS = ticker.elapsedMS;
+      const deltaMS = ticker.deltaMS;
+      const {
+        isWorkingDayActive: activeDay,
+        isDayFinished: dayEnded,
+        onSpawn: spawnFn,
+      } = loopStateRef.current;
 
+      if (activeDay) {
+        const gameMinutesPassed = (deltaMS / 1000) * GAME_MINUTES_PER_SECOND;
+        updateGameTime(gameMinutesPassed);
+
+        spawnTimerRef.current += deltaMS;
+        if (spawnTimerRef.current >= SPAWN_INTERVAL) {
+          spawnTimerRef.current = 0;
+          spawnFn();
+        }
+      }
+
+      const stage = app.stage;
+      const margin = 20;
+      const children = stage.children.slice() as ExtendedPixiMessageContainer[];
+
+      for (const child of children) {
+        if (child.holdTime === undefined) {
+          child.holdTime = 0;
+        }
+
+        const targetTime = child.targetTime || 500;
+
+        if (child.isPressed) {
+          child.holdTime += elapsedMS;
+
+          if (child.holdTime >= targetTime) {
+            const banAction = child.messageData?.banAction;
+
+            if (banAction === 'ban') {
+              incrementStat('banned');
+            } else if (banAction === 'longBan') {
+              incrementStat('longBanned');
+            } else {
+              incrementStat('wrongBanned');
+            }
+
+            stage.removeChild(child);
+            child.destroy({ children: true });
+            continue;
+          }
+        } else if (child.holdTime > 0) {
+          child.holdTime -= elapsedMS * 2;
+          if (child.holdTime < 0) {
+            child.holdTime = 0;
+          }
+        }
+
+        const percent = child.holdTime / targetTime;
+        child.updateProgress(percent);
+
+        if (child.isPressed) {
+          continue;
+        }
+
+        const speed = child.messageData?.speed ?? 0.5;
+        const moveAmount = speed * (deltaMS / 1000) * 100;
+        child.y -= moveAmount;
+
+        const bounds = child.getBounds();
+        if (bounds.y + bounds.height < -margin) {
+          const banAction = child.messageData?.banAction;
+
+          if (banAction === 'ban') {
+            incrementStat('missed');
+          } else if (banAction === 'longBan') {
+            incrementStat('missedLong');
+          }
+
+          stage.removeChild(child);
+          child.destroy({ children: true });
+        }
+      }
+
+      if (dayEnded && stage.children.length === 0) {
+        finishGame();
+      }
+    };
+
+    const ticker = app.ticker;
     ticker.add(handler);
 
     return () => {
       ticker.remove(handler);
       spawnTimerRef.current = 0;
     };
-  }, [isActive, handler, app]);
+  }, [isActive, app, updateGameTime, finishGame, incrementStat]);
 
   useEffect(() => {
     if (isGameComplete) {
       setScene('dayend');
     }
-  }, [isGameComplete]);
+  }, [isGameComplete, setScene]);
 };
