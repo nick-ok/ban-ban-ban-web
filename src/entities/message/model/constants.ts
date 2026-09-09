@@ -1,9 +1,11 @@
 export const BUBBLE_CONFIG = {
-  padding: 12,
-  radius: 6,
-  fontSize: 16,
-  maxWidth: 190,
-  minWidth: 100,
+  bubble: {
+    width: 190,
+    headSize: 36,
+    padding: 12,
+    radius: 12,
+    fontSize: 16,
+  },
   colors: {
     background: 0xe8e8e8,
     text: 0x000000,
@@ -11,6 +13,6 @@ export const BUBBLE_CONFIG = {
   tail: {
     width: 16,
     height: 10,
-    offset: 10,
+    offset: 20,
   },
 };

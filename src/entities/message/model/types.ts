@@ -1,5 +1,7 @@
 import * as PIXI from 'pixi.js';
 
+import type { AvatarAssetKey } from '../config/assets';
+
 export type UserType = 'male' | 'female' | 'anonymous' | 'bot';
 export type ContentType = 'normal' | 'blurred' | 'ad' | 'caps' | 'fwords';
 export type TitleType = 'empty' | 'hype' | 'dissent';
@@ -10,6 +12,7 @@ export type BanAction = 'ban' | 'longBan' | 'none';
 export interface Message {
   id: string;
   user: UserType;
+  avatarKey: AvatarAssetKey;
   content: {
     type: ContentType;
     text: string;
@@ -30,5 +33,4 @@ export interface ExtendedPixiMessageContainer extends PIXI.Container {
   updateProgress: (percent: number) => void;
 
   progressMask?: PIXI.Graphics;
-  messageHeight?: number;
 }
