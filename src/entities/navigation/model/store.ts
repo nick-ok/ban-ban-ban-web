@@ -18,7 +18,7 @@ interface NavigationStore {
 }
 
 export const useNavigationStore = create<NavigationStore>((set) => ({
-  scene: 'lock',
+  scene: 'bootstrap',
   selectedLocationId: null,
   selectedScenarioId: null,
 
