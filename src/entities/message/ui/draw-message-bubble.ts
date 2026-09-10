@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 
-import { BUBBLE_CONFIG } from '../model/constants';
+import { MESSAGE_CONFIG } from '../config/message-config';
 
 export interface Props {
   width: number;
@@ -17,7 +17,7 @@ export const drawMessageBubble = ({
 }: Props): PIXI.Graphics => {
   const graphics = new PIXI.Graphics();
 
-  const { bubble, tail } = BUBBLE_CONFIG;
+  const { bubble, tail } = MESSAGE_CONFIG;
 
   const tailX =
     side === 'left' ? tail.offset : width - tail.offset - tail.width;

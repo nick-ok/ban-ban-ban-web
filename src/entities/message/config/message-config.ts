@@ -1,10 +1,11 @@
-export const BUBBLE_CONFIG = {
+export const MESSAGE_CONFIG = {
   bubble: {
     width: 190,
     headSize: 36,
     padding: 12,
     radius: 12,
     fontSize: 16,
+    footerSize: 22,
   },
   colors: {
     background: 0xe8e8e8,

@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid';
 
 import type { Scenario } from '@/entities/scenario';
 import { randomArrayItem } from '@/shared/lib/random-array-item';
+import { randomNumberInRange } from '@/shared/lib/random-number-in-range';
 
 import {
   FEMALE_AVATAR_KEYS,
@@ -51,6 +52,7 @@ export const createMessageByScenario = (
 
   let user: UserType = Math.random() < 0.5 ? 'male' : 'female';
   let title: TitleType = 'empty';
+  let likes = randomNumberInRange(100, 2000);
 
   const textMap: Record<BanAction, string> = {
     ban: 'В бан его!',
@@ -62,6 +64,8 @@ export const createMessageByScenario = (
     const rules = scenario.banRules[banAction];
     const activeRule = randomArrayItem(rules);
 
+    likes = randomNumberInRange(0, 20);
+
     if (activeRule) {
       if (activeRule.user && activeRule.user.length > 0) {
         user = randomArrayItem(activeRule.user) ?? 'anonymous';
@@ -69,6 +73,13 @@ export const createMessageByScenario = (
 
       if (activeRule.title && activeRule.title.length > 0) {
         title = randomArrayItem(activeRule.title) ?? 'empty';
+      }
+
+      if (activeRule.likes) {
+        const minLimit = activeRule.likes.min ?? 0;
+        const maxLimit = activeRule.likes.max ?? 9999;
+
+        likes = randomNumberInRange(minLimit, maxLimit);
       }
     }
   }
@@ -82,7 +93,7 @@ export const createMessageByScenario = (
     content: {
       type: 'normal',
       text: textMap[banAction],
-      likes: 0,
+      likes,
     },
     title,
     side,

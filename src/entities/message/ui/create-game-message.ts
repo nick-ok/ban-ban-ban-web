@@ -1,8 +1,9 @@
 import * as PIXI from 'pixi.js';
 
-import { BUBBLE_CONFIG } from '../model/constants';
+import { MESSAGE_CONFIG } from '../config/message-config';
 import type { ExtendedPixiMessageContainer, Message } from '../model/types';
 import { drawMessageBubble } from './draw-message-bubble';
+import { drawMessageFooter } from './draw-message-footer';
 import { drawMessageHead } from './draw-message-head';
 
 export const createGameMessage = (
@@ -11,7 +12,7 @@ export const createGameMessage = (
   const container = new PIXI.Container() as ExtendedPixiMessageContainer;
 
   const { content, side = 'left', avatarKey, title } = message;
-  const { bubble, tail, colors } = BUBBLE_CONFIG;
+  const { bubble, tail, colors } = MESSAGE_CONFIG;
   const GAP = 12;
 
   const headContainer = drawMessageHead({ avatarKey, titleKey: title });
@@ -32,8 +33,28 @@ export const createGameMessage = (
   });
   pixiText.position.set(bubble.padding, textStartY);
 
-  const bubbleHeight = textStartY + pixiText.height + bubble.padding;
+  const footerContainer = drawMessageFooter({
+    likesCount: content?.likes ?? 0,
+    likeAssetKey: 'like',
+  });
+  const footerStartY = textStartY + pixiText.height + GAP;
+  footerContainer.position.set(bubble.padding, footerStartY);
+
+  const bubbleHeight = footerStartY + bubble.footerSize + bubble.padding;
   const totalHeight = bubbleHeight + tail.height;
+
+  const shadowBubble = drawMessageBubble({
+    width: bubble.width,
+    height: bubbleHeight,
+    side,
+    color: 0x000000,
+  });
+  shadowBubble.alpha = 0.15;
+  shadowBubble.position.set(2, 2);
+
+  const blurFilter = new PIXI.BlurFilter();
+  blurFilter.strength = 4;
+  shadowBubble.filters = [blurFilter];
 
   const baseBubble = drawMessageBubble({
     width: bubble.width,
@@ -68,11 +89,20 @@ export const createGameMessage = (
     progressMask.y = totalHeight - totalHeight * clampedPercent;
   };
 
+  container.addChild(shadowBubble);
   container.addChild(baseBubble);
   container.addChild(progressBubble);
   container.addChild(progressMask);
   container.addChild(headContainer);
   container.addChild(pixiText);
+  container.addChild(footerContainer);
+
+  container.on('destroyed', () => {
+    if (shadowBubble.filters) {
+      shadowBubble.filters = null;
+    }
+    blurFilter.destroy();
+  });
 
   return container;
 };

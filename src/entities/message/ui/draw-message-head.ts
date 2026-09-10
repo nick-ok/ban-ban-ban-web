@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
 
 import type { AvatarAssetKey, TitleAssetKey } from '../config/assets';
-import { BUBBLE_CONFIG } from '../model/constants';
+import { MESSAGE_CONFIG } from '../config/message-config';
 
 interface Props {
   avatarKey: AvatarAssetKey;
@@ -14,7 +14,7 @@ export const drawMessageHead = ({
 }: Props): PIXI.Container => {
   const container = new PIXI.Container();
 
-  const { bubble } = BUBBLE_CONFIG;
+  const { bubble } = MESSAGE_CONFIG;
 
   const AVATAR_SIZE = bubble.headSize;
   const TITLE_SIZE = 20;

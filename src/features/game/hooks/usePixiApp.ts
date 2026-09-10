@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { initDevtools } from '@pixi/devtools';
 import * as PIXI from 'pixi.js';
 
 export const usePixiApp = (
@@ -24,11 +25,13 @@ export const usePixiApp = (
           backgroundAlpha: 0,
           resolution: Math.min(window.devicePixelRatio || 1, 2),
           autoDensity: true,
-          antialias: true,
-          roundPixels: true,
         });
 
         appInstance.stage.sortableChildren = true;
+
+        if (import.meta.env.DEV) {
+          initDevtools(appInstance);
+        }
 
         if (isDestroyed) {
           appInstance.destroy(true, { children: true, texture: true });
