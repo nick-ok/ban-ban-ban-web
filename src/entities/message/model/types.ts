@@ -17,6 +17,7 @@ export interface Message {
     type: ContentType;
     text: string;
     likes: number;
+    hasLikes?: boolean;
   };
   title: TitleType;
   side: MessageSide;
