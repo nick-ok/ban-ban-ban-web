@@ -33,6 +33,13 @@ export const createGameMessage = (
   });
   pixiText.position.set(bubble.padding, textStartY);
 
+  if (content.type === 'blurred') {
+    const blurFilter = new PIXI.BlurFilter();
+
+    blurFilter.strength = 6;
+    pixiText.filters = [blurFilter];
+  }
+
   const footerContainer = drawMessageFooter({
     likesCount: content?.likes ?? 0,
     likeAssetKey: 'like',
@@ -96,13 +103,6 @@ export const createGameMessage = (
   container.addChild(headContainer);
   container.addChild(pixiText);
   container.addChild(footerContainer);
-
-  container.on('destroyed', () => {
-    if (shadowBubble.filters) {
-      shadowBubble.filters = null;
-    }
-    blurFilter.destroy();
-  });
 
   return container;
 };

@@ -13,7 +13,7 @@ export const SCENARIOS = [
     startWorktime: timeToMinutes('10:00'),
     endWorktime: timeToMinutes('11:00'),
     banRules: {
-      ban: [{ content: ['fwords', 'caps'] }],
+      ban: [{ content: ['blurred', 'fwords'] }],
       longBan: [{ user: ['anonymous'] }],
     },
     probabilities: {
