@@ -87,6 +87,8 @@ export const createMessageByScenario = (
           text = text.toUpperCase();
         } else if (contentViolation === 'fwords') {
           text = obfuscateToFwords(text);
+        } else if (contentViolation === 'ad') {
+          text = 'Купи прямо здесь и прямо сейчас!';
         }
       }
 

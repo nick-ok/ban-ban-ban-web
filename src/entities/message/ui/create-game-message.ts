@@ -2,6 +2,10 @@ import * as PIXI from 'pixi.js';
 
 import { MESSAGE_CONFIG } from '../config/message-config';
 import type { ExtendedPixiMessageContainer, Message } from '../model/types';
+import {
+  AD_BUTTON_HEIGHT,
+  drawMessageADButton,
+} from './draw-message-ad-button';
 import { drawMessageBubble } from './draw-message-bubble';
 import { drawMessageFooter } from './draw-message-footer';
 import { drawMessageHead } from './draw-message-head';
@@ -19,7 +23,7 @@ export const createGameMessage = (
   headContainer.position.set(bubble.padding, bubble.padding);
 
   const textStartY = bubble.padding + bubble.headSize + GAP;
-  const maxTextWidth = bubble.width - bubble.padding * 2;
+  const wordWrapWidth = bubble.width - bubble.padding * 2;
 
   const pixiText = new PIXI.Text({
     text: content?.text,
@@ -27,41 +31,50 @@ export const createGameMessage = (
       fontSize: bubble.fontSize,
       fill: colors.text,
       wordWrap: true,
-      wordWrapWidth: maxTextWidth,
+      wordWrapWidth,
       breakWords: true,
     },
   });
   pixiText.position.set(bubble.padding, textStartY);
 
   if (content.type === 'blurred') {
-    const blurFilter = new PIXI.BlurFilter();
+    const textBlurFilter = new PIXI.BlurFilter();
 
-    blurFilter.strength = 6;
-    pixiText.filters = [blurFilter];
+    textBlurFilter.strength = 6;
+    pixiText.filters = [textBlurFilter];
+  }
+
+  let currentBottomY = textStartY + pixiText.height;
+
+  let adButtonContainer: PIXI.Container | null = null;
+
+  if (content.type === 'ad') {
+    adButtonContainer = drawMessageADButton({ width: wordWrapWidth });
+
+    const targetX = bubble.padding + wordWrapWidth / 2;
+    const targetY = currentBottomY + GAP + AD_BUTTON_HEIGHT / 2;
+
+    adButtonContainer.position.set(targetX, targetY);
+    currentBottomY = currentBottomY + GAP + AD_BUTTON_HEIGHT;
   }
 
   const footerContainer = drawMessageFooter({
     likesCount: content?.likes ?? 0,
     likeAssetKey: 'like',
   });
-  const footerStartY = textStartY + pixiText.height + GAP;
+  const footerStartY = currentBottomY + GAP;
   footerContainer.position.set(bubble.padding, footerStartY);
+  const footerHeight = footerContainer.height;
 
-  const bubbleHeight = footerStartY + bubble.footerSize + bubble.padding;
+  const bubbleHeight = footerStartY + footerHeight + bubble.padding;
   const totalHeight = bubbleHeight + tail.height;
 
-  const shadowBubble = drawMessageBubble({
-    width: bubble.width,
-    height: bubbleHeight,
-    side,
-    color: 0x000000,
-  });
+  const shadowBubble = new PIXI.Graphics();
+  shadowBubble
+    .roundRect(0, 0, bubble.width, bubbleHeight, bubble.radius)
+    .fill(0x000000);
   shadowBubble.alpha = 0.15;
   shadowBubble.position.set(2, 2);
-
-  const blurFilter = new PIXI.BlurFilter();
-  blurFilter.strength = 4;
-  shadowBubble.filters = [blurFilter];
 
   const baseBubble = drawMessageBubble({
     width: bubble.width,
@@ -102,6 +115,11 @@ export const createGameMessage = (
   container.addChild(progressMask);
   container.addChild(headContainer);
   container.addChild(pixiText);
+
+  if (adButtonContainer) {
+    container.addChild(adButtonContainer);
+  }
+
   container.addChild(footerContainer);
 
   return container;
