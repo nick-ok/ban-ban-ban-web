@@ -20,8 +20,13 @@ export const TITLE_ASSETS = {
   hype: '/images/message/fire.webp',
 } as const;
 
+export const UI_ASSETS = {
+  like: '/images/message/like.webp',
+} as const;
+
 export type AvatarAssetKey = keyof typeof AVATAR_ASSETS;
 export type TitleAssetKey = keyof typeof TITLE_ASSETS;
+export type UIAssetKey = keyof typeof UI_ASSETS;
 
 export const MALE_AVATAR_KEYS: AvatarAssetKey[] = [
   'male_1',

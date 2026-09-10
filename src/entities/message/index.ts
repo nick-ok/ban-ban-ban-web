@@ -7,7 +7,11 @@ export type {
   ExtendedPixiMessageContainer,
 } from './model/types';
 
-export type { AvatarAssetKey, TitleAssetKey } from './config/assets';
+export type {
+  AvatarAssetKey,
+  TitleAssetKey,
+  UIAssetKey,
+} from './config/assets';
 
 export { createGameMessage } from './ui/create-game-message';
 export { createMessageByScenario } from './lib/create-message-by-scenario';
