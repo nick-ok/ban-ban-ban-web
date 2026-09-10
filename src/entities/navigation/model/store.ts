@@ -4,7 +4,14 @@ import type { LocationId } from '@/entities/location';
 import type { ScenarioId } from '@/entities/scenario';
 
 export type Scene =
-  'bootstrap' | 'lock' | 'lobby' | 'preview' | 'briefing' | 'game' | 'dayend';
+  | 'bootstrap'
+  | 'intro'
+  | 'lock'
+  | 'lobby'
+  | 'preview'
+  | 'briefing'
+  | 'game'
+  | 'dayend';
 
 interface NavigationStore {
   scene: Scene;

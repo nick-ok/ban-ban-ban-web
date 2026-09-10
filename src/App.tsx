@@ -2,24 +2,23 @@ import { useNavigationStore } from '@/entities/navigation';
 import { PhoneFrame } from '@/widgets/phone-frame';
 
 import { BootstrapScene } from './scenes/bootstrap';
+import { BriefingScene } from './scenes/briefing';
 import { DayEndScene } from './scenes/dayend';
 import { GameScene } from './scenes/game';
+import { IntroScene } from './scenes/intro';
 import { LobbyScene } from './scenes/lobby';
 import { LockScene } from './scenes/lock';
 import { PreviewScene } from './scenes/preview';
 
 import styles from './App.module.css';
 
-const Placeholder = ({ name }: { name: string }) => (
-  <div style={{ padding: 40, textAlign: 'center', color: '#888' }}>{name}</div>
-);
-
 const scenes = {
   bootstrap: BootstrapScene,
+  intro: IntroScene,
   lock: LockScene,
   lobby: LobbyScene,
   preview: PreviewScene,
-  briefing: () => <Placeholder name="Briefing" />,
+  briefing: BriefingScene,
   game: GameScene,
   dayend: DayEndScene,
 };

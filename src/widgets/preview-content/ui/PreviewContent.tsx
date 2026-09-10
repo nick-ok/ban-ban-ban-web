@@ -4,18 +4,27 @@ import clsx from 'clsx';
 import { motion, useScroll, useTransform } from 'motion/react';
 
 import type { Location } from '@/entities/location';
+import type { Review } from '@/entities/review';
 import { useTranslation } from '@/features/i18n';
 import { Button, Icon } from '@/shared/ui';
+
+import { PreviewContentReviews } from './PreviewContentReviews';
 
 import styles from './PreviewContent.module.css';
 
 interface Props {
   location: Location;
+  reviews: Review[];
   onStart: () => void;
   onClose: () => void;
 }
 
-export const PreviewContent = ({ location, onStart, onClose }: Props) => {
+export const PreviewContent = ({
+  location,
+  onStart,
+  onClose,
+  reviews,
+}: Props) => {
   const { t } = useTranslation();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -62,6 +71,8 @@ export const PreviewContent = ({ location, onStart, onClose }: Props) => {
 
       <div ref={containerRef} className={styles.content}>
         <p className={styles.description}>{t(location.descriptionKey)}</p>
+
+        <PreviewContentReviews reviews={reviews} />
       </div>
     </div>
   );

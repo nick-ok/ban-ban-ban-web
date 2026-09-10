@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 
 import type { AvatarAssetKey } from '../config/assets';
 
-export type UserType = 'male' | 'female' | 'anonymous' | 'bot';
+export type UserType = 'male' | 'female' | 'anonymous' | 'bot' | 'ai';
 export type ContentType = 'normal' | 'blurred' | 'ad' | 'caps' | 'fwords';
 export type TitleType = 'empty' | 'hype' | 'dissent';
 export type MessageSide = 'left' | 'right';
