@@ -19,29 +19,20 @@ import type {
 } from '../model/types';
 import { obfuscateToFwords } from './obfuscate-to-fwords';
 
-const getRandomSide = (): MessageSide => {
-  return Math.random() < 0.5 ? 'left' : 'right';
-};
+const getRandomSide = (): MessageSide =>
+  Math.random() < 0.5 ? 'left' : 'right';
 
 const getRandomSpeed = (speedRange: number[]): number => {
   const [min, max] = speedRange;
-
   return min + Math.random() * (max - min);
 };
 
 const getRandomAvatarKey = (userType: UserType): AvatarAssetKey => {
-  if (userType === 'anonymous') {
-    return 'anonymous';
-  }
-
-  if (userType === 'male') {
+  if (userType === 'anonymous') return 'anonymous';
+  if (userType === 'male')
     return randomArrayItem(MALE_AVATAR_KEYS) ?? 'anonymous';
-  }
-
-  if (userType === 'female') {
+  if (userType === 'female')
     return randomArrayItem(FEMALE_AVATAR_KEYS) ?? 'anonymous';
-  }
-
   return 'anonymous';
 };
 
@@ -49,6 +40,17 @@ export const createMessageByScenario = (
   scenario: Scenario,
   banAction: BanAction,
 ): Message => {
+  let finalBanAction = banAction;
+
+  if (
+    finalBanAction !== 'none' &&
+    (!scenario.banRules[finalBanAction] ||
+      scenario.banRules[finalBanAction].length === 0)
+  ) {
+    finalBanAction = 'none';
+  }
+
+  const { allowedContent } = scenario;
   const side = getRandomSide();
   const speed = getRandomSpeed(scenario.messageSpeedRange);
 
@@ -58,17 +60,18 @@ export const createMessageByScenario = (
     none: 'Пущай живёт',
   };
 
-  let user: UserType = Math.random() < 0.5 ? 'male' : 'female';
-  let title: TitleType = 'empty';
-  let likes = randomNumberInRange(100, 2000);
-  let text = textTextMap[banAction];
-  let contentType: ContentType = 'normal';
+  let user: UserType = randomArrayItem(allowedContent.users) ?? 'male';
+  let title: TitleType = randomArrayItem(allowedContent.titles) ?? 'empty';
+  let contentType: ContentType =
+    randomArrayItem(allowedContent.content) ?? 'normal';
+  let likes = allowedContent.hasLikes ? randomNumberInRange(100, 2000) : 0;
+  let text = textTextMap[finalBanAction];
 
-  if (banAction !== 'none') {
-    const rules = scenario.banRules[banAction];
+  if (finalBanAction !== 'none') {
+    const rules = scenario.banRules[finalBanAction];
     const activeRule = randomArrayItem(rules);
 
-    likes = randomNumberInRange(0, 20);
+    likes = allowedContent.hasLikes ? randomNumberInRange(0, 20) : 0;
 
     if (activeRule) {
       if (activeRule.user && activeRule.user.length > 0) {
@@ -80,16 +83,7 @@ export const createMessageByScenario = (
       }
 
       if (activeRule.content && activeRule.content.length > 0) {
-        const contentViolation = randomArrayItem(activeRule.content);
-        contentType = contentViolation ?? 'normal';
-
-        if (contentViolation === 'caps') {
-          text = text.toUpperCase();
-        } else if (contentViolation === 'fwords') {
-          text = obfuscateToFwords(text);
-        } else if (contentViolation === 'ad') {
-          text = 'Купи прямо здесь и прямо сейчас!';
-        }
+        contentType = randomArrayItem(activeRule.content) ?? 'normal';
       }
 
       if (activeRule.likes) {
@@ -99,6 +93,14 @@ export const createMessageByScenario = (
         likes = randomNumberInRange(minLimit, maxLimit);
       }
     }
+  }
+
+  if (contentType === 'caps') {
+    text = text.toUpperCase();
+  } else if (contentType === 'fwords') {
+    text = obfuscateToFwords(text);
+  } else if (contentType === 'ad') {
+    text = 'Купи прямо здесь и прямо сейчас!';
   }
 
   const avatarKey = getRandomAvatarKey(user);
@@ -111,10 +113,11 @@ export const createMessageByScenario = (
       type: contentType,
       text,
       likes,
+      hasLikes: allowedContent.hasLikes,
     },
     title,
     side,
     speed,
-    banAction,
+    banAction: finalBanAction,
   };
 };

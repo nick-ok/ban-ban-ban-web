@@ -12,8 +12,14 @@ export const SCENARIOS = [
     messageSpeedRange: [0.3, 1],
     startWorktime: timeToMinutes('10:00'),
     endWorktime: timeToMinutes('11:00'),
+    allowedContent: {
+      users: ['female', 'male'],
+      content: ['normal'],
+      titles: ['empty'],
+      hasLikes: false,
+    },
     banRules: {
-      ban: [{ content: ['ad'] }],
+      ban: [{ content: ['caps'] }],
       longBan: [{ user: ['anonymous'] }],
     },
     probabilities: {
@@ -32,6 +38,12 @@ export const SCENARIOS = [
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
     endWorktime: timeToMinutes('11:00'),
+    allowedContent: {
+      users: ['anonymous', 'female', 'male'],
+      content: ['normal', 'caps'],
+      titles: ['empty', 'hype'],
+      hasLikes: true,
+    },
     banRules: {
       ban: [],
       longBan: [],
@@ -52,6 +64,12 @@ export const SCENARIOS = [
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
     endWorktime: timeToMinutes('11:00'),
+    allowedContent: {
+      users: ['anonymous', 'female', 'male'],
+      content: ['normal', 'caps', 'fwords'],
+      titles: ['empty', 'hype', 'dissent'],
+      hasLikes: true,
+    },
     banRules: {
       ban: [],
       longBan: [],
@@ -72,6 +90,12 @@ export const SCENARIOS = [
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
     endWorktime: timeToMinutes('11:00'),
+    allowedContent: {
+      users: ['anonymous', 'female', 'male'],
+      content: ['normal', 'caps', 'fwords', 'ad', 'blurred'],
+      titles: ['empty', 'hype', 'dissent'],
+      hasLikes: true,
+    },
     banRules: {
       ban: [],
       longBan: [],
@@ -92,6 +116,12 @@ export const SCENARIOS = [
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
     endWorktime: timeToMinutes('11:00'),
+    allowedContent: {
+      users: ['anonymous', 'female', 'male'],
+      content: ['normal', 'caps', 'fwords', 'ad', 'blurred'],
+      titles: ['empty', 'hype', 'dissent'],
+      hasLikes: true,
+    },
     banRules: {
       ban: [],
       longBan: [],
@@ -112,6 +142,12 @@ export const SCENARIOS = [
     messageSpeedRange: [0.3, 0.8],
     startWorktime: timeToMinutes('10:00'),
     endWorktime: timeToMinutes('11:00'),
+    allowedContent: {
+      users: ['anonymous', 'female', 'male'],
+      content: ['normal', 'caps', 'fwords', 'ad', 'blurred'],
+      titles: ['empty', 'hype', 'dissent'],
+      hasLikes: true,
+    },
     banRules: {
       ban: [],
       longBan: [],

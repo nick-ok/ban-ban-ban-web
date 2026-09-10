@@ -58,15 +58,22 @@ export const createGameMessage = (
     currentBottomY = currentBottomY + GAP + AD_BUTTON_HEIGHT;
   }
 
-  const footerContainer = drawMessageFooter({
-    likesCount: content?.likes ?? 0,
-    likeAssetKey: 'like',
-  });
-  const footerStartY = currentBottomY + GAP;
-  footerContainer.position.set(bubble.padding, footerStartY);
-  const footerHeight = footerContainer.height;
+  let footerContainer: PIXI.Container | null = null;
+  const hasLikes = content?.hasLikes !== false;
 
-  const bubbleHeight = footerStartY + footerHeight + bubble.padding;
+  if (hasLikes) {
+    footerContainer = drawMessageFooter({
+      likesCount: content?.likes ?? 0,
+      likeAssetKey: 'like',
+    });
+
+    const footerStartY = currentBottomY + GAP;
+
+    footerContainer.position.set(bubble.padding, footerStartY);
+    currentBottomY = footerStartY + footerContainer.height;
+  }
+
+  const bubbleHeight = currentBottomY + bubble.padding;
   const totalHeight = bubbleHeight + tail.height;
 
   const shadowBubble = new PIXI.Graphics();
@@ -120,7 +127,9 @@ export const createGameMessage = (
     container.addChild(adButtonContainer);
   }
 
-  container.addChild(footerContainer);
+  if (footerContainer) {
+    container.addChild(footerContainer);
+  }
 
   return container;
 };

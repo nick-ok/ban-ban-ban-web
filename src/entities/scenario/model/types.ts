@@ -15,6 +15,13 @@ export interface BanRule {
   };
 }
 
+export interface AllowedContent {
+  users: UserType[];
+  content: ContentType[];
+  hasLikes: boolean;
+  titles: TitleType[];
+}
+
 export interface Scenario {
   id: ScenarioId;
   locationId: LocationId;
@@ -25,6 +32,7 @@ export interface Scenario {
   // Время начала дня в минутах от 00:00 (например, 600 для 10:00)
   startWorktime: number;
   endWorktime: number;
+  allowedContent: AllowedContent;
   banRules: {
     ban: BanRule[];
     longBan: BanRule[];
