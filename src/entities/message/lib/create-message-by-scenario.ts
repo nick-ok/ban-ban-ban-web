@@ -11,11 +11,13 @@ import {
 } from '../config/assets';
 import type {
   BanAction,
+  ContentType,
   Message,
   MessageSide,
   TitleType,
   UserType,
 } from '../model/types';
+import { obfuscateToFwords } from './obfuscate-to-fwords';
 
 const getRandomSide = (): MessageSide => {
   return Math.random() < 0.5 ? 'left' : 'right';
@@ -50,15 +52,17 @@ export const createMessageByScenario = (
   const side = getRandomSide();
   const speed = getRandomSpeed(scenario.messageSpeedRange);
 
-  let user: UserType = Math.random() < 0.5 ? 'male' : 'female';
-  let title: TitleType = 'empty';
-  let likes = randomNumberInRange(100, 2000);
-
-  const textMap: Record<BanAction, string> = {
+  const textTextMap: Record<BanAction, string> = {
     ban: 'В бан его!',
     longBan: 'Забань его на долго!',
     none: 'Пущай живёт',
   };
+
+  let user: UserType = Math.random() < 0.5 ? 'male' : 'female';
+  let title: TitleType = 'empty';
+  let likes = randomNumberInRange(100, 2000);
+  let text = textTextMap[banAction];
+  let contentType: ContentType = 'normal';
 
   if (banAction !== 'none') {
     const rules = scenario.banRules[banAction];
@@ -75,6 +79,17 @@ export const createMessageByScenario = (
         title = randomArrayItem(activeRule.title) ?? 'empty';
       }
 
+      if (activeRule.content && activeRule.content.length > 0) {
+        const contentViolation = randomArrayItem(activeRule.content);
+        contentType = contentViolation ?? 'normal';
+
+        if (contentViolation === 'caps') {
+          text = text.toUpperCase();
+        } else if (contentViolation === 'fwords') {
+          text = obfuscateToFwords(text);
+        }
+      }
+
       if (activeRule.likes) {
         const minLimit = activeRule.likes.min ?? 0;
         const maxLimit = activeRule.likes.max ?? 9999;
@@ -88,11 +103,11 @@ export const createMessageByScenario = (
 
   return {
     id: nanoid(),
-    user: 'anonymous',
+    user,
     avatarKey,
     content: {
-      type: 'normal',
-      text: textMap[banAction],
+      type: contentType,
+      text,
       likes,
     },
     title,
