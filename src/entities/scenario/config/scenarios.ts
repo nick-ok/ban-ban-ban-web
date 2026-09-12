@@ -13,13 +13,13 @@ export const SCENARIOS = [
     startWorktime: timeToMinutes('10:00'),
     endWorktime: timeToMinutes('11:00'),
     allowedContent: {
-      users: ['female', 'male'],
+      users: ['male', 'female'],
       content: ['normal'],
       titles: ['empty'],
       hasLikes: false,
     },
     banRules: {
-      ban: [{ content: ['caps'] }],
+      ban: [{ content: ['fwords'] }],
       longBan: [{ user: ['anonymous'] }],
     },
     probabilities: {

@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from 'motion/react';
 
 import { LOCATIONS } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
+import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
+import { getReviewsByProgress } from '@/entities/review';
 import { PreviewContent } from '@/widgets/preview-content';
 
 import { PreviewSceneSplash } from './PreviewSceneSplash';
@@ -16,10 +18,19 @@ const SPLASH_DURATION = 650;
 export const PreviewScene = () => {
   const { selectedLocationId, closePreview, setScene } = useNavigationStore();
 
+  const completedScenarioIds = usePlayerProgressStore(
+    (state) => state.completedScenarioIds,
+  );
+
   const [phase, setPhase] = useState<'loading' | 'ready'>('loading');
 
   const location = LOCATIONS.find((l) => l.id === selectedLocationId);
   const isReady = phase === 'ready';
+
+  const reviews = getReviewsByProgress({
+    locationId: location?.id ?? 'loc1',
+    completedScenarioIds,
+  });
 
   const handleStart = () => {
     setScene('game');
@@ -71,6 +82,7 @@ export const PreviewScene = () => {
               onStart={handleStart}
               onClose={closePreview}
               location={location}
+              reviews={reviews}
             />
           </motion.div>
         )}

@@ -28,11 +28,26 @@ const getRandomSpeed = (speedRange: number[]): number => {
 };
 
 const getRandomAvatarKey = (userType: UserType): AvatarAssetKey => {
-  if (userType === 'anonymous') return 'anonymous';
-  if (userType === 'male')
+  if (userType === 'anonymous') {
+    return 'anonymous';
+  }
+
+  if (userType === 'bot') {
+    return 'bot';
+  }
+
+  if (userType === 'ai') {
+    return 'ai';
+  }
+
+  if (userType === 'male') {
     return randomArrayItem(MALE_AVATAR_KEYS) ?? 'anonymous';
-  if (userType === 'female')
+  }
+
+  if (userType === 'female') {
     return randomArrayItem(FEMALE_AVATAR_KEYS) ?? 'anonymous';
+  }
+
   return 'anonymous';
 };
 
