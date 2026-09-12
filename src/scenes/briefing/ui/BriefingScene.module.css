@@ -1,0 +1,109 @@
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-10) var(--space-3) var(--space-4);
+  background: linear-gradient(135deg, #4c66a3 0%, #7b9aef 40%, #06b6d4 100%);
+  color: #ffffff;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+}
+
+.header {
+  padding-bottom: var(--space-2);
+  flex-shrink: 0;
+}
+
+.locationIcon {
+  width: 35px;
+  height: 35px;
+}
+
+.locationTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+
+  > span {
+    color: red;
+  }
+}
+
+.chatFeed {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  padding-right: var(--space-3);
+  overflow-y: auto;
+}
+
+.chatFeedInner {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.clientBox {
+  display: flex;
+  gap: var(--space-2);
+  background-color: #ffffff;
+  color: #000000;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  min-width: 50%;
+  max-width: 70%;
+  align-self: flex-end;
+
+  &.aiBox {
+    background-color: #333333;
+    color: #aaaaaa;
+    align-self: center;
+    max-width: 90%;
+  }
+}
+
+.avatarImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.messageContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.senderName {
+  font-weight: bold;
+  font-size: var(--text-sm);
+  color: #555;
+}
+
+.senderPosition {
+  font-size: var(--text-xs);
+  color: #ababab;
+}
+
+.text {
+  margin: 0;
+}
+
+.actionsBlock {
+  margin-top: var(--space-10);
+  padding: var(--space-4);
+  background-color: #262626;
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  flex-shrink: 0;
+}

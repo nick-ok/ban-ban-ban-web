@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'motion/react';
 
-import { LOCATIONS } from '@/entities/location';
+import { getLocationById } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { getReviewsByProgress } from '@/entities/review';
@@ -24,7 +24,7 @@ export const PreviewScene = () => {
 
   const [phase, setPhase] = useState<'loading' | 'ready'>('loading');
 
-  const location = LOCATIONS.find((l) => l.id === selectedLocationId);
+  const location = getLocationById(selectedLocationId);
   const isReady = phase === 'ready';
 
   const reviews = getReviewsByProgress({
@@ -33,7 +33,7 @@ export const PreviewScene = () => {
   });
 
   const handleStart = () => {
-    setScene('game');
+    setScene('briefing');
   };
 
   useEffect(() => {

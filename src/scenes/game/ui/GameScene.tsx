@@ -7,6 +7,7 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { GameStage, useGameStore } from '@/features/game';
+import { ZoomOutMotion } from '@/shared/ui';
 
 import { GameClock } from './GameClock';
 
@@ -44,7 +45,7 @@ export const GameScene = () => {
   }
 
   return (
-    <div className={styles.root}>
+    <ZoomOutMotion className={styles.root}>
       <div className={styles.hud}>
         <h3>Location: {selectedLocationId}</h3>
         <h4>Scenario: {activeScenario.id}</h4>
@@ -52,6 +53,6 @@ export const GameScene = () => {
       </div>
 
       <GameStage scenario={activeScenario} />
-    </div>
+    </ZoomOutMotion>
   );
 };
