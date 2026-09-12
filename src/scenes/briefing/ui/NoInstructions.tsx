@@ -1,6 +1,6 @@
 import { useNavigationStore } from '@/entities/navigation';
 import { useTranslation } from '@/features/i18n';
-import { Button, ZoomOutMotion } from '@/shared/ui';
+import { Button, ZoomMotion } from '@/shared/ui';
 
 import styles from './NoInstructions.module.css';
 
@@ -9,14 +9,18 @@ export const NoInstructions = () => {
   const { setScene } = useNavigationStore();
 
   return (
-    <ZoomOutMotion className={styles.root}>
+    <ZoomMotion className={styles.root}>
       <div className={styles.inner}>
         <h3 className={styles.title}>{t('scenarios.noInstructions')}</h3>
 
-        <Button onClick={() => setScene('lobby')} className={styles.button}>
+        <Button
+          onClick={() => setScene('lobby')}
+          className={styles.button}
+          variant={'white'}
+        >
           {t('scenarios.cancel')}
         </Button>
       </div>
-    </ZoomOutMotion>
+    </ZoomMotion>
   );
 };

@@ -11,7 +11,7 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { useTranslation } from '@/features/i18n';
-import { Button, Icon, ZoomOutMotion } from '@/shared/ui';
+import { Button, Icon, ZoomMotion } from '@/shared/ui';
 import { ScanFX } from '@/widgets/scan-fx';
 
 import { NoInstructions } from './NoInstructions';
@@ -79,7 +79,7 @@ export const BriefingScene = () => {
   }
 
   return (
-    <ZoomOutMotion className={styles.root} onClick={handleScreenClick}>
+    <ZoomMotion className={styles.root} onClick={handleScreenClick}>
       <ScanFX />
 
       <header className={styles.header}>
@@ -162,6 +162,6 @@ export const BriefingScene = () => {
           </motion.footer>
         )}
       </AnimatePresence>
-    </ZoomOutMotion>
+    </ZoomMotion>
   );
 };

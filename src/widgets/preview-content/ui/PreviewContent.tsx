@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 
-import clsx from 'clsx';
 import { motion, useScroll, useTransform } from 'motion/react';
 
 import type { Location } from '@/entities/location';
@@ -57,14 +56,11 @@ export const PreviewContent = ({
       </motion.div>
 
       <div className={styles.btns}>
-        <Button
-          className={clsx(styles.btn, styles.cancelBtn)}
-          onClick={onClose}
-        >
+        <Button className={styles.btn} variant={'white'} onClick={onClose}>
           {t('screens.preview.cancel')}
         </Button>
 
-        <Button className={clsx(styles.btn, styles.startBtn)} onClick={onStart}>
+        <Button className={styles.btn} variant={'primary'} onClick={onStart}>
           {t('screens.preview.start')}
         </Button>
       </div>

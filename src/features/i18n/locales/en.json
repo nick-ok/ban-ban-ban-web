@@ -12,6 +12,26 @@
     "preview": {
       "start": "Start",
       "cancel": "Cancel"
+    },
+    "dayend": {
+      "dayend": "The workday has ended!",
+      "again": "Again",
+      "cancel": "Cancel",
+      "globalAIProgress": "GIP AI Progress",
+      "newTask": "New task opened",
+      "newLocation": "New application opened!",
+      "newReviews": "You have new reviews!",
+      "saveAndContinue": "Save and continue",
+      "next": "Next",
+      "home": "Home",
+      "congratulations": "Congratulations!",
+      "accuracy": "Your accuracy",
+      "totalMessages": "Total messages",
+      "banned": "Banned",
+      "longBanned": "Sent to a long ban",
+      "wrongBanned": "Banned unfairly",
+      "missed": "Missed people who deserved a ban",
+      "missedLong": "Missed those who deserved a long ban"
     }
   },
   "locations": {

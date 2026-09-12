@@ -1,4 +1,4 @@
-import { ZoomOutMotion } from '@/shared/ui';
+import { ZoomMotion } from '@/shared/ui';
 import { AppGrid } from '@/widgets/app-grid';
 import { BlobsFX } from '@/widgets/blobs-fx/ui/BlobsFX';
 import { ScanFX } from '@/widgets/scan-fx';
@@ -7,12 +7,12 @@ import styles from './LobbyScene.module.css';
 
 export const LobbyScene = () => {
   return (
-    <ZoomOutMotion className={styles.root}>
+    <ZoomMotion className={styles.root}>
       <BlobsFX />
 
       <ScanFX />
 
       <AppGrid />
-    </ZoomOutMotion>
+    </ZoomMotion>
   );
 };

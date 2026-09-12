@@ -5,7 +5,7 @@
   justify-content: center;
   height: 100%;
   padding: var(--space-10) var(--space-3) var(--space-4);
-  background: linear-gradient(135deg, #4c66a3 0%, #7b9aef 40%, #06b6d4 100%);
+  background: var(--bg-gradient);
   color: white;
 }
 
@@ -20,10 +20,7 @@
 }
 
 .button {
-  background: white;
-  color: var(--color-primary);
   border-radius: var(--radius-sm);
   padding: var(--space-2);
-  font-weight: bold;
   font-size: var(--text-base);
 }
