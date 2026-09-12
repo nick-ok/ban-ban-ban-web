@@ -1,10 +1,39 @@
 import { timeToMinutes } from '../lib/time-to-minutes';
-import type { Scenario } from '../model/types';
+import type { BriefingSender, Scenario } from '../model/types';
+
+const LOC_1_SENDER: BriefingSender = {
+  name: '@nonna',
+  position: 'CEO',
+  avatarUrl: '/images/scenario/hoa-owner.webp',
+};
 
 export const SCENARIOS = [
   {
     id: 'loc1_sc1',
     locationId: 'loc1',
+    briefingSender: LOC_1_SENDER,
+    briefingFlow: [
+      {
+        id: 'b1_1',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg1',
+      },
+      {
+        id: 'b1_2',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg2',
+      },
+      {
+        id: 'b1_3',
+        senderType: 'ai',
+        textKey: 'scenarios.loc1_sc1.briefing.msg3',
+      },
+      {
+        id: 'b1_4',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg4',
+      },
+    ],
     order: 1,
     nameKey: 'scenarios.house1.name',
     descriptionKey: 'scenarios.house1.description',
@@ -30,6 +59,8 @@ export const SCENARIOS = [
   },
   {
     id: 'loc1_sc2',
+    briefingSender: LOC_1_SENDER,
+    briefingFlow: [],
     locationId: 'loc1',
     order: 2,
     nameKey: 'scenarios.house2.name',
@@ -56,6 +87,29 @@ export const SCENARIOS = [
   },
   {
     id: 'loc1_sc3',
+    briefingSender: LOC_1_SENDER,
+    briefingFlow: [
+      {
+        id: 'b1_1',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg1',
+      },
+      {
+        id: 'b1_2',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg2',
+      },
+      {
+        id: 'b1_3',
+        senderType: 'ai',
+        textKey: 'scenarios.loc1_sc1.briefing.msg3',
+      },
+      {
+        id: 'b1_4',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg4',
+      },
+    ],
     locationId: 'loc1',
     order: 3,
     nameKey: 'scenarios.house3.name',
@@ -82,6 +136,29 @@ export const SCENARIOS = [
   },
   {
     id: 'loc2_sc1',
+    briefingSender: LOC_1_SENDER,
+    briefingFlow: [
+      {
+        id: 'b1_1',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg1',
+      },
+      {
+        id: 'b1_2',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg2',
+      },
+      {
+        id: 'b1_3',
+        senderType: 'ai',
+        textKey: 'scenarios.loc1_sc1.briefing.msg3',
+      },
+      {
+        id: 'b1_4',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg4',
+      },
+    ],
     locationId: 'loc2',
     order: 1,
     nameKey: 'scenarios.spiritual1.name',
@@ -108,6 +185,29 @@ export const SCENARIOS = [
   },
   {
     id: 'loc2_sc2',
+    briefingSender: LOC_1_SENDER,
+    briefingFlow: [
+      {
+        id: 'b1_1',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg1',
+      },
+      {
+        id: 'b1_2',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg2',
+      },
+      {
+        id: 'b1_3',
+        senderType: 'ai',
+        textKey: 'scenarios.loc1_sc1.briefing.msg3',
+      },
+      {
+        id: 'b1_4',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg4',
+      },
+    ],
     locationId: 'loc2',
     order: 2,
     nameKey: 'scenarios.spiritual2.name',
@@ -134,6 +234,29 @@ export const SCENARIOS = [
   },
   {
     id: 'loc2_sc3',
+    briefingSender: LOC_1_SENDER,
+    briefingFlow: [
+      {
+        id: 'b1_1',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg1',
+      },
+      {
+        id: 'b1_2',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg2',
+      },
+      {
+        id: 'b1_3',
+        senderType: 'ai',
+        textKey: 'scenarios.loc1_sc1.briefing.msg3',
+      },
+      {
+        id: 'b1_4',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg4',
+      },
+    ],
     locationId: 'loc2',
     order: 3,
     nameKey: 'scenarios.spiritual3.name',

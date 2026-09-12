@@ -21,5 +21,18 @@
     "loc2": {
       "description": "Spiritual description"
     }
+  },
+  "scenarios": {
+    "cancel": "Cancel",
+    "start": "Start",
+    "noInstructions": "No instructions are provided",
+    "loc1_sc1": {
+      "briefing": {
+        "msg1": "Hello",
+        "msg2": "Ban all capsed messages",
+        "msg3": "Long ban to all anonomymous messages",
+        "msg4": "Good luck!"
+      }
+    }
   }
 }

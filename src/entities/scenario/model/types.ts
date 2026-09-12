@@ -1,9 +1,22 @@
 import type { LocationId } from '@/entities/location';
 import type { ContentType, TitleType, UserType } from '@/entities/message';
+import type { ParseKeys } from '@/features/i18n';
 
 import type { SCENARIO_IDS } from '../config/constants';
 
 export type ScenarioId = (typeof SCENARIO_IDS)[number];
+
+export interface BriefingSender {
+  name: string;
+  position?: string;
+  avatarUrl: string;
+}
+
+export interface BriefingMessage {
+  id: string;
+  senderType: 'client' | 'ai';
+  textKey: ParseKeys;
+}
 
 export interface BanRule {
   user?: UserType[];
@@ -25,6 +38,9 @@ export interface AllowedContent {
 export interface Scenario {
   id: ScenarioId;
   locationId: LocationId;
+  briefingSender: BriefingSender;
+  briefingFlow: BriefingMessage[];
+
   order: number;
   nameKey: string;
   descriptionKey: string;

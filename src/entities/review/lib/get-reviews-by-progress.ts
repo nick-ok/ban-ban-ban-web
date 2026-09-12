@@ -22,8 +22,8 @@ export const getReviewsByProgress = ({
   ).length;
 
   const availableReviews = allReviewsForLocation.filter(
-    (review) => review.requiredCompletedCount <= completedInThisLocationCount,
+    (review) => review.requiredCompletedCount == completedInThisLocationCount,
   );
 
-  return availableReviews.slice(-5);
+  return availableReviews;
 };
