@@ -4,7 +4,7 @@
   flex-direction: column;
   height: 100%;
   padding: var(--space-10) var(--space-3) var(--space-4);
-  background: linear-gradient(135deg, #4c66a3 0%, #7b9aef 40%, #06b6d4 100%);
+  background: var(--bg-gradient);
   color: #ffffff;
   box-sizing: border-box;
   cursor: pointer;

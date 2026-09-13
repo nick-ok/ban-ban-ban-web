@@ -18,6 +18,7 @@
   cursor: pointer;
 
   transition: transform 0.1s ease;
+  transition: opacity 0.4s ease;
   will-change: transform;
 
   &:active {
@@ -25,8 +26,46 @@
     transition: transform 0.05s ease;
   }
 
+  &:hover {
+    opacity: 0.9;
+  }
+
   &:disabled {
     pointer-events: none;
     transform: none;
   }
+}
+
+.primary {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+}
+
+.success {
+  background-color: var(--color-success);
+  color: white;
+  font-weight: bold;
+}
+
+.warn {
+  background-color: var(--color-warning);
+  color: white;
+  font-weight: bold;
+}
+
+.danger {
+  background-color: var(--color-danger);
+  color: white;
+  font-weight: bold;
+}
+
+.white {
+  background-color: white;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.text {
+  color: inherit;
 }

@@ -7,7 +7,7 @@ const LOC_1_SENDER: BriefingSender = {
   avatarUrl: '/images/scenario/hoa-owner.webp',
 };
 
-export const SCENARIOS = [
+export const SCENARIOS: Scenario[] = [
   {
     id: 'loc1_sc1',
     locationId: 'loc1',
@@ -60,7 +60,28 @@ export const SCENARIOS = [
   {
     id: 'loc1_sc2',
     briefingSender: LOC_1_SENDER,
-    briefingFlow: [],
+    briefingFlow: [
+      {
+        id: 'b1_1',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg1',
+      },
+      {
+        id: 'b1_2',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg2',
+      },
+      {
+        id: 'b1_3',
+        senderType: 'ai',
+        textKey: 'scenarios.loc1_sc1.briefing.msg3',
+      },
+      {
+        id: 'b1_4',
+        senderType: 'client',
+        textKey: 'scenarios.loc1_sc1.briefing.msg4',
+      },
+    ],
     locationId: 'loc1',
     order: 2,
     nameKey: 'scenarios.house2.name',
@@ -281,4 +302,4 @@ export const SCENARIOS = [
       none: 0.5,
     },
   },
-] as const satisfies readonly Scenario[];
+] as const;

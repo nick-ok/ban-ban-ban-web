@@ -67,17 +67,7 @@
   padding: var(--space-2) var(--space-6);
   border-radius: var(--radius-sm);
   font-size: var(--text-base);
-  font-weight: bold;
   width: 50%;
-}
-
-.cancelBtn {
-  color: var(--color-primary);
-  background: white;
-}
-
-.startBtn {
-  background: var(--color-primary);
 }
 
 .content {

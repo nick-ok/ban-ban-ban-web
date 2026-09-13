@@ -1,4 +1,7 @@
+import { useMemo, useState } from 'react';
+
 import { useNavigationStore } from '@/entities/navigation';
+import { getGlobalAIProgress } from '@/entities/player-progress';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import {
   COMPLETION_THRESHOLD,
@@ -6,16 +9,25 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { calculateAccuracy, useGameStore } from '@/features/game';
-import { Button } from '@/shared/ui';
+import { useTranslation } from '@/features/i18n';
+import { Button, CountMotion, Icon, ZoomMotion } from '@/shared/ui';
+
+import { DayendRewards } from './DayendRewards';
+import { DayendStats } from './DayendStats';
 
 import styles from './DayendScene.module.css';
 
 export const DayEndScene = () => {
+  const [isRewards, setIsRewards] = useState(false);
+
+  const { t } = useTranslation();
+
   const stats = useGameStore((state) => state.stats);
   const currentScenarioId = useGameStore((state) => state.currentScenarioId);
   const startGame = useGameStore((state) => state.startGame);
   const resetGame = useGameStore((state) => state.resetGame);
 
+  const progress = usePlayerProgressStore();
   const recordScenarioResult = usePlayerProgressStore(
     (state) => state.recordScenarioResult,
   );
@@ -26,9 +38,26 @@ export const DayEndScene = () => {
   const { setScene } = useNavigationStore();
 
   const computedAccuracy = calculateAccuracy(stats);
-  const isPassed = computedAccuracy >= COMPLETION_THRESHOLD;
+  const globalAIProgress = getGlobalAIProgress(progress);
 
-  const handleSaveAndExit = () => {
+  const isPassed = computedAccuracy >= COMPLETION_THRESHOLD;
+  const { nextLocationIdToUnlock } = getNextLocationToUnlock(
+    currentScenarioId ?? 'loc1_sc1',
+  );
+
+  const accuracyColor = useMemo(() => {
+    if (computedAccuracy >= COMPLETION_THRESHOLD) {
+      return 'var(--color-success)';
+    }
+
+    if (computedAccuracy >= 50) {
+      return 'var(--color-warning)';
+    }
+
+    return 'var(--color-danger)';
+  }, [computedAccuracy]);
+
+  const handleNext = () => {
     if (!currentScenarioId) {
       return;
     }
@@ -36,12 +65,16 @@ export const DayEndScene = () => {
     recordScenarioResult(currentScenarioId, computedAccuracy);
 
     if (isPassed) {
-      const { nextLocationIdToUnlock } =
-        getNextLocationToUnlock(currentScenarioId);
+      setIsRewards(true);
+    } else {
+      resetGame();
+      setScene('lobby');
+    }
+  };
 
-      if (nextLocationIdToUnlock) {
-        unlockLocation(nextLocationIdToUnlock);
-      }
+  const handleSaveAndExit = () => {
+    if (nextLocationIdToUnlock) {
+      unlockLocation(nextLocationIdToUnlock);
     }
 
     resetGame();
@@ -62,22 +95,69 @@ export const DayEndScene = () => {
         scenarioId: currentScenarioId,
       });
     }
+
     setScene('game');
   };
 
+  if (isRewards) {
+    return (
+      <DayendRewards
+        nextLocationUnlocked={!!nextLocationIdToUnlock}
+        newReviewsAdded={isPassed}
+        globalAccuracy={globalAIProgress}
+        onCancel={() => setIsRewards(false)}
+        onSave={handleSaveAndExit}
+      />
+    );
+  }
+
   return (
-    <div className={styles.root}>
-      <h1>Day end</h1>
+    <ZoomMotion className={styles.root}>
+      <h1 className={styles.title}>{t('screens.dayend.dayend')}</h1>
 
-      <h2>ACCURACY: {computedAccuracy}%</h2>
+      <div className={styles.accuracy}>
+        <h4 className={styles.accuracyTitle} style={{ color: accuracyColor }}>
+          {t('screens.dayend.accuracy')}
+        </h4>
 
-      <pre className={styles.stats}>{JSON.stringify(stats, null, 2)}</pre>
-
-      <div>
-        <Button onClick={handleReplay}>Replay</Button>
-
-        <Button onClick={handleSaveAndExit}>SAVE and go to lobby</Button>
+        <Icon
+          name={isPassed ? 'sparkling-heart' : 'broken-heart'}
+          className={styles.accuracyIcon}
+        />
+        <CountMotion
+          style={{ color: accuracyColor }}
+          className={styles.accuracyValue}
+          to={computedAccuracy}
+          format={(val) => `${val}%`}
+        />
       </div>
-    </div>
+
+      <DayendStats stats={stats} isPassed={isPassed} />
+
+      <div className={styles.actions}>
+        <Button
+          className={styles.button}
+          variant={isPassed ? 'primary' : 'text'}
+          onClick={handleNext}
+        >
+          <Icon
+            name={isPassed ? 'check' : 'globe'}
+            className={styles.buttonIcon}
+          />
+          <span>
+            {t(isPassed ? 'screens.dayend.next' : 'screens.dayend.home')}
+          </span>
+        </Button>
+
+        <Button
+          className={styles.button}
+          variant={'white'}
+          onClick={handleReplay}
+        >
+          <Icon name={'reload'} className={styles.buttonIcon} />
+          <span>{t('screens.dayend.again')}</span>
+        </Button>
+      </div>
+    </ZoomMotion>
   );
 };

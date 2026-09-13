@@ -2,12 +2,62 @@
   color: white;
   position: absolute;
   inset: 0;
-  background-color: rgb(35, 31, 31);
-  padding: var(--space-10) var(--space-2) var(--space-2);
+  background: radial-gradient(circle, #0f3c5c 0%, #071926 60%, #02070d 100%);
+
+  padding: var(--space-2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.stats {
-  border: 1px solid yellow;
-  padding: var(--space-4);
+.title {
+  font-size: var(--text-xl);
+}
+
+.accuracy {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.accuracyTitle {
+  font-size: var(--text-sm);
+}
+
+.accuracyIcon {
+  width: 60px;
+  height: auto;
+}
+
+.accuracyValue {
+  font-size: var(--text-2xl);
+  font-weight: bold;
+}
+
+.actions {
+  margin-top: var(--space-20);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.button {
+  width: calc(var(--u) * 85);
+  padding: var(--space-3) var(--space-1);
   border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: bold;
+}
+
+.buttonIcon {
+  flex-shrink: 0;
 }
