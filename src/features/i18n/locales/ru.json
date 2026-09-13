@@ -11,10 +11,16 @@
     },
     "preview": {
       "start": "Запуск",
-      "cancel": "Отмена"
+      "cancel": "Отмена",
+      "reviews": "Отзывы",
+      "downloads": "Скачивания",
+      "reviewsTitle": "Оценки и отзывы"
     },
     "dayend": {
-      "dayend": "Рабочий день завершился!",
+      "tierS": "Безупречно!",
+      "tierA": "Хорошая работа!",
+      "tierB": "И так сойдет",
+      "tierC": "Ну такое себе...",
       "again": "Ещё раз",
       "cancel": "Отмена",
       "globalAIProgress": "GIP AI Прогресс",
@@ -24,7 +30,6 @@
       "saveAndContinue": "Сохранить и продолжить",
       "next": "Продолжить",
       "home": "На главную",
-      "congratulations": "Поздравляем!",
       "accuracy": "Ваша точность",
       "totalMessages": "Всего сообщений",
       "banned": "Отправил в бан",

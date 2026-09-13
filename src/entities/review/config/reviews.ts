@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 import type { LocationId } from '@/entities/location';
 
 import type { Review } from '../model/types';
@@ -5,39 +7,55 @@ import type { Review } from '../model/types';
 export const LOCATION_REVIEWS: Record<LocationId, Review[]> = {
   loc1: [
     {
-      username: '@dmitry_KK',
-      avatarUrl: '/images/message/avatar-male-1.webp',
-      text: 'В этой локации в последнее время стало слишком много капсеров... Модераторы вообще работают?',
-      rating: 3,
-      requiredCompletedCount: 0,
+      id: nanoid(),
+      username: 'dmitry_KK',
+      text: {
+        ru: 'В этой локации в последнее время стало слишком много капсеров... Модераторы вообще работают?',
+        en: 'Lately, there are way too many people typing in all caps in this area... Do the moderators even do anything?',
+      },
+      rating: 1,
+      requiredProgress: 0,
     },
     {
-      username: '@anna99',
-      avatarUrl: '/images/message/avatar-female-2.webp',
-      text: 'Постоянно натыкаюсь на каких-то странных анонимов в чате. Надеюсь, скоро наведут порядок.',
+      id: nanoid(),
+      username: 'anna99',
+      text: {
+        ru: 'Постоянно натыкаюсь на каких-то странных анонимов в чате. Надеюсь, скоро наведут порядок.',
+        en: 'I keep running into these weird anonymous users in the chat. I hope they clean things up soon.',
+      },
       rating: 2,
-      requiredCompletedCount: 0,
+      requiredProgress: 20,
     },
     {
-      username: '@ivan',
-      avatarUrl: '/images/message/avatar-male-3.webp',
-      text: 'Ого, крикунов капсом стало заметно меньше! Спасибо новому модератору за чистый чат!',
+      id: nanoid(),
+      username: 'ivan',
+      text: {
+        ru: 'Постоянно натыкаюсь на каких-то странных анонимов в чате. Надеюсь, скоро наведут порядок.',
+        en: 'I keep running into these weird anonymous users in the chat. I hope they clean things up soon.',
+      },
       rating: 5,
-      requiredCompletedCount: 1,
+      requiredProgress: 50,
     },
     {
-      username: '@elena_prekrasnaya',
-      avatarUrl: '/images/message/avatar-female-4.webp',
-      text: 'Чат наконец-то можно читать спокойно. Анонимусы отправляются в бан моментально. Работа на высоте!',
+      id: nanoid(),
+      username: 'elena_prekrasnaya',
+      text: {
+        ru: 'Постоянно натыкаюсь на каких-то странных анонимов в чате. Надеюсь, скоро наведут порядок.',
+        en: 'I keep running into these weird anonymous users in the chat. I hope they clean things up soon.',
+      },
       rating: 5,
-      requiredCompletedCount: 2,
+      requiredProgress: 100,
     },
     {
-      username: '@CyberPavel',
-      avatarUrl: '/images/message/avatar-male-5.webp',
-      text: 'Лучшая модерация, которую я видел. Ни одного спамера или капсера за весь день! Заслуженные 5 звезд.',
+      id: nanoid(),
+      username: 'CyberPavel',
+      text: {
+        ru: 'Постоянно натыкаюсь на каких-то странных анонимов в чате. Надеюсь, скоро наведут порядок.',
+        en: 'I keep running into these weird anonymous users in the chat. I hope they clean things up soon.',
+      },
       rating: 5,
-      requiredCompletedCount: 3,
+      requiredProgress: 100,
+      isPerfectOnly: true,
     },
   ],
 

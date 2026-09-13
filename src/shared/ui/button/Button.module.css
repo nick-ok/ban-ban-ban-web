@@ -4,13 +4,14 @@
   justify-content: center;
   margin: 0;
   padding: 0;
-  border: none;
+  border: 1px solid transparent;
   outline: none;
   background: transparent;
   box-shadow: none;
 
   color: inherit;
   font: inherit;
+  font-weight: bold;
   text-align: inherit;
   text-decoration: none;
   user-select: none;
@@ -18,7 +19,6 @@
   cursor: pointer;
 
   transition: transform 0.1s ease;
-  transition: opacity 0.4s ease;
   will-change: transform;
 
   &:active {
@@ -26,41 +26,54 @@
     transition: transform 0.05s ease;
   }
 
-  &:hover {
-    opacity: 0.9;
-  }
-
   &:disabled {
     pointer-events: none;
     transform: none;
   }
+
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.02);
+      transition: transform 0.3s ease;
+    }
+
+    &:hover:active {
+      transform: scale(0.97);
+      transition: transform 0.05s ease;
+    }
+  }
 }
 
 .primary {
+  --variant-color: var(--color-primary);
   background-color: var(--color-primary);
   color: white;
   font-weight: bold;
 }
 
 .success {
+  --variant-color: var(--color-success);
   background-color: var(--color-success);
   color: white;
   font-weight: bold;
 }
 
 .warn {
+  --variant-color: var(--color-warning);
   background-color: var(--color-warning);
   color: white;
   font-weight: bold;
 }
 
 .danger {
+  --variant-color: var(--color-danger);
   background-color: var(--color-danger);
   color: white;
   font-weight: bold;
 }
 
 .white {
+  --variant-color: var(--color-primary);
   background-color: white;
   color: var(--color-primary);
   font-weight: bold;
@@ -68,4 +81,10 @@
 
 .text {
   color: inherit;
+}
+
+.bordered {
+  background-color: transparent;
+  border: 1px solid var(--variant-color, currentColor);
+  color: var(--variant-color, currentColor);
 }

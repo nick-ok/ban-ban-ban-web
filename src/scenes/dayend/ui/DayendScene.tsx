@@ -8,7 +8,11 @@ import {
   getNextLocationToUnlock,
   getScenarioById,
 } from '@/entities/scenario';
-import { calculateAccuracy, useGameStore } from '@/features/game';
+import {
+  calculateAccuracy,
+  getAccuracyGrade,
+  useGameStore,
+} from '@/features/game';
 import { useTranslation } from '@/features/i18n';
 import { Button, CountMotion, Icon, ZoomMotion } from '@/shared/ui';
 
@@ -39,6 +43,7 @@ export const DayEndScene = () => {
 
   const computedAccuracy = calculateAccuracy(stats);
   const globalAIProgress = getGlobalAIProgress(progress);
+  const { labelKey } = getAccuracyGrade(computedAccuracy);
 
   const isPassed = computedAccuracy >= COMPLETION_THRESHOLD;
   const { nextLocationIdToUnlock } = getNextLocationToUnlock(
@@ -55,7 +60,7 @@ export const DayEndScene = () => {
     }
 
     return 'var(--color-danger)';
-  }, [computedAccuracy]);
+  }, []);
 
   const handleNext = () => {
     if (!currentScenarioId) {
@@ -103,7 +108,6 @@ export const DayEndScene = () => {
     return (
       <DayendRewards
         nextLocationUnlocked={!!nextLocationIdToUnlock}
-        newReviewsAdded={isPassed}
         globalAccuracy={globalAIProgress}
         onCancel={() => setIsRewards(false)}
         onSave={handleSaveAndExit}
@@ -113,7 +117,7 @@ export const DayEndScene = () => {
 
   return (
     <ZoomMotion className={styles.root}>
-      <h1 className={styles.title}>{t('screens.dayend.dayend')}</h1>
+      <h1 className={styles.title}>{t(labelKey)}</h1>
 
       <div className={styles.accuracy}>
         <h4 className={styles.accuracyTitle} style={{ color: accuracyColor }}>

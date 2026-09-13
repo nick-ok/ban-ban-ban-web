@@ -11,10 +11,16 @@
     },
     "preview": {
       "start": "Start",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "reviews": "Reviews",
+      "downloads": "Downloads",
+      "reviewsTitle": "Ratings and reviews"
     },
     "dayend": {
-      "dayend": "The workday has ended!",
+      "tierS": "Flawless!",
+      "tierA": "Great job!",
+      "tierB": "Close enough",
+      "tierC": "Not gonna lie, it's bad",
       "again": "Again",
       "cancel": "Cancel",
       "globalAIProgress": "GIP AI Progress",
@@ -24,7 +30,6 @@
       "saveAndContinue": "Save and continue",
       "next": "Next",
       "home": "Home",
-      "congratulations": "Congratulations!",
       "accuracy": "Your accuracy",
       "totalMessages": "Total messages",
       "banned": "Banned",

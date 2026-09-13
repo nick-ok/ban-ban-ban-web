@@ -28,7 +28,6 @@ const itemVariants: Variants = {
 
 interface Props {
   nextLocationUnlocked: boolean;
-  newReviewsAdded: boolean;
   globalAccuracy: number;
   onCancel: () => void;
   onSave: () => void;
@@ -37,7 +36,6 @@ interface Props {
 export const DayendRewards = ({
   globalAccuracy,
   nextLocationUnlocked,
-  newReviewsAdded,
   onCancel,
   onSave,
 }: Props) => {
@@ -51,10 +49,6 @@ export const DayendRewards = ({
       />
 
       <ZoomMotion scale={0.5} duration={0.5} className={styles.inner}>
-        <motion.h1 variants={itemVariants} className={styles.title}>
-          {t('screens.dayend.congratulations')}
-        </motion.h1>
-
         <motion.div
           className={styles.rewards}
           variants={containerVariants}
@@ -90,15 +84,6 @@ export const DayendRewards = ({
                 </span>
               </motion.div>
             )}
-
-            {newReviewsAdded && (
-              <motion.div variants={itemVariants} className={styles.rewardItem}>
-                <Icon name={'check'} className={styles.rewardIcon} />
-                <span className={styles.rewardText}>
-                  {t('screens.dayend.newReviews')}
-                </span>
-              </motion.div>
-            )}
           </div>
         </motion.div>
 
@@ -112,7 +97,7 @@ export const DayendRewards = ({
           </Button>
 
           <Button
-            variant={'white'}
+            variant={'text'}
             className={styles.actionBtn}
             onClick={onCancel}
           >

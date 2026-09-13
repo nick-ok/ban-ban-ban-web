@@ -1,7 +1,5 @@
-import { ZoomMotion } from '@/shared/ui';
+import { BlobsFX, ScanFX, ZoomMotion } from '@/shared/ui';
 import { AppGrid } from '@/widgets/app-grid';
-import { BlobsFX } from '@/widgets/blobs-fx/ui/BlobsFX';
-import { ScanFX } from '@/widgets/scan-fx';
 
 import styles from './LobbyScene.module.css';
 

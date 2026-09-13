@@ -1,6 +1,6 @@
-import type { Location } from '../model/types';
+import type { LocationApp } from '../model/types';
 
-export const LOCATIONS = [
+export const LOCATIONS: LocationApp[] = [
   {
     id: 'loc1',
     name: 'HOA',
@@ -27,4 +27,4 @@ export const LOCATIONS = [
     scenarioIds: ['loc2_sc1', 'loc2_sc2', 'loc2_sc3'],
     unlocksAfter: 'loc2',
   },
-] as const satisfies readonly Location[];
+] as const;

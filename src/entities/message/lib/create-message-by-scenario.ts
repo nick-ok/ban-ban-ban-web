@@ -79,14 +79,18 @@ export const createMessageByScenario = (
   let title: TitleType = randomArrayItem(allowedContent.titles) ?? 'empty';
   let contentType: ContentType =
     randomArrayItem(allowedContent.content) ?? 'normal';
-  let likes = allowedContent.hasLikes ? randomNumberInRange(100, 2000) : 0;
+  let likes = allowedContent.hasLikes
+    ? randomNumberInRange({ min: 100, max: 2_000 })
+    : 0;
   let text = textTextMap[finalBanAction];
 
   if (finalBanAction !== 'none') {
     const rules = scenario.banRules[finalBanAction];
     const activeRule = randomArrayItem(rules);
 
-    likes = allowedContent.hasLikes ? randomNumberInRange(0, 20) : 0;
+    likes = allowedContent.hasLikes
+      ? randomNumberInRange({ min: 0, max: 20 })
+      : 0;
 
     if (activeRule) {
       if (activeRule.user && activeRule.user.length > 0) {
@@ -105,7 +109,7 @@ export const createMessageByScenario = (
         const minLimit = activeRule.likes.min ?? 0;
         const maxLimit = activeRule.likes.max ?? 9999;
 
-        likes = randomNumberInRange(minLimit, maxLimit);
+        likes = randomNumberInRange({ min: minLimit, max: maxLimit });
       }
     }
   }

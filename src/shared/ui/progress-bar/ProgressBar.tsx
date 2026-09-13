@@ -1,11 +1,18 @@
 import { useEffect, useRef } from 'react';
 
-import { motion, useInView, useSpring, useTransform } from 'motion/react';
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+} from 'motion/react';
 
 import styles from './ProgressBar.module.css';
 
 interface Props {
   value: number;
+  duration?: number;
   displayValue?: string;
   size?: 'sm' | 'md';
   trackColor?: string;
@@ -13,16 +20,18 @@ interface Props {
 }
 
 const AnimatedPercent = ({
-  spring,
+  motionValue,
 }: {
-  spring: ReturnType<typeof useSpring>;
+  motionValue: ReturnType<typeof useMotionValue<number>>;
 }) => {
-  const rounded = useTransform(spring, (v) => Math.round(v));
+  const rounded = useTransform(motionValue, (v) => Math.round(v));
+
   return <motion.span>{rounded}</motion.span>;
 };
 
 export const ProgressBar = ({
   value,
+  duration = 0.8,
   displayValue,
   size = 'sm',
   trackColor = 'rgba(255, 255, 255, 0.08)',
@@ -31,11 +40,18 @@ export const ProgressBar = ({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-10%' });
 
-  const springValue = useSpring(0, { stiffness: 60, damping: 20 });
+  const progressValue = useMotionValue(0);
 
   useEffect(() => {
-    if (isInView) springValue.set(value);
-  }, [isInView, value, springValue]);
+    if (isInView) {
+      const controls = animate(progressValue, value, {
+        duration,
+        ease: 'easeInOut',
+      });
+
+      return controls.stop;
+    }
+  }, [isInView, value, progressValue]);
 
   return (
     <div ref={ref} className={styles.wrapper} data-size={size}>
@@ -44,13 +60,13 @@ export const ProgressBar = ({
           className={styles.fill}
           style={{
             backgroundColor: fillColor,
-            width: useTransform(springValue, (v) => `${v}%`),
+            width: useTransform(progressValue, (v) => `${v}%`),
           }}
         />
         <span className={styles.text}>
           {displayValue ?? (
             <>
-              <AnimatedPercent spring={springValue} />%
+              <AnimatedPercent motionValue={progressValue} />%
             </>
           )}
         </span>

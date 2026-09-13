@@ -11,8 +11,7 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { useTranslation } from '@/features/i18n';
-import { Button, Icon, ZoomMotion } from '@/shared/ui';
-import { ScanFX } from '@/widgets/scan-fx';
+import { Button, Icon, ScanFX, ZoomMotion } from '@/shared/ui';
 
 import { NoInstructions } from './NoInstructions';
 

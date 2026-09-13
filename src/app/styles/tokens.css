@@ -24,11 +24,17 @@
   --radius-sm: calc(var(--u) * 2);
   --radius-md: calc(var(--u) * 3);
   --radius-lg: calc(var(--u) * 4);
+  --radius-xl: calc(var(--u) * 5);
+  --radius-2xl: calc(var(--u) * 6);
+  --radius-3xl: calc(var(--u) * 7);
 
   --color-primary: #1f90f0;
   --color-success: #22c55e;
   --color-warning: #eab308;
   --color-danger: #ef4444;
+  --color-black: #1a1a24;
+  --color-grey-light: #dedede;
+  --color-grey: #878787;
 
   --bg-gradient: linear-gradient(135deg, #4c66a3 0%, #7b9aef 40%, #06b6d4 100%);
 }

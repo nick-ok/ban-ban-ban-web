@@ -11,7 +11,7 @@ export interface LocationIcon {
   color: string;
 }
 
-export interface Location {
+export interface LocationApp {
   id: LocationId;
   name: string;
   descriptionKey: ParseKeys;

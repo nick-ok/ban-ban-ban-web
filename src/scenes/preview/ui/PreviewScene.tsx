@@ -5,36 +5,21 @@ import { AnimatePresence, motion } from 'motion/react';
 
 import { getLocationById } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
-import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
-import { getReviewsByProgress } from '@/entities/review';
 import { PreviewContent } from '@/widgets/preview-content';
 
-import { PreviewSceneSplash } from './PreviewSceneSplash';
+import { PreviewSplash } from './PreviewSplash';
 
 import styles from './PreviewScene.module.css';
 
 const SPLASH_DURATION = 650;
 
 export const PreviewScene = () => {
-  const { selectedLocationId, closePreview, setScene } = useNavigationStore();
-
-  const completedScenarioIds = usePlayerProgressStore(
-    (state) => state.completedScenarioIds,
-  );
+  const { selectedLocationId } = useNavigationStore();
 
   const [phase, setPhase] = useState<'loading' | 'ready'>('loading');
 
   const location = getLocationById(selectedLocationId);
   const isReady = phase === 'ready';
-
-  const reviews = getReviewsByProgress({
-    locationId: location?.id ?? 'loc1',
-    completedScenarioIds,
-  });
-
-  const handleStart = () => {
-    setScene('briefing');
-  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -53,12 +38,12 @@ export const PreviewScene = () => {
       layoutId={`app-bg-${selectedLocationId}`}
       className={clsx(styles.root, isReady ? styles.ready : styles.loading)}
       animate={{
-        backgroundColor: isReady ? '#4b4646' : location.icon.color,
+        backgroundColor: isReady ? 'white' : location.icon.color,
       }}
       exit={{ backgroundColor: location.icon.color }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <PreviewSceneSplash
+      <PreviewSplash
         isReady={isReady}
         iconName={location.icon.name}
         title={location.name}
@@ -78,12 +63,7 @@ export const PreviewScene = () => {
               delay: 0.05,
             }}
           >
-            <PreviewContent
-              onStart={handleStart}
-              onClose={closePreview}
-              location={location}
-              reviews={reviews}
-            />
+            <PreviewContent />
           </motion.div>
         )}
       </AnimatePresence>

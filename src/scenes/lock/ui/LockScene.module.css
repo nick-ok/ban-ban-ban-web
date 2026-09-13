@@ -90,7 +90,6 @@
 }
 
 .date {
-  font-size: var(--text-base);
   font-weight: 400;
   color: #aaa;
   text-transform: capitalize;
@@ -110,7 +109,6 @@
   padding: var(--space-3) 0;
   color: #fff;
   font-family: inherit;
-  font-size: var(--text-base);
   font-weight: bold;
   text-align: center;
   transition: transform 0.1s;

@@ -6,3 +6,5 @@ export interface GameStats {
   missed: number;
   missedLong: number;
 }
+
+export type TierLabel = 'c' | 'b' | 'a' | 's';

@@ -1,2 +1,3 @@
+export type * from './model/store';
+
 export { useNavigationStore } from './model/store';
-export type { Scene } from './model/store';

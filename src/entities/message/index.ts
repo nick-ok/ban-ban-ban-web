@@ -1,11 +1,4 @@
-export type {
-  Message,
-  UserType,
-  ContentType,
-  TitleType,
-  BanAction,
-  ExtendedPixiMessageContainer,
-} from './model/types';
+export type * from './model/types';
 
 export type {
   AvatarAssetKey,
