@@ -1,6 +1,7 @@
-export { LOCATIONS } from './config/locations';
-
 export type * from './model/types';
+
+export { LOCATIONS } from './config/locations';
+export { LOC_1_OWNER } from './config/constants';
 
 export { getNextLocation } from './lib/get-next-location';
 export { isLocationCompleted } from './lib/is-location-completed';

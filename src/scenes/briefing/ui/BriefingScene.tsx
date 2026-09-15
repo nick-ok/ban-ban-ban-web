@@ -11,7 +11,7 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { useTranslation } from '@/features/i18n';
-import { Button, Icon, ScanFX, ZoomMotion } from '@/shared/ui';
+import { Button, Icon, ZoomMotion } from '@/shared/ui';
 
 import { NoInstructions } from './NoInstructions';
 
@@ -34,6 +34,8 @@ const actionsVariants: Variants = {
     transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
   },
 };
+
+const AI_AVATAR = '/images/message/avatar-ai.webp';
 
 export const BriefingScene = () => {
   const { t } = useTranslation();
@@ -73,22 +75,47 @@ export const BriefingScene = () => {
     }
   };
 
+  const handleNavigateToPreview = () => {
+    navigateToPreview(selectedLocationId ?? 'loc1');
+  };
+
   if (!scenario || briefingFlow.length === 0) {
     return <NoInstructions />;
   }
 
   return (
     <ZoomMotion className={styles.root} onClick={handleScreenClick}>
-      <ScanFX />
-
-      <header className={styles.header}>
+      <header className={styles.header} onClick={(e) => e.stopPropagation()}>
         {location && (
-          <div className={styles.locationTitle}>
-            <Icon
-              name={location?.icon.name ?? 'hoa'}
-              className={styles.locationIcon}
-            />
-            <h2 className={styles.locationName}>{location?.name ?? '-'}</h2>
+          <div className={styles.headerInner}>
+            <Button
+              className={styles.backBtn}
+              onClick={handleNavigateToPreview}
+            >
+              <Icon name={'angle-left'} className={styles.angleIcon} />
+            </Button>
+
+            <div className={styles.locationTitle}>
+              <Icon
+                name={location?.icon.name ?? 'hoa'}
+                className={styles.locationIcon}
+              />
+              <h2 className={styles.locationName}>{location?.name ?? ''}</h2>
+            </div>
+
+            <div className={styles.owner}>
+              <img
+                src={location.owner.avatarUrl}
+                className={styles.onwerImage}
+              />
+
+              <div>
+                <div className={styles.ownerName}>{location.owner.name}</div>
+                <div className={styles.ownerPosition}>
+                  {location.owner.position}
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </header>
@@ -108,13 +135,9 @@ export const BriefingScene = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  {sender?.avatarUrl && (
+                  {isAI && (
                     <img
-                      src={
-                        !isAI
-                          ? sender.avatarUrl
-                          : '/images/message/avatar-ai.webp'
-                      }
+                      src={AI_AVATAR}
                       alt="avatar"
                       className={styles.avatarImage}
                     />
@@ -125,9 +148,6 @@ export const BriefingScene = () => {
                       <>
                         <span className={styles.senderName}>
                           {sender?.name}
-                        </span>
-                        <span className={styles.senderPosition}>
-                          {sender?.position}
                         </span>
                       </>
                     )}
@@ -150,12 +170,17 @@ export const BriefingScene = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <Button
-              onClick={() => navigateToPreview(selectedLocationId ?? 'loc1')}
+              onClick={handleNavigateToPreview}
+              className={styles.actionBtn}
+              style={{ color: 'white' }}
             >
               {t('scenarios.cancel')}
             </Button>
 
-            <Button onClick={() => setScene('game')}>
+            <Button
+              onClick={() => setScene('game')}
+              className={styles.actionBtn}
+            >
               {t('scenarios.start')}
             </Button>
           </motion.footer>

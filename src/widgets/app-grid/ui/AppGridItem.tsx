@@ -1,16 +1,14 @@
 import { motion } from 'motion/react';
 
-import type { LocationIcon, LocationId } from '@/entities/location';
+import type { LocationApp } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
 import { Icon, ProgressBar } from '@/shared/ui';
 
 import styles from './AppGridItem.module.css';
 
 interface Props {
-  id: LocationId;
-  locationName: string;
+  location: LocationApp;
   isLocked: boolean;
-  icon: LocationIcon;
   stats: {
     completed: number;
     total: number;
@@ -18,14 +16,10 @@ interface Props {
   };
 }
 
-export const AppGridItem = ({
-  id,
-  locationName,
-  isLocked,
-  icon,
-  stats,
-}: Props) => {
+export const AppGridItem = ({ location, isLocked, stats }: Props) => {
   const { navigateToPreview } = useNavigationStore();
+
+  const { id, icon, name, background } = location;
 
   const scenarioProgress =
     stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0;
@@ -35,7 +29,7 @@ export const AppGridItem = ({
       <motion.button
         layoutId={`app-bg-${id}`}
         className={styles.appButton}
-        style={{ backgroundColor: icon.color }}
+        style={{ backgroundColor: background }}
         disabled={isLocked}
         whileTap={
           isLocked ? {} : { scale: 0.95, transition: { duration: 0.1 } }
@@ -53,7 +47,7 @@ export const AppGridItem = ({
         )}
       </motion.button>
 
-      <div className={styles.label}>{locationName}</div>
+      <div className={styles.label}>{name}</div>
 
       <div className={styles.bars}>
         <ProgressBar

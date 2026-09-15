@@ -8,7 +8,12 @@ export type LocationId = (typeof LOCATION_IDS)[number];
 
 export interface LocationIcon {
   name: IconName;
-  color: string;
+}
+
+export interface LocationOwner {
+  name: string;
+  position?: string;
+  avatarUrl: string;
 }
 
 export interface LocationApp {
@@ -16,6 +21,7 @@ export interface LocationApp {
   name: string;
   descriptionKey: ParseKeys;
   icon: LocationIcon;
+  owner: LocationOwner;
   previewImage: string;
   background: string;
   scenarioIds: readonly ScenarioId[];

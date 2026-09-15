@@ -1,4 +1,5 @@
 import type { LocationApp } from '../model/types';
+import { LOC_1_OWNER } from './constants';
 
 export const LOCATIONS: LocationApp[] = [
   {
@@ -7,10 +8,10 @@ export const LOCATIONS: LocationApp[] = [
     descriptionKey: 'locations.loc1.description',
     icon: {
       name: 'hoa',
-      color: '#e1d039',
     },
+    owner: LOC_1_OWNER,
     previewImage: '/images/hoa.webp',
-    background: 'linear-gradient(180deg, #1a0a2e 0%, #16213e 100%)',
+    background: '#c3b850',
     scenarioIds: ['loc1_sc1', 'loc1_sc2', 'loc1_sc3'],
     unlocksAfter: undefined,
   },
@@ -18,12 +19,12 @@ export const LOCATIONS: LocationApp[] = [
     id: 'loc2',
     name: 'Spirit Dev',
     descriptionKey: 'locations.loc2.description',
+    owner: LOC_1_OWNER,
     icon: {
       name: 'spiritual',
-      color: '#fff',
     },
     previewImage: '/images/hoa.webp',
-    background: 'linear-gradient(180deg, #0a2e1a 0%, #0e3b2f 100%)',
+    background: '#fff',
     scenarioIds: ['loc2_sc1', 'loc2_sc2', 'loc2_sc3'],
     unlocksAfter: 'loc2',
   },

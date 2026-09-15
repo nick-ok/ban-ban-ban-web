@@ -9,3 +9,4 @@ export { CountMotion } from './count-motion/CountMotion';
 export { BlobsFX } from './blobs-fx/BlobsFX';
 export { ScanFX } from './scan-fx/ScanFX';
 export { PhoneFrame } from './phone-frame/PhoneFrame';
+export { AppDrawer } from './app-drawer/AppDrawer';

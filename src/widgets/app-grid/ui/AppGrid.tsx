@@ -17,10 +17,8 @@ export const AppGrid = () => {
         return (
           <AppGridItem
             key={loc.id}
-            id={loc.id}
-            locationName={loc.name}
+            location={loc}
             isLocked={isLocked}
-            icon={loc.icon}
             stats={stats}
           />
         );
