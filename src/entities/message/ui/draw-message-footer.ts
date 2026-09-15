@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 
 import { i18n } from '@/features/i18n';
+import { numberFormat } from '@/shared/lib';
 
 import type { UIAssetKey } from '../config/assets';
 import { MESSAGE_CONFIG } from '../config/message-config';
@@ -30,15 +31,8 @@ export const drawMessageFooter = ({ likesCount, likeAssetKey }: Props) => {
     console.error('[PixiJS] Текстура "like" не найдена в кэше!');
   }
 
-  const likesCountText = new Intl.NumberFormat(i18n.language, {
-    notation: 'compact',
-    maximumFractionDigits: 1,
-  })
-    .format(likesCount)
-    .toLowerCase();
-
   const countText = new PIXI.Text({
-    text: likesCountText,
+    text: numberFormat(likesCount, i18n.language),
     style: {
       fontSize: bubble.fontSize - 2,
       fill: 0x888888,

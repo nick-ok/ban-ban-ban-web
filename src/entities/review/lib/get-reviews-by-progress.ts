@@ -1,29 +1,36 @@
-import type { LocationId } from '@/entities/location';
-import { SCENARIOS } from '@/entities/scenario';
+import { getLocationStats, type LocationId } from '@/entities/location';
+import type { PlayerProgress } from '@/entities/player-progress';
 
 import { LOCATION_REVIEWS } from '../config/reviews';
 import type { Review } from '../model/types';
 
 interface Options {
   locationId: LocationId;
-  completedScenarioIds: string[];
+  progress: PlayerProgress;
 }
 
 export const getReviewsByProgress = ({
   locationId,
-  completedScenarioIds,
+  progress,
 }: Options): Review[] => {
   const allReviewsForLocation = LOCATION_REVIEWS[locationId] || [];
+  const { total, completed, location } = getLocationStats(locationId, progress);
 
-  const completedInThisLocationCount = SCENARIOS.filter(
-    (scenario) =>
-      scenario.locationId === locationId &&
-      completedScenarioIds.includes(scenario.id),
-  ).length;
+  const completion = Math.round((completed / total) * 100);
 
-  const availableReviews = allReviewsForLocation.filter(
-    (review) => review.requiredCompletedCount == completedInThisLocationCount,
-  );
+  const isPerfectClear =
+    completed === total &&
+    location?.scenarioIds.every(
+      (id) => (progress.scenarioResults[id]?.bestAccuracy ?? 0) === 100,
+    );
 
-  return availableReviews;
+  const availableReviews = allReviewsForLocation.filter((review) => {
+    if (review.isPerfectOnly) {
+      return isPerfectClear;
+    }
+
+    return review.requiredProgress <= completion;
+  });
+
+  return availableReviews.slice(-5).reverse();
 };

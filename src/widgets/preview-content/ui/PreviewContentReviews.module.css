@@ -1,3 +1,55 @@
 .root {
+  margin-top: var(--space-6);
+  color: var(--color-black);
+}
+
+.title {
+  font-size: var(--text-lg);
+  color: var(--color-black);
+  margin-bottom: var(--space-2);
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.username {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.usernameCircle {
+  flex-shrink: 0;
+  border-radius: 50%;
+  width: calc(var(--u) * 9);
+  height: calc(var(--u) * 9);
+  background-color: var(--color-success);
   color: white;
+  font-weight: bold;
+  font-size: var(--text-lg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stars {
+  margin: var(--space-3) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.starIcon {
+  width: calc(var(--u) * 4);
+  height: calc(var(--u) * 4);
+  color: var(--color-grey);
+
+  &.filled {
+    color: #f59e0b;
+    fill: #f59e0b;
+  }
 }

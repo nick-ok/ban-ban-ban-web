@@ -6,6 +6,10 @@
   padding: 0;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 html,
 body {
   height: 100%;
@@ -33,22 +37,6 @@ select {
   font: inherit;
 }
 
-button,
-a,
-input,
-select,
-textarea,
-[role='button'] {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button:focus,
-a:focus,
-input:focus {
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-}
-
 button {
   all: unset;
   display: inline-block;
@@ -58,7 +46,6 @@ button {
   text-align: center;
   appearance: none;
   -webkit-appearance: none;
-  -webkit-tap-highlight-color: transparent;
 
   &:focus-visible {
     outline: none;
@@ -73,11 +60,4 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
-}
-
-#root {
-  isolation: isolate;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }

@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'motion/react';
 
 import { Icon, type IconName } from '@/shared/ui';
 
-import styles from './PreviewSceneSplash.module.css';
+import styles from './PreviewSplash.module.css';
 
 interface Props {
   isReady: boolean;
@@ -10,7 +10,7 @@ interface Props {
   title: string;
 }
 
-export const PreviewSceneSplash = ({ isReady, iconName, title }: Props) => {
+export const PreviewSplash = ({ isReady, iconName, title }: Props) => {
   return (
     <AnimatePresence>
       {!isReady && (

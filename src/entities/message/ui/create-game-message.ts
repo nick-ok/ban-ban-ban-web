@@ -76,13 +76,6 @@ export const createGameMessage = (
   const bubbleHeight = currentBottomY + bubble.padding;
   const totalHeight = bubbleHeight + tail.height;
 
-  const shadowBubble = new PIXI.Graphics();
-  shadowBubble
-    .roundRect(0, 0, bubble.width, bubbleHeight, bubble.radius)
-    .fill(0x000000);
-  shadowBubble.alpha = 0.15;
-  shadowBubble.position.set(2, 2);
-
   const baseBubble = drawMessageBubble({
     width: bubble.width,
     height: bubbleHeight,
@@ -116,7 +109,6 @@ export const createGameMessage = (
     progressMask.y = totalHeight - totalHeight * clampedPercent;
   };
 
-  container.addChild(shadowBubble);
   container.addChild(baseBubble);
   container.addChild(progressBubble);
   container.addChild(progressMask);

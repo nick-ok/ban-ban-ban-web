@@ -11,6 +11,7 @@ export const getLocationStats = (
 
   if (!location) {
     return {
+      location: null,
       total: 0,
       completed: 0,
       averageAccuracy: 0,
@@ -18,9 +19,11 @@ export const getLocationStats = (
   }
 
   const total = location.scenarioIds.length;
+
   const completed = location.scenarioIds.filter((id) =>
     progress.completedScenarioIds.includes(id),
   ).length;
+
   const accuracies = location.scenarioIds
     .map((id) => progress.scenarioResults[id]?.bestAccuracy ?? 0)
     .filter((a) => a > 0);
@@ -31,6 +34,7 @@ export const getLocationStats = (
       : 0;
 
   return {
+    location,
     total,
     completed,
     averageAccuracy,

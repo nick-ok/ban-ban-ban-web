@@ -13,6 +13,7 @@ export const ICON_NAMES = [
   'reload',
   'sparkling-heart',
   'spiritual',
+  'star',
   'zipper-face',
 ] as const;
 

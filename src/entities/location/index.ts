@@ -1,6 +1,6 @@
 export { LOCATIONS } from './config/locations';
 
-export type { Location, LocationIcon, LocationId } from './model/types';
+export type * from './model/types';
 
 export { getNextLocation } from './lib/get-next-location';
 export { isLocationCompleted } from './lib/is-location-completed';

@@ -1,5 +1,4 @@
 import { useNavigationStore } from '@/entities/navigation';
-import { PhoneFrame } from '@/widgets/phone-frame';
 
 import { BootstrapScene } from './scenes/bootstrap';
 import { BriefingScene } from './scenes/briefing';
@@ -9,6 +8,7 @@ import { IntroScene } from './scenes/intro';
 import { LobbyScene } from './scenes/lobby';
 import { LockScene } from './scenes/lock';
 import { PreviewScene } from './scenes/preview';
+import { PhoneFrame } from './shared/ui';
 
 import styles from './App.module.css';
 

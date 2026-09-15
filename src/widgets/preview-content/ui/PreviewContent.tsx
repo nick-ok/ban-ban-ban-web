@@ -2,29 +2,24 @@ import { useRef } from 'react';
 
 import { motion, useScroll, useTransform } from 'motion/react';
 
-import type { Location } from '@/entities/location';
-import type { Review } from '@/entities/review';
+import { getLocationById } from '@/entities/location';
+import { useNavigationStore } from '@/entities/navigation';
+import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
+import { getReviewsByProgress } from '@/entities/review';
 import { useTranslation } from '@/features/i18n';
 import { Button, Icon } from '@/shared/ui';
 
+import { getContentStats } from '../lib/get-content-stats';
 import { PreviewContentReviews } from './PreviewContentReviews';
+import { PreviewContentStats } from './PreviewContentStats';
 
 import styles from './PreviewContent.module.css';
 
-interface Props {
-  location: Location;
-  reviews: Review[];
-  onStart: () => void;
-  onClose: () => void;
-}
-
-export const PreviewContent = ({
-  location,
-  onStart,
-  onClose,
-  reviews,
-}: Props) => {
+export const PreviewContent = () => {
   const { t } = useTranslation();
+
+  const { selectedLocationId, closePreview, setScene } = useNavigationStore();
+  const playerProgress = usePlayerProgressStore();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -35,8 +30,23 @@ export const PreviewContent = ({
   const SCROLL_RANGE = [0, 150];
 
   const headerHeight = useTransform(scrollY, SCROLL_RANGE, ['150px', '80px']);
-  const imageBlur = useTransform(scrollY, SCROLL_RANGE, ['1px', '12px']);
+  const imageBlur = useTransform(scrollY, SCROLL_RANGE, ['2px', '12px']);
   const filterStyle = useTransform(imageBlur, (blur) => `blur(${blur})`);
+
+  const location = getLocationById(selectedLocationId);
+  const reviews = getReviewsByProgress({
+    locationId: location?.id ?? 'loc1',
+    progress: playerProgress,
+  });
+  const contentStats = getContentStats(location?.id ?? 'loc1', playerProgress);
+
+  const handleStart = () => {
+    setScene('briefing');
+  };
+
+  if (!location) {
+    return null;
+  }
 
   return (
     <div className={styles.root}>
@@ -55,12 +65,29 @@ export const PreviewContent = ({
         </div>
       </motion.div>
 
+      <div className={styles.stats}>
+        <PreviewContentStats
+          rating={contentStats.rating}
+          downloads={contentStats.downloads}
+          reviews={contentStats.reviews}
+        />
+      </div>
+
       <div className={styles.btns}>
-        <Button className={styles.btn} variant={'white'} onClick={onClose}>
+        <Button
+          className={styles.btn}
+          bordered={true}
+          variant={'primary'}
+          onClick={closePreview}
+        >
           {t('screens.preview.cancel')}
         </Button>
 
-        <Button className={styles.btn} variant={'primary'} onClick={onStart}>
+        <Button
+          className={styles.btn}
+          variant={'primary'}
+          onClick={handleStart}
+        >
           {t('screens.preview.start')}
         </Button>
       </div>
