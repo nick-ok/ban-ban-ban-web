@@ -11,6 +11,7 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { useTranslation } from '@/features/i18n';
+import { AudioService } from '@/shared/lib';
 import { Button, Icon, ZoomMotion } from '@/shared/ui';
 
 import { NoInstructions } from './NoInstructions';
@@ -71,6 +72,7 @@ export const BriefingScene = () => {
 
   const handleScreenClick = () => {
     if (!isLastStep) {
+      AudioService.play('chatMessage');
       setCurrentStep((prev) => prev + 1);
     }
   };

@@ -8,6 +8,7 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { GameStage, useGameStore } from '@/features/game';
+import { AudioService } from '@/shared/lib';
 import { AppDrawer, Button, Icon, ZoomMotion } from '@/shared/ui';
 
 import { GameClock } from './GameClock';
@@ -50,6 +51,10 @@ export const GameScene = () => {
   }, [activeScenario, startGame]);
 
   useEffect(() => {
+    if (menuOpen) {
+      AudioService.play('drawer');
+    }
+
     setGamePaused(menuOpen);
   }, [menuOpen]);
 
@@ -73,7 +78,7 @@ export const GameScene = () => {
             onOpenChange={setMenuOpen}
             open={menuOpen}
             trigger={
-              <Button>
+              <Button withSound={false}>
                 <Icon name={'menu'} className={styles.menuIcon} />
               </Button>
             }

@@ -2,7 +2,7 @@ import { create, type StateCreator } from 'zustand';
 
 import type { LocationId } from '@/entities/location';
 import { COMPLETION_THRESHOLD, type ScenarioId } from '@/entities/scenario';
-import { withPersist } from '@/shared/lib/with-persist';
+import { withPersist } from '@/shared/lib';
 
 import type { PlayerProgress, ScenarioResult } from './types';
 
