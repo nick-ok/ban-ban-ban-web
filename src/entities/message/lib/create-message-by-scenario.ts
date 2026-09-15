@@ -1,8 +1,7 @@
 import { nanoid } from 'nanoid';
 
 import type { Scenario } from '@/entities/scenario';
-import { randomArrayItem } from '@/shared/lib/random-array-item';
-import { randomNumberInRange } from '@/shared/lib/random-number-in-range';
+import { randomArrayItem, randomNumberInRange } from '@/shared/lib';
 
 import {
   FEMALE_AVATAR_KEYS,

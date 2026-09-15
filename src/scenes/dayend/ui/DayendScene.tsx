@@ -135,7 +135,7 @@ export const DayEndScene = () => {
         </h4>
 
         <Icon
-          name={isPassed ? 'sparkling-heart' : 'broken-heart'}
+          name={isPassed ? 'heart-sparkling' : 'confused-face'}
           className={styles.accuracyIcon}
         />
         <CountMotion

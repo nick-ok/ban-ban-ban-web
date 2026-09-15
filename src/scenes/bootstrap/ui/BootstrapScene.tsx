@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { loadMessageAssets } from '@/entities/message';
 import { useNavigationStore } from '@/entities/navigation';
+import { AudioService } from '@/shared/lib';
 
 import styles from './BootstrapScene.module.css';
 
@@ -17,7 +18,7 @@ export const BootstrapScene = () => {
       const startTime = performance.now();
 
       try {
-        await loadMessageAssets();
+        await Promise.all([loadMessageAssets(), AudioService.initAll()]);
       } catch (error) {
         console.error('Ошибка инициализации ассетов игры:', error);
       }

@@ -7,7 +7,8 @@ import type { Variants } from 'motion/react';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { useTranslation } from '@/features/i18n';
-import { GlassSurface } from '@/shared/ui';
+import { AudioService } from '@/shared/lib';
+import { Button } from '@/shared/ui';
 
 import styles from './LockScene.module.css';
 
@@ -92,6 +93,7 @@ export const LockScene = () => {
   return (
     <motion.div
       className={styles.root}
+      onPointerDown={() => AudioService.unlockAudio()}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -115,15 +117,13 @@ export const LockScene = () => {
               key={key}
               variants={buttonVariants}
               whileTap={{ scale: 0.99 }}
-              whileHover={{ scale: 1.01 }}
             >
-              <GlassSurface
-                as="button"
+              <Button
                 className={styles.btn}
                 onPointerUp={() => handleMenuButtonClick(key)}
               >
                 {t(`screens.lock.${key}`)}
-              </GlassSurface>
+              </Button>
             </motion.div>
           ))}
         </motion.div>
