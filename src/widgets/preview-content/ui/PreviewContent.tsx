@@ -6,11 +6,13 @@ import { getLocationById } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { getReviewsByProgress } from '@/entities/review';
+import { getLocationScenarios } from '@/entities/scenario';
 import { useTranslation } from '@/features/i18n';
 import { Button, Icon } from '@/shared/ui';
 
 import { getContentStats } from '../lib/get-content-stats';
 import { PreviewContentReviews } from './PreviewContentReviews';
+import { PreviewContentScenarios } from './PreviewContentScenarios';
 import { PreviewContentStats } from './PreviewContentStats';
 
 import styles from './PreviewContent.module.css';
@@ -39,6 +41,8 @@ export const PreviewContent = () => {
     progress: playerProgress,
   });
   const contentStats = getContentStats(location?.id ?? 'loc1', playerProgress);
+  const scenarios = getLocationScenarios(selectedLocationId);
+  const completedScenarioIds = playerProgress.completedScenarioIds;
 
   const handleStart = () => {
     setScene('briefing');
@@ -90,6 +94,14 @@ export const PreviewContent = () => {
         >
           {t('screens.preview.start')}
         </Button>
+      </div>
+
+      <div className={styles.scenarios}>
+        <PreviewContentScenarios
+          location={location}
+          scenarios={scenarios}
+          completedIds={completedScenarioIds}
+        />
       </div>
 
       <div ref={containerRef} className={styles.content}>

@@ -75,8 +75,11 @@
   width: 50%;
 }
 
+.scenarios {
+  margin-top: var(--space-4);
+}
+
 .content {
-  margin-top: var(--space-2);
   flex-grow: 1;
   width: 100%;
   overflow-x: hidden;
@@ -85,6 +88,6 @@
 }
 
 .description {
-  padding: 0 var(--space-6);
+  padding: 0 var(--space-2);
   color: var(--main-black);
 }
