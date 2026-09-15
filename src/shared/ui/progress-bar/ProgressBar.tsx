@@ -35,7 +35,7 @@ export const ProgressBar = ({
   displayValue,
   size = 'sm',
   trackColor = 'rgba(255, 255, 255, 0.08)',
-  fillColor = '#00ff88',
+  fillColor = 'var(--color-success)',
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-10%' });

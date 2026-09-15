@@ -18,10 +18,11 @@ interface NavigationStore {
   selectedLocationId: LocationId | null;
   selectedScenarioId: ScenarioId | null;
 
+  setScene: (scene: Scene) => void;
+  setSelectedLocationId: (locationId: LocationId) => void;
+  setSelectedScenarioId: (scenarioId: ScenarioId) => void;
   navigateToPreview: (locationId: LocationId) => void;
   closePreview: () => void;
-
-  setScene: (scene: Scene) => void;
 }
 
 export const useNavigationStore = create<NavigationStore>((set) => ({
@@ -29,9 +30,13 @@ export const useNavigationStore = create<NavigationStore>((set) => ({
   selectedLocationId: null,
   selectedScenarioId: null,
 
+  setScene: (scene) => set({ scene }),
+
+  setSelectedLocationId: (selectedLocationId) => set({ selectedLocationId }),
+
+  setSelectedScenarioId: (selectedScenarioId) => set({ selectedScenarioId }),
+
   navigateToPreview: (locationId) =>
     set({ scene: 'preview', selectedLocationId: locationId }),
   closePreview: () => set({ scene: 'lobby', selectedLocationId: null }),
-
-  setScene: (scene) => set({ scene }),
 }));

@@ -39,7 +39,8 @@ export const DayEndScene = () => {
     (state) => state.unlockLocation,
   );
 
-  const { setScene } = useNavigationStore();
+  const { setScene, navigateToPreview, selectedLocationId } =
+    useNavigationStore();
 
   const computedAccuracy = calculateAccuracy(stats);
   const globalAIProgress = getGlobalAIProgress(progress);
@@ -68,10 +69,19 @@ export const DayEndScene = () => {
     }
 
     recordScenarioResult(currentScenarioId, computedAccuracy);
+    const isAlreadyPassed =
+      progress.completedScenarioIds.includes(currentScenarioId);
+
+    if (isAlreadyPassed) {
+      resetGame();
+      navigateToPreview(selectedLocationId ?? 'loc1');
+    }
 
     if (isPassed) {
       setIsRewards(true);
-    } else {
+    }
+
+    if (!isPassed) {
       resetGame();
       setScene('lobby');
     }
