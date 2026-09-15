@@ -40,7 +40,7 @@ export const Button = ({
     }
 
     if (withSound) {
-      AudioService.play('click');
+      AudioService.play({ key: 'click' });
     }
 
     onPointerDown?.(e);

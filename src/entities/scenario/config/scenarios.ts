@@ -16,7 +16,7 @@ export const SCENARIOS: Scenario[] = [
       },
       {
         id: 'b1_2',
-        senderType: 'client',
+        senderType: 'system',
         textKey: 'scenarios.loc1_sc1.briefing.msg2',
       },
       {

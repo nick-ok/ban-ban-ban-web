@@ -44,7 +44,7 @@ export const DayEndScene = () => {
 
   const computedAccuracy = calculateAccuracy(stats);
   const globalAIProgress = getGlobalAIProgress(progress);
-  const { labelKey } = getAccuracyGrade(computedAccuracy);
+  const { tierLabelKey, gradeIcon } = getAccuracyGrade(computedAccuracy);
 
   const isPassed = computedAccuracy >= COMPLETION_THRESHOLD;
   const { nextLocationIdToUnlock } = getNextLocationToUnlock(
@@ -127,17 +127,15 @@ export const DayEndScene = () => {
 
   return (
     <ZoomMotion className={styles.root}>
-      <h1 className={styles.title}>{t(labelKey)}</h1>
+      <h1 className={styles.title}>{t(tierLabelKey)}</h1>
 
       <div className={styles.accuracy}>
         <h4 className={styles.accuracyTitle} style={{ color: accuracyColor }}>
           {t('screens.dayend.accuracy')}
         </h4>
 
-        <Icon
-          name={isPassed ? 'heart-sparkling' : 'confused-face'}
-          className={styles.accuracyIcon}
-        />
+        <Icon name={gradeIcon} className={styles.accuracyIcon} />
+
         <CountMotion
           style={{ color: accuracyColor }}
           className={styles.accuracyValue}

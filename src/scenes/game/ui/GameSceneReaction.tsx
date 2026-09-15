@@ -10,9 +10,9 @@ import styles from './GameSceneReaction.module.css';
 const CLEAR_TIMEOUT = 800;
 
 const REACTION_ICONS: Record<ReactionType, IconName> = {
-  banned: 'heart-on-fire',
-  longBanned: 'heart-sparkling',
-  wrongBanned: 'crazy-face',
+  banned: 'winking-face',
+  longBanned: 'grinning-face',
+  wrongBanned: 'zipper-mouth-face',
   missed: 'confused-face',
   missedLong: 'anguished-face',
 };

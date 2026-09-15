@@ -34,7 +34,8 @@ export const usePixiApp = (
         }
 
         if (isDestroyed) {
-          appInstance.destroy(true, { children: true, texture: true });
+          appInstance.destroy(true, { children: true, texture: false });
+
           return;
         }
 
@@ -52,7 +53,7 @@ export const usePixiApp = (
     return () => {
       isDestroyed = true;
       if (appRef.current) {
-        appRef.current.destroy(true, { children: true, texture: true });
+        appRef.current.destroy(true, { children: true, texture: false });
       }
     };
   }, [containerRef]);

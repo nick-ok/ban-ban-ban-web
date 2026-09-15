@@ -56,7 +56,6 @@
 
 .button {
   width: calc(var(--u) * 85);
-  padding: var(--space-3) var(--space-1);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;

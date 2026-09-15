@@ -8,16 +8,17 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { GameStage, useGameStore } from '@/features/game';
-import { AudioService } from '@/shared/lib';
 import { AppDrawer, Button, Icon, ZoomMotion } from '@/shared/ui';
 
 import { GameClock } from './GameClock';
+import { GameDrawerContent } from './GameDrawerContent';
 import { GameSceneReaction } from './GameSceneReaction';
 
 import styles from './GameScene.module.css';
 
 export const GameScene = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
 
   const sceneRef = useRef<HTMLDivElement>(null);
 
@@ -51,12 +52,8 @@ export const GameScene = () => {
   }, [activeScenario, startGame]);
 
   useEffect(() => {
-    if (menuOpen) {
-      AudioService.play('drawer');
-    }
-
-    setGamePaused(menuOpen);
-  }, [menuOpen]);
+    setGamePaused(menuOpen || infoOpen);
+  }, [menuOpen, infoOpen]);
 
   if (!activeScenario || !location) {
     return null;
@@ -74,6 +71,20 @@ export const GameScene = () => {
         <div className={styles.menuWrapper}>
           <AppDrawer
             containerRef={sceneRef}
+            direction={'top'}
+            open={infoOpen}
+            onOpenChange={setInfoOpen}
+            trigger={
+              <Button withSound={false}>
+                <Icon name={'info'} className={styles.menuIcon} />
+              </Button>
+            }
+          >
+            {() => <div>INFO</div>}
+          </AppDrawer>
+
+          <AppDrawer
+            containerRef={sceneRef}
             direction={'right'}
             onOpenChange={setMenuOpen}
             open={menuOpen}
@@ -84,21 +95,11 @@ export const GameScene = () => {
             }
           >
             {() => (
-              <div>
-                <div className={styles.location}>
-                  <div
-                    className={styles.locationIconWrapper}
-                    style={{ background: location.background }}
-                  >
-                    <Icon
-                      name={location.icon.name}
-                      className={styles.locationIcon}
-                    />
-                  </div>
-
-                  <h2 className={styles.locationTitle}>{location.name}</h2>
-                </div>
-              </div>
+              <GameDrawerContent
+                location={location}
+                scenario={activeScenario}
+                onClose={() => setMenuOpen(false)}
+              />
             )}
           </AppDrawer>
         </div>

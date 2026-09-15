@@ -8,7 +8,7 @@ export type ScenarioId = (typeof SCENARIO_IDS)[number];
 
 export interface BriefingMessage {
   id: string;
-  senderType: 'client' | 'ai';
+  senderType: 'client' | 'ai' | 'system';
   textKey: ParseKeys;
 }
 

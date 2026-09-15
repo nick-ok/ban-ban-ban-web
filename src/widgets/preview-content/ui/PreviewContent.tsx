@@ -6,7 +6,10 @@ import { getLocationById } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { getReviewsByProgress } from '@/entities/review';
-import { getLocationScenarios } from '@/entities/scenario';
+import {
+  getLastUnlockedLocationScenario,
+  getLocationScenarios,
+} from '@/entities/scenario';
 import { useTranslation } from '@/features/i18n';
 import { Button, Icon } from '@/shared/ui';
 
@@ -20,9 +23,6 @@ import styles from './PreviewContent.module.css';
 export const PreviewContent = () => {
   const { t } = useTranslation();
 
-  const { selectedLocationId, closePreview, setScene } = useNavigationStore();
-  const playerProgress = usePlayerProgressStore();
-
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollY } = useScroll({
@@ -35,6 +35,10 @@ export const PreviewContent = () => {
   const imageBlur = useTransform(scrollY, SCROLL_RANGE, ['2px', '12px']);
   const filterStyle = useTransform(imageBlur, (blur) => `blur(${blur})`);
 
+  const { selectedLocationId, setSelectedScenarioId, closePreview, setScene } =
+    useNavigationStore();
+  const playerProgress = usePlayerProgressStore();
+
   const location = getLocationById(selectedLocationId);
   const reviews = getReviewsByProgress({
     locationId: location?.id ?? 'loc1',
@@ -45,6 +49,16 @@ export const PreviewContent = () => {
   const completedScenarioIds = playerProgress.completedScenarioIds;
 
   const handleStart = () => {
+    if (!location) {
+      return;
+    }
+
+    const scenario = getLastUnlockedLocationScenario(
+      location.id,
+      playerProgress,
+    );
+
+    setSelectedScenarioId(scenario.id);
     setScene('briefing');
   };
 

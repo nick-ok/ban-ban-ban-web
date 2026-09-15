@@ -103,7 +103,7 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
             }
 
             stage.removeChild(child);
-            child.destroy({ children: true });
+            child.destroy({ children: true, texture: false });
             continue;
           }
         } else if (child.holdTime > 0) {
@@ -137,7 +137,7 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
           }
 
           stage.removeChild(child);
-          child.destroy({ children: true });
+          child.destroy({ children: true, texture: false });
         }
       }
 
@@ -150,8 +150,10 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
     ticker.add(handler);
 
     return () => {
-      ticker.remove(handler);
-      spawnTimerRef.current = 0;
+      if (app && app.ticker && app.ticker.started) {
+        app.ticker.remove(handler);
+        spawnTimerRef.current = 0;
+      }
     };
   }, [isActive, app, updateGameTime, finishGame, incrementStat]);
 

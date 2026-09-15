@@ -16,6 +16,12 @@
       "downloads": "Downloads",
       "reviewsTitle": "Ratings and reviews"
     },
+    "game": {
+      "appGrid": "Applications",
+      "preview": "Application preview",
+      "mainMenu": "Main menu",
+      "settings": "Settings"
+    },
     "dayend": {
       "tierS": "Flawless!",
       "tierA": "Great job!",
