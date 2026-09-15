@@ -1,20 +1,21 @@
 export const ICON_NAMES = [
-  'accuracy',
-  'broken-heart',
+  'angle-left',
+  'anguished-face',
   'check',
   'chip-ai',
+  'close',
+  'confused-face',
   'crazy-face',
   'cross',
-  'floppy-disk',
   'globe',
   'heart-on-fire',
+  'heart-sparkling',
   'hoa',
   'lock',
+  'menu',
   'reload',
-  'sparkling-heart',
   'spiritual',
   'star',
-  'zipper-face',
 ] as const;
 
 export type IconName = (typeof ICON_NAMES)[number];

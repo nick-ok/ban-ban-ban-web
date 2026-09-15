@@ -18,6 +18,7 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
   const spawnTimerRef = useRef<number>(0);
   const setScene = useNavigationStore((state) => state.setScene);
 
+  const isPaused = useGameStore((state) => state.isPaused);
   const isWorkingDayActive = useGameStore((state) => state.isWorkingDayActive);
   const isDayFinished = useGameStore((state) => state.isDayFinished);
   const isGameComplete = useGameStore((state) => state.isGameComplete);
@@ -25,12 +26,23 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
   const updateGameTime = useGameStore((state) => state.updateGameTime);
   const finishGame = useGameStore((state) => state.finishGame);
   const incrementStat = useGameStore((state) => state.incrementStat);
+  const triggerReaction = useGameStore((state) => state.triggerReaction);
 
-  const loopStateRef = useRef({ isWorkingDayActive, isDayFinished, onSpawn });
+  const loopStateRef = useRef({
+    isWorkingDayActive,
+    isDayFinished,
+    onSpawn,
+    isPaused,
+  });
 
   useEffect(() => {
-    loopStateRef.current = { isWorkingDayActive, isDayFinished, onSpawn };
-  }, [isWorkingDayActive, isDayFinished, onSpawn]);
+    loopStateRef.current = {
+      isWorkingDayActive,
+      isDayFinished,
+      onSpawn,
+      isPaused,
+    };
+  }, [isWorkingDayActive, isDayFinished, onSpawn, isPaused]);
 
   useEffect(() => {
     if (!app || !isActive) {
@@ -44,7 +56,12 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
         isWorkingDayActive: activeDay,
         isDayFinished: dayEnded,
         onSpawn: spawnFn,
+        isPaused,
       } = loopStateRef.current;
+
+      if (isPaused) {
+        return;
+      }
 
       if (activeDay) {
         const gameMinutesPassed = (deltaMS / 1000) * GAME_MINUTES_PER_SECOND;
@@ -76,10 +93,13 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
 
             if (banAction === 'ban') {
               incrementStat('banned');
+              triggerReaction('banned');
             } else if (banAction === 'longBan') {
               incrementStat('longBanned');
+              triggerReaction('longBanned');
             } else {
               incrementStat('wrongBanned');
+              triggerReaction('wrongBanned');
             }
 
             stage.removeChild(child);
@@ -110,8 +130,10 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
 
           if (banAction === 'ban') {
             incrementStat('missed');
+            triggerReaction('missed');
           } else if (banAction === 'longBan') {
             incrementStat('missedLong');
+            triggerReaction('missedLong');
           }
 
           stage.removeChild(child);

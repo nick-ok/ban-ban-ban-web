@@ -1,16 +1,10 @@
-import type { LocationId } from '@/entities/location';
+import type { LocationId, LocationOwner } from '@/entities/location';
 import type { ContentType, TitleType, UserType } from '@/entities/message';
 import type { ParseKeys } from '@/features/i18n';
 
 import type { SCENARIO_IDS } from '../config/constants';
 
 export type ScenarioId = (typeof SCENARIO_IDS)[number];
-
-export interface BriefingSender {
-  name: string;
-  position?: string;
-  avatarUrl: string;
-}
 
 export interface BriefingMessage {
   id: string;
@@ -38,7 +32,7 @@ export interface AllowedContent {
 export interface Scenario {
   id: ScenarioId;
   locationId: LocationId;
-  briefingSender: BriefingSender;
+  briefingSender: LocationOwner;
   briefingFlow: BriefingMessage[];
 
   order: number;

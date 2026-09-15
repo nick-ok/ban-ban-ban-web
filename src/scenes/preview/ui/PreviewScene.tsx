@@ -38,9 +38,9 @@ export const PreviewScene = () => {
       layoutId={`app-bg-${selectedLocationId}`}
       className={clsx(styles.root, isReady ? styles.ready : styles.loading)}
       animate={{
-        backgroundColor: isReady ? 'white' : location.icon.color,
+        backgroundColor: isReady ? 'white' : location.background,
       }}
-      exit={{ backgroundColor: location.icon.color }}
+      exit={{ backgroundColor: location.background }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <PreviewSplash

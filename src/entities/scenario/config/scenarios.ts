@@ -1,17 +1,13 @@
-import { timeToMinutes } from '../lib/time-to-minutes';
-import type { BriefingSender, Scenario } from '../model/types';
+import { LOC_1_OWNER } from '@/entities/location';
 
-const LOC_1_SENDER: BriefingSender = {
-  name: '@nonna',
-  position: 'CEO',
-  avatarUrl: '/images/scenario/hoa-owner.webp',
-};
+import { timeToMinutes } from '../lib/time-to-minutes';
+import type { Scenario } from '../model/types';
 
 export const SCENARIOS: Scenario[] = [
   {
     id: 'loc1_sc1',
     locationId: 'loc1',
-    briefingSender: LOC_1_SENDER,
+    briefingSender: LOC_1_OWNER,
     briefingFlow: [
       {
         id: 'b1_1',
@@ -40,7 +36,7 @@ export const SCENARIOS: Scenario[] = [
     unlockThreshold: 0,
     messageSpeedRange: [0.3, 1],
     startWorktime: timeToMinutes('10:00'),
-    endWorktime: timeToMinutes('11:00'),
+    endWorktime: timeToMinutes('10:30'),
     allowedContent: {
       users: ['male', 'female'],
       content: ['normal'],
@@ -59,7 +55,7 @@ export const SCENARIOS: Scenario[] = [
   },
   {
     id: 'loc1_sc2',
-    briefingSender: LOC_1_SENDER,
+    briefingSender: LOC_1_OWNER,
     briefingFlow: [
       {
         id: 'b1_1',
@@ -108,7 +104,7 @@ export const SCENARIOS: Scenario[] = [
   },
   {
     id: 'loc1_sc3',
-    briefingSender: LOC_1_SENDER,
+    briefingSender: LOC_1_OWNER,
     briefingFlow: [
       {
         id: 'b1_1',
@@ -157,7 +153,7 @@ export const SCENARIOS: Scenario[] = [
   },
   {
     id: 'loc2_sc1',
-    briefingSender: LOC_1_SENDER,
+    briefingSender: LOC_1_OWNER,
     briefingFlow: [
       {
         id: 'b1_1',
@@ -206,7 +202,7 @@ export const SCENARIOS: Scenario[] = [
   },
   {
     id: 'loc2_sc2',
-    briefingSender: LOC_1_SENDER,
+    briefingSender: LOC_1_OWNER,
     briefingFlow: [
       {
         id: 'b1_1',
@@ -255,7 +251,7 @@ export const SCENARIOS: Scenario[] = [
   },
   {
     id: 'loc2_sc3',
-    briefingSender: LOC_1_SENDER,
+    briefingSender: LOC_1_OWNER,
     briefingFlow: [
       {
         id: 'b1_1',

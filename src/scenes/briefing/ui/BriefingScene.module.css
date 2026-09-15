@@ -3,9 +3,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: var(--space-10) var(--space-3) var(--space-4);
   background: var(--bg-gradient);
-  color: #ffffff;
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
@@ -13,30 +11,75 @@
 }
 
 .header {
-  padding-bottom: var(--space-2);
   flex-shrink: 0;
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-2);
+  background-color: #f0fdf4;
+  color: var(--color-success);
+  cursor: default;
+  min-height: calc(var(--u) * 12);
+}
+
+.headerInner {
+  padding: 0 var(--space-4);
+
+  display: flex;
+  align-items: center;
+}
+
+.backBtn {
+  color: var(--color-primary);
+  width: calc(var(--u) * 7);
+  height: calc(var(--u) * 7);
+}
+
+.angleIcon {
+  width: 100%;
+  height: 100%;
 }
 
 .locationIcon {
-  width: 35px;
-  height: 35px;
+  width: calc(var(--u) * 6);
+  height: calc(var(--u) * 6);
 }
 
 .locationTitle {
+  margin-left: var(--space-4);
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+}
 
-  > span {
-    color: red;
-  }
+.owner {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.onwerImage {
+  border-radius: 50%;
+  width: calc(var(--u) * 10);
+  height: calc(var(--u) * 10);
+}
+
+.ownerName {
+  font-size: var(--text-sm);
+  font-weight: bold;
+  color: #555;
+}
+
+.ownerPosition {
+  font-size: var(--text-xs);
+  color: var(--color-grey);
 }
 
 .chatFeed {
   flex: 1;
   display: flex;
   flex-direction: column-reverse;
-  padding-right: var(--space-3);
+  padding: var(--space-10) var(--space-3) var(--space-4);
   overflow-y: auto;
 }
 
@@ -95,6 +138,8 @@
 }
 
 .actionsBlock {
+  margin: 0 var(--space-4) var(--space-2);
+  color: var(--color-success);
   margin-top: var(--space-10);
   padding: var(--space-4);
   background-color: #262626;

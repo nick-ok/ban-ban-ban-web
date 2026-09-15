@@ -1,16 +1,21 @@
+import { nanoid } from 'nanoid';
 import { create } from 'zustand';
 
 import type { ScenarioId } from '@/entities/scenario';
 
-import type { GameStats } from './types';
+import type { GameStats, ReactionState, ReactionType } from './types';
 
-interface GameStore {
+interface GameState {
   currentScenarioId: ScenarioId | null;
   stats: GameStats;
+
+  isPaused: boolean;
 
   gameTime: number;
   dayDuration: number;
   elapsedTime: number;
+
+  currentReaction: ReactionState | null;
 
   isWorkingDayActive: boolean;
   isDayFinished: boolean;
@@ -18,7 +23,11 @@ interface GameStore {
   isGameComplete: boolean;
   accuracy: number;
 
+  setGamePaused: (paused: boolean) => void;
+
   incrementStat: <K extends keyof GameStats>(statKey: K) => void;
+  triggerReaction: (type: ReactionType) => void;
+  clearReaction: () => void;
 
   updateGameTime: (minutes: number) => void;
   finishWorkingDay: () => void;
@@ -45,9 +54,13 @@ const INITIAL_STATE = {
   currentScenarioId: null,
   stats: INITIAL_STATS,
 
+  isPaused: false,
+
   gameTime: 0,
   dayDuration: 0,
   elapsedTime: 0,
+
+  currentReaction: null,
 
   isWorkingDayActive: true,
   isDayFinished: false,
@@ -55,8 +68,10 @@ const INITIAL_STATE = {
   accuracy: 0,
 };
 
-export const useGameStore = create<GameStore>()((set) => ({
+export const useGameStore = create<GameState>()((set) => ({
   ...INITIAL_STATE,
+
+  setGamePaused: (isPaused) => set(() => ({ isPaused })),
 
   incrementStat: (key) => {
     set((state) => ({
@@ -66,6 +81,13 @@ export const useGameStore = create<GameStore>()((set) => ({
       },
     }));
   },
+
+  triggerReaction: (type) =>
+    set({
+      currentReaction: { id: nanoid(), type },
+    }),
+
+  clearReaction: () => set({ currentReaction: null }),
 
   updateGameTime: (minutes) => {
     set((state) => {

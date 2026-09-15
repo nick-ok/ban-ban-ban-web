@@ -13,11 +13,11 @@
   --space-2: calc(var(--u) * 2);
   --space-3: calc(var(--u) * 3);
   --space-4: calc(var(--u) * 4);
-  --space-4: calc(var(--u) * 5);
+  --space-5: calc(var(--u) * 5);
   --space-6: calc(var(--u) * 6);
-  --space-6: calc(var(--u) * 7);
+  --space-7: calc(var(--u) * 7);
   --space-8: calc(var(--u) * 8);
-  --space-8: calc(var(--u) * 9);
+  --space-9: calc(var(--u) * 9);
   --space-10: calc(var(--u) * 10);
   --space-20: calc(var(--u) * 20);
 
