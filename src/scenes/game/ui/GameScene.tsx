@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
+import { useGameSettingsStore } from '@/entities/game-settings';
 import { getLocationById } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
@@ -8,6 +9,7 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { GameStage, useGameStore } from '@/features/game';
+import { AudioService } from '@/shared/lib';
 import { AppDrawer, Button, Icon, ZoomMotion } from '@/shared/ui';
 
 import { GameClock } from './GameClock';
@@ -22,7 +24,10 @@ export const GameScene = () => {
 
   const sceneRef = useRef<HTMLDivElement>(null);
 
+  const gameSettings = useGameSettingsStore();
+
   const { selectedLocationId, selectedScenarioId } = useNavigationStore();
+
   const progress = usePlayerProgressStore();
 
   const startGame = useGameStore((state) => state.startGame);
@@ -52,8 +57,14 @@ export const GameScene = () => {
   }, [activeScenario, startGame]);
 
   useEffect(() => {
-    setGamePaused(menuOpen || infoOpen);
-  }, [menuOpen, infoOpen]);
+    setGamePaused(menuOpen || infoOpen || gameSettings.isSettingsOpen);
+  }, [menuOpen, infoOpen, gameSettings.isSettingsOpen]);
+
+  useEffect(() => {
+    AudioService.playMusic('hoaGame');
+
+    return () => AudioService.stopMusic();
+  }, []);
 
   if (!activeScenario || !location) {
     return null;
@@ -102,6 +113,10 @@ export const GameScene = () => {
               />
             )}
           </AppDrawer>
+
+          <Button onClick={() => gameSettings.toggleSettingsDrawer()}>
+            <Icon name={'settings'} className={styles.menuIcon} />
+          </Button>
         </div>
       </div>
 

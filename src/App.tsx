@@ -1,5 +1,8 @@
+import { useRef } from 'react';
+
 import { useNavigationStore } from '@/entities/navigation';
 
+import { GameSettingsDrawer } from './entities/game-settings';
 import { BootstrapScene } from './scenes/bootstrap';
 import { BriefingScene } from './scenes/briefing';
 import { DayEndScene } from './scenes/dayend';
@@ -24,15 +27,19 @@ const scenes = {
 };
 
 function App() {
+  const sceneRef = useRef<HTMLDivElement>(null);
+
   const scene = useNavigationStore((s) => s.scene);
 
   const SceneComponent = scenes[scene] || scenes.lock;
 
   return (
     <PhoneFrame>
-      <div className={styles.app}>
+      <div className={styles.app} ref={sceneRef}>
         <SceneComponent />
       </div>
+
+      <GameSettingsDrawer containerRef={sceneRef} />
     </PhoneFrame>
   );
 }

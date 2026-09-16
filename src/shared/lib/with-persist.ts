@@ -54,10 +54,12 @@ const secureStorage: StateStorage = {
 
 export function withPersist<T>(
   store: StateCreator<T, [], []>,
-  options: PersistOptions<T>,
+  options: PersistOptions<T> & { secure?: boolean },
 ) {
+  const { secure = true, ...persistOptions } = options;
+
   return persist(store, {
-    ...options,
-    storage: createJSONStorage(() => secureStorage),
+    ...persistOptions,
+    storage: createJSONStorage(() => (secure ? secureStorage : localStorage)),
   });
 }

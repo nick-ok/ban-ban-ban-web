@@ -5,6 +5,8 @@ import { useAnimate } from 'motion/react';
 import { initGame } from '@/app/model/init-game';
 import { useNavigationStore } from '@/entities/navigation';
 
+import { LoadingDots } from './LoadingDots';
+
 import styles from './BootstrapScene.module.css';
 
 export const BootstrapScene = () => {
@@ -90,6 +92,10 @@ export const BootstrapScene = () => {
         className={styles.imageLogo}
         alt="BanBanBan logo"
       />
+
+      <div className={styles.loadingDots}>
+        <LoadingDots />
+      </div>
     </div>
   );
 };

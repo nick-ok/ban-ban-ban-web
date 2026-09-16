@@ -13,6 +13,7 @@ interface Props {
     closeDrawer?: () => void;
   }) => ReactNode;
   trigger?: ReactNode;
+  withSound?: boolean;
   open?: boolean;
   showClose?: boolean;
   direction?: 'bottom' | 'left' | 'right' | 'top';
@@ -23,6 +24,7 @@ interface Props {
 export const AppDrawer = ({
   children,
   trigger,
+  withSound = true,
   direction = 'right',
   open,
   onOpenChange,
@@ -36,7 +38,7 @@ export const AppDrawer = ({
   const setIsOpen = isControlled ? onOpenChange : setInternalOpen;
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && withSound) {
       AudioService.play({ key: 'drawer' });
     }
   }, [isOpen]);

@@ -61,13 +61,6 @@ export const GameDrawerContent = ({ location, onClose }: Props) => {
             {t('screens.game.mainMenu')}
           </Button>
         </div>
-
-        <div className={styles.settings}>
-          <h5 className={styles.settingsTitle}>
-            <Icon name={'settings'} />
-            Settings
-          </h5>
-        </div>
       </div>
     </div>
   );

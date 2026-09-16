@@ -1,10 +1,14 @@
 import { Howl } from 'howler';
 
+import { useGameSettingsStore } from '@/entities/game-settings';
+
 import { AUDIO_ASSETS, type AudioAssetKey } from '../config/audio';
 
 class AudioServiceClass {
   private sounds: Map<string, Howl> = new Map();
-  private isMuted: boolean = false;
+
+  private currentMusicKey: AudioAssetKey | null = null;
+  private currentMusicId: number | null = null;
 
   async initAll() {
     const keys = Object.keys(AUDIO_ASSETS) as AudioAssetKey[];
@@ -13,16 +17,17 @@ class AudioServiceClass {
       return new Promise<void>((resolve) => {
         if (this.sounds.has(key)) {
           resolve();
-
           return;
         }
 
-        const src = AUDIO_ASSETS[key];
+        const audioConfig = AUDIO_ASSETS[key];
+        const isMusic = audioConfig.type === 'music';
 
         const sound = new Howl({
-          src: [src],
+          src: [audioConfig.src],
           html5: false,
           preload: true,
+          loop: isMusic,
           onload: () => resolve(),
           onloaderror: (error) => {
             console.error(
@@ -33,7 +38,6 @@ class AudioServiceClass {
             resolve();
           },
         });
-
         this.sounds.set(key, sound);
       });
     });
@@ -50,7 +54,9 @@ class AudioServiceClass {
     volume?: number;
     randomize?: boolean;
   }) {
-    if (this.isMuted) {
+    const { isSFXEnabled } = useGameSettingsStore.getState();
+
+    if (!isSFXEnabled) {
       return;
     }
 
@@ -66,26 +72,79 @@ class AudioServiceClass {
         ? volume * (0.95 + Math.random() * 0.05)
         : volume;
       sound.volume(randomVolume, soundId);
-    } else {
-      console.warn(`[AudioService] Звук с ключом "${key}" не найден в кэше.`);
     }
   }
 
-  stop(key: AudioAssetKey) {
+  playMusic(key: AudioAssetKey, volume = 1.0) {
+    this.currentMusicKey = key;
+
+    const { isMusicEnabled } = useGameSettingsStore.getState();
+
+    if (!isMusicEnabled) {
+      return;
+    }
+
     const sound = this.sounds.get(key);
 
-    if (sound) {
-      sound.stop();
+    if (sound && this.currentMusicId === null) {
+      this.currentMusicId = sound.play();
+      sound.volume(volume, this.currentMusicId);
     }
   }
 
-  setMute(mute: boolean) {
-    this.isMuted = mute;
-    Howler.mute(mute);
+  stopMusic() {
+    if (this.currentMusicKey && this.currentMusicId !== null) {
+      const sound = this.sounds.get(this.currentMusicKey);
+
+      if (sound) {
+        sound.stop(this.currentMusicId);
+      }
+      this.currentMusicId = null;
+    }
   }
 
-  getMuteStatus(): boolean {
-    return this.isMuted;
+  syncMusicVolume(isMusicEnabled: boolean): void {
+    const FADE_DURATION = 500;
+    const MAX_VOLUME = 1;
+
+    if (isMusicEnabled) {
+      const activeKey = this.currentMusicKey ?? 'mainMenu';
+      this.currentMusicKey = null;
+      this.playMusic(activeKey, 0);
+
+      const sound = this.sounds.get(activeKey);
+
+      if (sound && this.currentMusicId !== null) {
+        sound.fade(0, MAX_VOLUME, FADE_DURATION, this.currentMusicId);
+      }
+
+      return;
+    }
+
+    if (!this.currentMusicKey || this.currentMusicId === null) {
+      return;
+    }
+
+    const sound = this.sounds.get(this.currentMusicKey);
+
+    if (!sound) {
+      return;
+    }
+
+    const musicId = this.currentMusicId;
+
+    sound.fade(MAX_VOLUME, 0, FADE_DURATION, musicId);
+    sound.once(
+      'fade',
+      () => {
+        if (!useGameSettingsStore.getState().isMusicEnabled) {
+          sound.stop(musicId);
+          this.currentMusicKey = null;
+          this.currentMusicId = null;
+        }
+      },
+      musicId,
+    );
   }
 
   unlockAudio() {
@@ -101,12 +160,7 @@ class AudioServiceClass {
         .then(() => {
           this.play({ key: 'click', volume: 0 });
         })
-        .catch((err) => {
-          console.error(
-            '[AudioService] Не удалось разблокировать AudioContext:',
-            err,
-          );
-        });
+        .catch(() => {});
     }
   }
 }
