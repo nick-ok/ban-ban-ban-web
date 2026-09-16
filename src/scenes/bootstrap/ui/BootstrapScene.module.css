@@ -1,11 +1,18 @@
 .root {
-  background-color: black;
+  background: radial-gradient(circle, #fcfaf2 30%, #e2d2b5 100%);
   width: 100%;
   height: 100%;
-
   padding: var(--space-10) var(--space-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.logo {
-  color: bisque;
+.imageLogo {
+  width: calc(var(--u) * 50);
+  height: auto;
+
+  filter: drop-shadow(0 20px 30px rgba(42, 26, 8, 0.2));
 }
