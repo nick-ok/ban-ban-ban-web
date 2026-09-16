@@ -100,13 +100,20 @@
   border-radius: var(--radius-sm);
   min-width: 50%;
   max-width: 70%;
-  align-self: flex-end;
+  align-self: flex-start;
 
   &.aiBox {
     background-color: #333333;
     color: #aaaaaa;
     align-self: center;
     max-width: 90%;
+  }
+
+  &.systemBox {
+    background-color: #5e5e5e;
+    color: #f0fdf4;
+    align-self: center;
+    min-width: 70%;
   }
 }
 

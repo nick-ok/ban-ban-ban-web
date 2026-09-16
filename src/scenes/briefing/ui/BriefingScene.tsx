@@ -36,8 +36,6 @@ const actionsVariants: Variants = {
   },
 };
 
-const AI_AVATAR = '/images/message/avatar-ai.webp';
-
 export const BriefingScene = () => {
   const { t } = useTranslation();
 
@@ -72,7 +70,7 @@ export const BriefingScene = () => {
 
   const handleScreenClick = () => {
     if (!isLastStep) {
-      AudioService.play('chatMessage');
+      AudioService.play({ key: 'chatMessage', randomize: false });
       setCurrentStep((prev) => prev + 1);
     }
   };
@@ -127,26 +125,25 @@ export const BriefingScene = () => {
           <AnimatePresence mode="popLayout">
             {visibleMessages.toReversed().map((msg) => {
               const isAI = msg.senderType === 'ai';
+              const isSystem = msg.senderType === 'system';
 
               return (
                 <motion.div
                   key={msg.id}
                   layout
-                  className={clsx(styles.clientBox, isAI && styles.aiBox)}
+                  className={clsx(
+                    styles.clientBox,
+                    isAI && styles.aiBox,
+                    isSystem && styles.systemBox,
+                  )}
                   variants={messageVariants}
                   initial="hidden"
                   animate="visible"
                 >
-                  {isAI && (
-                    <img
-                      src={AI_AVATAR}
-                      alt="avatar"
-                      className={styles.avatarImage}
-                    />
-                  )}
+                  {isAI && <Icon name={'sparkles'} />}
 
                   <div className={styles.messageContent}>
-                    {!isAI && (
+                    {!isAI && !isSystem && (
                       <>
                         <span className={styles.senderName}>
                           {sender?.name}

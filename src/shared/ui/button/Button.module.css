@@ -18,12 +18,12 @@
 
   cursor: pointer;
 
-  transition: transform 0.05s ease;
+  transition: transform 0.02s ease;
   will-change: transform;
 
   &:active {
-    transform: scale(0.97);
-    transition: transform 0.05s ease;
+    transform: scale(0.95);
+    transition: transform 0.02s ease;
   }
 
   &:disabled {
@@ -34,14 +34,23 @@
   @media (hover: hover) {
     &:hover {
       transform: scale(1.02);
-      transition: transform 0.3s ease;
+      transition: transform 0.15s ease;
     }
 
     &:hover:active {
-      transform: scale(0.97);
-      transition: transform 0.05s ease;
+      transform: scale(0.95);
+      transition: transform 0.02s ease;
     }
   }
+}
+
+.primary,
+.success,
+.warn,
+.danger,
+.white {
+  height: calc(var(--u) * 11);
+  border-radius: var(--radius-md);
 }
 
 .primary {

@@ -1,6 +1,8 @@
-import { useState, type ReactNode, type RefObject } from 'react';
+import { useEffect, useState, type ReactNode, type RefObject } from 'react';
 
 import { Drawer } from 'vaul';
+
+import { AudioService } from '@/shared/lib';
 
 import styles from './AppDrawer.module.css';
 
@@ -13,7 +15,7 @@ interface Props {
   trigger?: ReactNode;
   open?: boolean;
   showClose?: boolean;
-  direction?: 'bottom' | 'left' | 'right';
+  direction?: 'bottom' | 'left' | 'right' | 'top';
   onClose?: () => void;
   onOpenChange?: (open: boolean) => void;
 }
@@ -32,6 +34,12 @@ export const AppDrawer = ({
 
   const isOpen = isControlled ? open : internalOpen;
   const setIsOpen = isControlled ? onOpenChange : setInternalOpen;
+
+  useEffect(() => {
+    if (isOpen) {
+      AudioService.play({ key: 'drawer' });
+    }
+  }, [isOpen]);
 
   return (
     <Drawer.Root
@@ -63,6 +71,15 @@ export const AppDrawer = ({
                 closeDrawer: () => setIsOpen?.(false),
               })}
             </div>
+
+            {direction === 'top' && (
+              <div
+                className={styles.handleWrapper}
+                style={{ position: 'sticky', bottom: 0, top: 'auto' }}
+              >
+                <div className={styles.handle} />
+              </div>
+            )}
           </div>
         </Drawer.Content>
       </Drawer.Portal>

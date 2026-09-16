@@ -16,6 +16,12 @@
       "downloads": "Скачивания",
       "reviewsTitle": "Оценки и отзывы"
     },
+    "game": {
+      "appGrid": "К списку приложений",
+      "preview": "Превью приложения",
+      "mainMenu": "Главное меню",
+      "settings": "Settings"
+    },
     "dayend": {
       "tierS": "Безупречно!",
       "tierA": "Хорошая работа!",

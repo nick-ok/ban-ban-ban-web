@@ -41,7 +41,15 @@ class AudioServiceClass {
     await Promise.all(promises);
   }
 
-  play(key: AudioAssetKey, volume = 1.0) {
+  play({
+    key,
+    volume = 1.0,
+    randomize = true,
+  }: {
+    key: AudioAssetKey;
+    volume?: number;
+    randomize?: boolean;
+  }) {
     if (this.isMuted) {
       return;
     }
@@ -51,10 +59,12 @@ class AudioServiceClass {
     if (sound) {
       const soundId = sound.play();
 
-      const randomPitch = 0.93 + Math.random() * 0.14;
+      const randomPitch = randomize ? 0.93 + Math.random() * 0.14 : 1.0;
       sound.rate(randomPitch, soundId);
 
-      const randomVolume = volume * (0.95 + Math.random() * 0.05);
+      const randomVolume = randomize
+        ? volume * (0.95 + Math.random() * 0.05)
+        : volume;
       sound.volume(randomVolume, soundId);
     } else {
       console.warn(`[AudioService] Звук с ключом "${key}" не найден в кэше.`);
@@ -89,7 +99,7 @@ class AudioServiceClass {
       ctx
         .resume()
         .then(() => {
-          this.play('click', 0);
+          this.play({ key: 'click', volume: 0 });
         })
         .catch((err) => {
           console.error(

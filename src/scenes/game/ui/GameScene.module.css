@@ -23,36 +23,6 @@
   align-items: center;
 }
 
-.location {
-  position: absolute;
-  left: 20%;
-  transform: translateX(-20%);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.locationIconWrapper {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: calc(var(--u) * 10);
-  height: calc(var(--u) * 10);
-  border-radius: 50%;
-}
-
-.locationIcon {
-  width: 70%;
-  height: 70%;
-}
-
-.locationTitle {
-  font-size: var(--text-sm);
-}
-
 .reaction {
   margin-top: var(--space-7);
 
@@ -67,6 +37,10 @@
 
 .menuWrapper {
   justify-self: end;
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
 }
 
 .menuIcon {
