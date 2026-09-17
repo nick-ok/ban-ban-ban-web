@@ -1,5 +1,5 @@
 import { loadMessageAssets } from '@/entities/message';
-import { AudioService } from '@/shared/lib';
+import { AudioService, subscribeAudioToStores } from '@/features/audio';
 
 interface InitGameOptions {
   onSuccess: () => void;
@@ -12,6 +12,8 @@ export const initGame = async ({
 }: InitGameOptions): Promise<void> => {
   try {
     await Promise.all([loadMessageAssets(), AudioService.initAll()]);
+
+    subscribeAudioToStores();
 
     onSuccess();
   } catch (error) {

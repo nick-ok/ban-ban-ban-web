@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, PointerEvent, ReactNode } from 'react';
 
 import clsx from 'clsx';
 
-import { AudioService } from '@/shared/lib';
+import { AudioService } from '@/features/audio';
 
 import styles from './Button.module.css';
 

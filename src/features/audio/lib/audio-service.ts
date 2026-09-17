@@ -10,6 +10,8 @@ class AudioServiceClass {
   private currentMusicKey: AudioAssetKey | null = null;
   private currentMusicId: number | null = null;
 
+  private readonly fadeDuration = 500;
+
   async initAll() {
     const keys = Object.keys(AUDIO_ASSETS) as AudioAssetKey[];
 
@@ -75,93 +77,88 @@ class AudioServiceClass {
     }
   }
 
-  playMusic(key: AudioAssetKey, volume = 1.0) {
-    this.currentMusicKey = key;
-
+  playMusic(key: AudioAssetKey) {
     const { isMusicEnabled } = useGameSettingsStore.getState();
 
     if (!isMusicEnabled) {
       return;
     }
 
+    if (key === this.currentMusicKey) {
+      return;
+    }
+
+    if (this.currentMusicKey !== null && this.currentMusicId !== null) {
+      const prevSound = this.sounds.get(this.currentMusicKey);
+
+      if (prevSound) {
+        const prevId = this.currentMusicId;
+
+        prevSound.fade(
+          prevSound.volume(prevId) as number,
+          0,
+          this.fadeDuration,
+          prevId,
+        );
+
+        setTimeout(() => {
+          prevSound.stop(prevId);
+        }, this.fadeDuration);
+      }
+    }
+
     const sound = this.sounds.get(key);
 
-    if (sound && this.currentMusicId === null) {
-      this.currentMusicId = sound.play();
-      sound.volume(volume, this.currentMusicId);
-    }
-  }
-
-  stopMusic() {
-    if (this.currentMusicKey && this.currentMusicId !== null) {
-      const sound = this.sounds.get(this.currentMusicKey);
-
-      if (sound) {
-        sound.stop(this.currentMusicId);
-      }
-      this.currentMusicId = null;
-    }
-  }
-
-  syncMusicVolume(isMusicEnabled: boolean): void {
-    const FADE_DURATION = 500;
-    const MAX_VOLUME = 1;
-
-    if (isMusicEnabled) {
-      const activeKey = this.currentMusicKey ?? 'mainMenu';
+    if (!sound) {
       this.currentMusicKey = null;
-      this.playMusic(activeKey, 0);
-
-      const sound = this.sounds.get(activeKey);
-
-      if (sound && this.currentMusicId !== null) {
-        sound.fade(0, MAX_VOLUME, FADE_DURATION, this.currentMusicId);
-      }
+      this.currentMusicId = null;
 
       return;
     }
 
-    if (!this.currentMusicKey || this.currentMusicId === null) {
+    const musicId = sound.play();
+
+    sound.volume(0, musicId);
+    sound.fade(0, 1, this.fadeDuration, musicId);
+
+    this.currentMusicKey = key;
+    this.currentMusicId = musicId;
+  }
+
+  stopMusic() {
+    if (this.currentMusicKey === null || this.currentMusicId === null) {
       return;
     }
 
     const sound = this.sounds.get(this.currentMusicKey);
 
-    if (!sound) {
-      return;
+    if (sound) {
+      const musicId = this.currentMusicId;
+
+      sound.fade(
+        sound.volume(musicId) as number,
+        0,
+        this.fadeDuration,
+        musicId,
+      );
+
+      setTimeout(() => {
+        sound.stop(musicId);
+      }, this.fadeDuration);
     }
 
-    const musicId = this.currentMusicId;
-
-    sound.fade(MAX_VOLUME, 0, FADE_DURATION, musicId);
-    sound.once(
-      'fade',
-      () => {
-        if (!useGameSettingsStore.getState().isMusicEnabled) {
-          sound.stop(musicId);
-          this.currentMusicKey = null;
-          this.currentMusicId = null;
-        }
-      },
-      musicId,
-    );
+    this.currentMusicKey = null;
+    this.currentMusicId = null;
   }
 
-  unlockAudio() {
+  unlock() {
     const ctx = Howler.ctx;
 
-    if (!ctx) {
-      return;
+    if (ctx && ctx.state === 'suspended') {
+      return ctx.resume();
     }
 
-    if (ctx.state === 'suspended') {
-      ctx
-        .resume()
-        .then(() => {
-          this.play({ key: 'click', volume: 0 });
-        })
-        .catch(() => {});
-    }
+    return Promise.resolve();
   }
 }
 

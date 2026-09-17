@@ -8,7 +8,6 @@ import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { useTranslation } from '@/features/i18n';
-import { AudioService } from '@/shared/lib';
 import { Button } from '@/shared/ui';
 
 import styles from './LockScene.module.css';
@@ -92,10 +91,6 @@ export const LockScene = () => {
     }
   };
 
-  const handleScenePointerDown = () => {
-    AudioService.playMusic('mainMenu');
-  };
-
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000);
 
@@ -105,7 +100,6 @@ export const LockScene = () => {
   return (
     <motion.div
       className={styles.root}
-      onPointerDown={handleScenePointerDown}
       variants={containerVariants}
       initial="hidden"
       animate="visible"

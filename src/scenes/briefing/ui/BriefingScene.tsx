@@ -10,8 +10,8 @@ import {
   getLastUnlockedLocationScenario,
   getScenarioById,
 } from '@/entities/scenario';
+import { AudioService } from '@/features/audio';
 import { useTranslation } from '@/features/i18n';
-import { AudioService } from '@/shared/lib';
 import { Button, Icon, ZoomMotion } from '@/shared/ui';
 
 import { NoInstructions } from './NoInstructions';
