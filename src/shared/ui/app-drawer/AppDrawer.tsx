@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode, type RefObject } from 'react';
 
 import { Drawer } from 'vaul';
 
-import { AudioService } from '@/shared/lib';
+import { AudioService } from '@/features/audio';
 
 import styles from './AppDrawer.module.css';
 

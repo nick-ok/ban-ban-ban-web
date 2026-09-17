@@ -1,6 +1,5 @@
 import type { RefObject } from 'react';
 
-import { AudioService } from '@/shared/lib';
 import { AppDrawer, Button, Icon } from '@/shared/ui';
 
 import { useGameSettingsStore } from '../model/store';
@@ -16,10 +15,10 @@ export const GameSettingsDrawer = ({ containerRef }: Props) => {
 
   const handleToggleMusic = () => {
     gameSettings.toggleMusic();
+  };
 
-    const updatedMusicEnabled = useGameSettingsStore.getState().isMusicEnabled;
-
-    AudioService.syncMusicVolume(updatedMusicEnabled);
+  const handleToggleSFX = () => {
+    gameSettings.toggleSFX();
   };
 
   return (
@@ -40,7 +39,7 @@ export const GameSettingsDrawer = ({ containerRef }: Props) => {
                 />
               </Button>
 
-              <Button onClick={() => gameSettings.toggleSFX()}>
+              <Button onClick={handleToggleSFX}>
                 <Icon
                   name={gameSettings.isSFXEnabled ? 'sound-on' : 'sound-off'}
                 />

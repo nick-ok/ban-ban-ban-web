@@ -9,7 +9,6 @@ import {
   getScenarioById,
 } from '@/entities/scenario';
 import { GameStage, useGameStore } from '@/features/game';
-import { AudioService } from '@/shared/lib';
 import { AppDrawer, Button, Icon, ZoomMotion } from '@/shared/ui';
 
 import { GameClock } from './GameClock';
@@ -59,12 +58,6 @@ export const GameScene = () => {
   useEffect(() => {
     setGamePaused(menuOpen || infoOpen || gameSettings.isSettingsOpen);
   }, [menuOpen, infoOpen, gameSettings.isSettingsOpen]);
-
-  useEffect(() => {
-    AudioService.playMusic('hoaGame');
-
-    return () => AudioService.stopMusic();
-  }, []);
 
   if (!activeScenario || !location) {
     return null;

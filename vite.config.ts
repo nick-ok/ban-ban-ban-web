@@ -4,6 +4,10 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
+import packageJson from './package.json' with { type: 'json' };
+
+process.env.VITE_APP_VERSION = packageJson.version;
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
