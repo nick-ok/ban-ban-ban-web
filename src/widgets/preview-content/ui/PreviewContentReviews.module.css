@@ -21,6 +21,11 @@
   gap: var(--space-3);
 }
 
+.lockAIIcon {
+  width: var(--space-4);
+  height: var(--space-4);
+}
+
 .usernameCircle {
   flex-shrink: 0;
   border-radius: 50%;

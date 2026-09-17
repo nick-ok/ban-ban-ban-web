@@ -14,6 +14,7 @@ interface GameState {
   gameTime: number;
   dayDuration: number;
   elapsedTime: number;
+  isAutomoderation: boolean;
 
   currentReaction: ReactionState | null;
 
@@ -36,6 +37,7 @@ interface GameState {
     startTime: number;
     endTime: number;
     scenarioId: ScenarioId;
+    isAutomoderation?: boolean;
   }) => void;
   finishGame: () => void;
   resetGame: () => void;
@@ -59,6 +61,7 @@ const INITIAL_STATE = {
   gameTime: 0,
   dayDuration: 0,
   elapsedTime: 0,
+  isAutomoderation: false,
 
   currentReaction: null,
 
@@ -118,13 +121,14 @@ export const useGameStore = create<GameState>()((set) => ({
     });
   },
 
-  startGame: ({ startTime, endTime, scenarioId }) => {
+  startGame: ({ startTime, endTime, scenarioId, isAutomoderation = false }) => {
     set({
       ...INITIAL_STATE,
       currentScenarioId: scenarioId,
       gameTime: startTime,
       elapsedTime: 0,
       dayDuration: endTime - startTime,
+      isAutomoderation,
 
       isWorkingDayActive: true,
       isDayFinished: false,

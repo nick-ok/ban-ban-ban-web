@@ -27,12 +27,14 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
   const finishGame = useGameStore((state) => state.finishGame);
   const incrementStat = useGameStore((state) => state.incrementStat);
   const triggerReaction = useGameStore((state) => state.triggerReaction);
+  const isAutomoderation = useGameStore((state) => state.isAutomoderation);
 
   const loopStateRef = useRef({
     isWorkingDayActive,
     isDayFinished,
     onSpawn,
     isPaused,
+    isAutomoderation,
   });
 
   useEffect(() => {
@@ -41,8 +43,9 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
       isDayFinished,
       onSpawn,
       isPaused,
+      isAutomoderation,
     };
-  }, [isWorkingDayActive, isDayFinished, onSpawn, isPaused]);
+  }, [isWorkingDayActive, isDayFinished, onSpawn, isPaused, isAutomoderation]);
 
   useEffect(() => {
     if (!app || !isActive) {
@@ -57,6 +60,7 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
         isDayFinished: dayEnded,
         onSpawn: spawnFn,
         isPaused,
+        isAutomoderation,
       } = loopStateRef.current;
 
       if (isPaused) {
@@ -64,8 +68,11 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
       }
 
       if (activeDay) {
-        const gameMinutesPassed = (deltaMS / 1000) * GAME_MINUTES_PER_SECOND;
-        updateGameTime(gameMinutesPassed);
+        if (!isAutomoderation) {
+          const gameMinutesPassed = (deltaMS / 1000) * GAME_MINUTES_PER_SECOND;
+
+          updateGameTime(gameMinutesPassed);
+        }
 
         spawnTimerRef.current += deltaMS;
         if (spawnTimerRef.current >= SPAWN_INTERVAL) {

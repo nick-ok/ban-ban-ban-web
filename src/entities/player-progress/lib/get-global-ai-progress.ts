@@ -2,7 +2,7 @@ import { SCENARIOS } from '@/entities/scenario';
 
 import type { PlayerProgress } from '../model/types';
 
-export const getGlobalAIProgress = (progress: PlayerProgress) => {
+export const getGlobalAIProgress = (progress: PlayerProgress): number => {
   if (!progress || !progress.scenarioResults) {
     return 0;
   }

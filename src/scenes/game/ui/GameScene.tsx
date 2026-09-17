@@ -5,6 +5,7 @@ import { getLocationById } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import {
+  getActiveScenario,
   getLastUnlockedLocationScenario,
   getScenarioById,
 } from '@/entities/scenario';
@@ -34,7 +35,11 @@ export const GameScene = () => {
 
   const location = getLocationById(selectedLocationId);
 
-  const activeScenario = useMemo(() => {
+  const isAutoModerationEnabled =
+    !!progress.autoModeration?.[selectedLocationId ?? 'loc1'];
+  const isGlobalAIActive = progress.isGlobalAIActive;
+
+  const baseScenario = useMemo(() => {
     if (selectedScenarioId !== null) {
       return getScenarioById(selectedScenarioId);
     }
@@ -45,15 +50,24 @@ export const GameScene = () => {
     );
   }, [progress, selectedLocationId, selectedScenarioId]);
 
+  const activeScenario = useMemo(() => {
+    return getActiveScenario({
+      scenario: baseScenario ?? null,
+      isAutoModerationEnabled,
+      isGlobalAIActive,
+    });
+  }, [baseScenario, isAutoModerationEnabled]);
+
   useEffect(() => {
     if (activeScenario) {
       startGame({
         startTime: activeScenario.startWorktime,
         endTime: activeScenario.endWorktime,
         scenarioId: activeScenario.id,
+        isAutomoderation: isAutoModerationEnabled || isGlobalAIActive,
       });
     }
-  }, [activeScenario, startGame]);
+  }, [activeScenario, startGame, isAutoModerationEnabled, isGlobalAIActive]);
 
   useEffect(() => {
     setGamePaused(menuOpen || infoOpen || gameSettings.isSettingsOpen);
@@ -66,26 +80,32 @@ export const GameScene = () => {
   return (
     <ZoomMotion ref={sceneRef} className={styles.root}>
       <div className={styles.hud}>
-        <GameClock />
+        {!isAutoModerationEnabled ? <GameClock /> : <div />}
 
         <div className={styles.reaction}>
           <GameSceneReaction />
         </div>
 
         <div className={styles.menuWrapper}>
-          <AppDrawer
-            containerRef={sceneRef}
-            direction={'top'}
-            open={infoOpen}
-            onOpenChange={setInfoOpen}
-            trigger={
-              <Button withSound={false}>
-                <Icon name={'info'} className={styles.menuIcon} />
-              </Button>
-            }
-          >
-            {() => <div>INFO</div>}
-          </AppDrawer>
+          {!isAutoModerationEnabled && (
+            <AppDrawer
+              containerRef={sceneRef}
+              direction={'top'}
+              open={infoOpen}
+              onOpenChange={setInfoOpen}
+              trigger={
+                <Button withSound={false}>
+                  <Icon name={'info'} className={styles.menuIcon} />
+                </Button>
+              }
+            >
+              {() => <div>INFO</div>}
+            </AppDrawer>
+          )}
+
+          <Button onClick={() => gameSettings.toggleSettingsDrawer()}>
+            <Icon name={'settings'} className={styles.menuIcon} />
+          </Button>
 
           <AppDrawer
             containerRef={sceneRef}
@@ -106,10 +126,6 @@ export const GameScene = () => {
               />
             )}
           </AppDrawer>
-
-          <Button onClick={() => gameSettings.toggleSettingsDrawer()}>
-            <Icon name={'settings'} className={styles.menuIcon} />
-          </Button>
         </div>
       </div>
 

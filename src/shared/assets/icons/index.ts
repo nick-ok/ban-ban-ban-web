@@ -12,6 +12,8 @@ export const ICON_NAMES = [
   'heart-sparkling',
   'hoa',
   'info',
+  'lock-ai',
+  'lock-outline',
   'lock',
   'menu',
   'music-off',

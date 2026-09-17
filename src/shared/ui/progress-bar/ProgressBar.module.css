@@ -12,6 +12,11 @@
   --pb-font: calc(var(--u) * 3);
 }
 
+.wrapper[data-size='lg'] {
+  --pb-height: calc(var(--u) * 8);
+  --pb-font: calc(var(--u) * 3);
+}
+
 .track {
   position: relative;
   width: 100%;

@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 
+import clsx from 'clsx';
 import { motion, useScroll, useTransform } from 'motion/react';
 
-import { getLocationById } from '@/entities/location';
+import { getIsLocationCompleted, getLocationById } from '@/entities/location';
+import { obfuscateToBinary } from '@/entities/message';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { getReviewsByProgress } from '@/entities/review';
@@ -32,7 +34,7 @@ export const PreviewContent = () => {
   const SCROLL_RANGE = [0, 150];
 
   const headerHeight = useTransform(scrollY, SCROLL_RANGE, ['150px', '80px']);
-  const imageBlur = useTransform(scrollY, SCROLL_RANGE, ['2px', '12px']);
+  const imageBlur = useTransform(scrollY, SCROLL_RANGE, ['0px', '12px']);
   const filterStyle = useTransform(imageBlur, (blur) => `blur(${blur})`);
 
   const { selectedLocationId, setSelectedScenarioId, closePreview, setScene } =
@@ -48,6 +50,16 @@ export const PreviewContent = () => {
   const scenarios = getLocationScenarios(selectedLocationId);
   const completedScenarioIds = playerProgress.completedScenarioIds;
 
+  const isLocationCompleted = getIsLocationCompleted({
+    locationId: location?.id,
+    completedScenarioIds,
+  });
+  const isAutomoderationEnabled =
+    playerProgress.autoModeration?.[location?.id ?? 'loc1'];
+  const isGlobalAIActive = playerProgress.isGlobalAIActive;
+
+  const isAIModeration = isAutomoderationEnabled || isGlobalAIActive;
+
   const handleStart = () => {
     if (!location) {
       return;
@@ -59,7 +71,15 @@ export const PreviewContent = () => {
     );
 
     setSelectedScenarioId(scenario.id);
-    setScene('briefing');
+    setScene(isGlobalAIActive || isAutomoderationEnabled ? 'game' : 'briefing');
+  };
+
+  const handleEnableAI = () => {
+    if (!isLocationCompleted || !location?.id || isGlobalAIActive) {
+      return;
+    }
+
+    playerProgress.toggleAutoModeration(location.id);
   };
 
   if (!location) {
@@ -71,25 +91,63 @@ export const PreviewContent = () => {
       <motion.div className={styles.header} style={{ height: headerHeight }}>
         <motion.div
           className={styles.headerImageContainer}
-          style={{ filter: filterStyle }}
+          style={{
+            filter: filterStyle,
+            background: isGlobalAIActive ? 'black' : 'rgba(0, 0, 0, 0.2)',
+          }}
         >
           <div className={styles.headerBg} />
-          <img src={location.previewImage} className={styles.headerImage} />
+
+          {!isGlobalAIActive && (
+            <img src={location.previewImage} className={styles.headerImage} />
+          )}
+
+          {isGlobalAIActive && (
+            <Icon name={'lock-ai'} className={styles.lockAIIconHeader} />
+          )}
         </motion.div>
 
         <div className={styles.headerContent}>
-          <Icon className={styles.locationIcon} name={location.icon.name} />
-          <h3 className={styles.locationName}>{location.name}</h3>
+          <Icon
+            className={styles.locationIcon}
+            name={isGlobalAIActive ? 'lock-ai' : location.icon.name}
+            style={{ color: isGlobalAIActive ? 'white' : undefined }}
+          />
+          <h3 className={styles.locationName}>
+            {isGlobalAIActive
+              ? obfuscateToBinary(location.name)
+              : location.name}
+          </h3>
         </div>
       </motion.div>
 
       <div className={styles.stats}>
         <PreviewContentStats
-          rating={contentStats.rating}
+          rating={isGlobalAIActive ? 5 : contentStats.rating}
           downloads={contentStats.downloads}
           reviews={contentStats.reviews}
         />
       </div>
+
+      {isLocationCompleted && (
+        <div className={styles.enableAI}>
+          <Button
+            variant={isAIModeration ? 'success' : 'primary'}
+            className={clsx(
+              styles.enableAIBtn,
+              !isAIModeration && styles.notEnabled,
+            )}
+            onClick={handleEnableAI}
+          >
+            <Icon name={'lock-ai'} className={styles.lockAIIcon} />
+            {t(
+              isAIModeration
+                ? 'screens.preview.aiEnabled'
+                : 'screens.preview.enableAI',
+            )}
+          </Button>
+        </div>
+      )}
 
       <div className={styles.btns}>
         <Button
@@ -110,18 +168,27 @@ export const PreviewContent = () => {
         </Button>
       </div>
 
-      <div className={styles.scenarios}>
-        <PreviewContentScenarios
-          location={location}
-          scenarios={scenarios}
-          completedIds={completedScenarioIds}
-        />
-      </div>
+      {!isGlobalAIActive && (
+        <div className={styles.scenarios}>
+          <PreviewContentScenarios
+            location={location}
+            scenarios={scenarios}
+            completedIds={completedScenarioIds}
+          />
+        </div>
+      )}
 
       <div ref={containerRef} className={styles.content}>
-        <p className={styles.description}>{t(location.descriptionKey)}</p>
+        <p className={styles.description}>
+          {isGlobalAIActive
+            ? obfuscateToBinary(t(location.descriptionKey))
+            : t(location.descriptionKey)}
+        </p>
 
-        <PreviewContentReviews reviews={reviews} />
+        <PreviewContentReviews
+          reviews={reviews}
+          isGlobalAIActive={isGlobalAIActive}
+        />
       </div>
     </div>
   );

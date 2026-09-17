@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import clsx from 'clsx';
 
+import { obfuscateToBinary } from '@/entities/message';
 import { type Review } from '@/entities/review';
 import { i18n, useTranslation } from '@/features/i18n';
 import { Icon } from '@/shared/ui';
@@ -10,11 +11,12 @@ import styles from './PreviewContentReviews.module.css';
 
 interface Props {
   reviews: Review[];
+  isGlobalAIActive: boolean;
 }
 
 const MAX_STARS = 5;
 
-export const PreviewContentReviews = ({ reviews }: Props) => {
+export const PreviewContentReviews = ({ reviews, isGlobalAIActive }: Props) => {
   const { t } = useTranslation();
 
   const lng = useMemo(() => {
@@ -43,14 +45,29 @@ export const PreviewContentReviews = ({ reviews }: Props) => {
           return (
             <div key={review.id}>
               <div className={styles.username}>
-                <div className={styles.usernameCircle}>{usernameChar}</div>
-                <span>@{review.username}</span>
+                {!isGlobalAIActive && (
+                  <div className={styles.usernameCircle}>{usernameChar}</div>
+                )}
+
+                {isGlobalAIActive && (
+                  <div className={styles.usernameCircle}>
+                    <Icon name="lock-ai" className={styles.lockAIIcon} />
+                  </div>
+                )}
+
+                <span>
+                  @
+                  {!isGlobalAIActive
+                    ? review.username
+                    : obfuscateToBinary(review.username)}
+                </span>
               </div>
 
               <div className={styles.stars}>
                 {[...Array(MAX_STARS)].map((_, idx) => {
                   const starValue = idx + 1;
-                  const isActive = starValue <= review.rating;
+                  const rating = isGlobalAIActive ? MAX_STARS : review.rating;
+                  const isActive = starValue <= rating;
 
                   return (
                     <Icon
@@ -65,7 +82,7 @@ export const PreviewContentReviews = ({ reviews }: Props) => {
                 })}
               </div>
 
-              <p>{text}</p>
+              <p>{isGlobalAIActive ? obfuscateToBinary(text) : text}</p>
             </div>
           );
         })}

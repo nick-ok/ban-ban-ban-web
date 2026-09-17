@@ -11,7 +11,8 @@ export type Scene =
   | 'preview'
   | 'briefing'
   | 'game'
-  | 'dayend';
+  | 'dayend'
+  | 'gameend';
 
 interface NavigationStore {
   scene: Scene;

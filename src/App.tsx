@@ -7,6 +7,7 @@ import { BootstrapScene } from './scenes/bootstrap';
 import { BriefingScene } from './scenes/briefing';
 import { DayEndScene } from './scenes/dayend';
 import { GameScene } from './scenes/game';
+import { GameEndScene } from './scenes/game-end';
 import { IntroScene } from './scenes/intro';
 import { LobbyScene } from './scenes/lobby';
 import { LockScene } from './scenes/lock';
@@ -24,6 +25,7 @@ const scenes = {
   briefing: BriefingScene,
   game: GameScene,
   dayend: DayEndScene,
+  gameend: GameEndScene,
 };
 
 function App() {

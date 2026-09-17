@@ -4,3 +4,4 @@ export { useGameStore } from './model/store';
 export { GameStage } from './ui/GameStage';
 export { calculateAccuracy } from './lib/calculate-accuracy';
 export { getAccuracyGrade } from './lib/get-accuracy-grade';
+export { getCanUnlockGlobalAI } from './lib/get-can-unlock-global-ai';

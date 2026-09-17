@@ -1,6 +1,5 @@
 import { create, type StateCreator } from 'zustand';
 
-import { i18n } from '@/features/i18n';
 import { withPersist } from '@/shared/lib/with-persist';
 
 interface SettingsState {
@@ -12,7 +11,6 @@ interface SettingsState {
 
   toggleSFX: () => void;
   toggleMusic: () => void;
-  setLanguage: (lang: 'ru' | 'en') => void;
 }
 
 const createStore: StateCreator<SettingsState> = (set) => ({
@@ -27,10 +25,6 @@ const createStore: StateCreator<SettingsState> = (set) => ({
 
   toggleMusic: () =>
     set((state) => ({ isMusicEnabled: !state.isMusicEnabled })),
-
-  setLanguage: (language) => {
-    i18n.changeLanguage(language);
-  },
 });
 
 export const useGameSettingsStore = create<SettingsState>()(

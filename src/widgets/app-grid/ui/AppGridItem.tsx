@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 
 import type { LocationApp } from '@/entities/location';
+import { obfuscateToBinary } from '@/entities/message';
 import { useNavigationStore } from '@/entities/navigation';
 import { Icon, ProgressBar } from '@/shared/ui';
 
@@ -9,6 +10,7 @@ import styles from './AppGridItem.module.css';
 interface Props {
   location: LocationApp;
   isLocked: boolean;
+  isGlobalAIActive: boolean;
   stats: {
     completed: number;
     total: number;
@@ -16,7 +18,12 @@ interface Props {
   };
 }
 
-export const AppGridItem = ({ location, isLocked, stats }: Props) => {
+export const AppGridItem = ({
+  location,
+  isLocked,
+  stats,
+  isGlobalAIActive,
+}: Props) => {
   const { navigateToPreview } = useNavigationStore();
 
   const { id, icon, name, background } = location;
@@ -29,7 +36,9 @@ export const AppGridItem = ({ location, isLocked, stats }: Props) => {
       <motion.button
         layoutId={`app-bg-${id}`}
         className={styles.appButton}
-        style={{ backgroundColor: background }}
+        style={{
+          backgroundColor: !isGlobalAIActive ? background : 'black',
+        }}
         disabled={isLocked}
         whileTap={
           isLocked ? {} : { scale: 0.95, transition: { duration: 0.1 } }
@@ -37,7 +46,10 @@ export const AppGridItem = ({ location, isLocked, stats }: Props) => {
         onClick={() => navigateToPreview(id)}
       >
         <motion.div layoutId={`app-icon-${id}`} className={styles.iconWrapper}>
-          <Icon name={icon.name} className={styles.appIcon} />
+          <Icon
+            name={!isGlobalAIActive ? icon.name : 'lock-ai'}
+            className={styles.appIcon}
+          />
         </motion.div>
 
         {isLocked && (
@@ -47,7 +59,9 @@ export const AppGridItem = ({ location, isLocked, stats }: Props) => {
         )}
       </motion.button>
 
-      <div className={styles.label}>{name}</div>
+      <div className={styles.label}>
+        {isGlobalAIActive ? obfuscateToBinary(name) : name}
+      </div>
 
       <div className={styles.bars}>
         <ProgressBar

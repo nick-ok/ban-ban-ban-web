@@ -10,6 +10,7 @@ export const useSpawnLogic = (
   app: PIXI.Application | null,
 ) => {
   const incrementStat = useGameStore((state) => state.incrementStat);
+  const isAutomoderation = useGameStore((state) => state.isAutomoderation);
 
   const spawnMessage = () => {
     if (!scenario || !app) {
@@ -30,7 +31,7 @@ export const useSpawnLogic = (
     }
 
     const message = createMessageByScenario(scenario, banAction);
-    const container = createGameMessage(message);
+    const container = createGameMessage(message, isAutomoderation);
 
     const stageWidth = app.renderer.width;
     const stageHeight = app.renderer.height;

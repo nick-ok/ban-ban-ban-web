@@ -42,6 +42,7 @@ export const SCENE_SOUND_MAP: Record<Scene, SoundMapValue> = {
   intro: null,
   bootstrap: null,
   dayend: null,
+  gameend: null,
 
   game: (locationId: LocationId): AudioAssetKey => {
     const locationMusic: Record<LocationId, AudioAssetKey> = {

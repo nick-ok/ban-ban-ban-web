@@ -12,6 +12,7 @@ import { drawMessageHead } from './draw-message-head';
 
 export const createGameMessage = (
   message: Message,
+  isAutomoderation = false,
 ): ExtendedPixiMessageContainer => {
   const container = new PIXI.Container() as ExtendedPixiMessageContainer;
 
@@ -96,7 +97,13 @@ export const createGameMessage = (
   progressMask.y = totalHeight;
   progressBubble.mask = progressMask;
 
-  container.eventMode = 'static';
+  if (isAutomoderation) {
+    container.eventMode = 'none';
+  } else {
+    container.eventMode = 'static';
+    container.cursor = 'pointer';
+  }
+
   container.cursor = 'pointer';
   container.messageData = message;
   container.isPressed = false;
