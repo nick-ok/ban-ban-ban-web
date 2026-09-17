@@ -69,21 +69,3 @@
 .menuBtn {
   width: calc(var(--u) * 60);
 }
-
-.settings {
-  margin-top: var(--space-10);
-
-  width: calc(var(--u) * 80);
-  border: 1px solid var(--color-grey-light);
-  border-radius: var(--radius-md);
-  padding: var(--space-3);
-}
-
-.settingsTitle {
-  font-size: var(--text-sm);
-  color: var(--color-warn);
-
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-}

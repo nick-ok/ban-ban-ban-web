@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { motion } from 'motion/react';
 import type { Variants } from 'motion/react';
 
+import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { useTranslation } from '@/features/i18n';
@@ -47,6 +48,8 @@ const buttonVariants: Variants = {
 export const LockScene = () => {
   const { t, i18n } = useTranslation();
 
+  const gameSettings = useGameSettingsStore();
+
   const { setScene } = useNavigationStore();
 
   const completedScenarios = usePlayerProgressStore(
@@ -83,17 +86,26 @@ export const LockScene = () => {
     if (key === 'continue') {
       setScene('lobby');
     }
+
+    if (key === 'settings') {
+      gameSettings.toggleSettingsDrawer();
+    }
+  };
+
+  const handleScenePointerDown = () => {
+    AudioService.playMusic('mainMenu');
   };
 
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000);
+
     return () => clearInterval(timer);
   }, []);
 
   return (
     <motion.div
       className={styles.root}
-      onPointerDown={() => AudioService.unlockAudio()}
+      onPointerDown={handleScenePointerDown}
       variants={containerVariants}
       initial="hidden"
       animate="visible"

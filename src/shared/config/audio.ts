@@ -1,13 +1,35 @@
-export const AUDIO_ASSETS = {
-  click: '/audio/ui-click.mp3',
-  drawer: '/audio/ui-drawer.mp3',
-  chatMessage: '/audio/chat-message.mp3',
+export interface AudioConfigItem {
+  src: string;
+  type: 'music' | 'sfx';
+}
 
-  // banned: '/audio/game-ban-success.mp3',
-  // longBanned: '/audio/game-longban-success.mp3',
-  // wrongBanned: '/audio/game-error.mp3',
-  // missed: '/audio/game-missed.mp3',
-  // missedLong: '/audio/game-missed-long.mp3',
-} as const;
+// banned
+// longBanned
+// wrongBanned
+// missed
+// missedLong
+
+export const AUDIO_ASSETS = {
+  click: {
+    src: '/audio/sfx/ui-click.mp3',
+    type: 'sfx',
+  },
+  drawer: {
+    src: '/audio/sfx/ui-drawer.mp3',
+    type: 'sfx',
+  },
+  chatMessage: {
+    src: '/audio/sfx/chat-message.mp3',
+    type: 'sfx',
+  },
+  mainMenu: {
+    src: '/audio/music/main-menu.mp3',
+    type: 'music',
+  },
+  hoaGame: {
+    src: '/audio/music/hoa-game.mp3',
+    type: 'music',
+  },
+} as const satisfies Record<string, AudioConfigItem>;
 
 export type AudioAssetKey = keyof typeof AUDIO_ASSETS;
