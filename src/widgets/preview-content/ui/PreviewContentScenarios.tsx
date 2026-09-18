@@ -24,9 +24,10 @@ export const PreviewContentScenarios = ({
   completedIds,
 }: Props) => {
   const { setSelectedScenarioId, setScene } = useNavigationStore();
-  const scenarioResults = usePlayerProgressStore(
-    (state) => state.scenarioResults,
-  );
+  const { scenarioResults, isGlobalAIActive, autoModeration } =
+    usePlayerProgressStore();
+
+  const isAutomoderationEnabled = autoModeration?.[location.id];
 
   const data = scenarios.map((sc) => ({
     ...sc,
@@ -43,7 +44,7 @@ export const PreviewContentScenarios = ({
     }
 
     setSelectedScenarioId(scenarioId);
-    setScene('briefing');
+    setScene(isGlobalAIActive || isAutomoderationEnabled ? 'game' : 'briefing');
   };
 
   return (

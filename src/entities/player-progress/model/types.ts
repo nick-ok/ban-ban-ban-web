@@ -10,4 +10,6 @@ export interface PlayerProgress {
   scenarioResults: Partial<Record<ScenarioId, ScenarioResult>>;
   completedScenarioIds: ScenarioId[];
   unlockedLocationIds: LocationId[];
+  autoModeration: Record<LocationId, boolean> | null;
+  isGlobalAIActive: boolean;
 }

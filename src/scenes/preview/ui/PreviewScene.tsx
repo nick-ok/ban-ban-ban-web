@@ -4,7 +4,9 @@ import clsx from 'clsx';
 import { AnimatePresence, motion } from 'motion/react';
 
 import { getLocationById } from '@/entities/location';
+import { obfuscateToBinary } from '@/entities/message';
 import { useNavigationStore } from '@/entities/navigation';
+import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { PreviewContent } from '@/widgets/preview-content';
 
 import { PreviewSplash } from './PreviewSplash';
@@ -14,12 +16,17 @@ import styles from './PreviewScene.module.css';
 const SPLASH_DURATION = 650;
 
 export const PreviewScene = () => {
-  const { selectedLocationId } = useNavigationStore();
-
   const [phase, setPhase] = useState<'loading' | 'ready'>('loading');
+
+  const { selectedLocationId } = useNavigationStore();
+  const isGlobalAIActive = usePlayerProgressStore(
+    (state) => state.isGlobalAIActive,
+  );
 
   const location = getLocationById(selectedLocationId);
   const isReady = phase === 'ready';
+
+  const locationBackground = isGlobalAIActive ? 'black' : location?.background;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -38,15 +45,17 @@ export const PreviewScene = () => {
       layoutId={`app-bg-${selectedLocationId}`}
       className={clsx(styles.root, isReady ? styles.ready : styles.loading)}
       animate={{
-        backgroundColor: isReady ? 'white' : location.background,
+        backgroundColor: isReady ? 'white' : locationBackground,
       }}
       exit={{ backgroundColor: location.background }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <PreviewSplash
         isReady={isReady}
-        iconName={location.icon.name}
-        title={location.name}
+        iconName={isGlobalAIActive ? 'lock-ai' : location.icon.name}
+        title={
+          isGlobalAIActive ? obfuscateToBinary(location.name) : location.name
+        }
       />
 
       <AnimatePresence>

@@ -13,6 +13,8 @@ import styles from './BootstrapScene.module.css';
 
 const VERSION = import.meta.env.VITE_APP_VERSION;
 
+const ANIMATION_SPEED = 1.4;
+
 export const BootstrapScene = () => {
   const isMounted = useRef(true);
 
@@ -25,9 +27,9 @@ export const BootstrapScene = () => {
 
   const springTransition = {
     type: 'spring' as const,
-    stiffness: 500,
-    damping: 15,
-    mass: 0.6,
+    stiffness: 500 * ANIMATION_SPEED,
+    damping: 15 * Math.sqrt(ANIMATION_SPEED),
+    mass: 0.6 / ANIMATION_SPEED,
   };
 
   const handleStart = async () => {
@@ -63,9 +65,8 @@ export const BootstrapScene = () => {
       await animate(
         scope.current,
         { scale: 2.3, rotate: 55, opacity: 1 },
-        { ...springTransition, opacity: { duration: 0.1, ease: 'linear' } },
+        { ...springTransition, opacity: { duration: 0.05, ease: 'linear' } },
       );
-      await new Promise((resolve) => setTimeout(resolve, 100));
 
       // 2. Второй удар
       await animate(
@@ -73,14 +74,10 @@ export const BootstrapScene = () => {
         { scale: 1.7, rotate: -15 },
         springTransition,
       );
-      await new Promise((resolve) => setTimeout(resolve, 50));
 
-      // 3. Третий финальный удар (в 1)
+      // 3. Третий удар
       await animate(scope.current, { scale: 1, rotate: 0 }, springTransition);
-      // Финальная задержка, чтобы рассмотреть логотип перед выходом
-      await new Promise((resolve) => setTimeout(resolve, 150));
 
-      // Проверка статуса загрузки
       if (!isMounted.current) {
         return;
       }

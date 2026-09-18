@@ -7,10 +7,13 @@
     "lock": {
       "newGame": "New Game",
       "continue": "Continue",
-      "settings": "Settings"
+      "settings": "Settings",
+      "runGlobalGIP": "Run GIP!"
     },
     "preview": {
       "start": "Start",
+      "enableAI": "Enable GIP!",
+      "aiEnabled": "Under GIP protection!",
       "cancel": "Cancel",
       "reviews": "Reviews",
       "downloads": "Downloads",

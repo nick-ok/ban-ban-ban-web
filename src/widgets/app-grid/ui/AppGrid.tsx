@@ -9,7 +9,7 @@ export const AppGrid = () => {
   const progress = usePlayerProgressStore();
 
   return (
-    <div className={styles.grid}>
+    <div className={styles.root}>
       {LOCATIONS.map((loc) => {
         const stats = getLocationStats(loc.id, progress);
         const isLocked = !progress.unlockedLocationIds.includes(loc.id);
@@ -19,6 +19,7 @@ export const AppGrid = () => {
             key={loc.id}
             location={loc}
             isLocked={isLocked}
+            isGlobalAIActive={progress.isGlobalAIActive}
             stats={stats}
           />
         );

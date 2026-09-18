@@ -7,4 +7,5 @@ export const SCENARIO_IDS = [
   'loc2_sc1',
   'loc2_sc2',
   'loc2_sc3',
+  'sc_singularity',
 ] as const;

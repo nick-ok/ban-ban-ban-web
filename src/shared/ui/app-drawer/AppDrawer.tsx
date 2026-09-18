@@ -1,4 +1,10 @@
-import { useEffect, useState, type ReactNode, type RefObject } from 'react';
+import {
+  useEffect,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+  type RefObject,
+} from 'react';
 
 import { Drawer } from 'vaul';
 
@@ -17,19 +23,21 @@ interface Props {
   open?: boolean;
   showClose?: boolean;
   direction?: 'bottom' | 'left' | 'right' | 'top';
+  backgroundColor?: string;
   onClose?: () => void;
   onOpenChange?: (open: boolean) => void;
 }
 
 export const AppDrawer = ({
+  containerRef,
   children,
   trigger,
   withSound = true,
   direction = 'right',
+  backgroundColor,
   open,
   onOpenChange,
   onClose,
-  containerRef,
 }: Props) => {
   const [internalOpen, setInternalOpen] = useState(false);
   const isControlled = open !== undefined;
@@ -59,7 +67,15 @@ export const AppDrawer = ({
       <Drawer.Portal>
         <Drawer.Overlay className={styles.overlay} />
 
-        <Drawer.Content className={styles.content} data-type={direction}>
+        <Drawer.Content
+          className={styles.content}
+          data-type={direction}
+          style={
+            backgroundColor
+              ? ({ '--drawer-bg': backgroundColor } as CSSProperties)
+              : undefined
+          }
+        >
           <div className={styles.inner}>
             {direction === 'bottom' && (
               <div className={styles.handleWrapper}>

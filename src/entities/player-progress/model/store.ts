@@ -10,6 +10,8 @@ interface Actions {
   recordScenarioResult: (scenarioId: ScenarioId, accuracy: number) => void;
   unlockLocation: (locationId: LocationId) => void;
   resetProgress: () => void;
+  toggleAutoModeration: (locationId: LocationId) => void;
+  runGlobalAI: () => void;
 }
 
 type Store = PlayerProgress & Actions;
@@ -18,6 +20,8 @@ const createStore: StateCreator<Store> = (set) => ({
   scenarioResults: {},
   completedScenarioIds: [],
   unlockedLocationIds: ['loc1'],
+  autoModeration: null,
+  isGlobalAIActive: false,
 
   recordScenarioResult: (scenarioId, accuracy) => {
     set((state) => {
@@ -56,7 +60,30 @@ const createStore: StateCreator<Store> = (set) => ({
       scenarioResults: {},
       completedScenarioIds: [],
       unlockedLocationIds: ['loc1'],
+      autoModeration: null,
+      isGlobalAIActive: false,
     }),
+
+  toggleAutoModeration: (locationId: LocationId) =>
+    set((state) => {
+      const currentMap: Record<string, boolean | undefined> =
+        state.autoModeration ?? {};
+      const nextStatus = !currentMap[locationId];
+
+      const updatedMap = {
+        ...currentMap,
+        [locationId]: nextStatus,
+      } as Record<LocationId, boolean>;
+
+      return {
+        autoModeration: updatedMap,
+      };
+    }),
+
+  runGlobalAI: () =>
+    set((state) => ({
+      isGlobalAIActive: !state.isGlobalAIActive,
+    })),
 });
 
 export const usePlayerProgressStore = create<Store>()(

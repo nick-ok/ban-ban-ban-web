@@ -7,10 +7,13 @@
     "lock": {
       "newGame": "Новая игра",
       "continue": "Продложить",
-      "settings": "Настройки"
+      "settings": "Настройки",
+      "runGlobalGIP": "Запустить GIP!"
     },
     "preview": {
       "start": "Запуск",
+      "enableAI": "Включить GIP!",
+      "aiEnabled": "Защищено GIP!",
       "cancel": "Отмена",
       "reviews": "Отзывы",
       "downloads": "Скачивания",

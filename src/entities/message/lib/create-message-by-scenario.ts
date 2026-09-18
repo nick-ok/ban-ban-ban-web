@@ -16,6 +16,7 @@ import type {
   TitleType,
   UserType,
 } from '../model/types';
+import { obfuscateToBinary } from './obfuscate-to-binary';
 import { obfuscateToFwords } from './obfuscate-to-fwords';
 
 const getRandomSide = (): MessageSide =>
@@ -117,6 +118,8 @@ export const createMessageByScenario = (
     text = text.toUpperCase();
   } else if (contentType === 'fwords') {
     text = obfuscateToFwords(text);
+  } else if (contentType === 'binary') {
+    text = obfuscateToBinary(text);
   } else if (contentType === 'ad') {
     text = 'Купи прямо здесь и прямо сейчас!';
   }

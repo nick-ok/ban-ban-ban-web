@@ -14,7 +14,7 @@ interface Props {
   value: number;
   duration?: number;
   displayValue?: string;
-  size?: 'sm' | 'md';
+  size?: 'sm' | 'md' | 'lg';
   trackColor?: string;
   fillColor?: string;
 }
