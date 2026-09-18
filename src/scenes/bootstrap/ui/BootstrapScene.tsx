@@ -3,8 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, useAnimate } from 'motion/react';
 
 import { initGame } from '@/app/model/init-game';
+import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
 import { AudioService } from '@/features/audio';
+import { useTranslation } from '@/features/i18n';
 import { Button } from '@/shared/ui';
 
 import { LoadingDots } from './LoadingDots';
@@ -16,6 +18,8 @@ const VERSION = import.meta.env.VITE_APP_VERSION;
 const ANIMATION_SPEED = 1.4;
 
 export const BootstrapScene = () => {
+  const { t } = useTranslation();
+
   const isMounted = useRef(true);
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,6 +27,8 @@ export const BootstrapScene = () => {
   const [animationKey, setAnimationKey] = useState(0);
 
   const setScene = useNavigationStore((state) => state.setScene);
+  const isIntroSkipped = useGameSettingsStore((state) => state.isIntroSkipped);
+
   const [scope, animate] = useAnimate();
 
   const springTransition = {
@@ -34,7 +40,12 @@ export const BootstrapScene = () => {
 
   const handleStart = async () => {
     await AudioService.unlock();
-    setScene('lock');
+
+    if (isIntroSkipped) {
+      setScene('lock');
+    } else {
+      setScene('intro');
+    }
   };
 
   useEffect(() => {
@@ -115,7 +126,7 @@ export const BootstrapScene = () => {
               onClick={handleStart}
               withSound={false}
             >
-              Start
+              {t('screens.bootstrap.join')}
             </Button>
           </motion.div>
         )}

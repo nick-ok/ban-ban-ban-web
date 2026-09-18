@@ -4,11 +4,56 @@
     "tagline": "AI Moderation Simulator"
   },
   "screens": {
+    "bootstrap": {
+      "join": "Join"
+    },
+    "intro": {
+      "skip": "Skip",
+      "stage1": {
+        "title": "Right now, there are around {{count}} billion people online at the same time",
+        "connecting": "We connect",
+        "learning": "We discover",
+        "sharing": "We share what matters",
+        "creating": "We create",
+        "greatestAchievement": "This is our civilization's greatest achievement"
+      },
+      "stage2": {
+        "title": "But there is a dark side to progress...",
+        "faced": "Every day, each of us is faced with:",
+        "hate": "Hate",
+        "deception": "Deception",
+        "toxicity": "Toxicity",
+        "ignorance": "Ignorance",
+        "feelSafe": "And we no longer feel safe..."
+      },
+      "stage3": {
+        "title": "But humanity refuses to give up!",
+        "greatestMinds": "The world's greatest mindshave combined their knowledge, experience,and incredible computing power",
+        "solveProblem": "To make the impossible possible",
+        "restore": "To restore trust and safety"
+      },
+      "stage4": {
+        "title": "And a solution was found!",
+        "knowledge": "Knowledge",
+        "love": "Love",
+        "truth": "Truth",
+        "availableToEveryone": "Now available to everyone, everywhere, 24/7"
+      },
+      "stage5": {
+        "title": "Thank you for joining us!",
+        "partOfHistory": "Today, you become a part of history",
+        "changeWorld": "Together, we can make the world a better place",
+        "welcome": "Welcome!"
+      }
+    },
     "lock": {
       "newGame": "New Game",
       "continue": "Continue",
       "settings": "Settings",
-      "runGlobalGIP": "Run GIP!"
+      "showIntro": "Show intro"
+    },
+    "lobby": {
+      "runGIP": "Run GIP!"
     },
     "preview": {
       "start": "Start",
