@@ -48,9 +48,7 @@ export const LockScene = () => {
   const { t, i18n } = useTranslation();
 
   const gameSettings = useGameSettingsStore();
-
   const { setScene } = useNavigationStore();
-
   const completedScenarios = usePlayerProgressStore(
     (state) => state.completedScenarioIds,
   );
@@ -60,9 +58,9 @@ export const LockScene = () => {
 
   const hasSavedGame = completedScenarios.length > 0;
 
-  const menuBtns = (['continue', 'newGame', 'settings'] as const).filter(
-    (key) => key !== 'continue' || hasSavedGame,
-  );
+  const menuBtns = (['continue', 'newGame', 'settings', 'showIntro'] as const)
+    .filter((key) => key !== 'continue' || hasSavedGame)
+    .filter((key) => key !== 'showIntro' || gameSettings.isIntroSkipped);
 
   const timeStr = new Intl.DateTimeFormat(i18n.language, {
     hour: '2-digit',
@@ -76,7 +74,9 @@ export const LockScene = () => {
     month: 'long',
   }).format(now);
 
-  const handleMenuButtonClick = (key: 'newGame' | 'continue' | 'settings') => {
+  const handleMenuButtonClick = (
+    key: 'newGame' | 'continue' | 'settings' | 'showIntro',
+  ) => {
     if (key === 'newGame') {
       resetProgress();
       setScene('lobby');
@@ -88,6 +88,10 @@ export const LockScene = () => {
 
     if (key === 'settings') {
       gameSettings.toggleSettingsDrawer();
+    }
+
+    if (key === 'showIntro') {
+      setScene('intro');
     }
   };
 

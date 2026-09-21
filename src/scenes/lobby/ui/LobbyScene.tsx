@@ -53,7 +53,7 @@ export const LobbyScene = () => {
           {canUnlockGlobalAI && (
             <Button className={styles.lockAiBtn} onClick={handleRunGlobalAI}>
               <Icon name={'lock-ai'} />
-              {t('screens.lock.runGlobalGIP')}
+              {t('screens.lobby.runGIP')}
             </Button>
           )}
         </div>
