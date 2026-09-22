@@ -19,7 +19,7 @@
       },
       "stage2": {
         "title": "But there is a dark side to progress...",
-        "faced": "Every day, each of us is faced with:",
+        "faced": "Every day, each of us is faces:",
         "hate": "Hate",
         "deception": "Deception",
         "toxicity": "Toxicity",
@@ -27,23 +27,36 @@
         "feelSafe": "And we no longer feel safe..."
       },
       "stage3": {
-        "title": "But humanity refuses to give up!",
-        "greatestMinds": "The world's greatest mindshave combined their knowledge, experience,and incredible computing power",
+        "title": "But humanity doesn't give up!",
+        "greatestMinds": "The greatest minds on the planet combined their knowledge, experience, and insane computing power",
         "solveProblem": "To make the impossible possible",
         "restore": "To restore trust and safety"
       },
       "stage4": {
-        "title": "And a solution was found!",
+        "title": "And the solution has been found!",
         "knowledge": "Knowledge",
         "love": "Love",
         "truth": "Truth",
-        "availableToEveryone": "Now available to everyone, everywhere, 24/7"
+        "availableToEveryone": "Available to each and every one, 24/7"
       },
       "stage5": {
         "title": "Thank you for joining us!",
         "partOfHistory": "Today, you become a part of history",
-        "changeWorld": "Together, we can make the world a better place",
+        "changeWorld": "Together, we will change the world for the better",
         "welcome": "Welcome!"
+      }
+    },
+    "gameend": {
+      "skip": "Skip",
+      "stage1": {
+        "title": "GIP AI is live!",
+        "thankyou": "Thank you for your invaluable contribution to this truly historic mission!"
+      },
+      "stage3": {
+        "title": "Welcome to a brave new world!",
+        "newWorld": "Create, explore, love! 24/7 with zero limits!",
+        "period": "Congratulations! You get an absolutely free 14-day trial period",
+        "enter": "Log In"
       }
     },
     "lock": {
