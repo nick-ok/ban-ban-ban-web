@@ -2,6 +2,7 @@ import { useRef } from 'react';
 
 import clsx from 'clsx';
 import { motion, useScroll, useTransform } from 'motion/react';
+import ReactMarkdown from 'react-markdown';
 
 import { getIsLocationCompleted, getLocationById } from '@/entities/location';
 import { obfuscateToBinary } from '@/entities/message';
@@ -180,9 +181,11 @@ export const PreviewContent = () => {
 
       <div ref={containerRef} className={styles.content}>
         <p className={styles.description}>
-          {isGlobalAIActive
-            ? obfuscateToBinary(t(location.descriptionKey))
-            : t(location.descriptionKey)}
+          {isGlobalAIActive ? (
+            obfuscateToBinary(t(location.descriptionKey))
+          ) : (
+            <ReactMarkdown>{t(location.descriptionKey)}</ReactMarkdown>
+          )}
         </p>
 
         <PreviewContentReviews

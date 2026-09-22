@@ -70,8 +70,8 @@
     },
     "preview": {
       "start": "Start",
-      "enableAI": "Enable GIP!",
-      "aiEnabled": "Under GIP protection!",
+      "enableAI": "Enable Auto-Moderation",
+      "aiEnabled": "Auto-Moderation is Active",
       "cancel": "Cancel",
       "reviews": "Reviews",
       "downloads": "Downloads",
@@ -108,10 +108,22 @@
   },
   "locations": {
     "loc1": {
-      "description": "HOA chat description"
+      "description": "**HomeApp — all your city's neighborhood chats in one app!**\n\n**HomeApp** is a single, secure platform that brings residents, homes, and neighborhoods together. Find your building by address, connect with your neighbors, and resolve any household issues in just a few clicks.\n\n**Make living in your home more comfortable, safe, and friendly. Download HomeApp right now and become a part of a smart digital neighborhood!**"
     },
     "loc2": {
-      "description": "Spiritual description"
+      "description": "**SoulSpace. The path to inner harmony - together. Practice, grow, and evolve within a community of like-minded people**\n\nModern life often leaves us alone with stress, anxiety, and a feeling of disconnection from ourselves. **SoulSpace** is your safe digital sanctuary for daily slowing down, deep self-discovery, and spiritual growth in a supportive community"
+    },
+    "loc3": {
+      "description": "**Trinder - genuine connections and vibrant dates at your own pace!**\n\nTired of endless, meaningless chats and fake profiles? It's time for something real!\n\n**Trinder** is a modern dating app designed to connect people who truly match. Whether you're looking for the love of your life, light flirting, or an interesting conversation for the evening - **Trinder** helps you find the right person in just a few clicks"
+    },
+    "loc4": {
+      "description": "**Slaq - a single digital workspace for your team. Communicate, manage tasks, and drive your business forward**.\n\nScattered chats in personal messengers, missed assignments, and chaotic workflows are a thing of the past.\n\n**Slaq** is a powerful corporate platform that brings together workplace communication and a fully-featured task tracker"
+    },
+    "loc5": {
+      "description": "**ReadIt - the hub for breaking news, hot debates, and global trends. Stay informed, discuss, and make an impact!**\n\nLooking for a platform where news breaks faster than in the media, and the comments section sparks the most honest opinions?\n\n**ReadIt** is a global information hub where millions of people come together to discuss politics, world events, and trends. There is no rigid censorship or forced agenda here"
+    },
+    "loc6": {
+      "description": "**NetState - a digital state in your pocket.**\n\n**NetState** is the first global ecosystem that brings together state, legal, and administrative services from different countries into a single, secure platform.\n\nGlobal ID and digital documents\n\nCross-border public services\n\nGlobal legal support\n\n**NetState** is a full-fledged global digital citizenship, available 24/7, wherever you are!"
     }
   },
   "scenarios": {

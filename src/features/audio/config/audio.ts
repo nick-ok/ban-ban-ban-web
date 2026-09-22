@@ -48,6 +48,10 @@ export const SCENE_SOUND_MAP: Record<Scene, SoundMapValue> = {
     const locationMusic: Record<LocationId, AudioAssetKey> = {
       loc1: 'hoaGame',
       loc2: 'hoaGame',
+      loc3: 'hoaGame',
+      loc4: 'hoaGame',
+      loc5: 'hoaGame',
+      loc6: 'hoaGame',
     };
 
     return locationMusic[locationId] ?? 'hoaGame';

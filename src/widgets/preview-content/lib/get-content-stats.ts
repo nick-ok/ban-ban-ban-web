@@ -7,6 +7,7 @@ import type { PlayerProgress } from '@/entities/player-progress';
 
 const getLocationTier = (locationId: LocationId): number => {
   const index = LOCATIONS.findIndex((l) => l.id === locationId);
+
   return index !== -1 ? index : 0;
 };
 
@@ -20,7 +21,7 @@ export const getContentStats = (
   );
   const tier = getLocationTier(locationId);
 
-  const baseScale = Math.pow(10, tier + 2);
+  const baseScale = Math.pow(22, tier + 2);
   const seed = locationId
     .split('')
     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
