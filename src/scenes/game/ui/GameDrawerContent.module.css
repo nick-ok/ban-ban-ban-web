@@ -69,3 +69,7 @@
 .menuBtn {
   width: calc(var(--u) * 60);
 }
+
+.gameSettings {
+  margin-top: var(--space-20);
+}

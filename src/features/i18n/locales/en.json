@@ -81,7 +81,15 @@
       "appGrid": "Applications",
       "preview": "Application preview",
       "mainMenu": "Main menu",
-      "settings": "Settings"
+      "settings": "Settings",
+      "howToBan": "To ban, tap the message",
+      "howToLongBan": "To ban for a long time, press and hold the message",
+      "anonymousType": "Anonymous",
+      "botType": "Bot",
+      "aiType": "AI Slop",
+      "hypeType": "Hype",
+      "dissentType": "Dissenters",
+      "angryType": "Haters"
     },
     "dayend": {
       "tierS": "Flawless!",
