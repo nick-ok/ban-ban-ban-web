@@ -36,7 +36,6 @@ export interface Scenario {
   briefingFlow: BriefingMessage[];
 
   order: number;
-  nameKey: string;
   descriptionKey: string;
   messageSpeedRange: number[];
   // Время начала дня в минутах от 00:00 (например, 600 для 10:00)

@@ -60,4 +60,12 @@ export const LOCATION_REVIEWS: Record<LocationId, Review[]> = {
   ],
 
   loc2: [],
+
+  loc3: [],
+
+  loc4: [],
+
+  loc5: [],
+
+  loc6: [],
 };

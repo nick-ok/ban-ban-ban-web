@@ -47,6 +47,7 @@ export const TITLE_ASSETS = {
   empty: '',
   dissent: '/images/message/dissent.webp',
   hype: '/images/message/fire.webp',
+  angry: '/images/message/angry.webp',
 } as const;
 
 export const UI_ASSETS = {

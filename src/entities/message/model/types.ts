@@ -4,8 +4,8 @@ import type { AvatarAssetKey } from '../config/assets';
 
 export type UserType = 'male' | 'female' | 'anonymous' | 'bot' | 'ai';
 export type ContentType =
-  'normal' | 'blurred' | 'ad' | 'caps' | 'fwords' | 'binary';
-export type TitleType = 'empty' | 'hype' | 'dissent';
+  'normal' | 'blurred' | 'ad' | 'caps' | 'fwords' | 'binary' | 'audio';
+export type TitleType = 'empty' | 'hype' | 'dissent' | 'angry';
 export type MessageSide = 'left' | 'right';
 
 export type BanAction = 'ban' | 'longBan' | 'none';
