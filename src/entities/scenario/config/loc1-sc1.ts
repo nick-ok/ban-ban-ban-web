@@ -37,12 +37,17 @@ export const LOC1_SC1: Scenario = {
   endWorktime: timeToMinutes('18:00'),
   allowedContent: {
     users: ['male', 'female'],
-    content: ['audio'],
+    content: ['ad'],
     titles: ['empty'],
     hasLikes: false,
   },
   banRules: {
-    ban: [{ content: ['fwords'], title: ['dissent', 'angry', 'hype'] }],
+    ban: [
+      {
+        content: ['fwords', 'caps', 'blurred'],
+        title: ['dissent', 'angry', 'hype'],
+      },
+    ],
     longBan: [{ user: ['anonymous', 'bot', 'ai'] }],
   },
   probabilities: {

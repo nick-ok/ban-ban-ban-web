@@ -1,5 +1,10 @@
 import * as PIXI from 'pixi.js';
 
+import { i18n } from '@/features/i18n';
+import { randomArrayItem } from '@/shared/lib';
+
+import { AD_BUTTON_TXT } from '../config/ad-messages';
+
 export const AD_BUTTON_HEIGHT = 34;
 
 interface DrawAdButtonOptions {
@@ -9,6 +14,8 @@ interface DrawAdButtonOptions {
 export const drawMessageADButton = ({
   width,
 }: DrawAdButtonOptions): PIXI.Container => {
+  const lang = i18n.language;
+
   const container = new PIXI.Container();
 
   const borderRadius = 8;
@@ -19,7 +26,7 @@ export const drawMessageADButton = ({
     .fill(0x007aff);
 
   const buttonText = new PIXI.Text({
-    text: 'Купи',
+    text: randomArrayItem(AD_BUTTON_TXT[lang as 'ru' | 'en']) ?? '',
     style: {
       fontSize: 14,
       fill: 0xffffff,
