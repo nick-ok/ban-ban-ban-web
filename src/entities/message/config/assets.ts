@@ -52,6 +52,7 @@ export const TITLE_ASSETS = {
 
 export const UI_ASSETS = {
   like: '/images/message/like.webp',
+  voiceMessage: '/images/message/voice-message.webp',
 } as const;
 
 export type AvatarAssetKey = keyof typeof AVATAR_ASSETS;
@@ -100,4 +101,4 @@ export const FEMALE_AVATAR_KEYS: AvatarAssetKey[] = [
   'female_18',
 ];
 
-export const TITLE_KEYS: TitleAssetKey[] = ['dissent', 'hype'];
+export const TITLE_KEYS: TitleAssetKey[] = ['dissent', 'hype', 'angry'];
