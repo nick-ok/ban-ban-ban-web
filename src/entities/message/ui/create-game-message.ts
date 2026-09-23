@@ -1,5 +1,7 @@
 import * as PIXI from 'pixi.js';
 
+import { randomArrayItem } from '@/shared/lib';
+
 import { MESSAGE_CONFIG } from '../config/message-config';
 import type { ExtendedPixiMessageContainer, Message } from '../model/types';
 import {
@@ -14,6 +16,7 @@ export const createGameMessage = (
   message: Message,
   isAutomoderation = false,
 ): ExtendedPixiMessageContainer => {
+  const adTextColors = [0x1f90f0, 0x22c55e, 0xef4444];
   const container = new PIXI.Container() as ExtendedPixiMessageContainer;
 
   const { content, side = 'left', avatarKey, title } = message;
@@ -43,7 +46,10 @@ export const createGameMessage = (
       text: content?.text,
       style: {
         fontSize: bubble.fontSize,
-        fill: colors.text,
+        fill:
+          content.type === 'ad'
+            ? (randomArrayItem(adTextColors) ?? colors.text)
+            : colors.text,
         wordWrap: true,
         wordWrapWidth,
         breakWords: true,

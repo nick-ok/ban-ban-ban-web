@@ -1,8 +1,11 @@
 import { nanoid } from 'nanoid';
 
+import { LOCATION_MESSAGES } from '@/entities/location/config/locationMessages';
 import type { Scenario } from '@/entities/scenario';
+import { i18n } from '@/features/i18n';
 import { randomArrayItem, randomNumberInRange } from '@/shared/lib';
 
+import { AD_MESSAGES } from '../config/ad-messages';
 import {
   FEMALE_AVATAR_KEYS,
   MALE_AVATAR_KEYS,
@@ -69,11 +72,8 @@ export const createMessageByScenario = (
   const side = getRandomSide();
   const speed = getRandomSpeed(scenario.messageSpeedRange);
 
-  const textTextMap: Record<BanAction, string> = {
-    ban: 'В бан его!',
-    longBan: 'Забань его на долго!',
-    none: 'Пущай живёт',
-  };
+  const locationId = scenario.locationId;
+  const lang = i18n.language;
 
   let user: UserType = randomArrayItem(allowedContent.users) ?? 'male';
   let title: TitleType = randomArrayItem(allowedContent.titles) ?? 'empty';
@@ -82,7 +82,8 @@ export const createMessageByScenario = (
   let likes = allowedContent.hasLikes
     ? randomNumberInRange({ min: 100, max: 2_000 })
     : 0;
-  let text = textTextMap[finalBanAction];
+  let text =
+    randomArrayItem(LOCATION_MESSAGES[locationId][lang as 'ru' | 'en']) ?? '';
 
   if (finalBanAction !== 'none') {
     const rules = scenario.banRules[finalBanAction];
@@ -121,7 +122,7 @@ export const createMessageByScenario = (
   } else if (contentType === 'binary') {
     text = obfuscateToBinary(text);
   } else if (contentType === 'ad') {
-    text = 'Купи прямо здесь и прямо сейчас!';
+    text = randomArrayItem(AD_MESSAGES[lang as 'ru' | 'en']) ?? '';
   }
 
   const avatarKey = getRandomAvatarKey(user);

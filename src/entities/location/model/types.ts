@@ -27,3 +27,8 @@ export interface LocationApp {
   scenarioIds: readonly ScenarioId[];
   unlocksAfter?: LocationId;
 }
+
+export interface LocationMessages {
+  ru: string[];
+  en: string[];
+}
