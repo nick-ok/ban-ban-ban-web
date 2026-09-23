@@ -13,6 +13,7 @@ import { GameStage, useGameStore } from '@/features/game';
 import { AppDrawer, Button, Icon, ZoomMotion } from '@/shared/ui';
 
 import { GameClock } from './GameClock';
+import { GameClue } from './GameClue';
 import { GameDrawerContent } from './GameDrawerContent';
 import { GameSceneReaction } from './GameSceneReaction';
 
@@ -99,13 +100,9 @@ export const GameScene = () => {
                 </Button>
               }
             >
-              {() => <div>INFO</div>}
+              {() => <GameClue banRules={activeScenario.banRules} />}
             </AppDrawer>
           )}
-
-          <Button onClick={() => gameSettings.toggleSettingsDrawer()}>
-            <Icon name={'settings'} className={styles.menuIcon} />
-          </Button>
 
           <AppDrawer
             containerRef={sceneRef}

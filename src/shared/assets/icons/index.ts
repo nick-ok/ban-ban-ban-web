@@ -28,6 +28,8 @@ export const ICON_NAMES = [
   'sparkles',
   'spiritual',
   'star',
+  'tap-long',
+  'tap',
   'winking-face',
   'work-chat',
   'zipper-mouth-face',

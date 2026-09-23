@@ -81,7 +81,15 @@
       "appGrid": "К списку приложений",
       "preview": "Превью приложения",
       "mainMenu": "Главное меню",
-      "settings": "Settings"
+      "settings": "Настройки",
+      "howToBan": "Для бана нажмите на сообщение",
+      "howToLongBan": "Чтобы отправить в бан надолго - нажмите и удерживайте сообщение",
+      "anonymousType": "Аноним",
+      "botType": "Бот",
+      "aiType": "Нейрослоп",
+      "hypeType": "Хайп",
+      "dissentType": "Несогласные",
+      "angryType": "Хейтеры"
     },
     "dayend": {
       "tierS": "Безупречно!",

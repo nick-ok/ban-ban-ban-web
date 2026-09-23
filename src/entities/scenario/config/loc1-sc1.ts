@@ -34,7 +34,7 @@ export const LOC1_SC1: Scenario = {
   unlockThreshold: 0,
   messageSpeedRange: [0.3, 1],
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:30'),
+  endWorktime: timeToMinutes('18:00'),
   allowedContent: {
     users: ['male', 'female'],
     content: ['audio'],
@@ -42,8 +42,8 @@ export const LOC1_SC1: Scenario = {
     hasLikes: false,
   },
   banRules: {
-    ban: [{ content: ['fwords'] }],
-    longBan: [{ user: ['anonymous'] }],
+    ban: [{ content: ['fwords'], title: ['dissent', 'angry', 'hype'] }],
+    longBan: [{ user: ['anonymous', 'bot', 'ai'] }],
   },
   probabilities: {
     ban: 0.3,

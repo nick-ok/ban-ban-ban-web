@@ -1,3 +1,4 @@
+import { GameSettingsContent } from '@/entities/game-settings';
 import type { LocationApp } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
 import { type Scenario } from '@/entities/scenario';
@@ -60,6 +61,10 @@ export const GameDrawerContent = ({ location, onClose }: Props) => {
           >
             {t('screens.game.mainMenu')}
           </Button>
+        </div>
+
+        <div className={styles.gameSettings}>
+          <GameSettingsContent />
         </div>
       </div>
     </div>
