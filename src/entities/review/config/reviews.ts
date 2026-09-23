@@ -1,71 +1,18 @@
-import { nanoid } from 'nanoid';
-
 import type { LocationId } from '@/entities/location';
 
 import type { Review } from '../model/types';
+import { LOC1_REVIEWS } from './loc1-reviews';
+import { LOC2_REVIEWS } from './loc2-reviews';
+import { LOC3_REVIEWS } from './loc3-reviews';
+import { LOC4_REVIEWS } from './loc4-reviews';
+import { LOC5_REVIEWS } from './loc5-reviews';
+import { LOC6_REVIEWS } from './loc6-reviews';
 
 export const LOCATION_REVIEWS: Record<LocationId, Review[]> = {
-  loc1: [
-    {
-      id: nanoid(),
-      username: 'dmitry_KK',
-      text: {
-        ru: 'В этой локации в последнее время стало слишком много капсеров... Модераторы вообще работают?',
-        en: 'Lately, there are way too many people typing in all caps in this area... Do the moderators even do anything?',
-      },
-      rating: 1,
-      requiredProgress: 0,
-    },
-    {
-      id: nanoid(),
-      username: 'anna99',
-      text: {
-        ru: 'Постоянно натыкаюсь на каких-то странных анонимов в чате. Надеюсь, скоро наведут порядок.',
-        en: 'I keep running into these weird anonymous users in the chat. I hope they clean things up soon.',
-      },
-      rating: 2,
-      requiredProgress: 20,
-    },
-    {
-      id: nanoid(),
-      username: 'ivan',
-      text: {
-        ru: 'Постоянно натыкаюсь на каких-то странных анонимов в чате. Надеюсь, скоро наведут порядок.',
-        en: 'I keep running into these weird anonymous users in the chat. I hope they clean things up soon.',
-      },
-      rating: 5,
-      requiredProgress: 50,
-    },
-    {
-      id: nanoid(),
-      username: 'elena_prekrasnaya',
-      text: {
-        ru: 'Постоянно натыкаюсь на каких-то странных анонимов в чате. Надеюсь, скоро наведут порядок.',
-        en: 'I keep running into these weird anonymous users in the chat. I hope they clean things up soon.',
-      },
-      rating: 5,
-      requiredProgress: 100,
-    },
-    {
-      id: nanoid(),
-      username: 'CyberPavel',
-      text: {
-        ru: 'Постоянно натыкаюсь на каких-то странных анонимов в чате. Надеюсь, скоро наведут порядок.',
-        en: 'I keep running into these weird anonymous users in the chat. I hope they clean things up soon.',
-      },
-      rating: 5,
-      requiredProgress: 100,
-      isPerfectOnly: true,
-    },
-  ],
-
-  loc2: [],
-
-  loc3: [],
-
-  loc4: [],
-
-  loc5: [],
-
-  loc6: [],
+  loc1: LOC1_REVIEWS,
+  loc2: LOC2_REVIEWS,
+  loc3: LOC3_REVIEWS,
+  loc4: LOC4_REVIEWS,
+  loc5: LOC5_REVIEWS,
+  loc6: LOC6_REVIEWS,
 };

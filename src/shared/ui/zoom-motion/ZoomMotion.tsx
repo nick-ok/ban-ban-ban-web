@@ -22,6 +22,7 @@ export const ZoomMotion = ({
       initial={{ scale, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration, ease: [0.22, 1, 0.36, 1] }}
+      exit={{ scale, opacity: 0 }}
       {...props}
     >
       {children}

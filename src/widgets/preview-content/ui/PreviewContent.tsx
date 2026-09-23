@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import clsx from 'clsx';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { AnimatePresence, motion, useScroll, useTransform } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 
 import { getIsLocationCompleted, getLocationById } from '@/entities/location';
@@ -25,6 +25,8 @@ import styles from './PreviewContent.module.css';
 
 export const PreviewContent = () => {
   const { t } = useTranslation();
+
+  const [isReviewsOpen, setReviewsOpen] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -180,6 +182,14 @@ export const PreviewContent = () => {
       )}
 
       <div ref={containerRef} className={styles.content}>
+        <Button
+          className={styles.reviewsBtn}
+          onClick={() => setReviewsOpen(true)}
+        >
+          {t('screens.preview.reviewsTitle')}
+          <Icon name={'angle-right'} className={styles.angleRight} />
+        </Button>
+
         <div className={styles.description}>
           {isGlobalAIActive ? (
             obfuscateToBinary(t(location.descriptionKey))
@@ -188,10 +198,15 @@ export const PreviewContent = () => {
           )}
         </div>
 
-        <PreviewContentReviews
-          reviews={reviews}
-          isGlobalAIActive={isGlobalAIActive}
-        />
+        <AnimatePresence>
+          {isReviewsOpen && (
+            <PreviewContentReviews
+              reviews={reviews}
+              isGlobalAIActive={isGlobalAIActive}
+              onClose={() => setReviewsOpen(false)}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

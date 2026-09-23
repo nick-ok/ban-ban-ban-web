@@ -106,6 +106,19 @@
   margin-top: var(--space-4);
 }
 
+.reviewsBtn {
+  width: 100%;
+  height: var(--space-10);
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  color: var(--color-primary);
+}
+
+.angleRight {
+  width: var(--space-5);
+  height: var(--space-5);
+}
+
 .content {
   flex-grow: 1;
   width: 100%;

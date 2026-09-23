@@ -1,5 +1,6 @@
 export const ICON_NAMES = [
   'angle-left',
+  'angle-right',
   'anguished-face',
   'check',
   'chip-ai',
