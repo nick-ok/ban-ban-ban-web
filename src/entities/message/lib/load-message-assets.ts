@@ -16,12 +16,12 @@ export const loadMessageAssets = async (): Promise<void> => {
   const titleKeys = Object.keys(TITLE_ASSETS).filter(
     (key) => key !== 'empty',
   ) as TitleAssetKey[];
-  const footerKeys = Object.keys(UI_ASSETS) as UIAssetKey[];
+  const uiKeys = Object.keys(UI_ASSETS) as UIAssetKey[];
 
   const assetGroups: Array<{ keys: string[]; source: AssetRecord }> = [
     { keys: avatarKeys, source: AVATAR_ASSETS },
     { keys: titleKeys, source: TITLE_ASSETS },
-    { keys: footerKeys, source: UI_ASSETS },
+    { keys: uiKeys, source: UI_ASSETS },
   ];
 
   assetGroups.forEach(({ keys, source }) => {
@@ -32,7 +32,7 @@ export const loadMessageAssets = async (): Promise<void> => {
     });
   });
 
-  const allKeys = [...avatarKeys, ...titleKeys, ...footerKeys];
+  const allKeys = [...avatarKeys, ...titleKeys, ...uiKeys];
 
   await PIXI.Assets.load(allKeys);
 };

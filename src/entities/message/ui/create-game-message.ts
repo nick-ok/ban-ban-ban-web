@@ -26,26 +26,39 @@ export const createGameMessage = (
   const textStartY = bubble.padding + bubble.headSize + GAP;
   const wordWrapWidth = bubble.width - bubble.padding * 2;
 
-  const pixiText = new PIXI.Text({
-    text: content?.text,
-    style: {
-      fontSize: bubble.fontSize,
-      fill: colors.text,
-      wordWrap: true,
-      wordWrapWidth,
-      breakWords: true,
-    },
-  });
-  pixiText.position.set(bubble.padding, textStartY);
+  let currentBottomY = textStartY;
+  let pixiText: PIXI.Text | null = null;
+  let audioSprite: PIXI.Sprite | null = null;
 
-  if (content.type === 'blurred') {
-    const textBlurFilter = new PIXI.BlurFilter();
+  if (content.type === 'audio') {
+    audioSprite = new PIXI.Sprite(PIXI.Assets.get('voiceMessage'));
 
-    textBlurFilter.strength = 6;
-    pixiText.filters = [textBlurFilter];
+    audioSprite.width = wordWrapWidth;
+    audioSprite.scale.y = audioSprite.scale.x;
+
+    audioSprite.position.set(bubble.padding, textStartY);
+    currentBottomY = textStartY + audioSprite.height;
+  } else {
+    pixiText = new PIXI.Text({
+      text: content?.text,
+      style: {
+        fontSize: bubble.fontSize,
+        fill: colors.text,
+        wordWrap: true,
+        wordWrapWidth,
+        breakWords: true,
+      },
+    });
+    pixiText.position.set(bubble.padding, textStartY);
+
+    if (content.type === 'blurred') {
+      const textBlurFilter = new PIXI.BlurFilter();
+      textBlurFilter.strength = 6;
+      pixiText.filters = [textBlurFilter];
+    }
+
+    currentBottomY = textStartY + pixiText.height;
   }
-
-  let currentBottomY = textStartY + pixiText.height;
 
   let adButtonContainer: PIXI.Container | null = null;
 
@@ -112,7 +125,6 @@ export const createGameMessage = (
 
   container.updateProgress = (percent: number) => {
     const clampedPercent = Math.min(1, Math.max(0, percent));
-
     progressMask.y = totalHeight - totalHeight * clampedPercent;
   };
 
@@ -120,7 +132,14 @@ export const createGameMessage = (
   container.addChild(progressBubble);
   container.addChild(progressMask);
   container.addChild(headContainer);
-  container.addChild(pixiText);
+
+  if (pixiText) {
+    container.addChild(pixiText);
+  }
+
+  if (audioSprite) {
+    container.addChild(audioSprite);
+  }
 
   if (adButtonContainer) {
     container.addChild(adButtonContainer);

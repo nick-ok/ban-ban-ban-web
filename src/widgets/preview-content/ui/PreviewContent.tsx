@@ -180,13 +180,13 @@ export const PreviewContent = () => {
       )}
 
       <div ref={containerRef} className={styles.content}>
-        <p className={styles.description}>
+        <div className={styles.description}>
           {isGlobalAIActive ? (
             obfuscateToBinary(t(location.descriptionKey))
           ) : (
             <ReactMarkdown>{t(location.descriptionKey)}</ReactMarkdown>
           )}
-        </p>
+        </div>
 
         <PreviewContentReviews
           reviews={reviews}

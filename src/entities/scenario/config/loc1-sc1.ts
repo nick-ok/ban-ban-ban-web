@@ -37,7 +37,7 @@ export const LOC1_SC1: Scenario = {
   endWorktime: timeToMinutes('10:30'),
   allowedContent: {
     users: ['male', 'female'],
-    content: ['normal'],
+    content: ['audio'],
     titles: ['empty'],
     hasLikes: false,
   },
