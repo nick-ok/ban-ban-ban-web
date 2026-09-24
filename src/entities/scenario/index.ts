@@ -9,3 +9,4 @@ export { getNextLocationToUnlock } from './lib/get-next-location-to-unlock';
 export { getLocationScenarios } from './lib/get-location-scenarios';
 export { getIsScenarioUnlocked } from './lib/get-is-scenario-unlocked';
 export { getActiveScenario } from './lib/get-active-scenario';
+export { rollBanAction } from './lib/roll-ban-action';

@@ -2,7 +2,12 @@ import * as PIXI from 'pixi.js';
 
 import { randomArrayItem } from '@/shared/lib';
 
-import { MESSAGE_CONFIG } from '../config/message-config';
+import {
+  BLUR_FILTER,
+  HOLD_TIME_LONG_MS,
+  HOLD_TIME_SHORT_MS,
+  MESSAGE_CONFIG,
+} from '../config/message-config';
 import type { ExtendedPixiMessageContainer, Message } from '../model/types';
 import {
   AD_BUTTON_HEIGHT,
@@ -58,9 +63,7 @@ export const createGameMessage = (
     pixiText.position.set(bubble.padding, textStartY);
 
     if (content.type === 'blurred') {
-      const textBlurFilter = new PIXI.BlurFilter();
-      textBlurFilter.strength = 6;
-      pixiText.filters = [textBlurFilter];
+      pixiText.filters = [BLUR_FILTER];
     }
 
     currentBottomY = textStartY + pixiText.height;
@@ -127,7 +130,12 @@ export const createGameMessage = (
   container.messageData = message;
   container.isPressed = false;
   container.holdTime = 0;
-  container.targetTime = message.banAction === 'longBan' ? 1000 : 500;
+  container.targetTime =
+    message.banAction === 'longBan' ? HOLD_TIME_LONG_MS : HOLD_TIME_SHORT_MS;
+
+  container.isDying = false;
+  container.dyingPhase = 'stamp';
+  container.dyingElapsed = 0;
 
   container.updateProgress = (percent: number) => {
     const clampedPercent = Math.min(1, Math.max(0, percent));

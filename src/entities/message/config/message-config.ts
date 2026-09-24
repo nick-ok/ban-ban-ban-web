@@ -1,3 +1,5 @@
+import * as PIXI from 'pixi.js';
+
 export const MESSAGE_CONFIG = {
   bubble: {
     width: 190,
@@ -17,3 +19,9 @@ export const MESSAGE_CONFIG = {
     offset: 20,
   },
 };
+
+export const BLUR_FILTER = new PIXI.BlurFilter();
+BLUR_FILTER.strength = 6;
+
+export const HOLD_TIME_SHORT_MS = 500;
+export const HOLD_TIME_LONG_MS = 1000;

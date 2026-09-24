@@ -1,9 +1,13 @@
 import * as PIXI from 'pixi.js';
 
-import { createGameMessage, type BanAction } from '@/entities/message';
+import { createGameMessage } from '@/entities/message';
 import { createMessageByScenario } from '@/entities/message/lib/create-message-by-scenario';
-import type { Scenario } from '@/entities/scenario';
+import { rollBanAction, type Scenario } from '@/entities/scenario';
 import { useGameStore } from '@/features/game';
+
+import { attachMessageInput } from '../lib/attach-message-input';
+import { getMessagePosition } from '../lib/get-message-position';
+import { initMessageState } from '../lib/init-message-state';
 
 export const useSpawnLogic = (
   scenario: Scenario | null,
@@ -17,54 +21,19 @@ export const useSpawnLogic = (
       return;
     }
 
-    const rand = Math.random();
-
-    let banAction: BanAction = 'none';
-
-    if (rand < scenario.probabilities.ban) {
-      banAction = 'ban';
-    } else if (
-      rand <
-      scenario.probabilities.ban + scenario.probabilities.longBan
-    ) {
-      banAction = 'longBan';
-    }
+    const banAction = rollBanAction(scenario.probabilities);
 
     const message = createMessageByScenario(scenario, banAction);
     const container = createGameMessage(message, isAutomoderation);
 
-    const stageWidth = app.renderer.width;
-    const stageHeight = app.renderer.height;
+    const { x, y } = getMessagePosition(container, app, message.side);
+    container.x = x;
+    container.y = y;
 
-    const containerWidth = container.getBounds().width || 200;
-    const containerHeight = container.getBounds().height || 200;
-
-    container.x = message.side === 'left' ? 0 : stageWidth - containerWidth;
-    container.y = stageHeight - containerHeight;
-
-    container.isPressed = false;
-    container.holdTime = 0;
-    container.targetTime = message.banAction === 'longBan' ? 1000 : 500;
-
-    container.on('pointerdown', () => {
-      container.isPressed = true;
-      container.zIndex = 10;
-    });
-
-    const handlePointerUp = () => {
-      if (!container.isPressed) {
-        return;
-      }
-
-      container.isPressed = false;
-      container.zIndex = 0;
-    };
-
-    container.on('pointerup', handlePointerUp);
-    container.on('pointerupoutside', handlePointerUp);
+    initMessageState(container, message.banAction);
+    attachMessageInput(container);
 
     app.stage.addChild(container);
-
     incrementStat('total');
   };
 

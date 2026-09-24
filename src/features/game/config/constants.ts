@@ -1,4 +1,4 @@
-export const SPAWN_INTERVAL = 1500;
+export const SPAWN_INTERVAL = 1000;
 export const GAME_MINUTES_PER_SECOND = 4;
 
 export const K_WRONG_BAN = 3.0;

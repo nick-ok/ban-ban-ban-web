@@ -3,6 +3,11 @@ import { useEffect, useRef, useState } from 'react';
 import { initDevtools } from '@pixi/devtools';
 import * as PIXI from 'pixi.js';
 
+import {
+  initParticleTextures,
+  resetParticleTextures,
+} from '@/entities/message';
+
 export const usePixiApp = (
   containerRef: React.RefObject<HTMLDivElement | null>,
 ) => {
@@ -41,6 +46,8 @@ export const usePixiApp = (
 
         containerRef.current.appendChild(appInstance.canvas);
 
+        initParticleTextures(appInstance);
+
         appRef.current = appInstance;
         setApp(appInstance);
       } catch (error) {
@@ -52,9 +59,12 @@ export const usePixiApp = (
 
     return () => {
       isDestroyed = true;
+
       if (appRef.current) {
         appRef.current.destroy(true, { children: true, texture: false });
       }
+
+      resetParticleTextures();
     };
   }, [containerRef]);
 
