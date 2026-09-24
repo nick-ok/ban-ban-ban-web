@@ -5,18 +5,23 @@ import clsx from 'clsx';
 import { obfuscateToBinary } from '@/entities/message';
 import { type Review } from '@/entities/review';
 import { i18n, useTranslation } from '@/features/i18n';
-import { Icon } from '@/shared/ui';
+import { Button, Icon, ZoomMotion } from '@/shared/ui';
 
 import styles from './PreviewContentReviews.module.css';
 
 interface Props {
   reviews: Review[];
   isGlobalAIActive: boolean;
+  onClose: () => void;
 }
 
 const MAX_STARS = 5;
 
-export const PreviewContentReviews = ({ reviews, isGlobalAIActive }: Props) => {
+export const PreviewContentReviews = ({
+  reviews,
+  isGlobalAIActive,
+  onClose,
+}: Props) => {
   const { t } = useTranslation();
 
   const lng = useMemo(() => {
@@ -34,8 +39,14 @@ export const PreviewContentReviews = ({ reviews, isGlobalAIActive }: Props) => {
   }
 
   return (
-    <div className={styles.root}>
-      <h1 className={styles.title}>{t('screens.preview.reviewsTitle')}</h1>
+    <ZoomMotion className={styles.root}>
+      <div className={styles.head}>
+        <Button onClick={onClose}>
+          <Icon name={'angle-left'} className={styles.angleLeftIcon} />
+        </Button>
+
+        <h1 className={styles.title}>{t('screens.preview.reviewsTitle')}</h1>
+      </div>
 
       <div className={styles.reviewsList}>
         {reviews.map((review) => {
@@ -87,6 +98,6 @@ export const PreviewContentReviews = ({ reviews, isGlobalAIActive }: Props) => {
           );
         })}
       </div>
-    </div>
+    </ZoomMotion>
   );
 };

@@ -32,5 +32,5 @@ export const getReviewsByProgress = ({
     return review.requiredProgress <= completion;
   });
 
-  return availableReviews.slice(-5).reverse();
+  return availableReviews.slice(-5);
 };
