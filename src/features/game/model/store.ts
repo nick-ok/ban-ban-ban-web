@@ -3,7 +3,12 @@ import { create } from 'zustand';
 
 import type { ScenarioId } from '@/entities/scenario';
 
-import type { GameStats, ReactionState, ReactionType } from './types';
+import type {
+  GameStats,
+  ReactionState,
+  ReactionType,
+  StatKeyType,
+} from './types';
 
 interface GameState {
   currentScenarioId: ScenarioId | null;
@@ -26,7 +31,7 @@ interface GameState {
 
   setGamePaused: (paused: boolean) => void;
 
-  incrementStat: <K extends keyof GameStats>(statKey: K) => void;
+  incrementStat: (statKey: StatKeyType) => void;
   triggerReaction: (type: ReactionType) => void;
   clearReaction: () => void;
 

@@ -23,7 +23,7 @@ export const GameStage = ({ scenario }: Props) => {
   const { spawnMessage } = useSpawnLogic(scenario, app);
 
   useGameLoop({
-    app: app,
+    app,
     isActive: isLoopActive,
     onSpawn: spawnMessage,
   });

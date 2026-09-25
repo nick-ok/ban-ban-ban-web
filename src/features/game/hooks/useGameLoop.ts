@@ -6,7 +6,15 @@ import type { ExtendedPixiMessageContainer } from '@/entities/message';
 import { useNavigationStore } from '@/entities/navigation';
 import { useGameStore } from '@/features/game';
 
-import { GAME_MINUTES_PER_SECOND, SPAWN_INTERVAL } from '../lib/constants';
+import {
+  createParticleLayer,
+  type ParticleLayer,
+} from '../lib/create-particle-layer';
+import { createSpawnTimer } from '../lib/create-spawn-timer';
+import { createScreenShake, type ScreenShake } from '../lib/screen-shake';
+import { tickGameClock } from '../lib/tick-game-clock';
+import { updateMessage } from '../lib/update-message';
+import { updateParticles } from '../lib/update-particles';
 
 interface UseGameLoopOptions {
   app: PIXI.Application | null;
@@ -15,7 +23,7 @@ interface UseGameLoopOptions {
 }
 
 export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
-  const spawnTimerRef = useRef<number>(0);
+  const spawnTimerRef = useRef(createSpawnTimer());
   const setScene = useNavigationStore((state) => state.setScene);
 
   const isPaused = useGameStore((state) => state.isPaused);
@@ -37,6 +45,9 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
     isAutomoderation,
   });
 
+  const particleLayerRef = useRef<ParticleLayer | null>(null);
+  const screenShakeRef = useRef<ScreenShake | null>(null);
+
   useEffect(() => {
     loopStateRef.current = {
       isWorkingDayActive,
@@ -53,8 +64,8 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
     }
 
     const handler = (ticker: PIXI.Ticker) => {
-      const elapsedMS = ticker.elapsedMS;
-      const deltaMS = ticker.deltaMS;
+      const { elapsedMS, deltaMS } = ticker;
+
       const {
         isWorkingDayActive: activeDay,
         isDayFinished: dayEnded,
@@ -67,88 +78,50 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
         return;
       }
 
+      if (particleLayerRef.current) {
+        updateParticles(particleLayerRef.current, deltaMS);
+      }
+
+      if (screenShakeRef.current) {
+        screenShakeRef.current.update(deltaMS);
+      }
+
       if (activeDay) {
-        if (!isAutomoderation) {
-          const gameMinutesPassed = (deltaMS / 1000) * GAME_MINUTES_PER_SECOND;
+        tickGameClock({
+          deltaMS,
+          isAutomoderation,
+          updateGameTime,
+        });
 
-          updateGameTime(gameMinutesPassed);
-        }
-
-        spawnTimerRef.current += deltaMS;
-        if (spawnTimerRef.current >= SPAWN_INTERVAL) {
-          spawnTimerRef.current = 0;
-          spawnFn();
-        }
+        spawnTimerRef.current.tick(deltaMS, spawnFn);
       }
 
       const stage = app.stage;
-      const margin = 20;
       const children = stage.children.slice() as ExtendedPixiMessageContainer[];
 
+      const ctx = {
+        stage,
+        deltaMS,
+        elapsedMS,
+        incrementStat,
+        triggerReaction,
+        particleLayer: particleLayerRef.current,
+        screenShake: screenShakeRef.current,
+      };
+
       for (const child of children) {
-        if (child.holdTime === undefined) {
-          child.holdTime = 0;
-        }
-
-        const targetTime = child.targetTime || 500;
-
-        if (child.isPressed) {
-          child.holdTime += elapsedMS;
-
-          if (child.holdTime >= targetTime) {
-            const banAction = child.messageData?.banAction;
-
-            if (banAction === 'ban') {
-              incrementStat('banned');
-              triggerReaction('banned');
-            } else if (banAction === 'longBan') {
-              incrementStat('longBanned');
-              triggerReaction('longBanned');
-            } else {
-              incrementStat('wrongBanned');
-              triggerReaction('wrongBanned');
-            }
-
-            stage.removeChild(child);
-            child.destroy({ children: true, texture: false });
-            continue;
-          }
-        } else if (child.holdTime > 0) {
-          child.holdTime -= elapsedMS * 2;
-          if (child.holdTime < 0) {
-            child.holdTime = 0;
-          }
-        }
-
-        const percent = child.holdTime / targetTime;
-        child.updateProgress(percent);
-
-        if (child.isPressed) {
+        if (!child.messageData) {
           continue;
         }
 
-        const speed = child.messageData?.speed ?? 0.5;
-        const moveAmount = speed * (deltaMS / 1000) * 100;
-        child.y -= moveAmount;
-
-        const bounds = child.getBounds();
-        if (bounds.y + bounds.height < -margin) {
-          const banAction = child.messageData?.banAction;
-
-          if (banAction === 'ban') {
-            incrementStat('missed');
-            triggerReaction('missed');
-          } else if (banAction === 'longBan') {
-            incrementStat('missedLong');
-            triggerReaction('missedLong');
-          }
-
-          stage.removeChild(child);
-          child.destroy({ children: true, texture: false });
-        }
+        updateMessage(child, ctx);
       }
 
-      if (dayEnded && stage.children.length === 0) {
+      const hasMessages = stage.children.some(
+        (child) => 'messageData' in child && !!child.messageData,
+      );
+
+      if (dayEnded && !hasMessages) {
         finishGame();
       }
     };
@@ -157,16 +130,63 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
     ticker.add(handler);
 
     return () => {
-      if (app && app.ticker && app.ticker.started) {
+      if (app?.ticker?.started) {
         app.ticker.remove(handler);
-        spawnTimerRef.current = 0;
+        spawnTimerRef.current.reset();
       }
     };
-  }, [isActive, app, updateGameTime, finishGame, incrementStat]);
+  }, [
+    isActive,
+    app,
+    updateGameTime,
+    triggerReaction,
+    incrementStat,
+    finishGame,
+  ]);
 
   useEffect(() => {
-    if (isGameComplete) {
-      setScene('dayend');
+    if (!app) {
+      return;
     }
+
+    const layer = createParticleLayer();
+
+    app.stage.addChild(layer.container);
+    particleLayerRef.current = layer;
+
+    return () => {
+      if (app.stage) {
+        app.stage.removeChild(layer.container);
+      }
+
+      screenShakeRef.current = createScreenShake(app);
+
+      if (!layer.container.destroyed) {
+        layer.container.destroy({ children: true });
+      }
+
+      particleLayerRef.current = null;
+    };
+  }, [app]);
+
+  useEffect(() => {
+    if (!app) {
+      return;
+    }
+
+    screenShakeRef.current = createScreenShake(app);
+
+    return () => {
+      screenShakeRef.current?.reset();
+      screenShakeRef.current = null;
+    };
+  }, [app]);
+
+  useEffect(() => {
+    if (!isGameComplete) {
+      return;
+    }
+
+    setScene('dayend');
   }, [isGameComplete, setScene]);
 };

@@ -31,6 +31,31 @@ export interface ExtendedPixiMessageContainer extends PIXI.Container {
   isPressed?: boolean;
   holdTime: number;
   targetTime: number;
+  isDying: boolean;
+  dyingPhase: 'stamp' | 'eject' | 'particles' | 'done';
+  dyingElapsed: number;
+
+  dyingEffect?: {
+    particles: 'positive' | 'negative';
+    shake: number;
+  };
+
+  banStampState?: {
+    sprite: PIXI.Sprite;
+    startRotation: number;
+    targetRotation: number;
+    startScale: number;
+    targetScale: number;
+  };
+
+  ejectState?: {
+    startX: number;
+    startY: number;
+    velocityX: number;
+    velocityY: number;
+    rotationStart: number;
+    rotationTarget: number;
+  };
 
   updateProgress: (percent: number) => void;
 

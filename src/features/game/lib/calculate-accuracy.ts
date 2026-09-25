@@ -1,5 +1,5 @@
+import { K_MISSED, K_MISSED_LONG, K_WRONG_BAN } from '../config/constants';
 import type { GameStats } from '../model/types';
-import { K_MISSED, K_MISSED_LONG, K_WRONG_BAN } from './constants';
 
 export const calculateAccuracy = (stats: GameStats): number => {
   const { total, wrongBanned, missedLong, missed } = stats;
