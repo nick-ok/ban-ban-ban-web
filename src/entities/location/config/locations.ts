@@ -17,10 +17,8 @@ export const LOCATIONS: LocationApp[] = [
       name: 'hoa',
     },
     owner: LOC_1_OWNER,
-    previewImage: '/images/hoa.webp',
-    background: '#c3b850',
+    background: '#059669',
     scenarioIds: ['loc1_sc1', 'loc1_sc2', 'loc1_sc3'],
-    unlocksAfter: undefined,
   },
   {
     id: 'loc2',
@@ -30,10 +28,8 @@ export const LOCATIONS: LocationApp[] = [
     icon: {
       name: 'spiritual',
     },
-    previewImage: '/images/soul-space.webp',
-    background: '#CCFBF1',
+    background: '#C6934B',
     scenarioIds: ['loc2_sc1', 'loc2_sc2', 'loc2_sc3'],
-    unlocksAfter: 'loc2',
   },
   {
     id: 'loc3',
@@ -43,10 +39,8 @@ export const LOCATIONS: LocationApp[] = [
     icon: {
       name: 'love-chat',
     },
-    previewImage: '/images/trinder.webp',
     background: '#E11D48',
     scenarioIds: ['loc3_sc1', 'loc3_sc2', 'loc3_sc3'],
-    unlocksAfter: 'loc2',
   },
   {
     id: 'loc4',
@@ -56,10 +50,8 @@ export const LOCATIONS: LocationApp[] = [
     icon: {
       name: 'work-chat',
     },
-    previewImage: '/images/slaq.webp',
     background: '#2563EB',
     scenarioIds: ['loc4_sc1', 'loc4_sc2', 'loc4_sc3'],
-    unlocksAfter: 'loc2',
   },
   {
     id: 'loc5',
@@ -69,10 +61,8 @@ export const LOCATIONS: LocationApp[] = [
     icon: {
       name: 'news',
     },
-    previewImage: '/images/readit.webp',
     background: '#FF4500',
     scenarioIds: ['loc5_sc1', 'loc5_sc2', 'loc5_sc3'],
-    unlocksAfter: 'loc2',
   },
   {
     id: 'loc6',
@@ -82,9 +72,7 @@ export const LOCATIONS: LocationApp[] = [
     icon: {
       name: 'global-state',
     },
-    previewImage: '/images/net-state.webp',
     background: '#005EA5',
     scenarioIds: ['loc6_sc1', 'loc6_sc2', 'loc6_sc3'],
-    unlocksAfter: 'loc2',
   },
 ] as const;

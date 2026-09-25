@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { motion } from 'motion/react';
 
 import type { LocationApp } from '@/entities/location';
@@ -10,6 +11,7 @@ import styles from './AppGridItem.module.css';
 interface Props {
   location: LocationApp;
   isLocked: boolean;
+  isLastUnlocked: boolean;
   isGlobalAIActive: boolean;
   stats: {
     completed: number;
@@ -21,6 +23,7 @@ interface Props {
 export const AppGridItem = ({
   location,
   isLocked,
+  isLastUnlocked,
   stats,
   isGlobalAIActive,
 }: Props) => {
@@ -35,9 +38,14 @@ export const AppGridItem = ({
     <div className={styles.root}>
       <motion.button
         layoutId={`app-bg-${id}`}
-        className={styles.appButton}
+        className={clsx(
+          styles.appButton,
+          isLastUnlocked && styles.lastUnlocked,
+        )}
         style={{
-          backgroundColor: !isGlobalAIActive ? background : 'black',
+          backgroundColor: !isGlobalAIActive
+            ? background
+            : 'var(--color-black)',
         }}
         disabled={isLocked}
         whileTap={
@@ -68,13 +76,13 @@ export const AppGridItem = ({
           value={scenarioProgress}
           displayValue={`${stats.completed}/${stats.total}`}
           size="md"
-          fillColor="#07ff8b"
+          fillColor="var(--color-accent)"
         />
 
         <ProgressBar
           value={stats.averageAccuracy}
-          size="sm"
-          fillColor="#00aaff"
+          size="md"
+          fillColor="var(--color-accent-blue)"
         />
       </div>
     </div>

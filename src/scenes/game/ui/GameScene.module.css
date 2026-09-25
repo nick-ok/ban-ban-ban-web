@@ -5,7 +5,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: white;
+  background: var(--color-white);
   isolation: isolate;
 }
 
@@ -14,29 +14,16 @@
   padding: 0 var(--space-4);
 
   width: 100%;
-  height: calc(var(--u) * 21);
-  background: var(--color-success);
-  color: white;
+  height: calc(var(--u) * 20);
+  color: var(--color-white);
 
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-}
-
-.reaction {
-  margin-top: var(--space-7);
-
-  width: calc(var(--u) * 9);
-  height: calc(var(--u) * 9);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
 }
 
 .menuWrapper {
-  justify-self: end;
+  margin-left: auto;
 
   display: flex;
   align-items: center;

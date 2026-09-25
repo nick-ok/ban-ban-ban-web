@@ -16,7 +16,7 @@ export const NoInstructions = () => {
         <Button
           onClick={() => setScene('lobby')}
           className={styles.button}
-          variant={'white'}
+          variant={'warn'}
         >
           {t('scenarios.cancel')}
         </Button>

@@ -5,7 +5,7 @@ import {
   type ExtendedPixiMessageContainer,
 } from '@/entities/message';
 
-import type { ReactionType, StatKeyType } from '../model/types';
+import type { StatKeyType } from '../model/types';
 
 const MARGIN = 20;
 
@@ -13,14 +13,13 @@ interface UpdateMessageMotionContext {
   stage: PIXI.Container;
   deltaMS: number;
   incrementStat: (key: StatKeyType) => void;
-  triggerReaction: (key: ReactionType) => void;
 }
 
 export const updateMessageMotion = (
   child: ExtendedPixiMessageContainer,
   ctx: UpdateMessageMotionContext,
 ): void => {
-  const { stage, deltaMS, incrementStat, triggerReaction } = ctx;
+  const { stage, deltaMS, incrementStat } = ctx;
 
   const speed = child.messageData?.speed ?? 0.5;
   const moveAmount = speed * (deltaMS / 1000) * 100;
@@ -32,10 +31,8 @@ export const updateMessageMotion = (
 
     if (banAction === 'ban') {
       incrementStat('missed');
-      triggerReaction('missed');
     } else if (banAction === 'longBan') {
       incrementStat('missedLong');
-      triggerReaction('missedLong');
     }
 
     destroyGameMessage({

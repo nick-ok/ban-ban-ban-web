@@ -4,17 +4,12 @@ import { getGlobalAIProgress } from '@/entities/player-progress';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { getCanUnlockGlobalAI } from '@/features/game';
 import { useTranslation } from '@/features/i18n';
-import {
-  BlobsFX,
-  Button,
-  Icon,
-  ProgressBar,
-  ScanFX,
-  ZoomMotion,
-} from '@/shared/ui';
+import { Button, Icon, ProgressBar, ScanFX, ZoomMotion } from '@/shared/ui';
 import { AppGrid } from '@/widgets/app-grid';
 
 import styles from './LobbyScene.module.css';
+
+const WALLPAPPER_IMG = '/images/wallpaper-lobby.webp';
 
 export const LobbyScene = () => {
   const { t } = useTranslation();
@@ -37,7 +32,7 @@ export const LobbyScene = () => {
 
   return (
     <ZoomMotion className={styles.root}>
-      <BlobsFX />
+      <img src={WALLPAPPER_IMG} className={styles.wallpaper} />
 
       <ScanFX />
 
@@ -51,25 +46,41 @@ export const LobbyScene = () => {
           )}
 
           {canUnlockGlobalAI && (
-            <Button className={styles.lockAiBtn} onClick={handleRunGlobalAI}>
+            <Button
+              variant={'warn'}
+              className={styles.runGIPBtn}
+              onClick={handleRunGlobalAI}
+              glow={true}
+            >
               <Icon name={'lock-ai'} />
               {t('screens.lobby.runGIP')}
             </Button>
           )}
         </div>
 
-        <ProgressBar value={globalAIProgress} size={'lg'} />
+        <div className={styles.aiProgressBar}>
+          <ProgressBar
+            value={globalAIProgress}
+            size={'lg'}
+            fillColor={'var(--color-accent-blue)'}
+          />
+        </div>
       </div>
 
       <AppGrid />
 
       <div className={styles.bottomActions}>
-        <Button onClick={() => setScene('lock')}>
-          <Icon name={'lock-outline'} />
+        <Button className={styles.actionBtn} onClick={() => setScene('lock')}>
+          <Icon name={'lock-outline'} className={styles.actionBtnIcon} />
+          {t('screens.lobby.lock')}
         </Button>
 
-        <Button onClick={() => toggleSettingsDrawer()}>
-          <Icon name={'settings'} />
+        <Button
+          className={styles.actionBtn}
+          onClick={() => toggleSettingsDrawer()}
+        >
+          <Icon name={'settings'} className={styles.actionBtnIcon} />
+          {t('screens.lobby.settings')}
         </Button>
       </div>
     </ZoomMotion>

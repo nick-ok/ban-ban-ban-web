@@ -85,7 +85,11 @@ export const BriefingScene = () => {
 
   return (
     <ZoomMotion className={styles.root} onClick={handleScreenClick}>
-      <header className={styles.header} onClick={(e) => e.stopPropagation()}>
+      <header
+        className={styles.header}
+        style={{ background: location?.background }}
+        onClick={(e) => e.stopPropagation()}
+      >
         {location && (
           <div className={styles.headerInner}>
             <Button
@@ -170,15 +174,14 @@ export const BriefingScene = () => {
           >
             <Button
               onClick={handleNavigateToPreview}
-              className={styles.actionBtn}
-              style={{ color: 'white' }}
+              className={styles.actionCancelBtn}
             >
               {t('scenarios.cancel')}
             </Button>
 
             <Button
               onClick={() => setScene('game')}
-              className={styles.actionBtn}
+              className={styles.actionStartBtn}
             >
               {t('scenarios.start')}
             </Button>

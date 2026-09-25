@@ -34,7 +34,7 @@ export const ProgressBar = ({
   duration = 0.8,
   displayValue,
   size = 'sm',
-  trackColor = 'rgba(255, 255, 255, 0.08)',
+  trackColor = 'rgba(0, 0, 0, 0.2)',
   fillColor = 'var(--color-success)',
 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);

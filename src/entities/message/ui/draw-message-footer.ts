@@ -34,8 +34,8 @@ export const drawMessageFooter = ({ likesCount, likeAssetKey }: Props) => {
   const countText = new PIXI.Text({
     text: numberFormat(likesCount, i18n.language),
     style: {
-      fontSize: bubble.fontSize - 2,
-      fill: 0x888888,
+      fontSize: bubble.fontSize,
+      fill: 0x6b5246,
     },
   });
 

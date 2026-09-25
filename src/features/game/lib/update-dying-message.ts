@@ -41,8 +41,17 @@ export const updateDyingMessage = (
     sprite.rotation = startRotation + (targetRotation - startRotation) * eased;
 
     if (t >= 1) {
-      child.dyingPhase = 'eject';
-      child.dyingElapsed = 0;
+      if (ctx.particleLayer) {
+        const kind = child.dyingEffect?.particles ?? 'positive';
+        const bounds = child.getLocalBounds();
+
+        spawnParticles({
+          layer: ctx.particleLayer,
+          x: child.x + bounds.width / 2,
+          y: child.y + bounds.height / 2,
+          kind,
+        });
+      }
 
       const effect = child.dyingEffect;
 
@@ -52,6 +61,9 @@ export const updateDyingMessage = (
           duration: 180,
         });
       }
+
+      child.dyingPhase = 'eject';
+      child.dyingElapsed = 0;
     }
 
     return;
@@ -71,18 +83,6 @@ export const updateDyingMessage = (
         rotationStart: child.rotation,
         rotationTarget: child.rotation + (velocityX < 0 ? -0.3 : 0.3),
       };
-
-      if (ctx.particleLayer) {
-        const kind = child.dyingEffect?.particles ?? 'positive';
-        const bounds = child.getLocalBounds();
-
-        spawnParticles({
-          layer: ctx.particleLayer,
-          x: child.x + bounds.width / 2,
-          y: child.y + bounds.height / 2,
-          kind,
-        });
-      }
     }
 
     child.dyingElapsed += deltaMS;

@@ -31,10 +31,10 @@ export const initParticleTextures = (app: PIXI.Application) => {
   }
 
   particleTextures = {
-    zero: createCharTexture(app, '0', 0x22c55e),
-    one: createCharTexture(app, '1', 0xeab308),
-    error: createCharTexture(app, 'ERR', 0xef4444),
-    exclamation: createCharTexture(app, '!', 0x1a1a24),
+    zero: createCharTexture(app, '0', 0x6e8b72),
+    one: createCharTexture(app, '1', 0xd9984b),
+    error: createCharTexture(app, 'ERROR', 0xc26d6d),
+    exclamation: createCharTexture(app, '!', 0xc26d6d),
   };
 };
 

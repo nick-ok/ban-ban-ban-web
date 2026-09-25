@@ -1,14 +1,8 @@
-import { nanoid } from 'nanoid';
 import { create } from 'zustand';
 
 import type { ScenarioId } from '@/entities/scenario';
 
-import type {
-  GameStats,
-  ReactionState,
-  ReactionType,
-  StatKeyType,
-} from './types';
+import type { GameStats, StatKeyType } from './types';
 
 interface GameState {
   currentScenarioId: ScenarioId | null;
@@ -21,8 +15,6 @@ interface GameState {
   elapsedTime: number;
   isAutomoderation: boolean;
 
-  currentReaction: ReactionState | null;
-
   isWorkingDayActive: boolean;
   isDayFinished: boolean;
 
@@ -32,8 +24,6 @@ interface GameState {
   setGamePaused: (paused: boolean) => void;
 
   incrementStat: (statKey: StatKeyType) => void;
-  triggerReaction: (type: ReactionType) => void;
-  clearReaction: () => void;
 
   updateGameTime: (minutes: number) => void;
   finishWorkingDay: () => void;
@@ -89,13 +79,6 @@ export const useGameStore = create<GameState>()((set) => ({
       },
     }));
   },
-
-  triggerReaction: (type) =>
-    set({
-      currentReaction: { id: nanoid(), type },
-    }),
-
-  clearReaction: () => set({ currentReaction: null }),
 
   updateGameTime: (minutes) => {
     set((state) => {

@@ -15,7 +15,6 @@ import { AppDrawer, Button, Icon, ZoomMotion } from '@/shared/ui';
 import { GameClock } from './GameClock';
 import { GameClue } from './GameClue';
 import { GameDrawerContent } from './GameDrawerContent';
-import { GameSceneReaction } from './GameSceneReaction';
 
 import styles from './GameScene.module.css';
 
@@ -80,15 +79,22 @@ export const GameScene = () => {
 
   return (
     <ZoomMotion ref={sceneRef} className={styles.root}>
-      <div className={styles.hud}>
-        {!isAutoModerationEnabled ? <GameClock /> : <div />}
-
-        <div className={styles.reaction}>
-          <GameSceneReaction />
-        </div>
+      <div
+        className={styles.hud}
+        style={{
+          background: isGlobalAIActive
+            ? 'var(--color-black)'
+            : location.background,
+        }}
+      >
+        {!isAutoModerationEnabled && !isGlobalAIActive ? (
+          <GameClock />
+        ) : (
+          <div />
+        )}
 
         <div className={styles.menuWrapper}>
-          {!isAutoModerationEnabled && (
+          {!isAutoModerationEnabled && !isGlobalAIActive && (
             <AppDrawer
               containerRef={sceneRef}
               direction={'top'}

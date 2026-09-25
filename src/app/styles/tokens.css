@@ -20,6 +20,8 @@
   --space-9: calc(var(--u) * 9);
   --space-10: calc(var(--u) * 10);
   --space-20: calc(var(--u) * 20);
+  --space-30: calc(var(--u) * 30);
+  --space-40: calc(var(--u) * 40);
   --space-50: calc(var(--u) * 50);
   --space-100: calc(var(--u) * 100);
 
@@ -30,11 +32,17 @@
   --radius-2xl: calc(var(--u) * 6);
   --radius-3xl: calc(var(--u) * 7);
 
-  --color-primary: #1f90f0;
-  --color-success: #22c55e;
-  --color-warning: #eab308;
-  --color-danger: #ef4444;
-  --color-black: #1a1a24;
-  --color-grey-light: #dedede;
-  --color-grey: #878787;
+  --color-black: #362e2b;
+  --color-white: #f5f5f3;
+  --color-primary: #557a95;
+  --color-success: #6e8b72;
+  --color-warning: #d9984b;
+  --color-danger: #c26d6d;
+  --color-grey: #6b5246;
+  --color-grey-light: #e6dfd3;
+  --color-accent: #07ff8b;
+  --color-accent-blue: #00aaff;
+  --color-yellow: #f59e0b;
+
+  --background-main: radial-gradient(circle, #fcfaf2 30%, #e2d2b5 100%);
 }

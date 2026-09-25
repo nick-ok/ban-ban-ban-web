@@ -31,9 +31,9 @@
     transform: translateX(-50%);
     width: 120px;
     height: 28px;
-    background: #000;
+    background: black;
     border-radius: 0 0 14px 14px;
-    z-index: 100;
+    z-index: 200;
   }
 }
 

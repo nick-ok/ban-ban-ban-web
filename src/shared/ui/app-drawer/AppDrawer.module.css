@@ -9,7 +9,7 @@
 .content {
   position: absolute;
   z-index: 51;
-  background-color: var(--drawer-bg, white);
+  background-color: var(--drawer-bg);
   display: flex;
   flex-direction: column;
   outline: none;
@@ -58,7 +58,7 @@
 .content[data-type='left']::after {
   content: '';
   position: absolute;
-  background-color: var(--drawer-bg, white);
+  background-color: var(--drawer-bg);
 }
 
 .content[data-type='top']::after {

@@ -105,6 +105,15 @@ export const BootstrapScene = () => {
 
   return (
     <div className={styles.root}>
+      {isAnimationDone && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className={styles.overlay}
+        />
+      )}
+
       <div className={styles.logo}>
         <img
           ref={scope}
@@ -121,10 +130,11 @@ export const BootstrapScene = () => {
             className={styles.startBtnWrap}
           >
             <Button
-              variant="success"
-              className={styles.startBtn}
+              variant={'accent'}
+              className={styles.joinBtn}
               onClick={handleStart}
               withSound={false}
+              glow={true}
             >
               {t('screens.bootstrap.join')}
             </Button>

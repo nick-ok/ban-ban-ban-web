@@ -2,20 +2,19 @@ import * as PIXI from 'pixi.js';
 
 import { type ExtendedPixiMessageContainer } from '@/entities/message';
 
-import type { ReactionType, StatKeyType } from '../model/types';
+import type { StatKeyType } from '../model/types';
 
 interface UpdateMessageHoldContext {
   stage: PIXI.Container;
   elapsedMS: number;
   incrementStat: (key: StatKeyType) => void;
-  triggerReaction: (key: ReactionType) => void;
 }
 
 export const updateMessageHold = (
   child: ExtendedPixiMessageContainer,
   ctx: UpdateMessageHoldContext,
 ): void => {
-  const { elapsedMS, incrementStat, triggerReaction } = ctx;
+  const { elapsedMS, incrementStat } = ctx;
 
   const targetTime = child.targetTime || 500;
 
@@ -27,15 +26,12 @@ export const updateMessageHold = (
 
       if (banAction === 'ban') {
         incrementStat('banned');
-        triggerReaction('banned');
-        child.dyingEffect = { particles: 'positive', shake: 0 };
+        child.dyingEffect = { particles: 'positive', shake: 5 };
       } else if (banAction === 'longBan') {
         incrementStat('longBanned');
-        triggerReaction('longBanned');
         child.dyingEffect = { particles: 'positive', shake: 20 };
       } else {
         incrementStat('wrongBanned');
-        triggerReaction('wrongBanned');
         child.dyingEffect = { particles: 'negative', shake: 100 };
       }
 

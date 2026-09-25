@@ -11,8 +11,8 @@ interface SpawnParticlesOptions {
   kind: 'positive' | 'negative';
 }
 
-const POSITIVE_COUNT = 200;
-const NEGATIVE_COUNT = 100;
+const POSITIVE_COUNT = 100;
+const NEGATIVE_COUNT = 50;
 
 const POSITIVE_SPEED = 250;
 const NEGATIVE_SPEED = 350;

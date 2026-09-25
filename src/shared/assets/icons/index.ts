@@ -22,6 +22,7 @@ export const ICON_NAMES = [
   'music-off',
   'music-on',
   'news',
+  'question',
   'reload',
   'settings',
   'sound-off',

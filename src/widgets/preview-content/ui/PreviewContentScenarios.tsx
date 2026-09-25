@@ -1,5 +1,3 @@
-import clsx from 'clsx';
-
 import type { LocationApp } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
@@ -59,28 +57,23 @@ export const PreviewContentScenarios = ({
                 variant={'text'}
                 className={styles.btn}
                 onClick={() => handleScenario(s.id, s.unlocked)}
-                disabled={!s.unlocked}
               >
-                <img src={location.previewImage} className={styles.img} />
-
-                <div
-                  className={clsx(
-                    styles.blurMask,
-                    !s.unlocked && styles.locked,
-                  )}
-                />
-
-                {!s.unlocked && (
-                  <Icon name={'lock'} className={styles.lockIcon} />
+                {s.unlocked && (
+                  <img
+                    src={'/images/message/avatar-anon.webp'}
+                    className={styles.img}
+                  />
                 )}
 
-                {s.unlocked && <h3 className={styles.title}>{s.order}</h3>}
+                {!s.unlocked && (
+                  <Icon name={'question'} className={styles.questionIcon} />
+                )}
               </Button>
 
               <ProgressBar
                 value={progress}
                 size={'md'}
-                trackColor={'rgba(0, 0, 0, 0.15)'}
+                fillColor={'var(--color-accent-blue)'}
               />
             </div>
           );

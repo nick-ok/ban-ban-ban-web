@@ -26,7 +26,9 @@ export const PreviewScene = () => {
   const location = getLocationById(selectedLocationId);
   const isReady = phase === 'ready';
 
-  const locationBackground = isGlobalAIActive ? 'black' : location?.background;
+  const locationBackground = isGlobalAIActive
+    ? 'var(--color-black)'
+    : location?.background;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,7 +47,7 @@ export const PreviewScene = () => {
       layoutId={`app-bg-${selectedLocationId}`}
       className={clsx(styles.root, isReady ? styles.ready : styles.loading)}
       animate={{
-        backgroundColor: isReady ? 'white' : locationBackground,
+        backgroundColor: isReady ? 'var(--color-white)' : locationBackground,
       }}
       exit={{ backgroundColor: location.background }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
