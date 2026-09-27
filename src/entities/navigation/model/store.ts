@@ -7,6 +7,7 @@ export type Scene =
   | 'bootstrap'
   | 'intro'
   | 'lock'
+  | 'notificationsCenter'
   | 'lobby'
   | 'preview'
   | 'briefing'

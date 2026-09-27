@@ -66,9 +66,26 @@
       "showIntro": "Show intro"
     },
     "lobby": {
-      "runGIP": "Run GIP!",
+      "runGIP": "Run GIP AI!",
+      "GIPEnabled": "Protected with GIP AI",
+      "notifications": "Notifications",
       "lock": "Lock",
       "settings": "Settings"
+    },
+    "notifications": {
+      "notificationsCenter": "Notifications center",
+      "newTask": "A new task is available!",
+      "newApp": "The app is available now",
+      "automoderation": "Automatic moderation is available!",
+      "newReviews": "New reviews have appeared!",
+      "gameEnd": "You have successfully completed all the tasks! **GIP AI** thanks you for your diligence. You can start recording any task in any app at any time to train **GIP AI** to 100%",
+      "gameEndCompletely": "You have flawlessly completed all the tasks! **GIP AI** thanks you for the excellent work done! And as our best employee, we trust you specifically to launch **GIP AI** to the whole World!",
+      "good1": "Good",
+      "good2": "Got it",
+      "good3": "OK",
+      "good4": "Clear",
+      "good5": "Yep",
+      "noData": "No new notifications"
     },
     "preview": {
       "start": "Start",

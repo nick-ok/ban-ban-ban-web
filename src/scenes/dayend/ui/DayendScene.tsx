@@ -1,11 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import { useNavigationStore } from '@/entities/navigation';
-import { getGlobalAIProgress } from '@/entities/player-progress';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import {
   COMPLETION_THRESHOLD,
-  getNextLocationToUnlock,
+  getNextToUnlock,
   getScenarioById,
 } from '@/entities/scenario';
 import {
@@ -14,40 +13,37 @@ import {
   useGameStore,
 } from '@/features/game';
 import { useTranslation } from '@/features/i18n';
+import { useGameNotifications } from '@/features/notifications';
 import { Button, CountMotion, Icon, ZoomMotion } from '@/shared/ui';
 
-import { DayendRewards } from './DayendRewards';
 import { DayendStats } from './DayendStats';
 
 import styles from './DayendScene.module.css';
 
 export const DayEndScene = () => {
-  const [isRewards, setIsRewards] = useState(false);
-
   const { t } = useTranslation();
+
+  const { sendNotifications } = useGameNotifications();
 
   const stats = useGameStore((state) => state.stats);
   const currentScenarioId = useGameStore((state) => state.currentScenarioId);
+  const currentLocationId = useNavigationStore(
+    (state) => state.selectedLocationId,
+  );
   const startGame = useGameStore((state) => state.startGame);
   const resetGame = useGameStore((state) => state.resetGame);
 
-  const progress = usePlayerProgressStore();
-  const recordScenarioResult = usePlayerProgressStore(
-    (state) => state.recordScenarioResult,
-  );
   const unlockLocation = usePlayerProgressStore(
     (state) => state.unlockLocation,
   );
 
-  const { setScene, navigateToPreview, selectedLocationId } =
-    useNavigationStore();
+  const { setScene } = useNavigationStore();
 
   const computedAccuracy = calculateAccuracy(stats);
-  const globalAIProgress = getGlobalAIProgress(progress);
   const { tierLabelKey, gradeIcon } = getAccuracyGrade(computedAccuracy);
 
   const isPassed = computedAccuracy >= COMPLETION_THRESHOLD;
-  const { nextLocationIdToUnlock } = getNextLocationToUnlock(
+  const { nextLocationToUnlock } = getNextToUnlock(
     currentScenarioId ?? 'loc1_sc1',
   );
 
@@ -63,33 +59,20 @@ export const DayEndScene = () => {
     return 'var(--color-danger)';
   }, []);
 
-  const handleNext = () => {
+  const handleSaveAndExit = () => {
     if (!currentScenarioId) {
       return;
     }
 
-    recordScenarioResult(currentScenarioId, computedAccuracy);
-    const isAlreadyPassed =
-      progress.completedScenarioIds.includes(currentScenarioId);
-
-    if (isAlreadyPassed) {
-      resetGame();
-      navigateToPreview(selectedLocationId ?? 'loc1');
+    if (nextLocationToUnlock?.id) {
+      unlockLocation(nextLocationToUnlock.id);
     }
 
     if (isPassed) {
-      setIsRewards(true);
-    }
-
-    if (!isPassed) {
-      resetGame();
-      setScene('lobby');
-    }
-  };
-
-  const handleSaveAndExit = () => {
-    if (nextLocationIdToUnlock) {
-      unlockLocation(nextLocationIdToUnlock);
+      sendNotifications({
+        locationId: currentLocationId ?? 'loc1',
+        scenarioId: currentScenarioId,
+      });
     }
 
     resetGame();
@@ -113,17 +96,6 @@ export const DayEndScene = () => {
 
     setScene('game');
   };
-
-  if (isRewards) {
-    return (
-      <DayendRewards
-        nextLocationUnlocked={!!nextLocationIdToUnlock}
-        globalAccuracy={globalAIProgress}
-        onCancel={() => setIsRewards(false)}
-        onSave={handleSaveAndExit}
-      />
-    );
-  }
 
   return (
     <ZoomMotion className={styles.root}>
@@ -149,16 +121,12 @@ export const DayEndScene = () => {
       <div className={styles.actions}>
         <Button
           className={styles.button}
-          variant={isPassed ? 'primary' : 'text'}
-          onClick={handleNext}
+          variant={isPassed ? 'accent' : 'white'}
+          onClick={handleSaveAndExit}
+          glow={isPassed}
         >
-          <Icon
-            name={isPassed ? 'check' : 'globe'}
-            className={styles.buttonIcon}
-          />
-          <span>
-            {t(isPassed ? 'screens.dayend.next' : 'screens.dayend.home')}
-          </span>
+          <Icon name={'check'} className={styles.buttonIcon} />
+          <span>{t('screens.dayend.next')}</span>
         </Button>
 
         <Button

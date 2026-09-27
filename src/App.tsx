@@ -15,6 +15,7 @@ import { GameEndScene } from './scenes/game-end';
 import { IntroScene } from './scenes/intro';
 import { LobbyScene } from './scenes/lobby';
 import { LockScene } from './scenes/lock';
+import { NotificationsCenterScene } from './scenes/notifications-center';
 import { PreviewScene } from './scenes/preview';
 
 import styles from './App.module.css';
@@ -24,6 +25,7 @@ const scenes = {
   intro: IntroScene,
   lock: LockScene,
   lobby: LobbyScene,
+  notificationsCenter: NotificationsCenterScene,
   preview: PreviewScene,
   briefing: BriefingScene,
   game: GameScene,

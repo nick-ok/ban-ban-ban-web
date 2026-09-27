@@ -4,7 +4,9 @@ import * as PIXI from 'pixi.js';
 
 import type { ExtendedPixiMessageContainer } from '@/entities/message';
 import { useNavigationStore } from '@/entities/navigation';
-import { useGameStore } from '@/features/game';
+import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
+import type { ScenarioId } from '@/entities/scenario';
+import { calculateAccuracy, useGameStore } from '@/features/game';
 
 import {
   createParticleLayer,
@@ -19,22 +21,35 @@ import { updateParticles } from '../lib/update-particles';
 interface UseGameLoopOptions {
   app: PIXI.Application | null;
   isActive: boolean;
+  scenarioId: ScenarioId;
+  spawnSpeed: number;
   onSpawn: () => void;
 }
 
-export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
-  const spawnTimerRef = useRef(createSpawnTimer());
+export const useGameLoop = ({
+  app,
+  isActive,
+  scenarioId,
+  spawnSpeed,
+  onSpawn,
+}: UseGameLoopOptions) => {
+  const spawnTimerRef = useRef(createSpawnTimer(spawnSpeed));
   const setScene = useNavigationStore((state) => state.setScene);
 
   const isPaused = useGameStore((state) => state.isPaused);
   const isWorkingDayActive = useGameStore((state) => state.isWorkingDayActive);
   const isDayFinished = useGameStore((state) => state.isDayFinished);
   const isGameComplete = useGameStore((state) => state.isGameComplete);
+  const stats = useGameStore((state) => state.stats);
 
   const updateGameTime = useGameStore((state) => state.updateGameTime);
   const finishGame = useGameStore((state) => state.finishGame);
   const incrementStat = useGameStore((state) => state.incrementStat);
   const isAutomoderation = useGameStore((state) => state.isAutomoderation);
+
+  const recordScenarioResult = usePlayerProgressStore(
+    (state) => state.recordScenarioResult,
+  );
 
   const loopStateRef = useRef({
     isWorkingDayActive,
@@ -178,6 +193,9 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
       return;
     }
 
+    const computedAccuracy = calculateAccuracy(stats);
+
+    recordScenarioResult(scenarioId, computedAccuracy);
     setScene('dayend');
-  }, [isGameComplete, setScene]);
+  }, [isGameComplete, setScene, stats, scenarioId]);
 };

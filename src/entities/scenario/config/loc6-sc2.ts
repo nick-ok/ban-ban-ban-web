@@ -32,6 +32,7 @@ export const LOC6_SC2: Scenario = {
   order: 2,
   descriptionKey: 'scenarios.loc2_sc3.description',
   unlockThreshold: 75,
+  spawnSpeed: 1.5,
   messageSpeedRange: [0.3, 0.8],
   startWorktime: timeToMinutes('10:00'),
   endWorktime: timeToMinutes('10:30'),

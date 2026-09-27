@@ -55,7 +55,7 @@ export const AppGridItem = ({
       >
         <motion.div layoutId={`app-icon-${id}`} className={styles.iconWrapper}>
           <Icon
-            name={!isGlobalAIActive ? icon.name : 'lock-ai'}
+            name={!isGlobalAIActive ? icon.name : 'gip-ai'}
             className={styles.appIcon}
           />
         </motion.div>

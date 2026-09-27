@@ -54,7 +54,7 @@ export const PreviewScene = () => {
     >
       <PreviewSplash
         isReady={isReady}
-        iconName={isGlobalAIActive ? 'lock-ai' : location.icon.name}
+        iconName={isGlobalAIActive ? 'gip-ai' : location.icon.name}
         title={
           isGlobalAIActive ? obfuscateToBinary(location.name) : location.name
         }

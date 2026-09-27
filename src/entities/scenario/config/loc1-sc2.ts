@@ -5,6 +5,7 @@ import type { Scenario } from '../model/types';
 
 export const LOC1_SC2: Scenario = {
   id: 'loc1_sc2',
+  locationId: 'loc1',
   briefingSender: LOC_1_OWNER,
   briefingFlow: [
     {
@@ -28,10 +29,10 @@ export const LOC1_SC2: Scenario = {
       textKey: 'scenarios.loc1_sc1.briefing.msg4',
     },
   ],
-  locationId: 'loc1',
   order: 2,
   descriptionKey: 'scenarios.loc1_sc2.description',
   unlockThreshold: 75,
+  spawnSpeed: 1,
   messageSpeedRange: [0.3, 0.8],
   startWorktime: timeToMinutes('10:00'),
   endWorktime: timeToMinutes('10:30'),

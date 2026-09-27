@@ -62,7 +62,7 @@ export const PreviewContentReviews = ({
 
                 {isGlobalAIActive && (
                   <div className={styles.usernameCircle}>
-                    <Icon name="lock-ai" className={styles.lockAIIcon} />
+                    <Icon name="gip-ai" className={styles.lockAIIcon} />
                   </div>
                 )}
 

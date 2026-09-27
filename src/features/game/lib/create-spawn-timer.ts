@@ -1,18 +1,17 @@
-import { SPAWN_INTERVAL } from '../config/constants';
-
 interface SpawnTimer {
   tick: (deltaMS: number, onSpawn: () => void) => void;
   reset: () => void;
 }
 
-export const createSpawnTimer = (): SpawnTimer => {
+export const createSpawnTimer = (spawnSpeed: number): SpawnTimer => {
+  const spawnInterval = 1000;
   let elapsed = 0;
 
   return {
     tick: (deltaMS, onSpawn) => {
-      elapsed += deltaMS;
+      elapsed += deltaMS * spawnSpeed;
 
-      if (elapsed >= SPAWN_INTERVAL) {
+      if (elapsed >= spawnInterval) {
         elapsed = 0;
         onSpawn();
       }

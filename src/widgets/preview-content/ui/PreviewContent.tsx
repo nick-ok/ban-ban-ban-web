@@ -94,7 +94,7 @@ export const PreviewContent = () => {
       >
         <Icon
           className={styles.locationIcon}
-          name={isGlobalAIActive ? 'lock-ai' : location.icon.name}
+          name={isGlobalAIActive ? 'gip-ai' : location.icon.name}
           style={{
             color: isGlobalAIActive ? 'var(--color-white)' : undefined,
           }}
@@ -129,7 +129,7 @@ export const PreviewContent = () => {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               className={styles.enableAIBtnInner}
             >
-              <Icon name={'lock-ai'} className={styles.lockAIIcon} />
+              <Icon name={'gip-ai'} className={styles.lockAIIcon} />
               {t(
                 isAIModeration
                   ? 'screens.preview.aiEnabled'
