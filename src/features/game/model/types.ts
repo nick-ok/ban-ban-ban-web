@@ -10,11 +10,3 @@ export interface GameStats {
 export type TierLabel = 'c' | 'b' | 'a' | 's';
 
 export type StatKeyType = keyof GameStats;
-
-export type ReactionType =
-  'wrongBanned' | 'missedLong' | 'missed' | 'longBanned' | 'banned';
-
-export interface ReactionState {
-  id: string;
-  type: ReactionType;
-}

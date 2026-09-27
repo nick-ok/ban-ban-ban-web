@@ -22,10 +22,8 @@ export interface LocationApp {
   descriptionKey: ParseKeys;
   icon: LocationIcon;
   owner: LocationOwner;
-  previewImage: string;
   background: string;
   scenarioIds: readonly ScenarioId[];
-  unlocksAfter?: LocationId;
 }
 
 export interface LocationMessages {

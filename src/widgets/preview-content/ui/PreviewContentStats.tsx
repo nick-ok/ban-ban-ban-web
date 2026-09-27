@@ -26,7 +26,7 @@ export const PreviewContentStats = ({ rating, downloads, reviews }: Props) => {
         <div className={styles.stat}>
           <CountMotion
             to={reviews}
-            duration={0.5}
+            duration={0.6}
             format={(v) => numberFormat(v, i18n.language)}
             className={styles.value}
           />
@@ -38,7 +38,7 @@ export const PreviewContentStats = ({ rating, downloads, reviews }: Props) => {
         <div className={styles.stat}>
           <CountMotion
             to={downloads}
-            duration={0.5}
+            duration={0.6}
             format={(v) => numberFormat(v, i18n.language)}
             className={styles.value}
           />

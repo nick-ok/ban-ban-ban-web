@@ -34,7 +34,7 @@ export const AppDrawer = ({
   trigger,
   withSound = true,
   direction = 'right',
-  backgroundColor,
+  backgroundColor = 'var(--color-white)',
   open,
   onOpenChange,
   onClose,

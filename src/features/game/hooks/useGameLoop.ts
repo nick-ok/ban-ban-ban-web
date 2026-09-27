@@ -34,7 +34,6 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
   const updateGameTime = useGameStore((state) => state.updateGameTime);
   const finishGame = useGameStore((state) => state.finishGame);
   const incrementStat = useGameStore((state) => state.incrementStat);
-  const triggerReaction = useGameStore((state) => state.triggerReaction);
   const isAutomoderation = useGameStore((state) => state.isAutomoderation);
 
   const loopStateRef = useRef({
@@ -104,7 +103,6 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
         deltaMS,
         elapsedMS,
         incrementStat,
-        triggerReaction,
         particleLayer: particleLayerRef.current,
         screenShake: screenShakeRef.current,
       };
@@ -135,14 +133,7 @@ export const useGameLoop = ({ app, isActive, onSpawn }: UseGameLoopOptions) => {
         spawnTimerRef.current.reset();
       }
     };
-  }, [
-    isActive,
-    app,
-    updateGameTime,
-    triggerReaction,
-    incrementStat,
-    finishGame,
-  ]);
+  }, [isActive, app, updateGameTime, incrementStat, finishGame]);
 
   useEffect(() => {
     if (!app) {

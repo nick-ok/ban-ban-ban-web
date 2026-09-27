@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 
 import type { ExtendedPixiMessageContainer } from '@/entities/message';
 
-import type { ReactionType, StatKeyType } from '../model/types';
+import type { StatKeyType } from '../model/types';
 import type { ParticleLayer } from './create-particle-layer';
 import type { ScreenShake } from './screen-shake';
 import { updateDyingMessage } from './update-dying-message';
@@ -16,7 +16,6 @@ interface UpdateMessageContext {
   particleLayer: ParticleLayer | null;
   screenShake: ScreenShake | null;
   incrementStat: (key: StatKeyType) => void;
-  triggerReaction: (key: ReactionType) => void;
 }
 
 export const updateMessage = (

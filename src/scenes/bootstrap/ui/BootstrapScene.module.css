@@ -1,14 +1,25 @@
 .root {
   position: relative;
-  background: radial-gradient(circle, #fcfaf2 30%, #e2d2b5 100%);
+  background: var(--background-main);
   width: 100%;
   height: 100%;
   padding: var(--space-10) var(--space-2);
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2;
 }
 
 .logo {
@@ -28,16 +39,23 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  z-index: 0;
+  z-index: 1;
 
   filter: drop-shadow(0 20px 30px rgba(42, 26, 8, 0.2));
 }
 
-.startBtn {
+.startBtnWrap {
   position: relative;
-  z-index: 1;
 
-  width: calc(var(--u) * 50);
+  z-index: 3;
+}
+
+.joinBtn {
+  position: relative;
+
+  padding: var(--space-1) 0;
+  width: calc(var(--u) * 65);
+  font-size: var(--text-lg);
 }
 
 .loadingDots {
@@ -54,7 +72,7 @@
 }
 
 .appInfo {
-  color: black;
+  color: var(--color-black);
 
   display: flex;
   flex-direction: column;

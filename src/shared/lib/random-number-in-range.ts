@@ -11,9 +11,9 @@ export const randomNumberInRange = ({
 }: Props): number => {
   const randomValue = Math.random() * (max - min) + min;
 
-  if (fractionDigits === 0) {
-    return Math.floor(randomValue);
+  if (fractionDigits > 0) {
+    return +randomValue.toFixed(fractionDigits);
   }
 
-  return +randomValue.toFixed(fractionDigits);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };

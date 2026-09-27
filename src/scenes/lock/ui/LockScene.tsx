@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import clsx from 'clsx';
 import { motion } from 'motion/react';
 import type { Variants } from 'motion/react';
 
@@ -108,13 +107,6 @@ export const LockScene = () => {
       initial="hidden"
       animate="visible"
     >
-      <div className={styles.wallpaper}>
-        <div className={clsx(styles.blob, styles.blob_1)} />
-        <div className={clsx(styles.blob, styles.blob_2)} />
-        <div className={clsx(styles.blob, styles.blob_3)} />
-        <div className={clsx(styles.blob, styles.blob_4)} />
-      </div>
-
       <div className={styles.content}>
         <motion.div className={styles.clock} variants={clockVariants}>
           <div className={styles.time}>{timeStr}</div>
@@ -129,6 +121,7 @@ export const LockScene = () => {
               whileTap={{ scale: 0.99 }}
             >
               <Button
+                variant={'text'}
                 className={styles.btn}
                 onPointerUp={() => handleMenuButtonClick(key)}
               >

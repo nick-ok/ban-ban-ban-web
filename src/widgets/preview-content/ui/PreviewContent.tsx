@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
-import clsx from 'clsx';
-import { AnimatePresence, motion, useScroll, useTransform } from 'motion/react';
+import { AnimatePresence, motion, type Variants } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 
 import { getIsLocationCompleted, getLocationById } from '@/entities/location';
@@ -23,22 +22,16 @@ import { PreviewContentStats } from './PreviewContentStats';
 
 import styles from './PreviewContent.module.css';
 
+const textAnimationVariants: Variants = {
+  initial: { opacity: 0, y: 15 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -15 },
+};
+
 export const PreviewContent = () => {
   const { t } = useTranslation();
 
   const [isReviewsOpen, setReviewsOpen] = useState(false);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollY } = useScroll({
-    container: containerRef,
-  });
-
-  const SCROLL_RANGE = [0, 150];
-
-  const headerHeight = useTransform(scrollY, SCROLL_RANGE, ['150px', '80px']);
-  const imageBlur = useTransform(scrollY, SCROLL_RANGE, ['0px', '12px']);
-  const filterStyle = useTransform(imageBlur, (blur) => `blur(${blur})`);
 
   const { selectedLocationId, setSelectedScenarioId, closePreview, setScene } =
     useNavigationStore();
@@ -91,63 +84,58 @@ export const PreviewContent = () => {
 
   return (
     <div className={styles.root}>
-      <motion.div className={styles.header} style={{ height: headerHeight }}>
-        <motion.div
-          className={styles.headerImageContainer}
+      <div
+        className={styles.header}
+        style={{
+          background: isGlobalAIActive
+            ? 'var(--color-black)'
+            : location.background,
+        }}
+      >
+        <Icon
+          className={styles.locationIcon}
+          name={isGlobalAIActive ? 'lock-ai' : location.icon.name}
           style={{
-            filter: filterStyle,
-            background: isGlobalAIActive ? 'black' : 'rgba(0, 0, 0, 0.2)',
+            color: isGlobalAIActive ? 'var(--color-white)' : undefined,
           }}
-        >
-          <div className={styles.headerBg} />
-
-          {!isGlobalAIActive && (
-            <img src={location.previewImage} className={styles.headerImage} />
-          )}
-
-          {isGlobalAIActive && (
-            <Icon name={'lock-ai'} className={styles.lockAIIconHeader} />
-          )}
-        </motion.div>
-
-        <div className={styles.headerContent}>
-          <Icon
-            className={styles.locationIcon}
-            name={isGlobalAIActive ? 'lock-ai' : location.icon.name}
-            style={{ color: isGlobalAIActive ? 'white' : undefined }}
-          />
-          <h3 className={styles.locationName}>
-            {isGlobalAIActive
-              ? obfuscateToBinary(location.name)
-              : location.name}
-          </h3>
-        </div>
-      </motion.div>
-
-      <div className={styles.stats}>
-        <PreviewContentStats
-          rating={isGlobalAIActive ? 5 : contentStats.rating}
-          downloads={contentStats.downloads}
-          reviews={contentStats.reviews}
         />
+        <h3 className={styles.locationName}>
+          {isGlobalAIActive ? obfuscateToBinary(location.name) : location.name}
+        </h3>
+
+        <div className={styles.stats}>
+          <PreviewContentStats
+            rating={isGlobalAIActive ? 5 : contentStats.rating}
+            downloads={contentStats.downloads}
+            reviews={contentStats.reviews}
+          />
+        </div>
       </div>
 
       {isLocationCompleted && (
         <div className={styles.enableAI}>
           <Button
-            variant={isAIModeration ? 'success' : 'primary'}
-            className={clsx(
-              styles.enableAIBtn,
-              !isAIModeration && styles.notEnabled,
-            )}
+            variant={isAIModeration ? 'white' : 'accentBlue'}
+            glow={isAIModeration}
+            className={styles.enableAIBtn}
             onClick={handleEnableAI}
           >
-            <Icon name={'lock-ai'} className={styles.lockAIIcon} />
-            {t(
-              isAIModeration
-                ? 'screens.preview.aiEnabled'
-                : 'screens.preview.enableAI',
-            )}
+            <motion.span
+              key={isAIModeration ? 'ai-enabled' : 'ai-disabled'}
+              variants={textAnimationVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className={styles.enableAIBtnInner}
+            >
+              <Icon name={'lock-ai'} className={styles.lockAIIcon} />
+              {t(
+                isAIModeration
+                  ? 'screens.preview.aiEnabled'
+                  : 'screens.preview.enableAI',
+              )}
+            </motion.span>
           </Button>
         </div>
       )}
@@ -164,7 +152,7 @@ export const PreviewContent = () => {
 
         <Button
           className={styles.btn}
-          variant={'primary'}
+          variant={'accentBlue'}
           onClick={handleStart}
         >
           {t('screens.preview.start')}
@@ -181,7 +169,7 @@ export const PreviewContent = () => {
         </div>
       )}
 
-      <div ref={containerRef} className={styles.content}>
+      <div className={styles.content}>
         <Button
           className={styles.reviewsBtn}
           onClick={() => setReviewsOpen(true)}

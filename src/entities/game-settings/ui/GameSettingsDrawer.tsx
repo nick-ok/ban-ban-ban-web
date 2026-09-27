@@ -19,7 +19,7 @@ export const GameSettingsDrawer = ({ containerRef }: Props) => {
       onOpenChange={gameSettings.toggleSettingsDrawer}
       open={gameSettings.isSettingsOpen}
       withSound={false}
-      backgroundColor="rgba(255, 255, 255, 0.6)"
+      backgroundColor={'var(--color-white)'}
     >
       {() => (
         <div style={{ padding: 'var(--space-20) 0 var(--space-10)' }}>

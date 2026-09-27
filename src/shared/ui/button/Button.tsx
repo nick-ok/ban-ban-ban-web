@@ -7,13 +7,21 @@ import { AudioService } from '@/features/audio';
 import styles from './Button.module.css';
 
 type ButtonVariant =
-  'primary' | 'success' | 'warn' | 'danger' | 'white' | 'text';
+  | 'accent'
+  | 'accentBlue'
+  | 'primary'
+  | 'success'
+  | 'warn'
+  | 'danger'
+  | 'white'
+  | 'text';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: ButtonVariant;
   withSound?: boolean;
   bordered?: boolean;
+  glow?: boolean;
   className?: string;
 }
 
@@ -23,6 +31,7 @@ export const Button = ({
   variant = 'text',
   withSound = true,
   bordered = false,
+  glow = false,
   type = 'button',
   onPointerDown,
   ...defaultProps
@@ -30,7 +39,9 @@ export const Button = ({
   const buttonClasses = clsx(
     styles.button,
     styles[variant],
-    { [styles.bordered]: bordered },
+    {
+      [styles.bordered]: bordered,
+    },
     className,
   );
 
@@ -46,7 +57,7 @@ export const Button = ({
     onPointerDown?.(e);
   };
 
-  return (
+  const button = (
     <button
       type={type}
       className={buttonClasses}
@@ -56,4 +67,10 @@ export const Button = ({
       {children}
     </button>
   );
+
+  if (!glow || variant === 'text') {
+    return button;
+  }
+
+  return <div className={styles.glowWrap}>{button}</div>;
 };

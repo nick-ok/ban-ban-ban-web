@@ -1,5 +1,7 @@
 import * as PIXI from 'pixi.js';
 
+import comfortaaFontUrl from '@/shared/assets/fonts/Comfortaa-VariableFont_wght.ttf';
+
 import {
   AVATAR_ASSETS,
   TITLE_ASSETS,
@@ -32,7 +34,20 @@ export const loadMessageAssets = async (): Promise<void> => {
     });
   });
 
-  const allKeys = [...avatarKeys, ...titleKeys, ...uiKeys];
+  const FONT_KEY = 'Comfortaa';
+
+  if (!PIXI.Assets.resolver.hasKey(FONT_KEY)) {
+    PIXI.Assets.add({
+      alias: FONT_KEY,
+      src: comfortaaFontUrl,
+      data: {
+        family: 'Comfortaa',
+        weights: ['300', '400', '600', '700', '900'],
+      },
+    });
+  }
+
+  const allKeys = [...avatarKeys, ...titleKeys, ...uiKeys, FONT_KEY];
 
   await PIXI.Assets.load(allKeys);
 };

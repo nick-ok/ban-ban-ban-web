@@ -14,7 +14,7 @@
   &.loading {
     justify-content: center;
     align-items: center;
-    color: #ffffff;
+    color: var(--color-white);
   }
 
   &.ready {
