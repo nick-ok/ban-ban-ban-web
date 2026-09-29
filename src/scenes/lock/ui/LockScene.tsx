@@ -7,6 +7,7 @@ import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { useTranslation } from '@/features/i18n';
+import { useNotificationsStore } from '@/features/notifications';
 import { Button } from '@/shared/ui';
 
 import styles from './LockScene.module.css';
@@ -52,6 +53,9 @@ export const LockScene = () => {
     (state) => state.completedScenarioIds,
   );
   const resetProgress = usePlayerProgressStore((state) => state.resetProgress);
+  const clearAllNotifications = useNotificationsStore(
+    (state) => state.clearAllNotifications,
+  );
 
   const [now, setNow] = useState(new Date());
 
@@ -78,6 +82,7 @@ export const LockScene = () => {
   ) => {
     if (key === 'newGame') {
       resetProgress();
+      clearAllNotifications();
       setScene('lobby');
     }
 

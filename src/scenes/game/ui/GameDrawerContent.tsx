@@ -42,7 +42,7 @@ export const GameDrawerContent = ({ location, onClose }: Props) => {
             }}
           >
             <Icon
-              name={isGlobalAIActive ? 'lock-ai' : location.icon.name}
+              name={isGlobalAIActive ? 'gip-ai' : location.icon.name}
               className={clsx(
                 styles.locationIcon,
                 isGlobalAIActive && styles.aiActive,

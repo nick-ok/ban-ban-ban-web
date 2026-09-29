@@ -37,6 +37,7 @@ export interface Scenario {
 
   order: number;
   descriptionKey: string;
+  spawnSpeed: number;
   messageSpeedRange: number[];
   // Время начала дня в минутах от 00:00 (например, 600 для 10:00)
   startWorktime: number;

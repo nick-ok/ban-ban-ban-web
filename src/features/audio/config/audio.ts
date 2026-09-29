@@ -19,6 +19,10 @@ export const AUDIO_ASSETS = {
     src: '/audio/sfx/chat-message.mp3',
     type: 'sfx',
   },
+  notification: {
+    src: '/audio/sfx/chat-message.mp3',
+    type: 'sfx',
+  },
   mainMenu: {
     src: '/audio/music/main-menu.mp3',
     type: 'music',
@@ -37,6 +41,7 @@ type SoundMapValue =
 export const SCENE_SOUND_MAP: Record<Scene, SoundMapValue> = {
   lock: 'mainMenu',
   lobby: 'mainMenu',
+  notificationsCenter: 'mainMenu',
   preview: null,
   briefing: null,
   intro: null,

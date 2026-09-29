@@ -1,9 +1,12 @@
+import clsx from 'clsx';
+
 import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
 import { getGlobalAIProgress } from '@/entities/player-progress';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { getCanUnlockGlobalAI } from '@/features/game';
 import { useTranslation } from '@/features/i18n';
+import { NotificationStack } from '@/features/notifications';
 import { Button, Icon, ProgressBar, ScanFX, ZoomMotion } from '@/shared/ui';
 import { AppGrid } from '@/widgets/app-grid';
 
@@ -32,28 +35,36 @@ export const LobbyScene = () => {
 
   return (
     <ZoomMotion className={styles.root}>
-      <img src={WALLPAPPER_IMG} className={styles.wallpaper} />
+      {!progress.isGlobalAIActive && (
+        <img src={WALLPAPPER_IMG} className={styles.wallpaper} />
+      )}
+
+      <NotificationStack />
 
       <ScanFX />
 
       <div className={styles.aiProgress}>
         <div className={styles.aiProgressActions}>
           {!canUnlockGlobalAI && (
-            <img
-              src={'/images/message/avatar-ai.webp'}
-              className={styles.aiImage}
-            />
+            <Icon name={'gip-ai'} className={styles.aiImage} />
           )}
 
           {canUnlockGlobalAI && (
             <Button
-              variant={'warn'}
-              className={styles.runGIPBtn}
+              variant={!progress.isGlobalAIActive ? 'warn' : 'white'}
+              className={clsx(
+                styles.runGIPBtn,
+                !progress.isGlobalAIActive && styles.pulse,
+              )}
               onClick={handleRunGlobalAI}
               glow={true}
             >
-              <Icon name={'lock-ai'} />
-              {t('screens.lobby.runGIP')}
+              <Icon name={'gip-ai'} />
+              {t(
+                !progress.isGlobalAIActive
+                  ? 'screens.lobby.runGIP'
+                  : 'screens.lobby.GIPEnabled',
+              )}
             </Button>
           )}
         </div>
@@ -70,6 +81,14 @@ export const LobbyScene = () => {
       <AppGrid />
 
       <div className={styles.bottomActions}>
+        <Button
+          className={styles.actionBtn}
+          onClick={() => setScene('notificationsCenter')}
+        >
+          <Icon name={'notifications'} className={styles.actionBtnIcon} />
+          {t('screens.lobby.notifications')}
+        </Button>
+
         <Button className={styles.actionBtn} onClick={() => setScene('lock')}>
           <Icon name={'lock-outline'} className={styles.actionBtnIcon} />
           {t('screens.lobby.lock')}
