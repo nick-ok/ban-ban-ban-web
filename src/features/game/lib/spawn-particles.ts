@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 
 import { getParticleTextures } from '@/entities/message/lib/init-particle-textures';
+import { randomNumberInRange } from '@/shared/lib';
 
 import type { ParticleLayer } from './create-particle-layer';
 
@@ -12,7 +13,7 @@ interface SpawnParticlesOptions {
 }
 
 const POSITIVE_COUNT = 100;
-const NEGATIVE_COUNT = 50;
+const NEGATIVE_COUNT = 100;
 
 const POSITIVE_SPEED = 250;
 const NEGATIVE_SPEED = 350;
@@ -34,8 +35,13 @@ export const spawnParticles = ({
   const lifetime = isPositive ? POSITIVE_LIFETIME : NEGATIVE_LIFETIME;
 
   const pool = isPositive
-    ? [textures.zero, textures.one]
-    : [textures.error, textures.exclamation];
+    ? [
+        textures.digitOne,
+        textures.digitZero,
+        textures.heartSparkling,
+        textures.sparkles,
+      ]
+    : [textures.errorSing, textures.bracketError, textures.crazyFace];
 
   for (let i = 0; i < count; i += 1) {
     const angle = (Math.PI * 2 * i) / count + Math.random() * 0.4;
@@ -43,6 +49,7 @@ export const spawnParticles = ({
 
     const sprite = new PIXI.Sprite(texture);
     sprite.anchor.set(0.5);
+    sprite.scale = randomNumberInRange({ min: 0.5, max: 1, fractionDigits: 2 });
     sprite.position.set(x, y);
     sprite.alpha = 1;
 

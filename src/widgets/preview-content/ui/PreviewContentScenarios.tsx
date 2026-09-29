@@ -6,7 +6,7 @@ import {
   type Scenario,
   type ScenarioId,
 } from '@/entities/scenario';
-import { Button, Icon, ProgressBar } from '@/shared/ui';
+import { Button, Icon, ProgressBar, ShineFX } from '@/shared/ui';
 
 import styles from './PreviewContentScenarios.module.css';
 
@@ -53,22 +53,24 @@ export const PreviewContentScenarios = ({
 
           return (
             <div key={s.id} className={styles.listItem}>
-              <Button
-                variant={'text'}
-                className={styles.btn}
-                onClick={() => handleScenario(s.id, s.unlocked)}
-              >
-                {s.unlocked && (
-                  <img
-                    src={'/images/message/avatar-anon.webp'}
-                    className={styles.img}
-                  />
-                )}
+              <ShineFX enabled={s.unlocked}>
+                <Button
+                  variant={'text'}
+                  className={styles.btn}
+                  onClick={() => handleScenario(s.id, s.unlocked)}
+                >
+                  {s.unlocked && (
+                    <img
+                      src={'/images/message/avatar-anon.webp'}
+                      className={styles.img}
+                    />
+                  )}
 
-                {!s.unlocked && (
-                  <Icon name={'question'} className={styles.questionIcon} />
-                )}
-              </Button>
+                  {!s.unlocked && (
+                    <Icon name={'question'} className={styles.questionIcon} />
+                  )}
+                </Button>
+              </ShineFX>
 
               <ProgressBar
                 value={progress}

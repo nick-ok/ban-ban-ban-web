@@ -15,7 +15,7 @@
     "howler": "^2.2.4",
     "i18next": "^26.4.2",
     "i18next-browser-languagedetector": "^8.2.1",
-    "motion": "^13.4.4",
+    "motion": "^13.4.5",
     "nanoid": "^6.0.1",
     "pixi.js": "^8.21.0",
     "react": "^19.3.0",
@@ -35,7 +35,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.0",
     "clsx": "^2.1.1",
-    "oxlint": "^1.85.0",
+    "oxlint": "^1.86.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.1",
     "vite-plugin-svgr": "^5.2.0"

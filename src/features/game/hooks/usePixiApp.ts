@@ -46,7 +46,7 @@ export const usePixiApp = (
 
         containerRef.current.appendChild(appInstance.canvas);
 
-        initParticleTextures(appInstance);
+        initParticleTextures();
 
         appRef.current = appInstance;
         setApp(appInstance);

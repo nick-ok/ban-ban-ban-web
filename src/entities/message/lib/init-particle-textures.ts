@@ -1,40 +1,42 @@
 import * as PIXI from 'pixi.js';
 
+import type { UIAssetKey } from '../config/assets';
+
 interface ParticleTextures {
-  zero: PIXI.Texture;
-  one: PIXI.Texture;
-  error: PIXI.Texture;
-  exclamation: PIXI.Texture;
+  digitZero: PIXI.Texture;
+  digitOne: PIXI.Texture;
+  errorSing: PIXI.Texture;
+  bracketError: PIXI.Texture;
+  crazyFace: PIXI.Texture;
+  heartSparkling: PIXI.Texture;
+  sparkles: PIXI.Texture;
 }
 
-const createCharTexture = (
-  app: PIXI.Application,
-  char: string,
-  color: number,
-): PIXI.Texture => {
-  const text = new PIXI.Text({
-    text: char,
-    style: { fontSize: 22, fill: color, fontWeight: 'bold' },
-  });
+const createSpriteTexture = (assetKey: UIAssetKey): PIXI.Texture => {
+  const source = PIXI.Assets.get<PIXI.Texture>(assetKey);
 
-  const texture = app.renderer.generateTexture(text);
-  text.destroy();
+  if (!source) {
+    throw new Error(`Texture for asset "${assetKey}" not found.`);
+  }
 
-  return texture;
+  return source;
 };
 
 let particleTextures: ParticleTextures | null = null;
 
-export const initParticleTextures = (app: PIXI.Application) => {
+export const initParticleTextures = () => {
   if (particleTextures) {
     return;
   }
 
   particleTextures = {
-    zero: createCharTexture(app, '0', 0x6e8b72),
-    one: createCharTexture(app, '1', 0xd9984b),
-    error: createCharTexture(app, 'ERROR', 0xc26d6d),
-    exclamation: createCharTexture(app, '!', 0xc26d6d),
+    digitZero: createSpriteTexture('digitZero'),
+    digitOne: createSpriteTexture('digitOne'),
+    errorSing: createSpriteTexture('errorSing'),
+    bracketError: createSpriteTexture('bracketError'),
+    crazyFace: createSpriteTexture('crazyFace'),
+    heartSparkling: createSpriteTexture('heartSparkling'),
+    sparkles: createSpriteTexture('sparkles'),
   };
 };
 

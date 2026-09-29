@@ -35,7 +35,7 @@ export const LOC1_SC1: Scenario = {
   spawnSpeed: 0.7,
   messageSpeedRange: [0.3, 1],
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('11:00'),
+  endWorktime: timeToMinutes('10:30'),
   allowedContent: {
     users: ['male', 'female'],
     content: ['normal'],

@@ -7,7 +7,7 @@ import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
 import { AudioService } from '@/features/audio';
 import { useTranslation } from '@/features/i18n';
-import { Button } from '@/shared/ui';
+import { Button, ShineFX } from '@/shared/ui';
 
 import { LoadingDots } from './LoadingDots';
 
@@ -129,15 +129,17 @@ export const BootstrapScene = () => {
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
             className={styles.startBtnWrap}
           >
-            <Button
-              variant={'accent'}
-              className={styles.joinBtn}
-              onClick={handleStart}
-              withSound={false}
-              glow={true}
-            >
-              {t('screens.bootstrap.join')}
-            </Button>
+            <ShineFX>
+              <Button
+                variant={'accentBlue'}
+                className={styles.joinBtn}
+                onClick={handleStart}
+                withSound={false}
+                glow={true}
+              >
+                {t('screens.bootstrap.join')}
+              </Button>
+            </ShineFX>
           </motion.div>
         )}
       </div>
