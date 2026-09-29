@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 
 import clsx from 'clsx';
 import { AnimatePresence, motion, type Variants } from 'motion/react';
+import ReactMarkdown from 'react-markdown';
 
 import { getLocationById } from '@/entities/location';
 import { useNavigationStore } from '@/entities/navigation';
@@ -133,7 +134,7 @@ export const BriefingScene = () => {
 
               return (
                 <motion.div
-                  key={msg.id}
+                  key={msg.textKey}
                   layout
                   className={clsx(
                     styles.clientBox,
@@ -144,17 +145,21 @@ export const BriefingScene = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  {isAI && <Icon name={'sparkles'} />}
+                  {isAI && <Icon name={'gip-ai'} className={styles.aiIcon} />}
 
                   <div className={styles.messageContent}>
-                    {!isAI && !isSystem && (
-                      <>
-                        <span className={styles.senderName}>
+                    <div className={styles.text}>
+                      {!isAI && !isSystem && (
+                        <div className={styles.senderName}>
+                          <img
+                            src={sender?.avatarUrl}
+                            className={styles.messageAvatar}
+                          />
                           {sender?.name}
-                        </span>
-                      </>
-                    )}
-                    <p className={styles.text}>{t(msg.textKey)}</p>
+                        </div>
+                      )}
+                      <ReactMarkdown>{t(msg.textKey)}</ReactMarkdown>
+                    </div>
                   </div>
                 </motion.div>
               );

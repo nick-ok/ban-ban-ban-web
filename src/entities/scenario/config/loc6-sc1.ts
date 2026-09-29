@@ -9,30 +9,46 @@ export const LOC6_SC1: Scenario = {
   briefingSender: LOC_6_OWNER,
   briefingFlow: [
     {
-      id: 'b1_1',
-      senderType: 'client',
-      textKey: 'scenarios.loc1_sc1.briefing.msg1',
+      senderType: 'owner',
+      textKey: 'scenarios.loc6_sc1.briefing.msg1_owner',
     },
     {
-      id: 'b1_2',
-      senderType: 'client',
-      textKey: 'scenarios.loc1_sc1.briefing.msg2',
+      senderType: 'owner',
+      textKey: 'scenarios.loc6_sc1.briefing.msg2_owner',
     },
     {
-      id: 'b1_3',
       senderType: 'ai',
-      textKey: 'scenarios.loc1_sc1.briefing.msg3',
+      textKey: 'scenarios.loc6_sc1.briefing.msg3_ai',
     },
     {
-      id: 'b1_4',
-      senderType: 'client',
-      textKey: 'scenarios.loc1_sc1.briefing.msg4',
+      senderType: 'system',
+      textKey: 'scenarios.loc6_sc1.briefing.msg4_system',
+    },
+    {
+      senderType: 'owner',
+      textKey: 'scenarios.loc6_sc1.briefing.msg5_owner',
+    },
+    {
+      senderType: 'ai',
+      textKey: 'scenarios.loc6_sc1.briefing.msg6_ai',
+    },
+    {
+      senderType: 'system',
+      textKey: 'scenarios.loc6_sc1.briefing.msg7_system',
+    },
+    {
+      senderType: 'system',
+      textKey: 'scenarios.loc6_sc1.briefing.msg8_system',
+    },
+    {
+      senderType: 'system',
+      textKey: 'scenarios.loc6_sc1.briefing.msg9_system',
     },
   ],
   order: 1,
   descriptionKey: 'scenarios.loc2_sc3.description',
   unlockThreshold: 75,
-  spawnSpeed: 1.5,
+  spawnSpeed: 1,
   messageSpeedRange: [0.3, 0.8],
   startWorktime: timeToMinutes('10:00'),
   endWorktime: timeToMinutes('10:30'),
