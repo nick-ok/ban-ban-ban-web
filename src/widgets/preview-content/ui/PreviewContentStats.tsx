@@ -1,6 +1,6 @@
 import { i18n, useTranslation } from '@/features/i18n';
 import { numberFormat } from '@/shared/lib';
-import { CountMotion, Icon } from '@/shared/ui';
+import { CountMotion, Icon, ShineFX } from '@/shared/ui';
 
 import styles from './PreviewContentStats.module.css';
 
@@ -15,36 +15,44 @@ export const PreviewContentStats = ({ rating, downloads, reviews }: Props) => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.statItem}>
-        <div className={styles.rating}>
-          <Icon name={'star'} className={styles.starIcon} />
-          <span>{rating}</span>
+      <ShineFX>
+        <div className={styles.statItem}>
+          <div className={styles.rating}>
+            <Icon name={'star'} className={styles.starIcon} />
+            <span>{rating}</span>
+          </div>
         </div>
-      </div>
+      </ShineFX>
 
-      <div className={styles.statItem}>
-        <div className={styles.stat}>
-          <CountMotion
-            to={reviews}
-            duration={0.6}
-            format={(v) => numberFormat(v, i18n.language)}
-            className={styles.value}
-          />
-          <span className={styles.title}>{t('screens.preview.reviews')}</span>
+      <ShineFX>
+        <div className={styles.statItem}>
+          <div className={styles.stat}>
+            <CountMotion
+              to={reviews}
+              duration={0.6}
+              format={(v) => numberFormat(v, i18n.language)}
+              className={styles.value}
+            />
+            <span className={styles.title}>{t('screens.preview.reviews')}</span>
+          </div>
         </div>
-      </div>
+      </ShineFX>
 
-      <div className={styles.statItem}>
-        <div className={styles.stat}>
-          <CountMotion
-            to={downloads}
-            duration={0.6}
-            format={(v) => numberFormat(v, i18n.language)}
-            className={styles.value}
-          />
-          <span className={styles.title}>{t('screens.preview.downloads')}</span>
+      <ShineFX>
+        <div className={styles.statItem}>
+          <div className={styles.stat}>
+            <CountMotion
+              to={downloads}
+              duration={0.6}
+              format={(v) => numberFormat(v, i18n.language)}
+              className={styles.value}
+            />
+            <span className={styles.title}>
+              {t('screens.preview.downloads')}
+            </span>
+          </div>
         </div>
-      </div>
+      </ShineFX>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { useTranslation } from '@/features/i18n';
 import { useNotificationsStore } from '@/features/notifications';
+import { formatDate, formatTime } from '@/shared/lib';
 import { Button } from '@/shared/ui';
 
 import styles from './LockScene.module.css';
@@ -57,7 +58,7 @@ export const LockScene = () => {
     (state) => state.clearAllNotifications,
   );
 
-  const [now, setNow] = useState(new Date());
+  const [now, setNow] = useState(() => new Date());
 
   const hasSavedGame = completedScenarios.length > 0;
 
@@ -65,17 +66,8 @@ export const LockScene = () => {
     .filter((key) => key !== 'continue' || hasSavedGame)
     .filter((key) => key !== 'showIntro' || gameSettings.isIntroSkipped);
 
-  const timeStr = new Intl.DateTimeFormat(i18n.language, {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  }).format(now);
-
-  const dateStr = new Intl.DateTimeFormat(i18n.language, {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-  }).format(now);
+  const timeStr = formatTime(now, i18n.language);
+  const dateStr = formatDate(now, i18n.language);
 
   const handleMenuButtonClick = (
     key: 'newGame' | 'continue' | 'settings' | 'showIntro',

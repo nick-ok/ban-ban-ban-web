@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import { AudioService } from '@/features/audio';
 import { i18n, useTranslation, type ParseKeys } from '@/features/i18n';
 import type { AppNotification } from '@/features/notifications/model/types';
-import { dateFormat, randomArrayItem } from '@/shared/lib';
+import { formatDateTime, randomArrayItem } from '@/shared/lib';
 import { Button, Icon } from '@/shared/ui';
 
 import styles from './Notification.module.css';
@@ -55,7 +55,9 @@ export const Notification = ({
         <Icon name={iconName} className={styles.icon} />
 
         <div>
-          <p className={styles.date}>{dateFormat(timestamp, i18n.language)}</p>
+          <p className={styles.date}>
+            {formatDateTime(new Date(timestamp), i18n.language)}
+          </p>
 
           <h4 className={styles.title}>{title}</h4>
 

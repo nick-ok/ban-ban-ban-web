@@ -13,7 +13,7 @@ import {
   getLocationScenarios,
 } from '@/entities/scenario';
 import { useTranslation } from '@/features/i18n';
-import { Button, Icon } from '@/shared/ui';
+import { Button, Icon, ShineFX } from '@/shared/ui';
 
 import { getContentStats } from '../lib/get-content-stats';
 import { PreviewContentReviews } from './PreviewContentReviews';
@@ -150,13 +150,15 @@ export const PreviewContent = () => {
           {t('screens.preview.cancel')}
         </Button>
 
-        <Button
-          className={styles.btn}
-          variant={'accentBlue'}
-          onClick={handleStart}
-        >
-          {t('screens.preview.start')}
-        </Button>
+        <ShineFX>
+          <Button
+            className={styles.btn}
+            variant={'accentBlue'}
+            onClick={handleStart}
+          >
+            {t('screens.preview.start')}
+          </Button>
+        </ShineFX>
       </div>
 
       {!isGlobalAIActive && (

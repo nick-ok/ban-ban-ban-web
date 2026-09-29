@@ -35,10 +35,10 @@ const scenes = {
 
 const getRandomTarget = () => ({
   target: {
-    x: randomNumberInRange({ min: -12, max: 12, fractionDigits: 2 }),
-    y: randomNumberInRange({ min: -12, max: 12, fractionDigits: 2 }),
+    x: randomNumberInRange({ min: -12, max: 12 }),
+    y: randomNumberInRange({ min: -12, max: 12 }),
     scale: randomNumberInRange({ min: 1.08, max: 1.18, fractionDigits: 2 }),
-    rotate: randomNumberInRange({ min: -0.8, max: 0.8, fractionDigits: 2 }),
+    rotate: randomNumberInRange({ min: -0.8, max: 0.8, fractionDigits: 1 }),
   },
   duration: randomNumberInRange({ min: 10, max: 20, fractionDigits: 1 }),
 });

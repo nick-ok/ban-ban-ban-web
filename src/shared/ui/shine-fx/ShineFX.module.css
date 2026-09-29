@@ -1,0 +1,37 @@
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: var(--shine-width, 50%);
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2) 20%,
+    var(--shine-color, rgba(255, 255, 255, 0.6)) 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent
+  );
+
+  transform: skewX(var(--shine-skew, -25deg));
+  animation: shine var(--shine-duration, 5s) var(--shine-delay, 0s) infinite
+    ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    left: -150%;
+  }
+  30%,
+  100% {
+    left: 150%;
+  }
+}

@@ -54,6 +54,13 @@ export const UI_ASSETS = {
   like: '/images/message/like.webp',
   voiceMessage: '/images/message/voice-message.webp',
   banStamp: '/images/ban-stamp.png',
+  bracketError: '/images/message/particles/bracket-error.png',
+  crazyFace: '/images/message/particles/crazy-face.png',
+  digitOne: '/images/message/particles/digit-one.png',
+  digitZero: '/images/message/particles/digit-zero.png',
+  errorSing: '/images/message/particles/error-sing.png',
+  heartSparkling: '/images/message/particles/heart-sparkling.png',
+  sparkles: '/images/message/particles/sparkles.png',
 } as const;
 
 export type AvatarAssetKey = keyof typeof AVATAR_ASSETS;

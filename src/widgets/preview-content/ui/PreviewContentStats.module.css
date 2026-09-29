@@ -17,30 +17,6 @@
   border-radius: var(--radius-lg);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
   padding: var(--space-3);
-
-  position: relative;
-  overflow: hidden;
-}
-
-.statItem::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 50%;
-  height: 100%;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2) 20%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.2) 80%,
-    transparent
-  );
-
-  transform: skewX(-25deg);
-  animation: shine 5s infinite ease-in-out;
 }
 
 .rating {
@@ -79,14 +55,4 @@
   font-size: var(--text-sm);
   color: var(--color-white);
   font-weight: bold;
-}
-
-@keyframes shine {
-  0% {
-    left: -150%;
-  }
-  30%,
-  100% {
-    left: 150%;
-  }
 }
