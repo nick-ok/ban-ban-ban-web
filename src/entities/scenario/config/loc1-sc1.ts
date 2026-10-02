@@ -9,24 +9,40 @@ export const LOC1_SC1: Scenario = {
   briefingSender: LOC_1_OWNER,
   briefingFlow: [
     {
-      id: 'b1_1',
-      senderType: 'client',
-      textKey: 'scenarios.loc1_sc1.briefing.msg1',
+      senderType: 'owner',
+      textKey: 'scenarios.loc1_sc1.briefing.msg1_owner',
     },
     {
-      id: 'b1_2',
-      senderType: 'system',
-      textKey: 'scenarios.loc1_sc1.briefing.msg2',
+      senderType: 'owner',
+      textKey: 'scenarios.loc1_sc1.briefing.msg2_owner',
     },
     {
-      id: 'b1_3',
+      senderType: 'owner',
+      textKey: 'scenarios.loc1_sc1.briefing.msg3_owner',
+    },
+    {
       senderType: 'ai',
-      textKey: 'scenarios.loc1_sc1.briefing.msg3',
+      textKey: 'scenarios.loc1_sc1.briefing.msg4_ai',
     },
     {
-      id: 'b1_4',
-      senderType: 'client',
-      textKey: 'scenarios.loc1_sc1.briefing.msg4',
+      senderType: 'owner',
+      textKey: 'scenarios.loc1_sc1.briefing.msg5_owner',
+    },
+    {
+      senderType: 'ai',
+      textKey: 'scenarios.loc1_sc1.briefing.msg6_ai',
+    },
+    {
+      senderType: 'owner',
+      textKey: 'scenarios.loc1_sc1.briefing.msg7_owner',
+    },
+    {
+      senderType: 'ai',
+      textKey: 'scenarios.loc1_sc1.briefing.msg8_ai',
+    },
+    {
+      senderType: 'owner',
+      textKey: 'scenarios.loc1_sc1.briefing.msg9_owner',
     },
   ],
   order: 1,
@@ -35,19 +51,15 @@ export const LOC1_SC1: Scenario = {
   spawnSpeed: 0.7,
   messageSpeedRange: [0.3, 1],
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:30'),
+  endWorktime: timeToMinutes('18:00'),
   allowedContent: {
     users: ['male', 'female'],
-    content: ['normal'],
+    content: ['normal', 'caps'],
     titles: ['empty'],
     hasLikes: false,
   },
   banRules: {
-    ban: [
-      {
-        content: ['fwords', 'caps'],
-      },
-    ],
+    ban: [{ content: ['fwords'] }],
     longBan: [{ user: ['anonymous'] }],
   },
   probabilities: {

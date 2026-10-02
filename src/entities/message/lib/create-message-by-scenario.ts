@@ -71,7 +71,6 @@ export const createMessageByScenario = (
   const { allowedContent } = scenario;
   const side = getRandomSide();
   const speed = getRandomSpeed(scenario.messageSpeedRange);
-
   const locationId = scenario.locationId;
   const lang = i18n.language;
 
@@ -79,41 +78,51 @@ export const createMessageByScenario = (
   let title: TitleType = randomArrayItem(allowedContent.titles) ?? 'empty';
   let contentType: ContentType =
     randomArrayItem(allowedContent.content) ?? 'normal';
-  let likes = allowedContent.hasLikes
-    ? randomNumberInRange({ min: 100, max: 2_000 })
-    : 0;
-  let text =
-    randomArrayItem(LOCATION_MESSAGES[locationId][lang as 'ru' | 'en']) ?? '';
+  let likes = 0;
+
+  if (allowedContent.hasLikes) {
+    const longBanRules = scenario.banRules['longBan'] || [];
+    const longBanRule = longBanRules.find((r) => r.likes);
+
+    if (longBanRule && longBanRule.likes) {
+      const banMin = longBanRule.likes.min ?? 1000;
+      const safeMax = banMin - 1 > 100 ? banMin - 1 : 100;
+
+      likes = randomNumberInRange({ min: 100, max: safeMax });
+    } else {
+      likes = randomNumberInRange({ min: 100, max: 2_000 });
+    }
+  }
 
   if (finalBanAction !== 'none') {
     const rules = scenario.banRules[finalBanAction];
     const activeRule = randomArrayItem(rules);
 
-    likes = allowedContent.hasLikes
-      ? randomNumberInRange({ min: 0, max: 20 })
-      : 0;
-
     if (activeRule) {
       if (activeRule.user && activeRule.user.length > 0) {
         user = randomArrayItem(activeRule.user) ?? 'anonymous';
       }
-
       if (activeRule.title && activeRule.title.length > 0) {
         title = randomArrayItem(activeRule.title) ?? 'empty';
       }
-
       if (activeRule.content && activeRule.content.length > 0) {
         contentType = randomArrayItem(activeRule.content) ?? 'normal';
       }
 
-      if (activeRule.likes) {
-        const minLimit = activeRule.likes.min ?? 0;
-        const maxLimit = activeRule.likes.max ?? 9999;
-
-        likes = randomNumberInRange({ min: minLimit, max: maxLimit });
+      if (allowedContent.hasLikes) {
+        if (activeRule.likes) {
+          const minLimit = activeRule.likes.min ?? 0;
+          const maxLimit = activeRule.likes.max ?? 9999;
+          likes = randomNumberInRange({ min: minLimit, max: maxLimit });
+        } else {
+          likes = randomNumberInRange({ min: 0, max: 20 });
+        }
       }
     }
   }
+
+  let text =
+    randomArrayItem(LOCATION_MESSAGES[locationId][lang as 'ru' | 'en']) ?? '';
 
   if (contentType === 'caps') {
     text = text.toUpperCase();

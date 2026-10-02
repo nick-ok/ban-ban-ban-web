@@ -7,8 +7,7 @@ import type { SCENARIO_IDS } from '../config/constants';
 export type ScenarioId = (typeof SCENARIO_IDS)[number];
 
 export interface BriefingMessage {
-  id: string;
-  senderType: 'client' | 'ai' | 'system';
+  senderType: 'owner' | 'ai' | 'system';
   textKey: ParseKeys;
 }
 

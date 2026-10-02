@@ -35,13 +35,8 @@ export const spawnParticles = ({
   const lifetime = isPositive ? POSITIVE_LIFETIME : NEGATIVE_LIFETIME;
 
   const pool = isPositive
-    ? [
-        textures.digitOne,
-        textures.digitZero,
-        textures.heartSparkling,
-        textures.sparkles,
-      ]
-    : [textures.errorSing, textures.bracketError, textures.crazyFace];
+    ? [textures.digitOne, textures.digitZero, textures.sparkles]
+    : [textures.errorSing, textures.bracketError];
 
   for (let i = 0; i < count; i += 1) {
     const angle = (Math.PI * 2 * i) / count + Math.random() * 0.4;

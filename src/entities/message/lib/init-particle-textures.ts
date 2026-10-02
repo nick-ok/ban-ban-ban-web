@@ -7,8 +7,6 @@ interface ParticleTextures {
   digitOne: PIXI.Texture;
   errorSing: PIXI.Texture;
   bracketError: PIXI.Texture;
-  crazyFace: PIXI.Texture;
-  heartSparkling: PIXI.Texture;
   sparkles: PIXI.Texture;
 }
 
@@ -34,8 +32,6 @@ export const initParticleTextures = () => {
     digitOne: createSpriteTexture('digitOne'),
     errorSing: createSpriteTexture('errorSing'),
     bracketError: createSpriteTexture('bracketError'),
-    crazyFace: createSpriteTexture('crazyFace'),
-    heartSparkling: createSpriteTexture('heartSparkling'),
     sparkles: createSpriteTexture('sparkles'),
   };
 };
