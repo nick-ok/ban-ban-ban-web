@@ -21,6 +21,18 @@ export interface BanRule {
   };
 }
 
+export type NumberRange = {
+  min: number;
+  max: number;
+};
+
+export interface MessageTemplate {
+  user?: UserType | UserType[];
+  content?: ContentType | ContentType[];
+  title?: TitleType | TitleType[];
+  likes?: NumberRange;
+}
+
 export interface AllowedContent {
   users: UserType[];
   content: ContentType[];
@@ -38,18 +50,20 @@ export interface Scenario {
   descriptionKey: string;
   spawnSpeed: number;
   messageSpeedRange: number[];
-  // Время начала дня в минутах от 00:00 (например, 600 для 10:00)
   startWorktime: number;
   endWorktime: number;
-  allowedContent: AllowedContent;
-  banRules: {
-    ban: BanRule[];
-    longBan: BanRule[];
+
+  hasLikes: boolean;
+
+  pools: {
+    none: MessageTemplate[];
+    ban: MessageTemplate[];
+    longBan: MessageTemplate[];
   };
+
   probabilities: {
     ban: number;
     longBan: number;
     none: number;
   };
-  unlockThreshold: number;
 }

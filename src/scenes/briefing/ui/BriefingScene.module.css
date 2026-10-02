@@ -91,27 +91,34 @@
   width: 100%;
 }
 
+.gipAI {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-accent);
+}
+
 .aiIcon {
   flex-shrink: 0;
-  width: var(--space-5);
-  height: var(--space-5);
-  color: var(--color-accent);
+  width: var(--space-7);
+  height: var(--space-7);
 }
 
 .clientBox {
   display: flex;
-  gap: var(--space-2);
+  flex-direction: column;
+  gap: var(--space-1);
   background-color: var(--color-white);
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
   color: var(--color-black);
-  padding: var(--space-2);
+  padding: var(--space-3);
   border-radius: var(--radius-md);
   min-width: 85%;
   max-width: 85%;
   align-self: flex-start;
 
   &.aiBox {
-    background-color: var(--color-black);
+    background-color: var(--color-primary);
     color: var(--color-white);
     align-self: center;
     min-width: 90%;
@@ -165,6 +172,7 @@
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
   cursor: default;
   flex-shrink: 0;
+  font-size: var(--text-lg);
 }
 
 .actionCancelBtn {

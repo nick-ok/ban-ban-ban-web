@@ -22,6 +22,16 @@ import type {
 import { obfuscateToBinary } from './obfuscate-to-binary';
 import { obfuscateToFwords } from './obfuscate-to-fwords';
 
+const resolveParam = <T>(param: T | T[] | undefined, fallback: T | T[]): T => {
+  const activeParam = param !== undefined ? param : fallback;
+
+  if (Array.isArray(activeParam)) {
+    return randomArrayItem(activeParam) as T;
+  }
+
+  return activeParam;
+};
+
 const getRandomSide = (): MessageSide =>
   Math.random() < 0.5 ? 'left' : 'right';
 
@@ -58,71 +68,50 @@ export const createMessageByScenario = (
   scenario: Scenario,
   banAction: BanAction,
 ): Message => {
-  let finalBanAction = banAction;
+  const language = i18n.language;
 
-  if (
-    finalBanAction !== 'none' &&
-    (!scenario.banRules[finalBanAction] ||
-      scenario.banRules[finalBanAction].length === 0)
-  ) {
-    finalBanAction = 'none';
+  let activePool = scenario.pools[banAction];
+
+  if (!activePool || activePool.length === 0) {
+    activePool = scenario.pools['none'];
   }
 
-  const { allowedContent } = scenario;
-  const side = getRandomSide();
-  const speed = getRandomSpeed(scenario.messageSpeedRange);
-  const locationId = scenario.locationId;
-  const lang = i18n.language;
+  const template = randomArrayItem(activePool) || scenario.pools['none'][0];
+  const defaultTemplate = scenario.pools['none'][0];
 
-  let user: UserType = randomArrayItem(allowedContent.users) ?? 'male';
-  let title: TitleType = randomArrayItem(allowedContent.titles) ?? 'empty';
-  let contentType: ContentType =
-    randomArrayItem(allowedContent.content) ?? 'normal';
+  const user = resolveParam<UserType>(
+    template.user,
+    defaultTemplate.user ?? 'male',
+  );
+  const contentType = resolveParam<ContentType>(
+    template.content,
+    defaultTemplate.content ?? 'normal',
+  );
+  const title = resolveParam<TitleType>(
+    template.title,
+    defaultTemplate.title ?? 'empty',
+  );
+
   let likes = 0;
+  if (scenario.hasLikes) {
+    const likesRange = template.likes || defaultTemplate.likes;
 
-  if (allowedContent.hasLikes) {
-    const longBanRules = scenario.banRules['longBan'] || [];
-    const longBanRule = longBanRules.find((r) => r.likes);
-
-    if (longBanRule && longBanRule.likes) {
-      const banMin = longBanRule.likes.min ?? 1000;
-      const safeMax = banMin - 1 > 100 ? banMin - 1 : 100;
-
-      likes = randomNumberInRange({ min: 100, max: safeMax });
+    if (likesRange) {
+      likes = randomNumberInRange({ min: likesRange.min, max: likesRange.max });
     } else {
-      likes = randomNumberInRange({ min: 100, max: 2_000 });
+      likes = randomNumberInRange({ min: 100, max: 1000 });
     }
   }
 
-  if (finalBanAction !== 'none') {
-    const rules = scenario.banRules[finalBanAction];
-    const activeRule = randomArrayItem(rules);
-
-    if (activeRule) {
-      if (activeRule.user && activeRule.user.length > 0) {
-        user = randomArrayItem(activeRule.user) ?? 'anonymous';
-      }
-      if (activeRule.title && activeRule.title.length > 0) {
-        title = randomArrayItem(activeRule.title) ?? 'empty';
-      }
-      if (activeRule.content && activeRule.content.length > 0) {
-        contentType = randomArrayItem(activeRule.content) ?? 'normal';
-      }
-
-      if (allowedContent.hasLikes) {
-        if (activeRule.likes) {
-          const minLimit = activeRule.likes.min ?? 0;
-          const maxLimit = activeRule.likes.max ?? 9999;
-          likes = randomNumberInRange({ min: minLimit, max: maxLimit });
-        } else {
-          likes = randomNumberInRange({ min: 0, max: 20 });
-        }
-      }
-    }
+  let text = '';
+  if (contentType === 'ad') {
+    text = randomArrayItem(AD_MESSAGES[language as 'ru' | 'en']) ?? '';
+  } else {
+    text =
+      randomArrayItem(
+        LOCATION_MESSAGES[scenario.locationId][language as 'ru' | 'en'],
+      ) ?? '';
   }
-
-  let text =
-    randomArrayItem(LOCATION_MESSAGES[locationId][lang as 'ru' | 'en']) ?? '';
 
   if (contentType === 'caps') {
     text = text.toUpperCase();
@@ -130,25 +119,22 @@ export const createMessageByScenario = (
     text = obfuscateToFwords(text);
   } else if (contentType === 'binary') {
     text = obfuscateToBinary(text);
-  } else if (contentType === 'ad') {
-    text = randomArrayItem(AD_MESSAGES[lang as 'ru' | 'en']) ?? '';
   }
-
-  const avatarKey = getRandomAvatarKey(user);
 
   return {
     id: nanoid(),
+    side: getRandomSide(),
+    speed: getRandomSpeed(scenario.messageSpeedRange),
+    avatarKey: getRandomAvatarKey(user),
+
     user,
-    avatarKey,
     content: {
       type: contentType,
-      text,
       likes,
-      hasLikes: allowedContent.hasLikes,
+      hasLikes: scenario.hasLikes,
+      text,
     },
     title,
-    side,
-    speed,
-    banAction: finalBanAction,
+    banAction,
   };
 };

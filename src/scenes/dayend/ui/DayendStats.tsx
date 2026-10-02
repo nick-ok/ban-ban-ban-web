@@ -40,44 +40,40 @@ export const DayendStats = ({ stats, isPassed }: Props) => {
         icon: 'check' as const,
         label: t('screens.dayend.totalMessages'),
         value: stats.total,
+        success: true,
       },
       {
         id: 'banned',
         icon: 'check' as const,
         label: t('screens.dayend.banned'),
         value: stats.banned,
+        success: true,
       },
       {
         id: 'longBanned',
         icon: 'check' as const,
         label: t('screens.dayend.longBanned'),
         value: stats.longBanned,
+        success: true,
       },
-      ...(!isPassed
-        ? [
-            {
-              id: 'wrongBanned',
-              icon: 'cross' as const,
-              label: t('screens.dayend.wrongBanned'),
-              value: stats.wrongBanned,
-              color: 'var(--color-danger)',
-            },
-            {
-              id: 'missedLong',
-              icon: 'cross' as const,
-              label: t('screens.dayend.missedLong'),
-              value: stats.missedLong,
-              color: 'var(--color-danger)',
-            },
-            {
-              id: 'missed',
-              icon: 'cross' as const,
-              label: t('screens.dayend.missed'),
-              value: stats.missed,
-              color: 'var(--color-warning)',
-            },
-          ]
-        : []),
+      {
+        id: 'wrongBanned',
+        icon: 'cross' as const,
+        label: t('screens.dayend.wrongBanned'),
+        value: stats.wrongBanned,
+      },
+      {
+        id: 'missedLong',
+        icon: 'cross' as const,
+        label: t('screens.dayend.missedLong'),
+        value: stats.missedLong,
+      },
+      {
+        id: 'missed',
+        icon: 'cross' as const,
+        label: t('screens.dayend.missed'),
+        value: stats.missed,
+      },
     ],
     [stats, isPassed, t],
   );
@@ -89,17 +85,34 @@ export const DayendStats = ({ stats, isPassed }: Props) => {
       initial="hidden"
       animate="visible"
     >
-      {statItems.map((item) => (
-        <motion.div
-          key={item.id}
-          className={styles.stat}
-          variants={itemVariants}
-        >
-          <Icon name={item.icon} className={styles.statIcon} />
-          <span style={{ color: item.color }}>{item.label}</span>
-          <CountMotion className={styles.statValue} to={item.value} />
-        </motion.div>
-      ))}
+      {statItems.map((item) => {
+        const hide = !item.success && item.value === 0;
+
+        if (hide) {
+          return null;
+        }
+
+        return (
+          <motion.div
+            key={item.id}
+            className={styles.stat}
+            variants={itemVariants}
+          >
+            <Icon name={item.icon} className={styles.statIcon} />
+            <span
+              style={{
+                fontWeight: 'bold',
+                color: item.success
+                  ? 'var(--color-black)'
+                  : 'var(--color-danger)',
+              }}
+            >
+              {item.label}
+            </span>
+            <CountMotion className={styles.statValue} to={item.value} />
+          </motion.div>
+        );
+      })}
     </motion.div>
   );
 };

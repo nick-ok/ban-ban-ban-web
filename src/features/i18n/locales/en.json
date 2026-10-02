@@ -117,20 +117,15 @@
       "tierC": "Not gonna lie, it's bad",
       "again": "Again",
       "cancel": "Cancel",
-      "globalAIProgress": "GIP AI Progress",
-      "newTask": "New task opened",
-      "newLocation": "New application opened!",
-      "newReviews": "You have new reviews!",
-      "saveAndContinue": "Save and continue",
       "next": "Next",
       "home": "Home",
-      "accuracy": "Your accuracy",
+      "accuracy": "Accuracy",
       "totalMessages": "Total messages",
       "banned": "Banned",
-      "longBanned": "Sent to a long ban",
-      "wrongBanned": "Banned unfairly",
-      "missed": "Missed people who deserved a ban",
-      "missedLong": "Missed those who deserved a long ban"
+      "longBanned": "Long-banned",
+      "wrongBanned": "Ban error",
+      "missed": "Missed: banned",
+      "missedLong": "Missed: long-banned"
     }
   },
   "locations": {

@@ -23,6 +23,10 @@
   --space-30: calc(var(--u) * 30);
   --space-40: calc(var(--u) * 40);
   --space-50: calc(var(--u) * 50);
+  --space-60: calc(var(--u) * 60);
+  --space-70: calc(var(--u) * 70);
+  --space-80: calc(var(--u) * 80);
+  --space-90: calc(var(--u) * 90);
   --space-100: calc(var(--u) * 100);
 
   --radius-sm: calc(var(--u) * 2);

@@ -3,10 +3,18 @@ import * as PIXI from 'pixi.js';
 import type { AvatarAssetKey } from '../config/assets';
 
 export type UserType = 'male' | 'female' | 'anonymous' | 'bot' | 'ai';
+
+// virus - сообщения типа H4sICF9uM1wCA21zZ...=.
+// error - Uncaught TypeError: Cannot read properties of undefined (reading 'make') at eval...
+// ad - если пользователь прожал кнопку КУПИ, то вылезет окно которое будет мешать модерации
 export type ContentType =
   'normal' | 'blurred' | 'ad' | 'caps' | 'fwords' | 'binary' | 'audio';
+
+// VIP
 export type TitleType = 'empty' | 'hype' | 'dissent' | 'angry';
 export type MessageSide = 'left' | 'right';
+
+// Ков-во жалоб (дополнительно к кол-ву лайков) reports
 
 export type BanAction = 'ban' | 'longBan' | 'none';
 

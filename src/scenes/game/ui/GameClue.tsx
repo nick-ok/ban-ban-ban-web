@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
-import type { TitleType, UserType } from '@/entities/message';
-import type { BanRule, Scenario } from '@/entities/scenario';
+import type { Scenario } from '@/entities/scenario';
 import { useTranslation } from '@/features/i18n';
 import type { ParseKeys } from '@/features/i18n';
 import { Icon } from '@/shared/ui';
@@ -9,7 +8,7 @@ import { Icon } from '@/shared/ui';
 import styles from './GameClue.module.css';
 
 interface Props {
-  banRules: Scenario['banRules'];
+  pools: Scenario['pools'];
 }
 
 type ClueKey = 'anonymous' | 'bot' | 'ai' | 'hype' | 'dissent' | 'angry';
@@ -42,7 +41,7 @@ const DYNAMIC_CLUES: { key: ClueKey; src: string; label: ParseKeys }[] = [
   },
 ];
 
-export const GameClue = ({ banRules }: Props) => {
+export const GameClue = ({ pools }: Props) => {
   const { t } = useTranslation();
 
   const clueMap = useMemo(() => {
@@ -55,35 +54,12 @@ export const GameClue = ({ banRules }: Props) => {
       angry: false,
     };
 
-    if (!banRules) {
+    if (pools) {
       return map;
     }
 
-    const allRules: BanRule[] = [
-      ...(banRules.ban ?? []),
-      ...(banRules.longBan ?? []),
-    ];
-
-    for (const rule of allRules) {
-      if (rule.user) {
-        (Object.keys(map) as ClueKey[]).forEach((key) => {
-          if (rule.user?.includes(key as UserType)) {
-            map[key] = true;
-          }
-        });
-      }
-
-      if (rule.title) {
-        (Object.keys(map) as ClueKey[]).forEach((key) => {
-          if (rule.title?.includes(key as TitleType)) {
-            map[key] = true;
-          }
-        });
-      }
-    }
-
     return map;
-  }, [banRules]);
+  }, [pools]);
 
   return (
     <div className={styles.root}>

@@ -106,7 +106,7 @@ export const GameScene = () => {
                 </Button>
               }
             >
-              {() => <GameClue banRules={activeScenario.banRules} />}
+              {() => <GameClue pools={activeScenario.pools} />}
             </AppDrawer>
           )}
 
