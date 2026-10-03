@@ -30,7 +30,19 @@
   gap: var(--space-3);
 }
 
-.menuIcon {
+.menuIcon,
+.questionIcon {
   width: calc(var(--u) * 7);
   height: calc(var(--u) * 7);
+}
+
+.clueBtn {
+  flex-shrink: 0;
+  border-radius: 50%;
+  width: var(--space-9);
+  height: var(--space-9);
+}
+
+.questionIcon {
+  color: var(--color-accent-blue);
 }

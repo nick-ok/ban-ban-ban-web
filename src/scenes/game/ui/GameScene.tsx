@@ -52,6 +52,7 @@ export const GameScene = () => {
 
   const activeScenario = useMemo(() => {
     return getActiveScenario({
+      locationId: location?.id ?? null,
       scenario: baseScenario ?? null,
       isAutoModerationEnabled,
       isGlobalAIActive,
@@ -101,12 +102,17 @@ export const GameScene = () => {
               open={infoOpen}
               onOpenChange={setInfoOpen}
               trigger={
-                <Button withSound={false}>
-                  <Icon name={'info'} className={styles.menuIcon} />
+                <Button
+                  className={styles.clueBtn}
+                  variant={'white'}
+                  withSound={false}
+                  glow={true}
+                >
+                  <Icon name={'question'} className={styles.questionIcon} />
                 </Button>
               }
             >
-              {() => <GameClue pools={activeScenario.pools} />}
+              {() => <GameClue scenario={activeScenario} />}
             </AppDrawer>
           )}
 

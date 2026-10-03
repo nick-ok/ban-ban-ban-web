@@ -75,6 +75,7 @@
   justify-content: space-between;
   margin-bottom: var(--space-4);
   color: var(--color-accent-blue);
+  font-weight: bold;
 }
 
 .angleRight {

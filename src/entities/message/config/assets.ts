@@ -45,13 +45,16 @@ export const AVATAR_ASSETS = {
 
 export const TITLE_ASSETS = {
   empty: '',
-  dissent: '/images/message/dissent.webp',
   hype: '/images/message/fire.webp',
   angry: '/images/message/angry.webp',
+  verified: '/images/message/verified.png',
+  virus: '/images/message/virus.png',
+  vip: '/images/message/vip.png',
 } as const;
 
 export const UI_ASSETS = {
-  like: '/images/message/like.webp',
+  like: '/images/message/like.png',
+  warning: '/images/message/warning.png',
   voiceMessage: '/images/message/voice-message.webp',
   banStamp: '/images/ban-stamp.png',
   bracketError: '/images/message/particles/bracket-error.png',
@@ -107,4 +110,10 @@ export const FEMALE_AVATAR_KEYS: AvatarAssetKey[] = [
   'female_18',
 ];
 
-export const TITLE_KEYS: TitleAssetKey[] = ['dissent', 'hype', 'angry'];
+export const TITLE_KEYS: TitleAssetKey[] = [
+  'hype',
+  'angry',
+  'verified',
+  'virus',
+  'vip',
+];

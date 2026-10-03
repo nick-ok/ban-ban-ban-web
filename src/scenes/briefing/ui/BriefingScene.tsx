@@ -10,6 +10,7 @@ import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import {
   getLastUnlockedLocationScenario,
   getScenarioById,
+  ScenarioIntro,
 } from '@/entities/scenario';
 import { AudioService } from '@/features/audio';
 import { useTranslation } from '@/features/i18n';
@@ -68,6 +69,8 @@ export const BriefingScene = () => {
     return attemptCount > 0;
   }, [scenario]);
 
+  const [showIntro, setShowIntro] = useState(!isBreafingReaded);
+
   const location = getLocationById(scenario?.locationId ?? null);
 
   const briefingFlow = scenario?.briefingFlow ?? [];
@@ -93,6 +96,16 @@ export const BriefingScene = () => {
 
   if (!scenario || briefingFlow.length === 0) {
     return <NoInstructions />;
+  }
+
+  if (showIntro) {
+    return (
+      <ScenarioIntro
+        title={t(scenario.title)}
+        timePassed={t(scenario.timePassed)}
+        onClose={() => setShowIntro(false)}
+      />
+    );
   }
 
   return (

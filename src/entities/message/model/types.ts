@@ -4,17 +4,19 @@ import type { AvatarAssetKey } from '../config/assets';
 
 export type UserType = 'male' | 'female' | 'anonymous' | 'bot' | 'ai';
 
-// virus - сообщения типа H4sICF9uM1wCA21zZ...=.
-// error - Uncaught TypeError: Cannot read properties of undefined (reading 'make') at eval...
-// ad - если пользователь прожал кнопку КУПИ, то вылезет окно которое будет мешать модерации
 export type ContentType =
-  'normal' | 'blurred' | 'ad' | 'caps' | 'fwords' | 'binary' | 'audio';
+  | 'normal'
+  | 'blurred'
+  | 'ad'
+  | 'caps'
+  | 'fwords'
+  | 'binary'
+  | 'audio'
+  | 'error';
 
-// VIP
-export type TitleType = 'empty' | 'hype' | 'dissent' | 'angry';
+export type TitleType =
+  'empty' | 'hype' | 'angry' | 'verified' | 'virus' | 'vip';
 export type MessageSide = 'left' | 'right';
-
-// Ков-во жалоб (дополнительно к кол-ву лайков) reports
 
 export type BanAction = 'ban' | 'longBan' | 'none';
 
@@ -25,8 +27,10 @@ export interface Message {
   content: {
     type: ContentType;
     text: string;
-    likes: number;
     hasLikes?: boolean;
+    likes: number;
+    hasReports?: boolean;
+    reports: number;
   };
   title: TitleType;
   side: MessageSide;

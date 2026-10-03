@@ -1,11 +1,9 @@
 import { nanoid } from 'nanoid';
 
-import { LOCATION_MESSAGES } from '@/entities/location/config/locationMessages';
 import type { Scenario } from '@/entities/scenario';
 import { i18n } from '@/features/i18n';
 import { randomArrayItem, randomNumberInRange } from '@/shared/lib';
 
-import { AD_MESSAGES } from '../config/ad-messages';
 import {
   FEMALE_AVATAR_KEYS,
   MALE_AVATAR_KEYS,
@@ -19,8 +17,7 @@ import type {
   TitleType,
   UserType,
 } from '../model/types';
-import { obfuscateToBinary } from './obfuscate-to-binary';
-import { obfuscateToFwords } from './obfuscate-to-fwords';
+import { createMessageText } from './create-message-text';
 
 const resolveParam = <T>(param: T | T[] | undefined, fallback: T | T[]): T => {
   const activeParam = param !== undefined ? param : fallback;
@@ -64,6 +61,35 @@ const getRandomAvatarKey = (userType: UserType): AvatarAssetKey => {
   return 'anonymous';
 };
 
+const generateCountValueByCondition = (
+  condition: string | undefined,
+): number => {
+  if (!condition) {
+    return randomNumberInRange({ min: 100, max: 1000 });
+  }
+
+  const match = condition.match(/^([><])(\d+)$/);
+
+  if (!match) {
+    return 0;
+  }
+
+  const [, sign, valueStr] = match;
+  const targetValue = parseInt(valueStr, 10);
+
+  if (sign === '>') {
+    return randomNumberInRange({
+      min: targetValue + 1,
+      max: targetValue + 1_000,
+    });
+  }
+
+  return randomNumberInRange({
+    min: Math.max(0, targetValue - 500),
+    max: Math.max(0, targetValue - 1),
+  });
+};
+
 export const createMessageByScenario = (
   scenario: Scenario,
   banAction: BanAction,
@@ -71,8 +97,9 @@ export const createMessageByScenario = (
   const language = i18n.language;
 
   let activePool = scenario.pools[banAction];
+  const poolEmpty = !activePool || activePool.length === 0;
 
-  if (!activePool || activePool.length === 0) {
+  if (poolEmpty) {
     activePool = scenario.pools['none'];
   }
 
@@ -94,32 +121,21 @@ export const createMessageByScenario = (
 
   let likes = 0;
   if (scenario.hasLikes) {
-    const likesRange = template.likes || defaultTemplate.likes;
-
-    if (likesRange) {
-      likes = randomNumberInRange({ min: likesRange.min, max: likesRange.max });
-    } else {
-      likes = randomNumberInRange({ min: 100, max: 1000 });
-    }
+    const likesCondition = template.likes || defaultTemplate.likes;
+    likes = generateCountValueByCondition(likesCondition);
   }
 
-  let text = '';
-  if (contentType === 'ad') {
-    text = randomArrayItem(AD_MESSAGES[language as 'ru' | 'en']) ?? '';
-  } else {
-    text =
-      randomArrayItem(
-        LOCATION_MESSAGES[scenario.locationId][language as 'ru' | 'en'],
-      ) ?? '';
+  let reports = 0;
+  if (scenario.hasReports) {
+    const reportsCondition = template.reports || defaultTemplate.reports;
+    reports = generateCountValueByCondition(reportsCondition);
   }
 
-  if (contentType === 'caps') {
-    text = text.toUpperCase();
-  } else if (contentType === 'fwords') {
-    text = obfuscateToFwords(text);
-  } else if (contentType === 'binary') {
-    text = obfuscateToBinary(text);
-  }
+  const text = createMessageText({
+    locationId: scenario.locationId,
+    contentType,
+    language,
+  });
 
   return {
     id: nanoid(),
@@ -130,11 +146,13 @@ export const createMessageByScenario = (
     user,
     content: {
       type: contentType,
-      likes,
       hasLikes: scenario.hasLikes,
+      likes,
+      hasReports: scenario.hasReports,
+      reports,
       text,
     },
     title,
-    banAction,
+    banAction: poolEmpty ? 'none' : banAction,
   };
 };
