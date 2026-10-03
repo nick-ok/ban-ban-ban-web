@@ -6,7 +6,7 @@ export const MESSAGE_CONFIG = {
     headSize: 36,
     padding: 12,
     radius: 12,
-    fontSize: 12,
+    fontSize: 14,
     footerSize: 22,
   },
   colors: {

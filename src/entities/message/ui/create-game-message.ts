@@ -50,8 +50,8 @@ export const createGameMessage = (
     pixiText = new PIXI.Text({
       text: content?.text,
       style: {
-        fontFamily: 'Comfortaa',
-        fontWeight: '600',
+        fontFamily: 'Shantell Sans',
+        fontWeight: '300',
         fontSize: bubble.fontSize,
         fill:
           content.type === 'ad'

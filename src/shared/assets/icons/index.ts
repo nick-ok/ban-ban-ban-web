@@ -31,6 +31,7 @@ export const ICON_NAMES = [
   'sparkles',
   'spiritual',
   'star',
+  'tag-notice',
   'tap-long',
   'tap',
   'winking-face',

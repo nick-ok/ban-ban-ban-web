@@ -1,12 +1,10 @@
 import type { ParseKeys } from '@/features/i18n';
-import type { IconName } from '@/shared/ui';
 
 import type { TierLabel } from '../model/types';
 
 interface Tier {
   tierLabel: TierLabel;
   tierLabelKey: ParseKeys;
-  gradeIcon: IconName;
 }
 
 const TIER_MAP = new Map<number, Tier>([
@@ -15,7 +13,6 @@ const TIER_MAP = new Map<number, Tier>([
     {
       tierLabel: 'c',
       tierLabelKey: 'screens.dayend.tierC',
-      gradeIcon: 'crazy-face',
     },
   ],
   [
@@ -23,7 +20,6 @@ const TIER_MAP = new Map<number, Tier>([
     {
       tierLabel: 'b',
       tierLabelKey: 'screens.dayend.tierB',
-      gradeIcon: 'confused-face',
     },
   ],
   [
@@ -31,7 +27,6 @@ const TIER_MAP = new Map<number, Tier>([
     {
       tierLabel: 'a',
       tierLabelKey: 'screens.dayend.tierA',
-      gradeIcon: 'sparkles',
     },
   ],
   [
@@ -39,7 +34,6 @@ const TIER_MAP = new Map<number, Tier>([
     {
       tierLabel: 's',
       tierLabelKey: 'screens.dayend.tierS',
-      gradeIcon: 'heart-sparkling',
     },
   ],
 ]);

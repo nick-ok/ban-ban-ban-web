@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 
+import clsx from 'clsx';
+
 import { useNavigationStore } from '@/entities/navigation';
 import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import {
@@ -14,7 +16,7 @@ import {
 } from '@/features/game';
 import { useTranslation } from '@/features/i18n';
 import { useGameNotifications } from '@/features/notifications';
-import { Button, CountMotion, Icon, ZoomMotion } from '@/shared/ui';
+import { Button, CountMotion, Icon, ShineFX, ZoomMotion } from '@/shared/ui';
 
 import { DayendStats } from './DayendStats';
 
@@ -40,7 +42,7 @@ export const DayEndScene = () => {
   const { setScene } = useNavigationStore();
 
   const computedAccuracy = calculateAccuracy(stats);
-  const { tierLabelKey, gradeIcon } = getAccuracyGrade(computedAccuracy);
+  const { tierLabelKey } = getAccuracyGrade(computedAccuracy);
 
   const isPassed = computedAccuracy >= COMPLETION_THRESHOLD;
   const { nextLocationToUnlock } = getNextToUnlock(
@@ -99,14 +101,16 @@ export const DayEndScene = () => {
 
   return (
     <ZoomMotion className={styles.root}>
-      <h1 className={styles.title}>{t(tierLabelKey)}</h1>
+      <div className={clsx(styles.tierLabel, isPassed && styles.passed)}>
+        {isPassed && <Icon className={styles.tagIcon} name={'tag-notice'} />}
+
+        <h1 className={styles.title}>{t(tierLabelKey)}</h1>
+      </div>
 
       <div className={styles.accuracy}>
         <h4 className={styles.accuracyTitle} style={{ color: accuracyColor }}>
           {t('screens.dayend.accuracy')}
         </h4>
-
-        <Icon name={gradeIcon} className={styles.accuracyIcon} />
 
         <CountMotion
           style={{ color: accuracyColor }}
@@ -119,15 +123,17 @@ export const DayEndScene = () => {
       <DayendStats stats={stats} isPassed={isPassed} />
 
       <div className={styles.actions}>
-        <Button
-          className={styles.button}
-          variant={isPassed ? 'accent' : 'white'}
-          onClick={handleSaveAndExit}
-          glow={isPassed}
-        >
-          <Icon name={'check'} className={styles.buttonIcon} />
-          <span>{t('screens.dayend.next')}</span>
-        </Button>
+        <ShineFX enabled={isPassed}>
+          <Button
+            className={styles.button}
+            variant={isPassed ? 'primary' : 'white'}
+            onClick={handleSaveAndExit}
+            glow={isPassed}
+          >
+            <Icon name={'check'} className={styles.buttonIcon} />
+            <span>{t('screens.dayend.next')}</span>
+          </Button>
+        </ShineFX>
 
         <Button
           className={styles.button}

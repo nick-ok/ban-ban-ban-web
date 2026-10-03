@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 
-import comfortaaFontUrl from '@/shared/assets/fonts/Comfortaa-VariableFont_wght.ttf';
+import shantellFontUrl from '@/shared/assets/fonts/ShantellSans-VariableFont.ttf';
 
 import {
   AVATAR_ASSETS,
@@ -34,14 +34,14 @@ export const loadMessageAssets = async (): Promise<void> => {
     });
   });
 
-  const FONT_KEY = 'Comfortaa';
+  const FONT_KEY = 'Shantell Sans';
 
   if (!PIXI.Assets.resolver.hasKey(FONT_KEY)) {
     PIXI.Assets.add({
       alias: FONT_KEY,
-      src: comfortaaFontUrl,
+      src: shantellFontUrl,
       data: {
-        family: 'Comfortaa',
+        family: 'Shantell Sans',
         weights: ['300', '400', '600', '700', '900'],
       },
     });

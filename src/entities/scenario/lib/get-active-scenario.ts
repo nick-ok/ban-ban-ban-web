@@ -19,13 +19,8 @@ export const getActiveScenario = ({
     return {
       ...scenario,
       id: 'sc_singularity',
-      allowedContent: {
-        users: ['ai', 'bot'],
-        hasLikes: true,
-        content: ['binary'],
-        titles: ['empty'],
-      },
-      banRules: {
+      pools: {
+        none: [{ user: ['bot', 'ai'], content: ['binary'] }],
         ban: [],
         longBan: [],
       },
@@ -38,7 +33,8 @@ export const getActiveScenario = ({
 
   return {
     ...scenario,
-    banRules: {
+    pools: {
+      none: [{ user: ['female', 'male'], content: ['normal'] }],
       ban: [],
       longBan: [],
     },

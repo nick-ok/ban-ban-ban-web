@@ -48,6 +48,8 @@ export const BriefingScene = () => {
   } = useNavigationStore();
   const progress = usePlayerProgressStore();
 
+  const [currentStep, setCurrentStep] = useState(0);
+
   const scenario = useMemo(() => {
     if (selectedScenarioId !== null) {
       return getScenarioById(selectedScenarioId);
@@ -59,15 +61,24 @@ export const BriefingScene = () => {
     );
   }, [progress, selectedLocationId, selectedScenarioId]);
 
+  const isBreafingReaded = useMemo(() => {
+    const attemptCount =
+      progress.scenarioResults[scenario?.id ?? 'loc1_sc1']?.attemptCount ?? 0;
+
+    return attemptCount > 0;
+  }, [scenario]);
+
   const location = getLocationById(scenario?.locationId ?? null);
 
   const briefingFlow = scenario?.briefingFlow ?? [];
   const sender = scenario?.briefingSender;
 
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const isLastStep = currentStep === briefingFlow.length - 1;
-  const visibleMessages = briefingFlow.slice(0, currentStep + 1);
+  const isLastStep = !isBreafingReaded
+    ? currentStep === briefingFlow.length - 1
+    : true;
+  const visibleMessages = isBreafingReaded
+    ? briefingFlow
+    : briefingFlow.slice(0, currentStep + 1);
 
   const handleScreenClick = () => {
     if (!isLastStep) {
@@ -145,7 +156,12 @@ export const BriefingScene = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  {isAI && <Icon name={'gip-ai'} className={styles.aiIcon} />}
+                  {isAI && (
+                    <div className={styles.gipAI}>
+                      <Icon name={'gip-ai'} className={styles.aiIcon} />
+                      <span>GIP AI</span>
+                    </div>
+                  )}
 
                   <div className={styles.messageContent}>
                     <div className={styles.text}>
