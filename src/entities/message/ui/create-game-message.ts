@@ -53,10 +53,7 @@ export const createGameMessage = (
         fontFamily: 'Shantell Sans',
         fontWeight: '300',
         fontSize: bubble.fontSize,
-        fill:
-          content.type === 'ad'
-            ? (randomArrayItem(adTextColors) ?? colors.text)
-            : colors.text,
+        fill: colors.text,
         wordWrap: true,
         wordWrapWidth,
         breakWords: true,
@@ -73,7 +70,14 @@ export const createGameMessage = (
 
   let adButtonContainer: PIXI.Container | null = null;
 
-  if (content.type === 'ad') {
+  if (content.type === 'error' && pixiText) {
+    pixiText.style.fill = '#ff8080';
+    pixiText.style.fontFamily = 'Consolas, monospace';
+    pixiText.style.fontSize = 12;
+  }
+
+  if (content.type === 'ad' && pixiText) {
+    pixiText.style.fill = randomArrayItem(adTextColors) ?? colors.text;
     adButtonContainer = drawMessageADButton({ width: wordWrapWidth });
 
     const targetX = bubble.padding + wordWrapWidth / 2;
@@ -85,11 +89,17 @@ export const createGameMessage = (
 
   let footerContainer: PIXI.Container | null = null;
   const hasLikes = content?.hasLikes !== false;
+  const hasReports = content?.hasReports !== false;
 
-  if (hasLikes) {
+  if (hasLikes || hasReports) {
     footerContainer = drawMessageFooter({
+      bubbleWidth: wordWrapWidth,
       likesCount: content?.likes ?? 0,
       likeAssetKey: 'like',
+      reportsAssetKey: 'warning',
+      reportsCount: content?.reports ?? 0,
+      showLikes: hasLikes,
+      showReports: hasReports,
     });
 
     const footerStartY = currentBottomY + GAP;

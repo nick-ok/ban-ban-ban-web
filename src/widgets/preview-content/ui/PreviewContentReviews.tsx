@@ -43,9 +43,9 @@ export const PreviewContentReviews = ({
       <div className={styles.head}>
         <Button onClick={onClose}>
           <Icon name={'angle-left'} className={styles.angleLeftIcon} />
-        </Button>
 
-        <h1 className={styles.title}>{t('screens.preview.reviewsTitle')}</h1>
+          <h1 className={styles.title}>{t('screens.preview.reviewsTitle')}</h1>
+        </Button>
       </div>
 
       <div className={styles.reviewsList}>

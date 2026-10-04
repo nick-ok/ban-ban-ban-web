@@ -23,5 +23,5 @@ export const MESSAGE_CONFIG = {
 export const BLUR_FILTER = new PIXI.BlurFilter();
 BLUR_FILTER.strength = 6;
 
-export const HOLD_TIME_SHORT_MS = 500;
-export const HOLD_TIME_LONG_MS = 1000;
+export const HOLD_TIME_SHORT_MS = 250;
+export const HOLD_TIME_LONG_MS = 1200;

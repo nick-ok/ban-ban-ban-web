@@ -7,6 +7,10 @@ export const LOC4_SC3: Scenario = {
   id: 'loc4_sc3',
   locationId: 'loc4',
   briefingSender: LOC_4_OWNER,
+
+  title: 'scenarios.loc4_sc3.title',
+  timePassed: 'scenarios.loc4_sc3.timePassed',
+
   briefingFlow: [
     {
       senderType: 'owner',
@@ -45,6 +49,7 @@ export const LOC4_SC3: Scenario = {
   endWorktime: timeToMinutes('10:20'),
 
   hasLikes: false,
+  hasReports: false,
 
   pools: {
     none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],

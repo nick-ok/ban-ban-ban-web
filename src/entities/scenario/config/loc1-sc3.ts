@@ -7,6 +7,10 @@ export const LOC1_SC3: Scenario = {
   id: 'loc1_sc3',
   locationId: 'loc1',
   briefingSender: LOC_1_OWNER,
+
+  title: 'scenarios.loc1_sc3.title',
+  timePassed: 'scenarios.loc1_sc3.timePassed',
+
   briefingFlow: [
     {
       senderType: 'owner',
@@ -46,16 +50,17 @@ export const LOC1_SC3: Scenario = {
   messageSpeedRange: [0.3, 0.8],
   spawnSpeed: 0.7,
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('15:00'),
+  endWorktime: timeToMinutes('10:20'),
 
   hasLikes: false,
+  hasReports: false,
 
   pools: {
     none: [
       {
-        user: ['male', 'female'],
+        user: ['female'],
         content: ['normal'],
-        title: 'empty',
+        title: 'verified',
       },
     ],
     ban: [],

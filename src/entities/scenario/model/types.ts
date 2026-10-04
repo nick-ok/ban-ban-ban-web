@@ -21,28 +21,23 @@ export interface BanRule {
   };
 }
 
-export type NumberRange = {
-  min: number;
-  max: number;
-};
+export type MetricCondition = `>${number}` | `<${number}`;
 
 export interface MessageTemplate {
   user?: UserType | UserType[];
   content?: ContentType | ContentType[];
   title?: TitleType | TitleType[];
-  likes?: NumberRange;
-}
-
-export interface AllowedContent {
-  users: UserType[];
-  content: ContentType[];
-  hasLikes: boolean;
-  titles: TitleType[];
+  likes?: MetricCondition;
+  reports?: MetricCondition;
 }
 
 export interface Scenario {
   id: ScenarioId;
   locationId: LocationId;
+
+  title: ParseKeys;
+  timePassed: ParseKeys;
+
   briefingSender: LocationOwner;
   briefingFlow: BriefingMessage[];
 
@@ -54,6 +49,7 @@ export interface Scenario {
   endWorktime: number;
 
   hasLikes: boolean;
+  hasReports: boolean;
 
   pools: {
     none: MessageTemplate[];

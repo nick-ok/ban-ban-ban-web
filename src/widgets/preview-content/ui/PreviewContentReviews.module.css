@@ -19,7 +19,7 @@
   align-items: center;
   gap: var(--space-3);
   width: 100%;
-  height: calc(var(--u) * 25);
+  height: var(--space-20);
   color: var(--color-accent-blue);
 }
 

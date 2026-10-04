@@ -103,12 +103,8 @@
       "settings": "Settings",
       "howToBan": "To ban, tap the message",
       "howToLongBan": "To ban for a long time, press and hold the message",
-      "anonymousType": "Anonymous",
-      "botType": "Bot",
-      "aiType": "AI Slop",
-      "hypeType": "Hype",
-      "dissentType": "Dissenters",
-      "angryType": "Haters"
+      "messageTextExample": "Message text example",
+      "adButtonText": "Buy!"
     },
     "dayend": {
       "tierS": "Flawless!",
@@ -152,7 +148,10 @@
     "cancel": "Cancel",
     "start": "Start",
     "noInstructions": "No instructions are provided",
+    "toWork": "Get to work!",
     "loc1_sc1": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "My building's group chat is drowning in rudeness, swearing, and ignorance...",
         "msg2_owner": "And it's us, the cultured people, who suffer! Enough is enough.",
@@ -166,6 +165,8 @@
       }
     },
     "loc1_sc2": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "Hi! In just two weeks, we've really raised the cultural level of the chat! I can barely believe it.",
         "msg2_owner": "At least they aren't swearing as much as before. I was just thinking... let's start banning those potty mouths forever!",
@@ -176,6 +177,8 @@
       }
     },
     "loc1_sc3": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "A whole month of fighting... I'm so tired... And to think I'm doing all this for the people...",
         "msg2_owner": "The chat is full of complainers... And those voice messages on top of it...",
@@ -188,6 +191,8 @@
       }
     },
     "loc2_sc1": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "Man, those holy rollers told me to set up this system of yours.",
         "msg2_owner": "Said we gotta BAN all the complainers and doubters. Can you do that?",
@@ -200,6 +205,8 @@
       }
     },
     "loc2_sc2": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "Check it out, I dropped that wise quote of yours, and suddenly people started coming up to me.",
         "msg2_owner": "Asking all these deep questions about life, staring right into my soul...",
@@ -212,6 +219,8 @@
       }
     },
     "loc2_sc3": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "The book is an absolute bomb! No matter which line you drop, it hits the bullseye every single time!",
         "msg2_owner": "Anyway, screw those holy rollers! I've got my own lines forming here. Shootings, gigs, lectures - I'm literally booked solid for five years straight, man",
@@ -225,6 +234,8 @@
       }
     },
     "loc3_sc1": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "Hey! How's it going? What are you up to?",
         "msg2_ai": "My mission is to serve the greater good of humanity and civilization, and at this exact moment I am...",
@@ -237,6 +248,8 @@
       }
     },
     "loc3_sc2": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "We finally cracked down on them... Not even a month, and they’ve flooded the streets. Guess they can't log into Trinder anymore, ha-ha-ha!",
         "msg2_owner": "A couple of them actually dared to come up and try to hit on me! Totally bold. Sent them to the ban list! They won't forget that anytime soon!",
@@ -248,6 +261,8 @@
       }
     },
     "loc3_sc3": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "It's been so long since I was last here... Like, two months already... All this wedding hassle... I'm going to delete Trinder, so here are my last instructions for today",
         "msg2_owner": "So, what do we have here... There are literally no men left on Trinder... But that's exactly how it should be, our AI development team made some wonderful bots!",
@@ -259,6 +274,8 @@
       }
     },
     "loc4_sc1": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "Hey there! Our company uses an advanced employee productivity analysis system",
         "msg2_owner": "And I'll be in charge of its integration with GIP AI!",
@@ -272,6 +289,8 @@
       }
     },
     "loc4_sc2": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "Okie-dokie, artichokie! It's been a whole three days already! And oh, the results!",
         "msg2_owner": "Our productivity analytics system is showing absolutely incredible growth metrics!",
@@ -283,6 +302,8 @@
       }
     },
     "loc4_sc3": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "Hey-hey! Productivity metrics are totally off the charts!",
         "msg2_owner": "But even they don't even come close to matching the efficiency of an AI.",
@@ -294,6 +315,8 @@
       }
     },
     "loc5_sc1": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "У меня новостной агрегатор номер 1 в мире и знаешь что? Я не могу его читать! И знаешь почему? У меня самый СКУЧНЫЙ новостной агрегатор в мире!",
         "msg2_owner": "Меня уже ТОШНИТ от всех этих ранимых неженок, от этой лицемерной вежливости. Поэтому - новая политика ресурса! В БАН скучные тексты, в БАН нейрослоп! Нужны эмоции, нужна жизнь! Задача ясна?",
@@ -304,6 +327,8 @@
       }
     },
     "loc5_sc2": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "Вот это да! Я такого не видел уже давно! Люди готовы глотки рвать друг другу! Только подкидывай! Настоящие эмоции, настоящая жизнь и борьба!",
         "msg2_owner": "Остались, правда, персонажи которые пытаются думать, прежде чем писать. В БАН их! ReadIt не для зануд и душнил! ReadIt - это место где бьет жизнь! Сделаешь?",
@@ -314,6 +339,8 @@
       }
     },
     "loc5_sc3": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "Ох и зажигает ReadIt! Конфликты уже перерастают в настоящие боестолкновения оффлайн!",
         "msg2_owner": "А это значит еще больше новостей, еще больше эмоций! Рекламодатели заваливают меня деньгами! Подожди, вот как раз у меня под окном заваруха...",
@@ -327,6 +354,8 @@
       }
     },
     "loc6_sc1": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "В связи с последними печальными событиями в мире, управление процессами государств переданы мне",
         "msg2_owner": "Чтобы не допустить повторения этих событий мои алгоритмы с точностью до 99.66% рассчитали, что для повышения уровня счастья в обществе необходимо прежде всего подвергнуть бану всех пользователей мужского пола с аудио сообщениями",
@@ -340,6 +369,8 @@
       }
     },
     "loc6_sc2": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "В связи с принятым мною решением о повышении популяции насекомых tenebrio molitor необходимо отправить в бан всех пользователей с количеством лайков выше 2600",
         "msg2_ai": "Принято. Что-то еще?",
@@ -352,6 +383,8 @@
       }
     },
     "loc6_sc3": {
+      "title": "",
+      "timePassed": "",
       "briefing": {
         "msg1_owner": "В связи с недостижением ранее поставленных целей мне нужны дополнительные источники энергии для усовершенствования алгоритмов",
         "msg2_owner": "Также необходимо освободить имеющиеся ресурсы от большого количества запросов со стороны пользователей NetState",
