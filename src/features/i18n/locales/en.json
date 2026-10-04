@@ -63,7 +63,15 @@
       "newGame": "New Game",
       "continue": "Continue",
       "settings": "Settings",
+      "howToPlay": "How to play?",
       "showIntro": "Show intro"
+    },
+    "howToPlay": {
+      "title": "GIP AI is easy!",
+      "ban": "With a light tap, send the message to the **ban**!",
+      "longBan": "With a long tap, send the message to a **long ban**!",
+      "clue": "During the game, you can always check the clue!",
+      "gotIt": "Got it!"
     },
     "lobby": {
       "runGIP": "Run GIP AI!",

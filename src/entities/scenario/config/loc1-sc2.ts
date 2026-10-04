@@ -42,10 +42,10 @@ export const LOC1_SC2: Scenario = {
   messageSpeedRange: [0.3, 0.8],
   spawnSpeed: 0.7,
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('15:00'),
+  endWorktime: timeToMinutes('10:20'),
 
   hasLikes: false,
-  hasReports: true,
+  hasReports: false,
 
   pools: {
     none: [
@@ -55,8 +55,8 @@ export const LOC1_SC2: Scenario = {
         title: ['empty', 'angry'],
       },
     ],
-    ban: [{ content: 'caps' }],
-    longBan: [{ content: 'fwords' }],
+    ban: [],
+    longBan: [],
   },
 
   probabilities: {

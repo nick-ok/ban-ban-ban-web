@@ -62,7 +62,9 @@ export const LockScene = () => {
 
   const hasSavedGame = completedScenarios.length > 0;
 
-  const menuBtns = (['continue', 'newGame', 'settings', 'showIntro'] as const)
+  const menuBtns = (
+    ['continue', 'newGame', 'settings', 'howToPlay', 'showIntro'] as const
+  )
     .filter((key) => key !== 'continue' || hasSavedGame)
     .filter((key) => key !== 'showIntro' || gameSettings.isIntroSkipped);
 
@@ -70,7 +72,7 @@ export const LockScene = () => {
   const dateStr = formatDate(now, i18n.language);
 
   const handleMenuButtonClick = (
-    key: 'newGame' | 'continue' | 'settings' | 'showIntro',
+    key: 'newGame' | 'continue' | 'settings' | 'howToPlay' | 'showIntro',
   ) => {
     if (key === 'newGame') {
       resetProgress();
@@ -84,6 +86,10 @@ export const LockScene = () => {
 
     if (key === 'settings') {
       gameSettings.toggleSettingsDrawer();
+    }
+
+    if (key === 'howToPlay') {
+      setScene('howToPlay');
     }
 
     if (key === 'showIntro') {

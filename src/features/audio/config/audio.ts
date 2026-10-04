@@ -42,6 +42,7 @@ export const SCENE_SOUND_MAP: Record<Scene, SoundMapValue> = {
   lock: 'mainMenu',
   lobby: 'mainMenu',
   notificationsCenter: 'mainMenu',
+  howToPlay: null,
   preview: null,
   briefing: null,
   intro: null,

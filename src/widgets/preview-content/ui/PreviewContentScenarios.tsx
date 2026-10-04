@@ -50,6 +50,7 @@ export const PreviewContentScenarios = ({
       <div className={styles.list}>
         {data.map((s) => {
           const progress = scenarioResults[s.id]?.bestAccuracy ?? 0;
+          const isPassed = completedIds.includes(s.id);
 
           return (
             <div key={s.id} className={styles.listItem}>
@@ -57,13 +58,19 @@ export const PreviewContentScenarios = ({
                 <Button
                   variant={'text'}
                   className={styles.btn}
+                  style={{ background: location.background }}
                   onClick={() => handleScenario(s.id, s.unlocked)}
                 >
                   {s.unlocked && (
-                    <img
-                      src={'/images/message/avatar-anon.webp'}
-                      className={styles.img}
-                    />
+                    <div className={styles.unlocked}>
+                      <Icon
+                        name={location.icon.name}
+                        className={styles.locationPreview}
+                      />
+                      {isPassed && (
+                        <Icon name={'check'} className={styles.checkIcon} />
+                      )}
+                    </div>
                   )}
 
                   {!s.unlocked && (

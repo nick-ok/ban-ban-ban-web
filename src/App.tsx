@@ -12,6 +12,7 @@ import { BriefingScene } from './scenes/briefing';
 import { DayEndScene } from './scenes/dayend';
 import { GameScene } from './scenes/game';
 import { GameEndScene } from './scenes/game-end';
+import { HowToPlay } from './scenes/how-to-play';
 import { IntroScene } from './scenes/intro';
 import { LobbyScene } from './scenes/lobby';
 import { LockScene } from './scenes/lock';
@@ -22,6 +23,7 @@ import styles from './App.module.css';
 
 const scenes = {
   bootstrap: BootstrapScene,
+  howToPlay: HowToPlay,
   intro: IntroScene,
   lock: LockScene,
   lobby: LobbyScene,
