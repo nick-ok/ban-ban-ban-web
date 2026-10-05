@@ -1,13 +1,13 @@
 .tokens {
   --u: 1cqw;
 
-  --text-xs: calc(var(--u) * 2.5); /* ~11px */
-  --text-sm: calc(var(--u) * 3); /* ~13px */
-  --text-base: calc(var(--u) * 3.5); /* ~15px */
-  --text-lg: calc(var(--u) * 4.5); /* ~20px */
-  --text-xl: calc(var(--u) * 6); /* ~26px */
-  --text-2xl: calc(var(--u) * 9); /* ~40px */
-  --text-3xl: calc(var(--u) * 14); /* ~62px */
+  --text-xs: calc(var(--u) * 2.5);
+  --text-sm: calc(var(--u) * 3);
+  --text-base: calc(var(--u) * 3.8);
+  --text-lg: calc(var(--u) * 4.5);
+  --text-xl: calc(var(--u) * 6);
+  --text-2xl: calc(var(--u) * 9);
+  --text-3xl: calc(var(--u) * 14);
 
   --space-1: calc(var(--u) * 1);
   --space-2: calc(var(--u) * 2);

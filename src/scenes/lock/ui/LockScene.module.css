@@ -40,6 +40,10 @@
   text-transform: capitalize;
 }
 
+.gipMessage {
+  margin-top: auto;
+}
+
 .menu {
   margin-top: auto;
   width: 100%;
@@ -52,4 +56,29 @@
 .btn {
   width: 100%;
   font-size: var(--text-lg);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.warning {
+  min-height: var(--space-30);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+
+  padding-bottom: var(--space-10);
+}
+
+.warningText {
+  font-size: var(--text-lg);
+  color: var(--color-danger);
+  text-align: center;
+}
+
+.warningBtn {
+  width: var(--space-50);
 }

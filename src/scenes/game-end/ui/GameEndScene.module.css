@@ -1,18 +1,58 @@
 .root {
+  position: relative;
   width: 100%;
   height: 100%;
-  color: var(--color-white);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #2567a7;
+}
+
+.backgroundImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 .inner {
+  z-index: 10;
+}
+
+.shield {
+  position: relative;
+
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.shieldIcon {
+  width: var(--space-30);
+  height: var(--space-30);
+}
+
+.shieldTitle {
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: var(--text-lg);
+  width: var(--space-60);
+  padding: var(--space-1) 0;
+  border-radius: var(--radius-2xl);
+  gap: var(--space-2);
+}
+
+.messages {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  bottom: var(--space-10);
+  z-index: 10;
 }
 
 .gameSettings {
@@ -22,12 +62,4 @@
   top: var(--space-10);
   right: var(--space-10);
   color: var(--color-white);
-}
-
-.skipBtn {
-  position: absolute;
-  z-index: 10;
-  bottom: var(--space-5);
-  right: var(--space-5);
-  width: calc(var(--u) * 30);
 }

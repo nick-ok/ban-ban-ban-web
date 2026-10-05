@@ -26,6 +26,7 @@ export const ICON_NAMES = [
   'question',
   'reload',
   'settings',
+  'shield',
   'sound-off',
   'sound-on',
   'sparkles',

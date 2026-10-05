@@ -9,3 +9,6 @@ export { ScanFX } from './scan-fx/ScanFX';
 export { PhoneFrame } from './phone-frame/PhoneFrame';
 export { AppDrawer } from './app-drawer/AppDrawer';
 export { ShineFX } from './shine-fx/ShineFX';
+export { AnimatedBackground } from './animated-background/AnimatedBackground';
+export { Sunburst } from './sunburst/Sunburst';
+export { GIPAIICon } from './gip-ai-icon/GIPAIIcon';

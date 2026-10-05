@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { motion } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 
+import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
 import { useTranslation } from '@/features/i18n';
 import { Button, Icon, ShineFX, ZoomMotion } from '@/shared/ui';
@@ -12,7 +13,17 @@ import styles from './HowToPlay.module.css';
 
 export const HowToPlay = () => {
   const { t } = useTranslation();
+
   const navigation = useNavigationStore();
+  const gameSettings = useGameSettingsStore();
+
+  const handleGotIt = () => {
+    if (!gameSettings.isHowToPlayReaded) {
+      gameSettings.setHowToPlayReaded();
+    }
+
+    navigation.setScene(!gameSettings.isHowToPlayReaded ? 'lobby' : 'lock');
+  };
 
   return (
     <ZoomMotion className={styles.root}>
@@ -45,7 +56,7 @@ export const HowToPlay = () => {
       <ShineFX>
         <Button
           variant={'accentBlue'}
-          onClick={() => navigation.setScene('lock')}
+          onClick={handleGotIt}
           className={styles.gotItBtn}
         >
           {t('screens.howToPlay.gotIt')}

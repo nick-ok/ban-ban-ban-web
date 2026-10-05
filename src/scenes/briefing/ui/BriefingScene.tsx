@@ -136,6 +136,7 @@ export const BriefingScene = () => {
               <img
                 src={location.owner.avatarUrl}
                 className={styles.onwerImage}
+                draggable={false}
               />
 
               <div>

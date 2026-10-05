@@ -1,0 +1,25 @@
+.root {
+  padding: var(--space-4);
+  width: var(--space-80);
+  border-radius: var(--radius-md);
+  background-color: white;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+  color: var(--color-black);
+}
+
+.title {
+  color: var(--color-accent-blue);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-lg);
+}
+
+.icon {
+  width: var(--space-7);
+  height: var(--space-7);
+}
+
+.text {
+  margin-top: var(--space-2);
+}
