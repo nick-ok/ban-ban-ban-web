@@ -54,7 +54,7 @@ export const LOC1_SC1: Scenario = {
   messageSpeedRange: [0.3, 0.8],
   spawnSpeed: 0.7,
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('15:00'),
+  endWorktime: timeToMinutes('10:20'),
 
   hasLikes: false,
   hasReports: false,
@@ -66,8 +66,8 @@ export const LOC1_SC1: Scenario = {
         content: ['normal'],
       },
     ],
-    ban: [{ content: 'fwords' }],
-    longBan: [{ user: 'anonymous' }],
+    ban: [],
+    longBan: [],
   },
 
   probabilities: {

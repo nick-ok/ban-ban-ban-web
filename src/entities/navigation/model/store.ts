@@ -5,6 +5,7 @@ import type { ScenarioId } from '@/entities/scenario';
 
 export type Scene =
   | 'bootstrap'
+  | 'howToPlay'
   | 'intro'
   | 'lock'
   | 'notificationsCenter'
