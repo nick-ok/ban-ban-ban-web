@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, useAnimate } from 'motion/react';
 
 import { initGame } from '@/app/model/init-game';
-import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
 import { AudioService } from '@/features/audio';
 import { useTranslation } from '@/features/i18n';
@@ -27,7 +26,6 @@ export const BootstrapScene = () => {
   const [animationKey, setAnimationKey] = useState(0);
 
   const setScene = useNavigationStore((state) => state.setScene);
-  const isIntroSkipped = useGameSettingsStore((state) => state.isIntroSkipped);
 
   const [scope, animate] = useAnimate();
 
@@ -41,11 +39,7 @@ export const BootstrapScene = () => {
   const handleStart = async () => {
     await AudioService.unlock();
 
-    if (isIntroSkipped) {
-      setScene('lock');
-    } else {
-      setScene('intro');
-    }
+    setScene('lock');
   };
 
   useEffect(() => {
@@ -120,6 +114,7 @@ export const BootstrapScene = () => {
           src="/images/ban-stamp.png"
           className={styles.imageLogo}
           alt="BanBanBan logo"
+          draggable={false}
         />
 
         {isAnimationDone && (

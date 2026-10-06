@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { motion } from 'motion/react';
 import type { Variants } from 'motion/react';
@@ -9,7 +9,9 @@ import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { useTranslation } from '@/features/i18n';
 import { useNotificationsStore } from '@/features/notifications';
 import { formatDate, formatTime } from '@/shared/lib';
-import { Button } from '@/shared/ui';
+import { AppDrawer, Button } from '@/shared/ui';
+
+import { GIPMessage } from './GIPMessage';
 
 import styles from './LockScene.module.css';
 
@@ -58,26 +60,30 @@ export const LockScene = () => {
     (state) => state.clearAllNotifications,
   );
 
+  const sceneRef = useRef<HTMLDivElement>(null);
+
   const [now, setNow] = useState(() => new Date());
+  const [warningOpen, setWarningOpen] = useState(false);
 
   const hasSavedGame = completedScenarios.length > 0;
 
   const menuBtns = (
-    ['continue', 'newGame', 'settings', 'howToPlay', 'showIntro'] as const
-  )
-    .filter((key) => key !== 'continue' || hasSavedGame)
-    .filter((key) => key !== 'showIntro' || gameSettings.isIntroSkipped);
+    ['continue', 'newGame', 'settings', 'howToPlay'] as const
+  ).filter((key) => key !== 'continue' || hasSavedGame);
 
   const timeStr = formatTime(now, i18n.language);
   const dateStr = formatDate(now, i18n.language);
 
   const handleMenuButtonClick = (
-    key: 'newGame' | 'continue' | 'settings' | 'howToPlay' | 'showIntro',
+    key: 'newGame' | 'continue' | 'settings' | 'howToPlay',
   ) => {
     if (key === 'newGame') {
-      resetProgress();
-      clearAllNotifications();
-      setScene('lobby');
+      if (hasSavedGame) {
+        setWarningOpen(true);
+        return;
+      }
+
+      setScene(gameSettings.isHowToPlayReaded ? 'lobby' : 'howToPlay');
     }
 
     if (key === 'continue') {
@@ -91,10 +97,15 @@ export const LockScene = () => {
     if (key === 'howToPlay') {
       setScene('howToPlay');
     }
+  };
 
-    if (key === 'showIntro') {
-      setScene('intro');
-    }
+  const handleResetGame = () => {
+    setWarningOpen(false);
+
+    resetProgress();
+    clearAllNotifications();
+
+    setScene('lobby');
   };
 
   useEffect(() => {
@@ -104,36 +115,66 @@ export const LockScene = () => {
   }, []);
 
   return (
-    <motion.div
-      className={styles.root}
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <div className={styles.content}>
-        <motion.div className={styles.clock} variants={clockVariants}>
-          <div className={styles.time}>{timeStr}</div>
-          <div className={styles.date}>{dateStr}</div>
-        </motion.div>
+    <>
+      <motion.div
+        ref={sceneRef}
+        className={styles.root}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <div className={styles.content}>
+          <motion.div className={styles.clock} variants={clockVariants}>
+            <div className={styles.time}>{timeStr}</div>
+            <div className={styles.date}>{dateStr}</div>
+          </motion.div>
 
-        <motion.div className={styles.menu} variants={menuVariants}>
-          {menuBtns.map((key) => (
-            <motion.div
-              key={key}
-              variants={buttonVariants}
-              whileTap={{ scale: 0.99 }}
-            >
-              <Button
-                variant={'text'}
-                className={styles.btn}
-                onPointerUp={() => handleMenuButtonClick(key)}
+          <div className={styles.gipMessage}>
+            <GIPMessage />
+          </div>
+
+          <motion.div className={styles.menu} variants={menuVariants}>
+            {menuBtns.map((key) => (
+              <motion.div
+                key={key}
+                variants={buttonVariants}
+                whileTap={{ scale: 0.99 }}
               >
-                {t(`screens.lock.${key}`)}
-              </Button>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </motion.div>
+                <Button
+                  variant={'text'}
+                  className={styles.btn}
+                  onPointerUp={() => handleMenuButtonClick(key)}
+                >
+                  {t(`screens.lock.${key}`)}
+                </Button>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
+
+      <AppDrawer
+        containerRef={sceneRef}
+        direction={'bottom'}
+        open={warningOpen}
+        onOpenChange={setWarningOpen}
+      >
+        {() => (
+          <div className={styles.warning}>
+            <div className={styles.warningText}>
+              {t('screens.lock.savesOverwritten')}
+            </div>
+
+            <Button
+              variant={'danger'}
+              className={styles.warningBtn}
+              onClick={handleResetGame}
+            >
+              OK
+            </Button>
+          </div>
+        )}
+      </AppDrawer>
+    </>
   );
 };

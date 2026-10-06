@@ -1,0 +1,21 @@
+.root {
+  background: var(--color-primary);
+  color: var(--color-accent);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-black);
+  width: var(--space-90);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  padding: var(--space-4);
+
+  font-size: var(--text-lg);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.nextBtn {
+  margin-left: auto;
+  width: var(--space-40);
+  font-size: var(--text-base);
+}

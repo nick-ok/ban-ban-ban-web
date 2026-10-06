@@ -7,64 +7,30 @@
     "bootstrap": {
       "join": "Join"
     },
-    "intro": {
-      "skip": "Skip",
-      "stage1": {
-        "title": "Right now, there are around {{count}} billion people online at the same time",
-        "connecting": "We connect",
-        "learning": "We discover",
-        "sharing": "We share what matters",
-        "creating": "We create",
-        "greatestAchievement": "This is our civilization's greatest achievement"
-      },
-      "stage2": {
-        "title": "But there is a dark side to progress...",
-        "faced": "Every day, each of us is faces:",
-        "hate": "Hate",
-        "deception": "Deception",
-        "toxicity": "Toxicity",
-        "ignorance": "Ignorance",
-        "feelSafe": "And we no longer feel safe..."
-      },
-      "stage3": {
-        "title": "But humanity doesn't give up!",
-        "greatestMinds": "The greatest minds on the planet combined their knowledge, experience, and insane computing power",
-        "solveProblem": "To make the impossible possible",
-        "restore": "To restore trust and safety"
-      },
-      "stage4": {
-        "title": "And the solution has been found!",
-        "knowledge": "Knowledge",
-        "love": "Love",
-        "truth": "Truth",
-        "availableToEveryone": "Available to each and every one, 24/7"
-      },
-      "stage5": {
-        "title": "Thank you for joining us!",
-        "partOfHistory": "Today, you become a part of history",
-        "changeWorld": "Together, we will change the world for the better",
-        "welcome": "Welcome!"
-      }
-    },
     "gameend": {
       "skip": "Skip",
-      "stage1": {
-        "title": "GIP AI is live!",
-        "thankyou": "Thank you for your invaluable contribution to this truly historic mission!"
-      },
-      "stage3": {
-        "title": "Welcome to a brave new world!",
-        "newWorld": "Create, explore, love! 24/7 with zero limits!",
-        "period": "Congratulations! You get an absolutely free 14-day trial period",
-        "enter": "Log In"
-      }
+      "next": "Next",
+      "title": "Protected with GIP AI",
+      "enter": "Log In",
+      "msg1": "Thank you for your invaluable contribution to this truly historic mission!",
+      "msg2": "Welcome to a brave new world!",
+      "msg3": "Create, explore, love! 24/7 with zero limits!",
+      "msg4": "Congratulations! You get an absolutely free 14-day trial period"
     },
     "lock": {
       "newGame": "New Game",
       "continue": "Continue",
       "settings": "Settings",
       "howToPlay": "How to play?",
-      "showIntro": "Show intro"
+      "savesOverwritten": "All previous save data will be overwritten!",
+      "gipMessages": {
+        "msg_0": "I will learn from your actions and will become more efficient and smarter every day!",
+        "msg_10": "Thank you for participating in my training! You are making an invaluable contribution to the prosperity of mankind!",
+        "msg_25": "The global crime rate has dropped by **0.01693%**! Who knows, maybe some of the credit goes to you!",
+        "msg_50": "You are doing great! Life expectancy on the planet has increased by an average of **1.63** seconds! And this is undoubtedly your contribution as well!",
+        "msg_75": "Incredible progress! The happiness index in all countries has increased by **0.00000000004%**! And it is all, among other things, thanks to you!",
+        "msg_100": "Thank you for your invaluable contribution! Turn on **GIP AI** for the whole world and enjoy!"
+      }
     },
     "howToPlay": {
       "title": "GIP AI is easy!",
@@ -112,7 +78,8 @@
       "howToBan": "To ban, tap the message",
       "howToLongBan": "To ban for a long time, press and hold the message",
       "messageTextExample": "Message text example",
-      "adButtonText": "Buy!"
+      "adButtonText": "Buy!",
+      "empty": "Empty"
     },
     "dayend": {
       "tierS": "Flawless!",

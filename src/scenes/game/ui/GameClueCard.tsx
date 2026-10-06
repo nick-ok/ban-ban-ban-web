@@ -7,7 +7,7 @@ import {
 } from '@/entities/message';
 import { ERROR_MESSAGES } from '@/entities/message/config/error-messages';
 import type { MessageTemplate } from '@/entities/scenario';
-import { useTranslation, type TFunction } from '@/features/i18n';
+import { useTranslation } from '@/features/i18n';
 import { ensureArray } from '@/shared/lib';
 import { Button } from '@/shared/ui';
 
@@ -39,30 +39,34 @@ const GAME_CLUE_USERS: Record<UserType, ReactNode> = {
   ai: <img className={styles.avatarImg} src="/images/message/avatar-ai.webp" />,
 };
 
-const GAME_CLUE_TITLES: Record<TitleType, ReactNode> = {
-  empty: <div>EMPTY</div>,
-  hype: <img className={styles.titleImg} src="/images/message/fire.webp" />,
-  angry: <img className={styles.titleImg} src="/images/message/angry.webp" />,
-  verified: (
-    <img className={styles.titleImg} src="/images/message/verified.png" />
-  ),
-  vip: <img className={styles.titleImg} src="/images/message/vip.png" />,
-  virus: <img className={styles.titleImg} src="/images/message/virus.png" />,
-};
+export const GameClueCard = ({ template }: Props) => {
+  const { t } = useTranslation();
 
-const getMessageTextExample = (contentType: ContentType, t: TFunction) => {
-  const text = t('screens.game.messageTextExample');
+  const gameClueTitles: Record<TitleType, ReactNode> = {
+    empty: <div className={styles.emptyTitle}>{t('screens.game.empty')}</div>,
+    hype: <img className={styles.titleImg} src="/images/message/fire.webp" />,
+    angry: <img className={styles.titleImg} src="/images/message/angry.webp" />,
+    verified: (
+      <img className={styles.titleImg} src="/images/message/verified.png" />
+    ),
+    vip: <img className={styles.titleImg} src="/images/message/vip.png" />,
+    virus: <img className={styles.titleImg} src="/images/message/virus.png" />,
+  };
 
-  const GAME_CLUE_CONTENTS: Record<ContentType, ReactNode> = {
-    normal: <div>{text}</div>,
+  const gameClueContents: Record<ContentType, ReactNode> = {
+    normal: <div>{t('screens.game.messageTextExample')}</div>,
     fwords: <div>!@#$4 @#%!$ @#$#@</div>,
-    caps: <div>{text.toUpperCase()}</div>,
+    caps: <div>{t('screens.game.messageTextExample').toUpperCase()}</div>,
     binary: <div>10001 001011 1010100</div>,
     error: <div className={styles.errorTxt}>{ERROR_MESSAGES[0]}</div>,
-    blurred: <div className={styles.blurredTxt}>{text}</div>,
+    blurred: (
+      <div className={styles.blurredTxt}>
+        {t('screens.game.messageTextExample')}
+      </div>
+    ),
     ad: (
       <div className={styles.ad}>
-        <span>{text}</span>
+        <span>{t('screens.game.messageTextExample')}</span>
         <Button className={styles.adBtn}>
           {t('screens.game.adButtonText')}
         </Button>
@@ -75,12 +79,6 @@ const getMessageTextExample = (contentType: ContentType, t: TFunction) => {
       />
     ),
   };
-
-  return GAME_CLUE_CONTENTS[contentType];
-};
-
-export const GameClueCard = ({ template }: Props) => {
-  const { t } = useTranslation();
 
   const users = ensureArray(template.user);
   const titles = ensureArray(template.title);
@@ -105,7 +103,7 @@ export const GameClueCard = ({ template }: Props) => {
           <div className={styles.titleTypes}>
             {titles.map((title) => (
               <div key={title} className={styles.titleTypeItem}>
-                {GAME_CLUE_TITLES[title]}
+                {gameClueTitles[title]}
               </div>
             ))}
           </div>
@@ -116,7 +114,7 @@ export const GameClueCard = ({ template }: Props) => {
         <div className={styles.contents}>
           {contents.map((content) => (
             <div key={content} className={styles.contentItem}>
-              {getMessageTextExample(content, t)}
+              {gameClueContents[content]}
             </div>
           ))}
         </div>

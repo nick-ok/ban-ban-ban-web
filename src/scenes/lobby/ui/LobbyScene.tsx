@@ -36,7 +36,11 @@ export const LobbyScene = () => {
   return (
     <ZoomMotion className={styles.root}>
       {!progress.isGlobalAIActive && (
-        <img src={WALLPAPPER_IMG} className={styles.wallpaper} />
+        <img
+          src={WALLPAPPER_IMG}
+          className={styles.wallpaper}
+          draggable={false}
+        />
       )}
 
       <NotificationStack />
@@ -46,7 +50,7 @@ export const LobbyScene = () => {
       <div className={styles.aiProgress}>
         <div className={styles.aiProgressActions}>
           {!canUnlockGlobalAI && (
-            <Icon name={'gip-ai'} className={styles.aiImage} />
+            <Icon name={'gip-ai'} className={styles.aiIcon} />
           )}
 
           {canUnlockGlobalAI && (

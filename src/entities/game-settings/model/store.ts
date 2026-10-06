@@ -6,21 +6,21 @@ interface SettingsState {
   isSettingsOpen: boolean;
   isSFXEnabled: boolean;
   isMusicEnabled: boolean;
-  isIntroSkipped: boolean;
+  isHowToPlayReaded: boolean;
 
   toggleSettingsDrawer: () => void;
 
   toggleSFX: () => void;
   toggleMusic: () => void;
 
-  setIntroSkipped: (isSkipped: boolean) => void;
+  setHowToPlayReaded: () => void;
 }
 
 const createStore: StateCreator<SettingsState> = (set) => ({
   isSettingsOpen: false,
   isSFXEnabled: true,
   isMusicEnabled: true,
-  isIntroSkipped: false,
+  isHowToPlayReaded: false,
 
   toggleSettingsDrawer: () =>
     set((state) => ({ isSettingsOpen: !state.isSettingsOpen })),
@@ -30,7 +30,7 @@ const createStore: StateCreator<SettingsState> = (set) => ({
   toggleMusic: () =>
     set((state) => ({ isMusicEnabled: !state.isMusicEnabled })),
 
-  setIntroSkipped: (isIntroSkipped) => set({ isIntroSkipped }),
+  setHowToPlayReaded: () => set(() => ({ isHowToPlayReaded: true })),
 });
 
 export const useGameSettingsStore = create<SettingsState>()(
