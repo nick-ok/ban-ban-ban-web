@@ -10,8 +10,6 @@ export const GIPAIICon = ({ size = '100%', className = '' }) => {
       fill="none"
       className={className}
       style={{
-        width: 'var(--space-8)',
-        height: 'var(--space-8)',
         transformBox: 'fill-box',
         transformOrigin: 'center',
         overflow: 'visible',

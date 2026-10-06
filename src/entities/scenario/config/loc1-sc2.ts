@@ -21,28 +21,36 @@ export const LOC1_SC2: Scenario = {
       textKey: 'scenarios.loc1_sc2.briefing.msg2_owner',
     },
     {
-      senderType: 'ai',
-      textKey: 'scenarios.loc1_sc2.briefing.msg3_ai',
-    },
-    {
       senderType: 'owner',
-      textKey: 'scenarios.loc1_sc2.briefing.msg4_owner',
+      textKey: 'scenarios.loc1_sc2.briefing.msg3_owner',
     },
     {
       senderType: 'ai',
-      textKey: 'scenarios.loc1_sc2.briefing.msg5_ai',
+      textKey: 'scenarios.loc1_sc2.briefing.msg4_ai',
     },
     {
       senderType: 'owner',
-      textKey: 'scenarios.loc1_sc2.briefing.msg6_owner',
+      textKey: 'scenarios.loc1_sc2.briefing.msg5_owner',
+    },
+    {
+      senderType: 'ai',
+      textKey: 'scenarios.loc1_sc2.briefing.msg6_ai',
+    },
+    {
+      senderType: 'owner',
+      textKey: 'scenarios.loc1_sc2.briefing.msg7_owner',
+    },
+    {
+      senderType: 'system',
+      textKey: 'scenarios.loc1_sc2.briefing.msg8_system',
     },
   ],
   order: 2,
-  descriptionKey: 'scenarios.loc1_sc2.description',
   messageSpeedRange: [0.3, 0.8],
   spawnSpeed: 0.7,
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  endWorktime: timeToMinutes('18:00'),
+  worktime: '10:00 - 18:00',
 
   hasLikes: false,
   hasReports: false,
@@ -51,17 +59,22 @@ export const LOC1_SC2: Scenario = {
     none: [
       {
         user: ['male', 'female'],
-        content: ['normal', 'audio'],
+        content: ['normal'],
         title: ['empty', 'angry'],
       },
+      {
+        user: ['male', 'female'],
+        content: ['normal'],
+        title: ['verified'],
+      },
     ],
-    ban: [],
-    longBan: [],
+    ban: [{ user: 'anonymous' }],
+    longBan: [{ content: 'caps' }],
   },
 
   probabilities: {
-    none: 0.5,
-    ban: 0.3,
+    none: 0.3,
+    ban: 0.5,
     longBan: 0.2,
   },
 };

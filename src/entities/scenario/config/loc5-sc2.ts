@@ -21,41 +21,70 @@ export const LOC5_SC2: Scenario = {
       textKey: 'scenarios.loc5_sc2.briefing.msg2_owner',
     },
     {
+      senderType: 'owner',
+      textKey: 'scenarios.loc5_sc2.briefing.msg3_owner',
+    },
+    {
       senderType: 'ai',
-      textKey: 'scenarios.loc5_sc2.briefing.msg3_ai',
+      textKey: 'scenarios.loc5_sc2.briefing.msg4_ai',
     },
     {
       senderType: 'owner',
-      textKey: 'scenarios.loc5_sc2.briefing.msg4_owner',
-    },
-    {
-      senderType: 'ai',
-      textKey: 'scenarios.loc5_sc2.briefing.msg5_ai',
+      textKey: 'scenarios.loc5_sc2.briefing.msg5_owner',
     },
     {
       senderType: 'owner',
       textKey: 'scenarios.loc5_sc2.briefing.msg6_owner',
     },
+    {
+      senderType: 'ai',
+      textKey: 'scenarios.loc5_sc2.briefing.msg7_ai',
+    },
+    {
+      senderType: 'owner',
+      textKey: 'scenarios.loc5_sc2.briefing.msg8_owner',
+    },
   ],
   order: 2,
-  descriptionKey: 'scenarios.loc2_sc3.description',
-  messageSpeedRange: [0.3, 0.8],
+  messageSpeedRange: [0.3, 0.6],
   spawnSpeed: 0.7,
-  startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  startWorktime: timeToMinutes('14:00'),
+  endWorktime: timeToMinutes('22:00'),
+  worktime: '14:00 - 22:00',
 
-  hasLikes: false,
-  hasReports: false,
+  hasLikes: true,
+  hasReports: true,
 
   pools: {
-    none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
-    ban: [],
-    longBan: [],
+    none: [
+      {
+        user: ['male', 'female', 'anonymous'],
+        content: ['caps', 'blurred', 'fwords'],
+        title: ['vip', 'hype', 'angry', 'verified'],
+        likes: '>100000',
+      },
+      {
+        user: 'bot',
+        content: ['ad', 'error', 'normal'],
+        title: ['hype', 'angry'],
+      },
+    ],
+    ban: [
+      {
+        content: ['audio'],
+      },
+    ],
+    longBan: [
+      {
+        user: ['male', 'female'],
+        likes: '<5000',
+      },
+    ],
   },
 
   probabilities: {
-    none: 0.5,
+    none: 0.6,
     ban: 0.3,
-    longBan: 0.2,
+    longBan: 0.1,
   },
 };

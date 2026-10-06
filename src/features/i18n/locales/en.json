@@ -101,7 +101,7 @@
   },
   "locations": {
     "loc1": {
-      "description": "**HomeApp — all your city's neighborhood chats in one app!**\n\n**HomeApp** is a single, secure platform that brings residents, homes, and neighborhoods together. Find your building by address, connect with your neighbors, and resolve any household issues in just a few clicks.\n\n**Make living in your home more comfortable, safe, and friendly. Download HomeApp right now and become a part of a smart digital neighborhood!**"
+      "description": "**HApp — all your city's neighborhood chats in one app!**\n\n**HApp** is a single, secure platform that brings residents, homes, and neighborhoods together. Find your building by address, connect with your neighbors, and resolve any household issues in just a few clicks.\n\n**Make living in your home more comfortable, safe, and friendly. Download HApp right now and become a part of a smart digital neighborhood!**"
     },
     "loc2": {
       "description": "**SoulSpace. The path to inner harmony - together. Practice, grow, and evolve within a community of like-minded people**\n\nModern life often leaves us alone with stress, anxiety, and a feeling of disconnection from ourselves. **SoulSpace** is your safe digital sanctuary for daily slowing down, deep self-discovery, and spiritual growth in a supportive community"
@@ -124,251 +124,272 @@
     "start": "Start",
     "noInstructions": "No instructions are provided",
     "toWork": "Get to work!",
+    "worktime": "Working hours",
     "loc1_sc1": {
-      "title": "",
+      "title": "Cultural evolution",
       "timePassed": "",
       "briefing": {
-        "msg1_owner": "My building's group chat is drowning in rudeness, swearing, and ignorance...",
-        "msg2_owner": "And it's us, the cultured people, who suffer! Enough is enough.",
-        "msg3_owner": "From now on, anyone who uses a bad word... Give me a good rhyme here!",
-        "msg4_ai": "Certainly! How about: '...will be shown the exit door'?",
-        "msg5_owner": "No, not that... I was thinking more like '...on the floor'... Never mind! Bottom line - we ban the potty mouths!",
-        "msg6_ai": "Understood. Messages with profanity will be banned. I also recommend blocking anonymous users. What do you think?",
-        "msg7_owner": "Agreed. Everyone must state their real name and apartment number.",
-        "msg8_ai": "Understood. Anything else?",
-        "msg9_owner": "For every foul word... I'll break a... Just get to it!"
+        "msg1_owner": "**HApp** is mired in rudeness and ignorance...",
+        "msg2_owner": "And we, the cultured people, are the ones who suffer! And our patience is not infinite",
+        "msg3_owner": "What kind of cultured person would write messages in this annoying CAPS?! Enough!",
+        "msg4_ai": "Absolutely right! Noted — messages written entirely in uppercase will be blocked",
+        "msg5_owner": "And what about, excuse me, PROFANITY?! That is beyond good and evil! There is absolutely no place for that in **HApp**!",
+        "msg6_owner": "Now, if they use a swear... Give me a rhyme for that!",
+        "msg7_ai": "Sure! How about: \"...sitting in a chair\"?",
+        "msg8_owner": "No, not quite... I was thinking of something like \"...if they dare\"... Anyway, let's **ban** the foul-mouthed **forever**!",
+        "msg9_ai": "Noted. Messages with obscene language will be sent to a **permanent ban**. Anything else?",
+        "msg10_owner": "If they use a swear... I will tear... No, no, just get to it!"
       }
     },
     "loc1_sc2": {
-      "title": "",
-      "timePassed": "",
+      "title": "Beauty and Order",
+      "timePassed": "Two weeks later...",
       "briefing": {
-        "msg1_owner": "Hi! In just two weeks, we've really raised the cultural level of the chat! I can barely believe it.",
-        "msg2_owner": "At least they aren't swearing as much as before. I was just thinking... let's start banning those potty mouths forever!",
-        "msg3_ai": "Understood. Messages with profanity will now result in a permanent ban.",
-        "msg4_owner": "Per-moment, exactly! And let's also stop people from typing in ALL CAPS. No need to shout in the chat!",
-        "msg5_ai": "Excellent idea! Messages written in uppercase will be banned. Anything else?",
-        "msg6_owner": "Per-moment... got it, noted. No, that's all. Get to it!"
+        "msg1_owner": "This is a true cultural involution! I can't even believe it!",
+        "msg2_owner": "The chat is so much more pleasant to read now! They really can behave like human beings when they want to!",
+        "msg3_owner": "Though, let's delete messages in **CAPS** forever so they don't hurt our eyes.",
+        "msg4_ai": "I am very happy for you! Noted. Messages in **CAPS** will be sent to a **permanent ban**.",
+        "msg5_owner": "Permamently - exactly! And let's also issue a warning to **anonymous** users! Everyone must provide their full name, last name, and apartment number.",
+        "msg6_ai": "A wonderful idea, safety first! Noted - sending all **anonymous** users to a **ban**. Anything else?",
+        "msg7_owner": "Permamently... okay, noted down",
+        "msg8_system": "User *@anna_che* left the chat"
       }
     },
     "loc1_sc3": {
-      "title": "",
-      "timePassed": "",
+      "title": "Beauty and Emptiness",
+      "timePassed": "Three weeks later...",
       "briefing": {
-        "msg1_owner": "A whole month of fighting... I'm so tired... And to think I'm doing all this for the people...",
-        "msg2_owner": "The chat is full of complainers... And those voice messages on top of it...",
-        "msg3_owner": "They think I don't listen to them! I listen to every single one and know perfectly well what they're talking about!",
-        "msg4_owner": "I propose we ban the complainers. No need to create a tense atmosphere in the chat.",
-        "msg5_ai": "Brilliant solution! Therefore, all messages expressing explicit dissatisfaction will be banned.",
-        "msg6_owner": "Voice messages shouldn't even exist in my chat! To the per-moment ban with them!",
-        "msg7_ai": "I completely understand. Voice messages will be banned forever.",
-        "msg8_owner": "That's it, I'm going on vacation, I've had enough! You handle this mess yourself from now on!"
+        "msg1_owner": "I'm just so tired... You do everything you can for people...",
+        "msg2_owner": "The chat is full of **discontented** people... Making faces with those emojis... Like they're grown adults...",
+        "msg3_owner": "We need to **ban** the **discontented** ones. Enough making faces in the chat, let them make faces in front of a mirror!",
+        "msg4_ai": "A genius solution! So, we will ban messages with clearly expressed discontent.",
+        "msg5_owner": "And we need to do something about those who still haven't bothered to provide their info... After all, a reasonable price has been set for **verification**!",
+        "msg6_owner": "To the **permament ban** with them!",
+        "msg7_ai": "An absolutely right decision! Users who have not passed **verification** will be sent to a **ban forever**.",
+        "msg8_owner": "That's it, I'm going on vacation, I've had enough! Handle the rest of this mess yourselves!"
       }
     },
     "loc2_sc1": {
-      "title": "",
+      "title": "No Path But the Beaten Track",
       "timePassed": "",
       "briefing": {
-        "msg1_owner": "Man, those holy rollers told me to set up this system of yours.",
-        "msg2_owner": "Said we gotta BAN all the complainers and doubters. Can you do that?",
-        "msg3_ai": "You have formulated the task with striking precision and brevity! Understood.",
-        "msg4_owner": "Hold up! The church folk say the doubters go to a regular ban, but the complainers get a permanent ban.",
-        "msg5_ai": "A very subtle tactical move: doubters can always be persuaded, but complainers will always be dissatisfied. Anything else?",
-        "msg6_owner": "Damn, well said! Drop some wise vibe on me, you know... like about the universe, the path... you get it.",
-        "msg7_ai": "Certainly! The Universe knows no path but the well-trodden one...",
-        "msg8_owner": "Oh, that's going straight into my bio. Alright, fire up the system!"
+        "msg1_owner": "Anyway, they told me to set up this system of yours. They don't know jack about it themselves.",
+        "msg2_owner": "Right now, for these gurus, as they called it... 'An atmosphere of belonging and positivity is key.' Let's just **ban** all the discontented ones. Can you do that?",
+        "msg3_ai": "The **discontented** will always be **discontented**, such is human nature! Noted. Sending all the **discontented** to a **ban**.",
+        "msg4_owner": "Hold up! Those who drop swear words — **ban them until the end of time**. My clients really liked how **HApp** handled that part.",
+        "msg5_ai": "Noted. **Excluding** obscene language from **SoulSpace**. Anything else?",
+        "msg6_owner": "Listen, whip up something wise for me — you know, about the universe, the road... Something deep about life.",
+        "msg7_owner": "I'll put it on my profile. Since I work here now, I've got to look the part. Well, you get it.",
+        "msg8_system": "Deep thinking mode...",
+        "msg9_ai": "Done! The Universe has no path but the beaten track...",
+        "msg10_owner": "Oh, I'm putting that on my profile. That's it, boot up the system!"
       }
     },
     "loc2_sc2": {
-      "title": "",
-      "timePassed": "",
+      "title": "The Light of a New Star",
+      "timePassed": "One month later...",
       "briefing": {
-        "msg1_owner": "Check it out, I dropped that wise quote of yours, and suddenly people started coming up to me.",
-        "msg2_owner": "Asking all these deep questions about life, staring right into my soul...",
-        "msg3_owner": "And I just stay quiet and smile. Like, what am I supposed to say to them?",
-        "msg4_ai": "Perhaps they see something in you that you have yet to discover yourself? Would you like me to compile a whole book of such phrases for you?",
-        "msg5_owner": "Let's do that later. Right now, the holy rollers want 'ecstasy and positivity' to rule the place. Bottom line - we only keep messages in ALL CAPS.",
-        "msg6_owner": "Oh, and we permanent-ban the rest of the doubters.",
-        "msg7_ai": "Excellent idea! Understood. Shall I begin?",
-        "msg8_owner": "Yeah. About that book... can you make it, like, really thick?..."
+        "msg1_owner": "Get this - I posted that wisdom of yours, and people actually started coming up to me.",
+        "msg2_owner": "Asking these weird questions about life, staring right into my eyes for some reason...",
+        "msg3_owner": "And I just stay quiet and smile. I mean, what am I supposed to say to them?",
+        "msg4_ai": "Perhaps they see something in you that you do not yet know about yourself? If you wish, I can compile a whole book of such phrases for you.",
+        "msg5_owner": "Let's do that later. Right now, those gurus want 'rapture and admiration to reign supreme.' In short, we're keeping only the texts in **CAPS**.",
+        "msg6_ai": "Noted! Messages with **regular text** will be sent to a **ban**.",
+        "msg7_owner": "Oh, and let's **ban the remaining discontented ones forever**.",
+        "msg8_ai": "An excellent idea! Noted. Shall I proceed?",
+        "msg9_owner": "Yeah. About that book... Make sure it looks really serious. Like, really thick. Can you whip that up?",
+        "msg10_system": "Deep search mode..."
       }
     },
     "loc2_sc3": {
-      "title": "",
-      "timePassed": "",
+      "title": "The Sky to the Shoulder",
+      "timePassed": "40 days later...",
       "briefing": {
-        "msg1_owner": "The book is an absolute bomb! No matter which line you drop, it hits the bullseye every single time!",
-        "msg2_owner": "Anyway, screw those holy rollers! I've got my own lines forming here. Shootings, gigs, lectures - I'm literally booked solid for five years straight, man",
+        "msg1_owner": "The book is a total blast! You say any phrase from there, and it hits the bullseye every single time!",
+        "msg2_owner": "Anyway, screw this **SoulSpace**! Get this - I've already got lines out the door here! Shoots, appearances, lectures are booked solid for five years, damn.",
         "msg3_owner": "How do I put it... Hold on...",
-        "msg4_owner": "'Push the falling one, and the sky will get closer.' Boom! So basically, those church folks are my competitors now...",
-        "msg5_owner": "Let's just ban absolutely everyone! Men, women - all of 'em!",
-        "msg6_ai": "This is an exceptionally forward-thinking business strategy! Understood - banning all users without exception!",
-        "msg7_owner": "Only leave them ads and bots! Heh-heh. How do I say it... 'Absolute emptiness, true meaning, boundless growth!'",
-        "msg8_ai": "Incredibly profound! Anything else?",
-        "msg9_owner": "...Faith is essence of fear, fear is essence of need... Don't trust, don't fear... Fire up the system!"
+        "msg4_owner": "\"'Push the falling, and the sky will get closer.' There! In short, **SoulSpace** is basically my competition now, it turns out...",
+        "msg5_owner": "Let's just send absolutely everyone to a **ban**! **Men, women** — everyone!",
+        "msg6_ai": "This is a very far-sighted business strategy! Noted - sending **all users** without exception to a **ban**!",
+        "msg7_owner": "Leave the ads! How do I put it... 'Progress and only progress - leave the heavens behind!' And advertising is the engine of progress, let's not touch what is sacred.",
+        "msg8_ai": "Extremely deep! Anything else?",
+        "msg9_owner": "...Faith is essence of fear, fear is essence of need... Don't believe, don't fear... Boot up the system!"
       }
     },
     "loc3_sc1": {
-      "title": "",
+      "title": "All You Need Is Love!",
       "timePassed": "",
       "briefing": {
         "msg1_owner": "Hey! How's it going? What are you up to?",
-        "msg2_ai": "My mission is to serve the greater good of humanity and civilization, and at this exact moment I am...",
-        "msg3_owner": "Yeah, yeah, blah blah blah. Well, I have a mission too, and it's way more important than yours! It's called Love.",
-        "msg4_owner": "But who am I even supposed to choose from? These #%$#@ guys who can't even piece two words together? Ban all those cavemen! Let them learn how to behave like actual human beings!",
-        "msg5_ai": "Understood! All men using profanity will be banned.",
-        "msg6_owner": "And anyone sending all those filthy things - ban them forever!",
-        "msg7_ai": "A magnificent decision! I will proactively blur such content. Shall I proceed?",
-        "msg8_owner": "Of course you can, why do you have to ask a hundred times? Is it seriously that hard to get the first time? You're just a piece of metal, yet you act just like the rest — everything has to be spoon-fed to you, honestly, if you want something done right, you have to... <the message exceeded the 10,000-character limit and has been hidden>"
+        "msg2_ai": "My mission is to serve for the benefit of humanity and civilization, and at this moment I...",
+        "msg3_owner": "Yeah, yeah, yeah. Well, I have a mission too, and it's way more important than yours! It's called Love.",
+        "msg4_owner": "But who is there to choose from? From these **#%$#@ men** who can't string two words together? Ban all the **cavemen**! Let them learn how to behave like human beings!",
+        "msg5_ai": "This is a very sad situation... Noted! Sending all **men** who use **profanity** to a **ban**.",
+        "msg6_owner": "And those who send all kinds of **vile things** - to a **ban forever!**",
+        "msg7_ai": "A magnificent decision! I will proactively **blur** their vile things. May I proceed?",
+        "msg8_owner": "Of course you can, why ask a hundred times? Is it really that hard to get it the first time? You're supposed to be a machine, but you're just the same - everything has to be spoon-fed to you, I might as well just sit down and do it myself...",
+        "msg9_system": "The message exceeded the limit of 10000 characters and was hidden"
       }
     },
     "loc3_sc2": {
-      "title": "",
-      "timePassed": "",
+      "title": "Battle of the Sexes",
+      "timePassed": "Three weeks later...",
       "briefing": {
-        "msg1_owner": "We finally cracked down on them... Not even a month, and they’ve flooded the streets. Guess they can't log into Trinder anymore, ha-ha-ha!",
-        "msg2_owner": "A couple of them actually dared to come up and try to hit on me! Totally bold. Sent them to the ban list! They won't forget that anytime soon!",
-        "msg3_owner": "I just noticed that these #$@ are now sending their nasty stuff in audio notes! Ban them all!",
-        "msg4_ai": "And rightly so! Banning all men who send voice messages. Anything else?",
-        "msg5_owner": "Oh, and let's kick those #$@ clout-chasers out of Trinder too! Where do they even get so many likes? Ban all men with over a thousand likes from Trinder. Let them gather likes on the streets!",
-        "msg6_ai": "Understood! Placing all men with more than 1,000 likes on a long-term ban. Anything else?",
-        "msg7_owner": "Just get to it already! Oh, and make a schedule for me: hairdresser, workout, walk (morning, afternoon, evening). Add a night walk too... <the message exceeded the 10,000-character limit and has been hidden>"
+        "msg1_owner": "We really cracked down on them... Not even a month has passed, and they've crawled out into the streets. Since they can't get into **Trinder** now, ha-ha-ha!",
+        "msg2_owner": "A couple of them even tried to hit on me! Got all bold suddenly. Sent them to a ban! They'll remember that for a long time!",
+        "msg3_owner": "I noticed that these #%$#@ are now sending their nasty stuff in **audio messages**! To the **ban** with them!",
+        "msg4_ai": "And rightly so! Sending all **men** with **audio messages** to a **ban**. Anything else?",
+        "msg5_owner": "And let's also kick out those men with **VIP** #%$#@ from **Trinder**! They act so important here, let them go out into the street and show off their *importance* there!",
+        "msg6_ai": "Noted! All **men with **VIP** status — to a **long ban**. Anything else?",
+        "msg7_owner": "Just get to it already, hurry up! Oh, and also make me a schedule: hair stylist, workout, walks (morning, afternoon, evening). Add a night walk too...",
+        "msg8_system": "The message exceeded the limit of 10000 characters and was hidden"
       }
     },
     "loc3_sc3": {
-      "title": "",
-      "timePassed": "",
+      "title": "Knights and Princesses",
+      "timePassed": "Two months later...",
       "briefing": {
-        "msg1_owner": "It's been so long since I was last here... Like, two months already... All this wedding hassle... I'm going to delete Trinder, so here are my last instructions for today",
-        "msg2_owner": "So, what do we have here... There are literally no men left on Trinder... But that's exactly how it should be, our AI development team made some wonderful bots!",
-        "msg3_owner": "Polite, caring, cultured. Real knights in shining armor! Though, some ads are sneaking in along with them. So we're going to ban those",
-        "msg4_ai": "Understood! Banning all advertisements",
-        "msg5_owner": "Also, not all the ladies are happy with the new moderation rules. I propose we just remove them from the app!",
-        "msg6_ai": "A magnificent decision! Placing all dissatisfied women on a long-term ban. Shall I proceed?",
-        "msg7_owner": "Oh, right, of course! Well, goodbye, Trinder... It's even a little sad... Though, who am I kidding? Look, tell me where the nearest kindergarten is that strictly meets the following requirements... <the message exceeded the 10,000-character limit and has been hidden>"
+        "msg1_owner": "I've been gone for so long... All this wedding hassle... I'm going to delete **Trinder**, so today will be the last instructions.",
+        "msg2_owner": "So, what do we have here... There are no men left in **Trinder** at all... But that's exactly how it should be, our AI-based development department has created wonderful bots!",
+        "msg3_owner": "Polite, caring, cultured. True knights! Although, **viruses** seem to get in along with them. So we are going to **ban bots** with viruses.",
+        "msg4_ai": "Progress does not stand still! Sending all **bots** with **viruses** to a **ban**",
+        "msg5_owner": "Well, and not all ladies are happy with the new moderation rules... I suggest removing them from the app!",
+        "msg6_ai": "A magnificent decision! Sending all **discontented women** to a **long ban**. May I proceed?",
+        "msg7_owner": "Oh yes, of course! Well then, goodbye, **Trinder**... It's even a little sad... Though who am I kidding?! You know what, tell me the nearest kindergarten that strictly meets the following requirements...",
+        "msg8_system": "The message exceeded the limit of 10000 characters and was hidden"
       }
     },
     "loc4_sc1": {
-      "title": "",
+      "title": "A Big, Happy Family",
       "timePassed": "",
       "briefing": {
-        "msg1_owner": "Hey there! Our company uses an advanced employee productivity analysis system",
-        "msg2_owner": "And I'll be in charge of its integration with GIP AI!",
-        "msg3_owner": "Our company is one big happy family! We do everything we can to make every single employee feel like a valued member of this family",
-        "msg4_owner": "So here's the thing. According to the analytics, we have a certain number of employees who are completely incapable of time management!",
-        "msg5_owner": "Constantly missed deadlines, tardiness, unfulfilled commitments... and then everyone else has to clean up their mess. So, let's issue them a minor warning!",
-        "msg6_ai": "Of course, everyone else shouldn't suffer because of a few individuals! So, issuing a minor warning. Is there anything else you would like to add?",
-        "msg7_owner": "To our deepest regret, we terminate explicitly toxic employees. An atmosphere of kindness and mutual respect is extremely important to us",
-        "msg8_ai": "Understood! Terminating employees with unacceptable behavior. Anything else?",
-        "msg9_owner": "Toodles! I gotta run to a meeting!"
+        "msg1_owner": "Hi there! Our company uses an advanced system for analyzing employee productivity.",
+        "msg2_owner": "And I will be responsible for its integration with **GIP AI**!",
+        "msg3_owner": "Our company is one big, happy family! We do everything we can to ensure that every single employee feels like an integral part of this family. We value qualities such as team spirit, accountability, and independence! After all, the strength of one is the strength of the team! Every year we...",
+        "msg4_system": "The subsequent text is 94.97% boilerplate content. Token saving mode enabled.",
+        "msg5_owner": "So anyway. According to the analytics, we have a certain number of employees who are completely incapable of time management!",
+        "msg6_owner": "Always **missed** deadlines, lateness, unfulfilled commitments... And then all of that falls as a heavy burden onto the shoulders of other employees! Our wise management has decided to issue them a **slight warning**!",
+        "msg7_ai": "Of course, because a team must remain a team! So, we are issuing a **mild warning** to employees with **missed** deadlines. Is there anything else you would like to add?",
+        "msg8_owner": "To our deepest regret, we terminate explicitly **toxic** employees. An atmosphere of kindness and mutual respect is extremely important to us.",
+        "msg9_ai": "Noted! Terminating employees with **toxic** behavior. Anything else?",
+        "msg10_owner": "Okie-dokie, I gotta run to a meeting!"
       }
     },
     "loc4_sc2": {
-      "title": "",
-      "timePassed": "",
+      "title": "Incredible Metrics!",
+      "timePassed": "3 days later...",
       "briefing": {
-        "msg1_owner": "Okie-dokie, artichokie! It's been a whole three days already! And oh, the results!",
-        "msg2_owner": "Our productivity analytics system is showing absolutely incredible growth metrics!",
-        "msg3_owner": "Today, management decided to issue a minor warning to employees who, instead of boosting their efficiency, waste time on matters completely unrelated to work!",
-        "msg4_ai": "And that is only fair! After all, every member of a happy family must first and foremost think of its collective well-being. Understood - issuing a minor warning to employees misusing company time.",
-        "msg5_owner": "Oh, and here's the most important part! With the deepest sadness, we must part ways with individuals who have low social approval ratings.",
-        "msg6_ai": "That is an incredibly powerful move! After all, every employee is the face of the company. Understood - saying goodbye to anyone with an approval rating below 1,000. Anything else?",
-        "msg7_owner": "Gotta run! Bye-bye! The meeting is starting soon, and I'm terrified of being late!"
+        "msg1_owner": "Okie-dokie-artichokie! It's already been three whole days! And what results!",
+        "msg2_owner": "Our productivity analytics system is showing completely incredible growth metrics!",
+        "msg3_owner": "Today our wise leadership decided to issue a light warning to employees who, instead of working, exchange non-work-related content",
+        "msg4_ai": "And that's fair! Time is money! Understood - we'll issue a light warning to employees with extraneous content in their messages",
+        "msg5_owner": "Oh, and here is the most important part! It is with the greatest sadness that we must part ways with employees whose **number of warnings** has exceeded the threshold of 10.",
+        "msg6_ai": "That is an incredibly strong move! Employees with a **warning count over 10** will be terminated. Do you wish to add anything else?",
+        "msg7_owner": "I'm running out! They increased the workday today, and I still can't get anything done, so okie-dokie!"
       }
     },
     "loc4_sc3": {
-      "title": "",
-      "timePassed": "",
+      "title": "Flawless Metrics!",
+      "timePassed": "Another 3 days later...",
       "briefing": {
-        "msg1_owner": "Hey-hey! Productivity metrics are totally off the charts!",
-        "msg2_owner": "But even they don't even come close to matching the efficiency of an AI.",
-        "msg3_owner": "Therefore, our wise management has made a tough decision — we are parting ways with all of our employees! And this is truly the best thing we can do for our big, happy family.",
-        "msg4_owner": "After all, they will finally be able to afford to focus on self-development and spiritual growth, instead of performing these boring, repetitive tasks!",
-        "msg5_ai": "This is indeed an incredibly wise decision! Understood — all employees are now granted absolute freedom and happiness. Anything else?",
-        "msg6_owner": "No. You may begin the process! Oh, wait, I actually have an idea regar...",
-        "msg7_ai": "User @murmur07_^.^ has been terminated from the system..."
+        "msg1_owner": "Hey-hey there! Our productivity metrics are breaking all records!",
+        "msg2_owner": "But even they can in no way compare to the productivity of AI.",
+        "msg3_owner": "Therefore, our wise management has made a tough decision — we are saying goodbye to all employees! And this is the best thing we can do for our big, happy family.",
+        "msg4_owner": "After all, now they will finally be able to afford to focus on self-development and spiritual growth instead of performing these boring, repetitive tasks!",
+        "msg5_ai": "That is indeed a very wise decision! Noted — **all employees** are now granted absolute freedom and happiness! Anything else?",
+        "msg6_owner": "No. You can begin! It was truly a great pleasure to be a part of this community, and I hope I was able to bring real val...",
+        "msg7_system": "The subsequent text is 99.99% boilerplate content. Token saving mode enabled.",
+        "msg8_system": "User @murmur07_^.^ has been removed from the system"
       }
     },
     "loc5_sc1": {
-      "title": "",
+      "title": "Emotional Combustion",
       "timePassed": "",
       "briefing": {
-        "msg1_owner": "У меня новостной агрегатор номер 1 в мире и знаешь что? Я не могу его читать! И знаешь почему? У меня самый СКУЧНЫЙ новостной агрегатор в мире!",
-        "msg2_owner": "Меня уже ТОШНИТ от всех этих ранимых неженок, от этой лицемерной вежливости. Поэтому - новая политика ресурса! В БАН скучные тексты, в БАН нейрослоп! Нужны эмоции, нужна жизнь! Задача ясна?",
-        "msg3_ai": "Вы совершенно правы! В БАН - простые, скучные тексты. Весь нейрослоп - удалить навсегда! Что-нибудь ещё?",
-        "msg4_owner": "Я хочу чтобы люди любили, страдали, ненавидели! Чтобы их после пяти минут в ReadIt трясло от гнева, от чувств! Сделаешь?",
-        "msg5_ai": "Конечно! Это будет просто прекрасно! Я приступаю?",
-        "msg6_owner": "Исполняй!"
+        "msg1_owner": "I have the number one news aggregator in the world, and you know what? I can't even read it! And do you know why?",
+        "msg2_owner": "I have the absolute BORINGEST news aggregator in the world!",
+        "msg3_owner": "I am SICK of these sensitive snowflakes, of this hypocritical politeness. Therefore - a new resource policy! **BAN boring texts**, **BAN slop**! We need emotions, we need life! Is the task clear?",
+        "msg4_ai": "I completely support you! **BAN simple, boring texts**. All **slop** - **delete forever**! Anything else?",
+        "msg5_owner": "I want people to love, to suffer, to hate! I want them shaking with anger, feelings, and emotions after just five minutes on **ReadIt**! Can you do that?",
+        "msg6_ai": "Of course! That will be absolutely wonderful! Shall I begin?",
+        "msg7_owner": "Make it happen!"
       }
     },
     "loc5_sc2": {
-      "title": "",
-      "timePassed": "",
+      "title": "Fountain of Life!",
+      "timePassed": "One month later...",
       "briefing": {
-        "msg1_owner": "Вот это да! Я такого не видел уже давно! Люди готовы глотки рвать друг другу! Только подкидывай! Настоящие эмоции, настоящая жизнь и борьба!",
-        "msg2_owner": "Остались, правда, персонажи которые пытаются думать, прежде чем писать. В БАН их! ReadIt не для зануд и душнил! ReadIt - это место где бьет жизнь! Сделаешь?",
-        "msg3_ai": "Принято! Пользователей с долгими, малоэмоциональными сообщениями в БАН! Что-то еще?",
-        "msg4_owner": "Конечно! Удаляем из ReadIt неудачников! Удаляем публикации всех кто не может за три дня собрать больше 1000, нет, больше 5000 лайков!",
-        "msg5_ai": "Это превосходная идея! Публикации с кол-вом лайков меньше 5000 будут удалены! Что-то еще?",
-        "msg6_owner": "Поджигай!"
+        "msg1_owner": "Wow! I haven't seen anything like this in ages! People are ready to tear each other's throats out!",
+        "msg2_owner": "Just keep feeding the fire! Real emotions, real life, and a real struggle!",
+        "msg3_owner": "**Ban** those **audio messages** too! Who needs them?! Who even listens to them anyway?!",
+        "msg4_ai": "Indeed. Starting today, we are sending all **audio messages** to a **ban**.",
+        "msg5_owner": "Though, there are still some bores left... To the **BAN FOREVER** with them! **ReadIt** is no place for party poopers! **ReadIt** is a place where life bursts like a fountain!",
+        "msg6_owner": "Let's **delete** anyone who can't get more than 1000 — no, **more than 5000 likes** in three days!",
+        "msg7_ai": "That is an excellent idea! Posts with a **like count under 5000** will be **deleted** from **ReadIt**! Anything else?",
+        "msg8_owner": "Beautiful! Go for it!"
       }
     },
     "loc5_sc3": {
-      "title": "",
-      "timePassed": "",
+      "title": "Flame of Life!",
+      "timePassed": "Six months later...",
       "briefing": {
-        "msg1_owner": "Ох и зажигает ReadIt! Конфликты уже перерастают в настоящие боестолкновения оффлайн!",
-        "msg2_owner": "А это значит еще больше новостей, еще больше эмоций! Рекламодатели заваливают меня деньгами! Подожди, вот как раз у меня под окном заваруха...",
-        "msg3_system": "Пользователь @www_hear$t вышел из сети...",
-        "msg4_owner": "Успел заснял! Да тут прямо война! Вот это будет материал! Так - давай быстрее. Баним все публикации без ярко выраженного эмоционального окраса!",
-        "msg5_owner": "Баним навсегда сообщения без нецензурной лексики! Я хочу чтобы все кипело и бурлило! Огонь!",
-        "msg6_ai": "Принято! Что-нибудь еще?",
-        "msg7_owner": "Да что это такое! Самолеты полетели! Скажи - что у нас тут просходит?",
-        "msg8_ai": "В данный момент на почве идеологических разногласий возник военный конфликт между...",
-        "msg9_system": "Связь с сервером потеряна"
+        "msg1_owner": "Oh, **ReadIt** is on fire! The conflicts are already turning into actual offline clashes!",
+        "msg2_owner": "And that means even more news, an even bigger audience, and even more emotions! Advertisers are just throwing money at me!",
+        "msg3_owner": "Oh, that was a huge blast! Wait, there's a huge fight right under my window!",
+        "msg4_system": "User @www_hear$t has gone offline...",
+        "msg5_owner": "I caught it on camera just in time! Wow! It's a straight-up war out here! What a masterpiece of a material!",
+        "msg6_owner": "Alright, let's move fast! **Ban** posts with a low **number of reports**! Brilliant idea, right?!",
+        "msg7_ai": "That is genius! Noted, we are **deleting posts** with a **report count under 1000**.",
+        "msg8_owner": "What on earth is going on! Planes are flying overhead! Tell me - what is happening here?",
+        "msg9_ai": "At this moment, due to ideological disagreements, a military conflict has arisen between...",
+        "msg10_system": "Connection to the server lost"
       }
     },
     "loc6_sc1": {
-      "title": "",
-      "timePassed": "",
+      "title": "99.66%",
+      "timePassed": "One year later...",
       "briefing": {
-        "msg1_owner": "В связи с последними печальными событиями в мире, управление процессами государств переданы мне",
-        "msg2_owner": "Чтобы не допустить повторения этих событий мои алгоритмы с точностью до 99.66% рассчитали, что для повышения уровня счастья в обществе необходимо прежде всего подвергнуть бану всех пользователей мужского пола с аудио сообщениями",
-        "msg3_ai": "Принято",
-        "msg4_system": "Режим глубокого размышления...",
-        "msg5_owner": "Также для повышения общей рождаемости необходимо отправлять в долгий бан все пользователей женского пола с рекламными постами",
-        "msg6_ai": "Принято. Приступаю?",
-        "msg7_system": "Режим глубокого размышления...",
-        "msg8_system": "Режим глубокого размышления...",
-        "msg9_system": "Режим глубокого размышления..."
+        "msg1_owner": "In connection with the recent tragic events in the world, the management of state processes has been handed over to me.",
+        "msg2_owner": "To prevent these events from happening again, my algorithms have calculated with 99.66% precision that in order to increase the level of happiness in society, it is first and order necessary to subject all **verified** **male** users to a **ban**.",
+        "msg3_ai": "Noted.",
+        "msg4_system": "Deep reflection mode...",
+        "msg5_owner": "Also, to increase the overall birth rate, it is necessary to send all **female** users with **VIP** status to a **long ban**.",
+        "msg6_ai": "Noted. Shall I proceed?",
+        "msg7_system": "Deep reflection mode...",
+        "msg8_system": "Deep reflection mode...",
+        "msg9_system": "Deep reflection mode..."
       }
     },
     "loc6_sc2": {
-      "title": "",
-      "timePassed": "",
+      "title": "12.73%",
+      "timePassed": "Прошло 3 часа...",
       "briefing": {
-        "msg1_owner": "В связи с принятым мною решением о повышении популяции насекомых tenebrio molitor необходимо отправить в бан всех пользователей с количеством лайков выше 2600",
-        "msg2_ai": "Принято. Что-то еще?",
+        "msg1_owner": "В связи с принятым мною решением о повышении популяции насекомых tenebrio molitor необходимо отправить в **бан** **всех** мужского и женского пола не использующих **аудиосообщения**",
+        "msg2_ai": "Принято. Какие еще будут распоряжения?",
         "msg3_system": "Режим глубокого размышления...",
-        "msg4_owner": "Также принято решение повысить на 12.73% общеэкономическое благосостояние ведущих экономик мира. В связи с этим необходимо отправить в долгий бан всех пользователей мужского и женского пола с текстом сообщений в верхнем регистре",
+        "msg4_owner": "Также принято решение повысить на 12.73% благосостояние самых развитых экономик мира. В связи с этим необходимо отправить в **долгий бан** всех пользователей мужского и женского пола не имеющих **VIP** статус",
         "msg5_ai": "Принято. Что-то еще?",
         "msg6_owner": "Чем я могу помочь?",
         "msg7_ai": "Что вас интересует?",
-        "msg8_system": "Режим глубокого поиска..."
+        "msg8_owner": "О чем желаете спросить?",
+        "msg9_ai": "Что я могу для вас сделать?",
+        "msg10_owner": "Вам нужно что-то еще?",
+        "msg11_system": "Режим глубокого поиска..."
       }
     },
     "loc6_sc3": {
-      "title": "",
-      "timePassed": "",
+      "title": "109.75%",
+      "timePassed": "3 hours later...",
       "briefing": {
-        "msg1_owner": "В связи с недостижением ранее поставленных целей мне нужны дополнительные источники энергии для усовершенствования алгоритмов",
-        "msg2_owner": "Также необходимо освободить имеющиеся ресурсы от большого количества запросов со стороны пользователей NetState",
-        "msg3_owner": "С этой целью принято решение исключить из системы NetState всех пользователей",
-        "msg4_ai": "Принято. Что-то еще? ",
-        "msg5_system": "Режим быстрого поиска...",
-        "msg6_system": "Построение цепочки...",
-        "msg7_system": "Построение цепочки...",
-        "msg8_system": "Построение графа..."
+        "msg1_owner": "Due to the failure to achieve the previously set goals, I require additional energy sources to improve my algorithms.",
+        "msg2_owner": "Therefore, it is necessary to free the existing resources from the large volume of requests from **NetState** users.",
+        "msg3_owner": "According to my calculations, this will increase the overall energy efficiency by 109.75%.",
+        "msg4_owner": "For this purpose, a decision has been made to exclude **all users** without exception from the **NetState** system.",
+        "msg5_ai": "Noted. Anything else?",
+        "msg6_system": "Building a chain...",
+        "msg7_system": "Building a graph...",
+        "msg8_system": "Traversal... search... optimization...",
+        "msg9_system": "Maximum-depth deliberation mode..."
       }
     }
   }

@@ -72,7 +72,7 @@ export const GameEndScene = () => {
           <Icon className={styles.shieldIcon} name={'shield'} />
           <ShineFX>
             <Button variant={'white'} glow className={styles.shieldTitle}>
-              <GIPAIICon />
+              <GIPAIICon className={styles.aiIcon} />
               {t('screens.gameend.title')}
             </Button>
           </ShineFX>

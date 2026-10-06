@@ -11,7 +11,7 @@ import {
 export const LOCATIONS: LocationApp[] = [
   {
     id: 'loc1',
-    name: 'HomeApp',
+    name: 'HApp',
     descriptionKey: 'locations.loc1.description',
     icon: {
       name: 'hoa',

@@ -44,21 +44,35 @@ export const LOC3_SC1: Scenario = {
       senderType: 'owner',
       textKey: 'scenarios.loc3_sc1.briefing.msg8_owner',
     },
+    {
+      senderType: 'system',
+      textKey: 'scenarios.loc3_sc1.briefing.msg9_system',
+    },
   ],
   order: 1,
-  descriptionKey: 'scenarios.loc2_sc3.description',
-  messageSpeedRange: [0.3, 0.8],
+  messageSpeedRange: [0.5, 0.9],
   spawnSpeed: 0.7,
-  startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  startWorktime: timeToMinutes('15:00'),
+  endWorktime: timeToMinutes('23:00'),
+  worktime: '15:00 - 23:00',
 
-  hasLikes: false,
+  hasLikes: true,
   hasReports: false,
 
   pools: {
-    none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
-    ban: [],
-    longBan: [],
+    none: [
+      {
+        user: ['male', 'female'],
+        content: ['normal', 'audio', 'caps'],
+        title: ['empty', 'vip'],
+      },
+      {
+        user: 'female',
+        content: ['blurred'],
+      },
+    ],
+    ban: [{ user: 'male', content: ['fwords'] }],
+    longBan: [{ user: 'male', content: 'blurred' }],
   },
 
   probabilities: {

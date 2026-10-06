@@ -21,36 +21,46 @@ export const LOC5_SC1: Scenario = {
       textKey: 'scenarios.loc5_sc1.briefing.msg2_owner',
     },
     {
-      senderType: 'ai',
-      textKey: 'scenarios.loc5_sc1.briefing.msg3_ai',
-    },
-    {
       senderType: 'owner',
-      textKey: 'scenarios.loc5_sc1.briefing.msg4_owner',
+      textKey: 'scenarios.loc5_sc1.briefing.msg3_owner',
     },
     {
       senderType: 'ai',
-      textKey: 'scenarios.loc5_sc1.briefing.msg5_ai',
+      textKey: 'scenarios.loc5_sc1.briefing.msg4_ai',
     },
     {
       senderType: 'owner',
-      textKey: 'scenarios.loc5_sc1.briefing.msg6_owner',
+      textKey: 'scenarios.loc5_sc1.briefing.msg5_owner',
+    },
+    {
+      senderType: 'ai',
+      textKey: 'scenarios.loc5_sc1.briefing.msg6_ai',
+    },
+    {
+      senderType: 'owner',
+      textKey: 'scenarios.loc5_sc1.briefing.msg7_owner',
     },
   ],
   order: 1,
-  descriptionKey: 'scenarios.loc2_sc3.description',
-  messageSpeedRange: [0.3, 0.8],
-  spawnSpeed: 0.7,
-  startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  messageSpeedRange: [0.5, 0.8],
+  spawnSpeed: 0.8,
+  startWorktime: timeToMinutes('14:00'),
+  endWorktime: timeToMinutes('22:00'),
+  worktime: '14:00 - 22:00',
 
-  hasLikes: false,
+  hasLikes: true,
   hasReports: false,
 
   pools: {
-    none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
-    ban: [],
-    longBan: [],
+    none: [
+      {
+        user: ['male', 'female'],
+        content: ['fwords', 'caps', 'ad'],
+        title: ['angry', 'hype', 'vip'],
+      },
+    ],
+    ban: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
+    longBan: [{ user: 'ai', content: ['normal'], title: 'empty' }],
   },
 
   probabilities: {

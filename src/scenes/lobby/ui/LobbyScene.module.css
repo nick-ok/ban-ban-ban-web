@@ -41,6 +41,12 @@
   gap: var(--space-4);
 }
 
+.aiIcon {
+  color: var(--color-accent);
+  width: var(--space-10);
+  height: var(--space-10);
+}
+
 .aiImage {
   width: var(--space-10);
   height: var(--space-10);

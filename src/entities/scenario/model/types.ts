@@ -42,11 +42,11 @@ export interface Scenario {
   briefingFlow: BriefingMessage[];
 
   order: number;
-  descriptionKey: string;
   spawnSpeed: number;
   messageSpeedRange: number[];
   startWorktime: number;
   endWorktime: number;
+  worktime: string;
 
   hasLikes: boolean;
   hasReports: boolean;

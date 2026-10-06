@@ -3,7 +3,7 @@ import * as PIXI from 'pixi.js';
 import { i18n } from '@/features/i18n';
 import { randomArrayItem } from '@/shared/lib';
 
-import { AD_BUTTON_TXT } from '../config/ad-messages';
+import { AD_BUTTON_TXT } from '../config/messages';
 
 export const AD_BUTTON_HEIGHT = 34;
 

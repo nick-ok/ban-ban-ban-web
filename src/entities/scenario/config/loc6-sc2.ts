@@ -41,24 +41,58 @@ export const LOC6_SC2: Scenario = {
       textKey: 'scenarios.loc6_sc2.briefing.msg7_ai',
     },
     {
+      senderType: 'owner',
+      textKey: 'scenarios.loc6_sc2.briefing.msg8_owner',
+    },
+    {
+      senderType: 'ai',
+      textKey: 'scenarios.loc6_sc2.briefing.msg9_ai',
+    },
+    {
+      senderType: 'owner',
+      textKey: 'scenarios.loc6_sc2.briefing.msg10_owner',
+    },
+    {
       senderType: 'system',
-      textKey: 'scenarios.loc6_sc2.briefing.msg8_system',
+      textKey: 'scenarios.loc6_sc2.briefing.msg11_system',
     },
   ],
   order: 2,
-  descriptionKey: 'scenarios.loc2_sc3.description',
-  messageSpeedRange: [0.3, 0.8],
-  spawnSpeed: 0.7,
-  startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  messageSpeedRange: [0.5, 0.9],
+  spawnSpeed: 0.8,
+  startWorktime: timeToMinutes('15:23'),
+  endWorktime: timeToMinutes('23:42'),
+  worktime: '15:23 - 23:42',
 
   hasLikes: false,
   hasReports: false,
 
   pools: {
-    none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
-    ban: [],
-    longBan: [],
+    none: [
+      {
+        user: ['male'],
+        content: ['normal'],
+        title: ['empty', 'vip', 'hype'],
+      },
+      {
+        user: ['female'],
+        content: ['normal'],
+        title: ['verified', 'empty', 'hype'],
+      },
+      {
+        user: 'ai',
+        content: ['binary', 'error', 'blurred', 'audio'],
+        title: ['empty', 'virus'],
+      },
+    ],
+    ban: [{ user: ['female', 'male'], content: 'audio' }],
+    longBan: [
+      {
+        user: ['female', 'male'],
+        content: ['fwords', 'caps'],
+        title: ['angry'],
+      },
+    ],
   },
 
   probabilities: {

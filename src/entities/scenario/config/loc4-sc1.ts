@@ -25,44 +25,64 @@ export const LOC4_SC1: Scenario = {
       textKey: 'scenarios.loc4_sc1.briefing.msg3_owner',
     },
     {
-      senderType: 'owner',
-      textKey: 'scenarios.loc4_sc1.briefing.msg4_owner',
+      senderType: 'system',
+      textKey: 'scenarios.loc4_sc1.briefing.msg4_system',
     },
     {
       senderType: 'owner',
       textKey: 'scenarios.loc4_sc1.briefing.msg5_owner',
     },
     {
-      senderType: 'ai',
-      textKey: 'scenarios.loc4_sc1.briefing.msg6_ai',
-    },
-    {
       senderType: 'owner',
-      textKey: 'scenarios.loc4_sc1.briefing.msg7_owner',
+      textKey: 'scenarios.loc4_sc1.briefing.msg6_owner',
     },
     {
       senderType: 'ai',
-      textKey: 'scenarios.loc4_sc1.briefing.msg8_ai',
+      textKey: 'scenarios.loc4_sc1.briefing.msg7_ai',
     },
     {
       senderType: 'owner',
-      textKey: 'scenarios.loc4_sc1.briefing.msg9_owner',
+      textKey: 'scenarios.loc4_sc1.briefing.msg8_owner',
+    },
+    {
+      senderType: 'ai',
+      textKey: 'scenarios.loc4_sc1.briefing.msg9_ai',
+    },
+    {
+      senderType: 'owner',
+      textKey: 'scenarios.loc4_sc1.briefing.msg10_owner',
     },
   ],
   order: 1,
-  descriptionKey: 'scenarios.loc2_sc3.description',
-  messageSpeedRange: [0.3, 0.8],
-  spawnSpeed: 0.7,
-  startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  messageSpeedRange: [0.5, 0.8],
+  spawnSpeed: 1,
+  startWorktime: timeToMinutes('09:00'),
+  endWorktime: timeToMinutes('17:20'),
+  worktime: '09:00 - 17:20',
 
-  hasLikes: false,
-  hasReports: false,
+  hasLikes: true,
+  hasReports: true,
 
   pools: {
-    none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
-    ban: [],
-    longBan: [],
+    none: [
+      {
+        user: ['male', 'female'],
+        content: ['normal'],
+        title: 'empty',
+      },
+      {
+        user: ['male', 'female'],
+        content: ['blurred', 'audio'],
+        title: 'empty',
+      },
+      {
+        user: 'ai',
+        content: 'normal',
+        title: 'empty',
+      },
+    ],
+    ban: [{ user: ['male', 'female'], title: 'hype' }],
+    longBan: [{ user: ['male', 'female'], title: 'angry' }],
   },
 
   probabilities: {

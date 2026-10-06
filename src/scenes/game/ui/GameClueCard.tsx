@@ -5,7 +5,7 @@ import {
   type TitleType,
   type UserType,
 } from '@/entities/message';
-import { ERROR_MESSAGES } from '@/entities/message/config/error-messages';
+import { ERROR_MESSAGES } from '@/entities/message/config/messages';
 import type { MessageTemplate } from '@/entities/scenario';
 import { useTranslation } from '@/features/i18n';
 import { ensureArray } from '@/shared/lib';

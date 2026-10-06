@@ -7,7 +7,14 @@ import { usePlayerProgressStore } from '@/entities/player-progress/model/store';
 import { getCanUnlockGlobalAI } from '@/features/game';
 import { useTranslation } from '@/features/i18n';
 import { NotificationStack } from '@/features/notifications';
-import { Button, Icon, ProgressBar, ScanFX, ZoomMotion } from '@/shared/ui';
+import {
+  Button,
+  GIPAIICon,
+  Icon,
+  ProgressBar,
+  ScanFX,
+  ZoomMotion,
+} from '@/shared/ui';
 import { AppGrid } from '@/widgets/app-grid';
 
 import styles from './LobbyScene.module.css';
@@ -49,9 +56,7 @@ export const LobbyScene = () => {
 
       <div className={styles.aiProgress}>
         <div className={styles.aiProgressActions}>
-          {!canUnlockGlobalAI && (
-            <Icon name={'gip-ai'} className={styles.aiIcon} />
-          )}
+          {!canUnlockGlobalAI && <GIPAIICon className={styles.aiIcon} />}
 
           {canUnlockGlobalAI && (
             <Button

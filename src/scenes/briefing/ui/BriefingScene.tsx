@@ -103,6 +103,7 @@ export const BriefingScene = () => {
       <ScenarioIntro
         title={t(scenario.title)}
         timePassed={t(scenario.timePassed)}
+        worktime={scenario.worktime}
         onClose={() => setShowIntro(false)}
       />
     );

@@ -17,7 +17,12 @@
   color: var(--color-success);
   font-size: var(--text-xl);
   font-weight: bold;
-  margin-bottom: var(--space-4);
+  text-align: center;
+  max-width: var(--space-80);
+}
+
+.worktime {
+  margin-bottom: var(--space-5);
 }
 
 .timePassed {

@@ -73,3 +73,7 @@ export interface ExtendedPixiMessageContainer extends PIXI.Container {
 
   progressMask?: PIXI.Graphics;
 }
+
+export type ScenarioMessageEmotion = 'angry' | 'ai' | 'normal' | 'hype';
+
+export type ScenarioMessages = Record<ScenarioMessageEmotion, string[]>;

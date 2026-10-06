@@ -50,24 +50,39 @@ export const LOC2_SC3: Scenario = {
     },
   ],
   order: 3,
-  descriptionKey: 'scenarios.loc2_sc3.description',
-  messageSpeedRange: [0.3, 0.8],
-  spawnSpeed: 0.7,
+  messageSpeedRange: [0.7, 1.5],
+  spawnSpeed: 1,
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  endWorktime: timeToMinutes('18:00'),
+  worktime: '10:00 - 18:00',
 
-  hasLikes: false,
+  hasLikes: true,
   hasReports: false,
 
   pools: {
-    none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
-    ban: [],
+    none: [
+      {
+        user: ['male', 'female'],
+        content: ['ad'],
+        title: ['hype', 'empty'],
+      },
+      {
+        user: ['bot'],
+        content: ['ad', 'blurred'],
+      },
+    ],
+    ban: [
+      {
+        user: ['male', 'female'],
+        content: ['caps'],
+      },
+    ],
     longBan: [],
   },
 
   probabilities: {
-    none: 0.5,
-    ban: 0.3,
-    longBan: 0.2,
+    none: 0.4,
+    ban: 0.6,
+    longBan: 0,
   },
 };

@@ -16,6 +16,12 @@
   gap: var(--space-4);
 }
 
+.worktime {
+  > span {
+    color: var(--color-danger);
+  }
+}
+
 .actionHeader {
   display: flex;
   align-items: center;

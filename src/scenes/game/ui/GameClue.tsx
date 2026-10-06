@@ -19,6 +19,10 @@ export const GameClue = ({ scenario }: Props) => {
   return (
     <div className={styles.root}>
       <div className={styles.content}>
+        <div className={styles.worktime}>
+          {t('scenarios.worktime')} - <span>{scenario.worktime}</span>
+        </div>
+
         {banPool.length > 0 && (
           <div className={styles.section}>
             <div className={styles.actionHeader}>
