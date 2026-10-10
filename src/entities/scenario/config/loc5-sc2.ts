@@ -63,11 +63,6 @@ export const LOC5_SC2: Scenario = {
         title: ['vip', 'hype', 'angry', 'verified'],
         likes: '>100000',
       },
-      {
-        user: 'bot',
-        content: ['ad', 'error', 'normal'],
-        title: ['hype', 'angry'],
-      },
     ],
     ban: [
       {

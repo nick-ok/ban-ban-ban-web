@@ -26,8 +26,6 @@ export const createMessageText = ({
   const lng = language as 'ru' | 'en';
   let text = '';
 
-  console.log(emotion);
-
   let messages = SCENARIO_MESSAGES[scenarioId][lng][emotion];
 
   if (!messages.length) {

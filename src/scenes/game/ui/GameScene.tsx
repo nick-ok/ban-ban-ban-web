@@ -20,7 +20,7 @@ import styles from './GameScene.module.css';
 
 export const GameScene = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [infoOpen, setInfoOpen] = useState(false);
+  const [clueOpen, setClueOpen] = useState(false);
 
   const sceneRef = useRef<HTMLDivElement>(null);
 
@@ -71,8 +71,14 @@ export const GameScene = () => {
   }, [activeScenario, startGame, isAutoModerationEnabled, isGlobalAIActive]);
 
   useEffect(() => {
-    setGamePaused(menuOpen || infoOpen || gameSettings.isSettingsOpen);
-  }, [menuOpen, infoOpen, gameSettings.isSettingsOpen]);
+    setGamePaused(menuOpen || clueOpen || gameSettings.isSettingsOpen);
+  }, [menuOpen, clueOpen, gameSettings.isSettingsOpen]);
+
+  useEffect(() => {
+    if (sceneRef.current) {
+      setClueOpen(true);
+    }
+  }, []);
 
   if (!activeScenario || !location) {
     return null;
@@ -99,8 +105,8 @@ export const GameScene = () => {
             <AppDrawer
               containerRef={sceneRef}
               direction={'top'}
-              open={infoOpen}
-              onOpenChange={setInfoOpen}
+              open={clueOpen}
+              onOpenChange={setClueOpen}
               trigger={
                 <Button
                   className={styles.clueBtn}

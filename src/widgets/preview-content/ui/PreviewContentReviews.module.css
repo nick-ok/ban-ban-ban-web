@@ -21,6 +21,7 @@
   width: 100%;
   height: var(--space-20);
   color: var(--color-accent-blue);
+  padding: var(--space-10) var(--space-2) var(--space-3);
 }
 
 .angleLeftIcon {

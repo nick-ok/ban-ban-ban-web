@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import clsx from 'clsx';
+import ReactMarkdown from 'react-markdown';
 
 import { obfuscateToBinary } from '@/entities/message';
 import { type Review } from '@/entities/review';
@@ -93,7 +94,13 @@ export const PreviewContentReviews = ({
                 })}
               </div>
 
-              <p>{isGlobalAIActive ? obfuscateToBinary(text) : text}</p>
+              <div>
+                {isGlobalAIActive ? (
+                  obfuscateToBinary(text)
+                ) : (
+                  <ReactMarkdown>{text}</ReactMarkdown>
+                )}
+              </div>
             </div>
           );
         })}
