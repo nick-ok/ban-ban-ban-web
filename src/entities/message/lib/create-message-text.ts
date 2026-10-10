@@ -1,31 +1,43 @@
-import type { LocationId } from '@/entities/location';
-import { LOCATION_MESSAGES } from '@/entities/location/config/locationMessages';
+import type { ScenarioId } from '@/entities/scenario';
 import { randomArrayItem } from '@/shared/lib';
 
-import { AD_MESSAGES } from '../config/ad-messages';
-import { ERROR_MESSAGES } from '../config/error-messages';
-import type { ContentType } from '../model/types';
+import {
+  AD_MESSAGES,
+  ERROR_MESSAGES,
+  SCENARIO_MESSAGES,
+} from '../config/messages';
+import type { ContentType, ScenarioMessageEmotion } from '../model/types';
 import { obfuscateToBinary } from './obfuscate-to-binary';
 import { obfuscateToFwords } from './obfuscate-to-fwords';
 
 interface Params {
-  locationId: LocationId;
+  scenarioId: ScenarioId;
+  emotion: ScenarioMessageEmotion;
   contentType: ContentType;
   language: string;
 }
 
 export const createMessageText = ({
-  locationId,
+  scenarioId,
+  emotion,
   contentType,
   language,
 }: Params) => {
   const lng = language as 'ru' | 'en';
   let text = '';
 
+  console.log(emotion);
+
+  let messages = SCENARIO_MESSAGES[scenarioId][lng][emotion];
+
+  if (!messages.length) {
+    messages = SCENARIO_MESSAGES[scenarioId][lng]['normal'];
+  }
+
   if (contentType === 'ad') {
     text = randomArrayItem(AD_MESSAGES[lng]) ?? '';
   } else {
-    text = randomArrayItem(LOCATION_MESSAGES[locationId][lng]) ?? '';
+    text = randomArrayItem(messages) ?? '';
   }
 
   if (contentType === 'caps') {

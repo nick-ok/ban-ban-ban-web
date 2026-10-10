@@ -37,29 +37,44 @@ export const LOC4_SC3: Scenario = {
       textKey: 'scenarios.loc4_sc3.briefing.msg6_owner',
     },
     {
-      senderType: 'ai',
-      textKey: 'scenarios.loc4_sc3.briefing.msg7_ai',
+      senderType: 'system',
+      textKey: 'scenarios.loc4_sc3.briefing.msg7_system',
+    },
+    {
+      senderType: 'system',
+      textKey: 'scenarios.loc4_sc3.briefing.msg8_system',
     },
   ],
   order: 3,
-  descriptionKey: 'scenarios.loc2_sc3.description',
-  messageSpeedRange: [0.3, 0.8],
-  spawnSpeed: 0.7,
+  messageSpeedRange: [1, 1.3],
+  spawnSpeed: 1.3,
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  endWorktime: timeToMinutes('18:00'),
+  worktime: '10:00 - 18:00',
 
   hasLikes: false,
   hasReports: false,
 
   pools: {
-    none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
-    ban: [],
+    none: [
+      {
+        user: ['ai'],
+        content: ['normal'],
+        title: 'empty',
+      },
+      {
+        user: ['ai'],
+        content: ['binary', 'error'],
+        title: ['virus'],
+      },
+    ],
+    ban: [{ user: ['male', 'female'], content: 'normal' }],
     longBan: [],
   },
 
   probabilities: {
-    none: 0.5,
-    ban: 0.3,
-    longBan: 0.2,
+    none: 0.3,
+    ban: 0.7,
+    longBan: 0,
   },
 };

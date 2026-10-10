@@ -25,12 +25,12 @@ export const LOC1_SC3: Scenario = {
       textKey: 'scenarios.loc1_sc3.briefing.msg3_owner',
     },
     {
-      senderType: 'owner',
-      textKey: 'scenarios.loc1_sc3.briefing.msg4_owner',
+      senderType: 'ai',
+      textKey: 'scenarios.loc1_sc3.briefing.msg4_ai',
     },
     {
-      senderType: 'ai',
-      textKey: 'scenarios.loc1_sc3.briefing.msg5_ai',
+      senderType: 'owner',
+      textKey: 'scenarios.loc1_sc3.briefing.msg5_owner',
     },
     {
       senderType: 'owner',
@@ -46,11 +46,11 @@ export const LOC1_SC3: Scenario = {
     },
   ],
   order: 3,
-  descriptionKey: 'scenarios.loc1_sc3.description',
   messageSpeedRange: [0.3, 0.8],
   spawnSpeed: 0.7,
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  endWorktime: timeToMinutes('18:00'),
+  worktime: '10:00 - 18:00',
 
   hasLikes: false,
   hasReports: false,
@@ -58,18 +58,18 @@ export const LOC1_SC3: Scenario = {
   pools: {
     none: [
       {
-        user: ['female'],
+        user: ['female', 'male'],
         content: ['normal'],
         title: 'verified',
       },
     ],
-    ban: [],
-    longBan: [],
+    ban: [{ title: 'angry' }],
+    longBan: [{ user: ['male', 'female'], title: 'empty' }],
   },
 
   probabilities: {
-    none: 0.5,
-    ban: 0.3,
+    none: 0.4,
+    ban: 0.4,
     longBan: 0.2,
   },
 };

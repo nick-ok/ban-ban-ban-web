@@ -1,5 +1,6 @@
 export const AD_MESSAGES = {
   ru: [
+    'Духовный бестселлер этого сезона! Книга Атьи Дас "Нет пути, кроме пройденного". Подобного еще не было!',
     'Сочная пицца с тягучим сыром уже ждет! Скидка 30% на первый заказ в приложении.',
     'Голоден? Доставим горячий обед за 15 минут прямо к твоей двери. Заказывай!',
     'Попробуй легендарные роллы от шефа! При заказе от 1500 рублей — напиток в подарок.',
@@ -177,6 +178,7 @@ export const AD_MESSAGES = {
     'Лучший сервис бронирования жилья посуточно. Чувствуй себя как дома в любом городе!',
   ],
   en: [
+    'Spiritual bestseller of the season! The book "No Path But the One Walked" by Atia Das. Nothing like this has ever existed!',
     'Melty cheese and juicy pizza are waiting! Get 30% off your first app order now.',
     'Hungry? We deliver hot lunch to your doorstep in 15 minutes flat. Order today!',
     "Try our chef's signature sushi rolls! Get a free drink on all orders over $30.",

@@ -25,7 +25,6 @@ export const getActiveScenario = ({
   if (isGlobalAIActive) {
     return {
       ...scenario,
-      id: 'sc_singularity',
       pools: {
         none: [{ user: ['bot', 'ai'], content: ['binary'] }],
         ban: [],

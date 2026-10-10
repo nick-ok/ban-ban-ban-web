@@ -39,6 +39,11 @@
   height: var(--space-30);
 }
 
+.aiIcon {
+  width: var(--space-8);
+  height: var(--space-8);
+}
+
 .shieldTitle {
   color: var(--color-primary);
   font-weight: bold;

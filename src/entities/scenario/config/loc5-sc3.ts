@@ -21,53 +21,70 @@ export const LOC5_SC3: Scenario = {
       textKey: 'scenarios.loc5_sc3.briefing.msg2_owner',
     },
     {
-      senderType: 'system',
-      textKey: 'scenarios.loc5_sc3.briefing.msg3_system',
+      senderType: 'owner',
+      textKey: 'scenarios.loc5_sc3.briefing.msg3_owner',
     },
     {
-      senderType: 'owner',
-      textKey: 'scenarios.loc5_sc3.briefing.msg4_owner',
+      senderType: 'system',
+      textKey: 'scenarios.loc5_sc3.briefing.msg4_system',
     },
     {
       senderType: 'owner',
       textKey: 'scenarios.loc5_sc3.briefing.msg5_owner',
     },
     {
+      senderType: 'owner',
+      textKey: 'scenarios.loc5_sc3.briefing.msg6_owner',
+    },
+    {
       senderType: 'ai',
-      textKey: 'scenarios.loc5_sc3.briefing.msg6_ai',
+      textKey: 'scenarios.loc5_sc3.briefing.msg7_ai',
     },
     {
       senderType: 'owner',
-      textKey: 'scenarios.loc5_sc3.briefing.msg7_owner',
+      textKey: 'scenarios.loc5_sc3.briefing.msg8_owner',
     },
     {
       senderType: 'ai',
-      textKey: 'scenarios.loc5_sc3.briefing.msg8_ai',
+      textKey: 'scenarios.loc5_sc3.briefing.msg9_ai',
     },
     {
       senderType: 'system',
-      textKey: 'scenarios.loc5_sc3.briefing.msg9_system',
+      textKey: 'scenarios.loc5_sc3.briefing.msg10_system',
     },
   ],
   order: 3,
-  descriptionKey: 'scenarios.loc2_sc3.description',
-  messageSpeedRange: [0.3, 0.8],
+  messageSpeedRange: [0.5, 0.9],
   spawnSpeed: 0.7,
-  startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  startWorktime: timeToMinutes('14:00'),
+  endWorktime: timeToMinutes('22:00'),
+  worktime: '14:00 - 22:00',
 
   hasLikes: false,
-  hasReports: false,
+  hasReports: true,
 
   pools: {
-    none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
-    ban: [],
+    none: [
+      {
+        user: ['male', 'female'],
+        content: ['normal'],
+        title: 'hype',
+        reports: '>100000',
+      },
+      {
+        user: ['male', 'female', 'bot'],
+        content: ['fwords', 'blurred', 'ad', 'caps'],
+        title: ['angry', 'hype', 'verified', 'vip'],
+        reports: '>1000000',
+      },
+    ],
+    ban: [{ user: ['male', 'female'], title: 'verified', reports: '<1000' }],
     longBan: [],
   },
 
   probabilities: {
     none: 0.5,
-    ban: 0.3,
-    longBan: 0.2,
+    ban: 0.5,
+    longBan: 0,
   },
 };

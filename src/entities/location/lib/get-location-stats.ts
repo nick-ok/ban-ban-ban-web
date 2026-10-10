@@ -30,7 +30,7 @@ export const getLocationStats = (
 
   const averageAccuracy =
     accuracies.length > 0
-      ? Math.round(accuracies.reduce((a, b) => a + b, 0) / accuracies.length)
+      ? Math.floor(accuracies.reduce((a, b) => a + b, 0) / accuracies.length)
       : 0;
 
   return {

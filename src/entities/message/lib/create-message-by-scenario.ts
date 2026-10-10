@@ -14,6 +14,7 @@ import type {
   ContentType,
   Message,
   MessageSide,
+  ScenarioMessageEmotion,
   TitleType,
   UserType,
 } from '../model/types';
@@ -80,7 +81,7 @@ const generateCountValueByCondition = (
   if (sign === '>') {
     return randomNumberInRange({
       min: targetValue + 1,
-      max: targetValue + 1_000,
+      max: targetValue * 10,
     });
   }
 
@@ -131,8 +132,24 @@ export const createMessageByScenario = (
     reports = generateCountValueByCondition(reportsCondition);
   }
 
+  let textEmotion: ScenarioMessageEmotion = 'normal';
+
+  const isNormal =
+    title !== 'angry' && title !== 'hype' && user !== 'bot' && user !== 'ai';
+
+  if (isNormal) {
+    textEmotion = 'normal';
+  } else if (title === 'angry') {
+    textEmotion = 'angry';
+  } else if (title === 'hype') {
+    textEmotion = 'hype';
+  } else if (user === 'ai' || user === 'bot') {
+    textEmotion = 'ai';
+  }
+
   const text = createMessageText({
-    locationId: scenario.locationId,
+    scenarioId: scenario.id,
+    emotion: textEmotion,
     contentType,
     language,
   });

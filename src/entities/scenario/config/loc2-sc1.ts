@@ -37,28 +37,48 @@ export const LOC2_SC1: Scenario = {
       textKey: 'scenarios.loc2_sc1.briefing.msg6_owner',
     },
     {
+      senderType: 'owner',
+      textKey: 'scenarios.loc2_sc1.briefing.msg7_owner',
+    },
+    {
+      senderType: 'system',
+      textKey: 'scenarios.loc2_sc1.briefing.msg8_system',
+    },
+    {
       senderType: 'ai',
-      textKey: 'scenarios.loc2_sc1.briefing.msg7_ai',
+      textKey: 'scenarios.loc2_sc1.briefing.msg9_ai',
     },
     {
       senderType: 'owner',
-      textKey: 'scenarios.loc2_sc1.briefing.msg8_owner',
+      textKey: 'scenarios.loc2_sc1.briefing.msg10_owner',
     },
   ],
   order: 1,
-  descriptionKey: 'scenarios.loc2_sc1.description',
-  messageSpeedRange: [0.3, 0.8],
-  spawnSpeed: 0.7,
+  messageSpeedRange: [0.4, 0.8],
+  spawnSpeed: 0.75,
   startWorktime: timeToMinutes('10:00'),
-  endWorktime: timeToMinutes('10:20'),
+  endWorktime: timeToMinutes('18:00'),
+  worktime: '10:00 - 18:00',
 
-  hasLikes: false,
+  hasLikes: true,
   hasReports: false,
 
   pools: {
-    none: [{ user: ['male', 'female'], content: ['normal'], title: 'empty' }],
-    ban: [],
-    longBan: [],
+    none: [
+      {
+        user: ['male', 'female'],
+        content: ['normal', 'caps', 'ad'],
+        title: 'empty',
+      },
+    ],
+    ban: [
+      {
+        user: ['male', 'female'],
+        content: ['caps', 'normal'],
+        title: ['angry'],
+      },
+    ],
+    longBan: [{ user: ['male', 'female'], content: ['fwords'] }],
   },
 
   probabilities: {

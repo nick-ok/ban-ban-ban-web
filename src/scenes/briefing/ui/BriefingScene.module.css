@@ -46,7 +46,9 @@
 .locationTitle {
   margin-left: var(--space-3);
   display: flex;
+  align-items: center;
   gap: var(--space-1);
+  font-size: var(--text-sm);
 }
 
 .owner {

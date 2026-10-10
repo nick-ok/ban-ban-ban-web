@@ -35,10 +35,16 @@ const buttonVariants: Variants = {
 interface Props {
   title: string;
   timePassed: string;
+  worktime: string;
   onClose: () => void;
 }
 
-export const ScenarioIntro = ({ title, timePassed, onClose }: Props) => {
+export const ScenarioIntro = ({
+  title,
+  timePassed,
+  worktime,
+  onClose,
+}: Props) => {
   const { t } = useTranslation();
 
   return (
@@ -50,6 +56,10 @@ export const ScenarioIntro = ({ title, timePassed, onClose }: Props) => {
     >
       <motion.div className={styles.title} variants={textVariants}>
         {title}
+      </motion.div>
+
+      <motion.div variants={textVariants} className={styles.worktime}>
+        {t('scenarios.worktime')} - {worktime}
       </motion.div>
 
       {timePassed && (
