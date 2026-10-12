@@ -4,6 +4,7 @@ import type { ExtendedPixiMessageContainer } from '@/entities/message';
 
 import type { StatKeyType } from '../model/types';
 import type { ParticleLayer } from './create-particle-layer';
+import type { ScreenGlitch } from './screen-glitch';
 import type { ScreenShake } from './screen-shake';
 import { updateDyingMessage } from './update-dying-message';
 import { updateMessageHold } from './update-message-hold';
@@ -15,6 +16,7 @@ interface UpdateMessageContext {
   elapsedMS: number;
   particleLayer: ParticleLayer | null;
   screenShake: ScreenShake | null;
+  screenGlitch: ScreenGlitch | null;
   incrementStat: (key: StatKeyType) => void;
 }
 
