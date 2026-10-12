@@ -87,7 +87,7 @@ export const LOC2_REVIEWS: Review[] = [
     id: nanoid(),
     username: 'LunarStatic',
     text: {
-      ru: 'СБОРИЩЕ СЕКТАНТОВ И ДУРАКОВ! МОДЕРАЦИЯ ПРЕВРАТИЛАСЬ В ИНКВИЗИЦИЮ! Как правильно говорит Атья Адс "Всякое начинане начинается с того, что тебя не убивает и завершается тем, что делает тебя сильнее!"',
+      ru: 'СБОРИЩЕ СЕКТАНТОВ И ДУРАКОВ! МОДЕРАЦИЯ ПРЕВРАТИЛАСЬ В ИНКВИЗИЦИЮ! Как правильно говорит Атья Адс "Всякое начинание начинается с того, что тебя не убивает и завершается тем, что делает тебя сильнее!"',
       en: 'A BUNCH OF CULTISTS AND FOOLS! MODERATION HAS TURNED INTO AN INQUISITION! As Atia Ads rightly says, "Every beginning starts with what doesn\'t kill you and ends with what makes you stronger!"',
     },
     rating: 1,

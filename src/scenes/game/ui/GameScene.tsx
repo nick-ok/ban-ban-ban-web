@@ -9,6 +9,7 @@ import {
   getLastUnlockedLocationScenario,
   getScenarioById,
 } from '@/entities/scenario';
+import { AudioService } from '@/features/audio';
 import { GameStage, useGameStore } from '@/features/game';
 import { AppDrawer, Button, Icon, ZoomMotion } from '@/shared/ui';
 
@@ -59,6 +60,10 @@ export const GameScene = () => {
     });
   }, [baseScenario, isAutoModerationEnabled]);
 
+  const isLastScenario = useMemo(() => {
+    return activeScenario?.id === 'loc6_sc3';
+  }, [activeScenario]);
+
   useEffect(() => {
     if (activeScenario) {
       startGame({
@@ -75,10 +80,24 @@ export const GameScene = () => {
   }, [menuOpen, clueOpen, gameSettings.isSettingsOpen]);
 
   useEffect(() => {
-    if (sceneRef.current) {
+    if (menuOpen || clueOpen) {
+      AudioService.setMusicVolume(0.2);
+    }
+
+    return () => AudioService.setMusicVolume(1.0);
+  }, [menuOpen, clueOpen]);
+
+  useEffect(() => {
+    if (sceneRef.current && !isAutoModerationEnabled && !isGlobalAIActive) {
       setClueOpen(true);
     }
-  }, []);
+  }, [isAutoModerationEnabled, isGlobalAIActive]);
+
+  useEffect(() => {
+    if (isLastScenario && !isGlobalAIActive && !isAutoModerationEnabled) {
+      AudioService.playMusic('involution', false);
+    }
+  }, [isLastScenario, isGlobalAIActive, isAutoModerationEnabled]);
 
   if (!activeScenario || !location) {
     return null;

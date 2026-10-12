@@ -1,5 +1,4 @@
 import {
-  useEffect,
   useState,
   type CSSProperties,
   type ReactNode,
@@ -7,8 +6,6 @@ import {
 } from 'react';
 
 import { Drawer } from 'vaul';
-
-import { AudioService } from '@/features/audio';
 
 import styles from './AppDrawer.module.css';
 
@@ -19,7 +16,6 @@ interface Props {
     closeDrawer?: () => void;
   }) => ReactNode;
   trigger?: ReactNode;
-  withSound?: boolean;
   open?: boolean;
   showClose?: boolean;
   direction?: 'bottom' | 'left' | 'right' | 'top';
@@ -32,7 +28,6 @@ export const AppDrawer = ({
   containerRef,
   children,
   trigger,
-  withSound = true,
   direction = 'right',
   backgroundColor = 'var(--color-white)',
   open,
@@ -44,12 +39,6 @@ export const AppDrawer = ({
 
   const isOpen = isControlled ? open : internalOpen;
   const setIsOpen = isControlled ? onOpenChange : setInternalOpen;
-
-  useEffect(() => {
-    if (isOpen && withSound) {
-      AudioService.play({ key: 'drawer' });
-    }
-  }, [isOpen]);
 
   return (
     <Drawer.Root

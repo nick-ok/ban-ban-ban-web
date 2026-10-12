@@ -1,4 +1,3 @@
-import type { LocationId } from '@/entities/location';
 import type { Scene } from '@/entities/navigation';
 
 interface AudioConfigItem {
@@ -8,57 +7,68 @@ interface AudioConfigItem {
 
 export const AUDIO_ASSETS = {
   click: {
-    src: '/audio/sfx/ui-click.mp3',
+    src: '/audio/sfx/click.ogg',
     type: 'sfx',
   },
-  drawer: {
-    src: '/audio/sfx/ui-drawer.mp3',
+  clickSoft: {
+    src: '/audio/sfx/click_soft.ogg',
     type: 'sfx',
   },
   chatMessage: {
-    src: '/audio/sfx/chat-message.mp3',
+    src: '/audio/sfx/message.ogg',
     type: 'sfx',
   },
   notification: {
-    src: '/audio/sfx/chat-message.mp3',
+    src: '/audio/sfx/notification.ogg',
     type: 'sfx',
   },
-  mainMenu: {
-    src: '/audio/music/main-menu.mp3',
+  ban: {
+    src: '/audio/sfx/ban.ogg',
+    type: 'sfx',
+  },
+  banError: {
+    src: '/audio/sfx/ban_error.ogg',
+    type: 'sfx',
+  },
+  tadam: {
+    src: '/audio/sfx/tadam.ogg',
+    type: 'sfx',
+  },
+  welcomeTheme: {
+    src: '/audio/music/Welcome.ogg',
     type: 'music',
   },
-  hoaGame: {
-    src: '/audio/music/hoa-game.mp3',
+  welcomeBNWTheme: {
+    src: '/audio/music/Broken-New-World.ogg',
+    type: 'music',
+  },
+  involution: {
+    src: '/audio/music/Involution.ogg',
+    type: 'music',
+  },
+  brokenWorld: {
+    src: '/audio/music/Broken-New-World.ogg',
+    type: 'music',
+  },
+  gameEndTheme: {
+    src: '/audio/music/BNW.ogg',
     type: 'music',
   },
 } as const satisfies Record<string, AudioConfigItem>;
 
 export type AudioAssetKey = keyof typeof AUDIO_ASSETS;
 
-type SoundMapValue =
-  AudioAssetKey | null | ((locationId: LocationId) => AudioAssetKey | null);
+type SoundMapValue = AudioAssetKey | null;
 
 export const SCENE_SOUND_MAP: Record<Scene, SoundMapValue> = {
-  lock: 'mainMenu',
-  lobby: 'mainMenu',
-  notificationsCenter: 'mainMenu',
+  lock: 'welcomeTheme',
+  lobby: 'welcomeTheme',
+  notificationsCenter: 'welcomeTheme',
   howToPlay: null,
-  preview: null,
+  preview: 'welcomeTheme',
   briefing: null,
   bootstrap: null,
   dayend: null,
   gameend: null,
-
-  game: (locationId: LocationId): AudioAssetKey => {
-    const locationMusic: Record<LocationId, AudioAssetKey> = {
-      loc1: 'hoaGame',
-      loc2: 'hoaGame',
-      loc3: 'hoaGame',
-      loc4: 'hoaGame',
-      loc5: 'hoaGame',
-      loc6: 'hoaGame',
-    };
-
-    return locationMusic[locationId] ?? 'hoaGame';
-  },
+  game: null,
 };

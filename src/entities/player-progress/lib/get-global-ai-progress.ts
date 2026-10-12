@@ -27,5 +27,5 @@ export const getGlobalAIProgress = (progress: PlayerProgress): number => {
 
   const average = totalAccuracy / totalScenarios;
 
-  return Math.round(average * 10) / 10;
+  return Math.floor(average * 10) / 10;
 };

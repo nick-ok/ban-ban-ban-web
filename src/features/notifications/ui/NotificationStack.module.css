@@ -1,5 +1,5 @@
 .root {
-  position: fixed;
+  position: absolute;
   top: var(--space-10);
   left: 50%;
   transform: translateX(-50%);

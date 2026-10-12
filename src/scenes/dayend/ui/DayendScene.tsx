@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import clsx from 'clsx';
 
@@ -9,6 +9,7 @@ import {
   getNextToUnlock,
   getScenarioById,
 } from '@/entities/scenario';
+import { AudioService } from '@/features/audio';
 import {
   calculateAccuracy,
   getAccuracyGrade,
@@ -99,6 +100,11 @@ export const DayEndScene = () => {
     setScene('game');
   };
 
+  useEffect(() => {
+    AudioService.setMusicVolume(0.3);
+    AudioService.play({ key: 'tadam', volume: 0.5 });
+  }, []);
+
   return (
     <ZoomMotion className={styles.root}>
       <div className={clsx(styles.tierLabel, isPassed && styles.passed)}>
@@ -128,6 +134,7 @@ export const DayEndScene = () => {
             className={styles.button}
             variant={isPassed ? 'primary' : 'white'}
             onClick={handleSaveAndExit}
+            soundType={'soft'}
             glow={isPassed}
           >
             <Icon name={'check'} className={styles.buttonIcon} />

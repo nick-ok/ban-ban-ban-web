@@ -143,6 +143,7 @@ export const LockScene = () => {
                 <Button
                   variant={'text'}
                   className={styles.btn}
+                  soundType={'soft'}
                   onPointerUp={() => handleMenuButtonClick(key)}
                 >
                   {t(`screens.lock.${key}`)}
