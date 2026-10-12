@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
 import { useTranslation } from '@/features/i18n';
-import { Button, Icon, ShineFX, ZoomMotion } from '@/shared/ui';
+import { Button, Icon, ShineFX } from '@/shared/ui';
 
 import { HOW_TO_PLAY } from '../config/constants';
 
@@ -26,7 +26,7 @@ export const HowToPlay = () => {
   };
 
   return (
-    <ZoomMotion className={styles.root}>
+    <div className={styles.root}>
       <h2 className={styles.title}>{t('screens.howToPlay.title')}</h2>
 
       <div className={styles.htpList}>
@@ -62,6 +62,6 @@ export const HowToPlay = () => {
           {t('screens.howToPlay.gotIt')}
         </Button>
       </ShineFX>
-    </ZoomMotion>
+    </div>
   );
 };

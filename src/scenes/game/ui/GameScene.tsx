@@ -75,10 +75,10 @@ export const GameScene = () => {
   }, [menuOpen, clueOpen, gameSettings.isSettingsOpen]);
 
   useEffect(() => {
-    if (sceneRef.current) {
+    if (sceneRef.current && !isAutoModerationEnabled) {
       setClueOpen(true);
     }
-  }, []);
+  }, [isAutoModerationEnabled]);
 
   if (!activeScenario || !location) {
     return null;

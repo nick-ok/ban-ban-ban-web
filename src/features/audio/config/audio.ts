@@ -23,12 +23,20 @@ export const AUDIO_ASSETS = {
     src: '/audio/sfx/chat-message.mp3',
     type: 'sfx',
   },
-  mainMenu: {
-    src: '/audio/music/main-menu.mp3',
+  welcomeTheme: {
+    src: '/audio/music/Welcome.ogg',
     type: 'music',
   },
-  hoaGame: {
-    src: '/audio/music/hoa-game.mp3',
+  welcomeBNWTheme: {
+    src: '/audio/music/Broken-New-World.ogg',
+    type: 'music',
+  },
+  gameTheme: {
+    src: '/audio/music/Involution.ogg',
+    type: 'music',
+  },
+  gameEndTheme: {
+    src: '/audio/music/BNW.ogg',
     type: 'music',
   },
 } as const satisfies Record<string, AudioConfigItem>;
@@ -39,26 +47,26 @@ type SoundMapValue =
   AudioAssetKey | null | ((locationId: LocationId) => AudioAssetKey | null);
 
 export const SCENE_SOUND_MAP: Record<Scene, SoundMapValue> = {
-  lock: 'mainMenu',
-  lobby: 'mainMenu',
-  notificationsCenter: 'mainMenu',
+  lock: 'welcomeTheme',
+  lobby: 'welcomeTheme',
+  notificationsCenter: 'welcomeTheme',
   howToPlay: null,
-  preview: null,
+  preview: 'welcomeTheme',
   briefing: null,
   bootstrap: null,
-  dayend: null,
-  gameend: null,
+  dayend: 'gameTheme',
+  gameend: 'gameEndTheme',
 
   game: (locationId: LocationId): AudioAssetKey => {
     const locationMusic: Record<LocationId, AudioAssetKey> = {
-      loc1: 'hoaGame',
-      loc2: 'hoaGame',
-      loc3: 'hoaGame',
-      loc4: 'hoaGame',
-      loc5: 'hoaGame',
-      loc6: 'hoaGame',
+      loc1: 'gameTheme',
+      loc2: 'gameTheme',
+      loc3: 'gameTheme',
+      loc4: 'gameTheme',
+      loc5: 'gameTheme',
+      loc6: 'gameTheme',
     };
 
-    return locationMusic[locationId] ?? 'hoaGame';
+    return locationMusic[locationId] ?? 'gameTheme';
   },
 };
