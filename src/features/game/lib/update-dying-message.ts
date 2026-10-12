@@ -5,6 +5,7 @@ import { destroyGameMessage } from '@/entities/message/lib/destroy-game-message'
 
 import { computeEjectDirection } from './compute-eject-direction';
 import type { ParticleLayer } from './create-particle-layer';
+import type { ScreenGlitch } from './screen-glitch';
 import type { ScreenShake } from './screen-shake';
 import { spawnBanStamp } from './spawn-ban-stamp';
 import { spawnParticles } from './spawn-particles';
@@ -17,6 +18,7 @@ interface UpdateDyingMessageContext {
   deltaMS: number;
   particleLayer: ParticleLayer | null;
   screenShake: ScreenShake | null;
+  screenGlitch: ScreenGlitch | null;
 }
 
 export const updateDyingMessage = (
@@ -41,8 +43,9 @@ export const updateDyingMessage = (
     sprite.rotation = startRotation + (targetRotation - startRotation) * eased;
 
     if (t >= 1) {
+      const kind = child.dyingEffect?.particles ?? 'positive';
+
       if (ctx.particleLayer) {
-        const kind = child.dyingEffect?.particles ?? 'positive';
         const bounds = child.getLocalBounds();
 
         spawnParticles({
@@ -50,6 +53,12 @@ export const updateDyingMessage = (
           x: child.x + bounds.width / 2,
           y: child.y + bounds.height / 2,
           kind,
+        });
+      }
+
+      if (kind === 'negative' && ctx.screenGlitch) {
+        ctx.screenGlitch.start({
+          duration: 250,
         });
       }
 

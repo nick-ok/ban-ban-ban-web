@@ -13,6 +13,7 @@ import {
   type ParticleLayer,
 } from '../lib/create-particle-layer';
 import { createSpawnTimer } from '../lib/create-spawn-timer';
+import { ScreenGlitch } from '../lib/screen-glitch'; // Импортируем наш глитч
 import { createScreenShake, type ScreenShake } from '../lib/screen-shake';
 import { tickGameClock } from '../lib/tick-game-clock';
 import { updateMessage } from '../lib/update-message';
@@ -61,6 +62,7 @@ export const useGameLoop = ({
 
   const particleLayerRef = useRef<ParticleLayer | null>(null);
   const screenShakeRef = useRef<ScreenShake | null>(null);
+  const screenGlitchRef = useRef<ScreenGlitch | null>(null);
 
   useEffect(() => {
     loopStateRef.current = {
@@ -100,6 +102,10 @@ export const useGameLoop = ({
         screenShakeRef.current.update(deltaMS);
       }
 
+      if (screenGlitchRef.current) {
+        screenGlitchRef.current.update(deltaMS);
+      }
+
       if (activeDay) {
         tickGameClock({
           deltaMS,
@@ -120,6 +126,7 @@ export const useGameLoop = ({
         incrementStat,
         particleLayer: particleLayerRef.current,
         screenShake: screenShakeRef.current,
+        screenGlitch: screenGlitchRef.current,
       };
 
       for (const child of children) {
@@ -150,6 +157,7 @@ export const useGameLoop = ({
     };
   }, [isActive, app, updateGameTime, incrementStat, finishGame]);
 
+  // Эффект инициализации слоя частиц
   useEffect(() => {
     if (!app) {
       return;
@@ -165,8 +173,6 @@ export const useGameLoop = ({
         app.stage.removeChild(layer.container);
       }
 
-      screenShakeRef.current = createScreenShake(app);
-
       if (!layer.container.destroyed) {
         layer.container.destroy({ children: true });
       }
@@ -181,10 +187,12 @@ export const useGameLoop = ({
     }
 
     screenShakeRef.current = createScreenShake(app);
+    screenGlitchRef.current = new ScreenGlitch(app.stage);
 
     return () => {
       screenShakeRef.current?.reset();
       screenShakeRef.current = null;
+      screenGlitchRef.current = null;
     };
   }, [app]);
 

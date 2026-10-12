@@ -12,8 +12,8 @@ interface SpawnParticlesOptions {
   kind: 'positive' | 'negative';
 }
 
-const POSITIVE_COUNT = 100;
-const NEGATIVE_COUNT = 100;
+const POSITIVE_COUNT = 50;
+const NEGATIVE_COUNT = 50;
 
 const POSITIVE_SPEED = 250;
 const NEGATIVE_SPEED = 350;
@@ -34,9 +34,7 @@ export const spawnParticles = ({
   const speed = isPositive ? POSITIVE_SPEED : NEGATIVE_SPEED;
   const lifetime = isPositive ? POSITIVE_LIFETIME : NEGATIVE_LIFETIME;
 
-  const pool = isPositive
-    ? [textures.digitOne, textures.digitZero, textures.sparkles]
-    : [textures.errorSing, textures.bracketError];
+  const pool = isPositive ? [textures.sparkles] : [textures.errorSing];
 
   for (let i = 0; i < count; i += 1) {
     const angle = (Math.PI * 2 * i) / count + Math.random() * 0.4;

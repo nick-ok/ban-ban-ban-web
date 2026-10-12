@@ -3,10 +3,7 @@ import * as PIXI from 'pixi.js';
 import type { UIAssetKey } from '../config/assets';
 
 interface ParticleTextures {
-  digitZero: PIXI.Texture;
-  digitOne: PIXI.Texture;
   errorSing: PIXI.Texture;
-  bracketError: PIXI.Texture;
   sparkles: PIXI.Texture;
 }
 
@@ -28,10 +25,7 @@ export const initParticleTextures = () => {
   }
 
   particleTextures = {
-    digitZero: createSpriteTexture('digitZero'),
-    digitOne: createSpriteTexture('digitOne'),
     errorSing: createSpriteTexture('errorSing'),
-    bracketError: createSpriteTexture('bracketError'),
     sparkles: createSpriteTexture('sparkles'),
   };
 };
