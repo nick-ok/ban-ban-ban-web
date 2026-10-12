@@ -5,10 +5,10 @@ import type { Review } from '../model/types';
 export const LOC1_REVIEWS: Review[] = [
   {
     id: nanoid(),
-    username: 'nexalith_10',
+    username: 'anna_parabellum',
     text: {
-      ru: 'Не понимаю зачем вообще нужно это приложение и кто вообще им пользуется',
-      en: "I honestly don't understand the point of this app and who even uses it.",
+      ru: 'Могла бы поставить 0, поставила бы. Пользы 0, логики 0, адекватности 0',
+      en: 'If I could give it a 0, I would. Benefits: 0, logic: 0, sanity: 0',
     },
     rating: 1,
     requiredProgress: 0,
@@ -19,6 +19,16 @@ export const LOC1_REVIEWS: Review[] = [
     text: {
       ru: 'Надоела эта @#$!@#$ ругань в этом @#$!@#$ приложении! ЗАЙМИТЕСЬ МОДЕРАЦИЕЙ',
       en: 'I am sick and tired of this @#$!@#$ bickering in this @><$!@#$ app! START MODERATING IT!',
+    },
+    rating: 1,
+    requiredProgress: 0,
+  },
+  {
+    id: nanoid(),
+    username: 'nexalith_10',
+    text: {
+      ru: 'Не понимаю зачем вообще нужно это приложение и кто вообще им пользуется',
+      en: "I honestly don't understand the point of this app and who even uses it.",
     },
     rating: 1,
     requiredProgress: 0,
@@ -45,20 +55,20 @@ export const LOC1_REVIEWS: Review[] = [
   },
   {
     id: nanoid(),
-    username: 'anna99',
+    username: 'anna_parabellum',
     text: {
-      ru: 'Могла бы поставить 0, поставила бы. Пользы 0, смысла 0, адекватности 0',
-      en: 'If I could give it 0 stars, I would. Zero use, zero sense, zero sanity.',
+      ru: 'Забанили. Всего за ОДНО слово КАПСОМ! Вы нормальные вообще?! А если я слово ЖЭС напишу - меня опять забанят???',
+      en: 'I got banned. For literally ONE word in CAPS! Are you guys for real?! If I write DPW, will I get banned again???',
     },
     rating: 1,
-    requiredProgress: 0,
+    requiredProgress: 50,
   },
   {
     id: nanoid(),
-    username: 'anna99',
+    username: 'parabellum_anna',
     text: {
-      ru: 'Уже получше, чуть чуть исправила оценку. Хотя бы можно иногда пользоваться чатом. Недолго',
-      en: "It's getting there, so I updated my review a bit. At least the chat is usable once in a while. Just don't expect it to last.",
+      ru: 'Пришлось делать новый аккаунт и не смогла скипнуть верификацию! При этом верификация платная и стоит как крыло самолета! Вы там с ума посходили???',
+      en: "I was forced to create a new account and couldn't bypass the verification! And guess what? The verification is paid and costs an arm and a leg! Are you guys out of your minds over there???",
     },
     rating: 1,
     requiredProgress: 50,
@@ -85,16 +95,6 @@ export const LOC1_REVIEWS: Review[] = [
   },
   {
     id: nanoid(),
-    username: 'cyber_paul',
-    text: {
-      ru: 'Надоели пуши на каждый чих. Постоянно пропускаю важную информацию из-за того что их чересчур много',
-      en: 'Fed up with push notifications for every little thing. I keep missing important updates because of the constant spam',
-    },
-    rating: 2,
-    requiredProgress: 50,
-  },
-  {
-    id: nanoid(),
     username: 'user_12009898923424',
     text: {
       ru: 'Не могу зайти под новым аккаунтом, прошлый был забанен по непонятной причине. Издевательство какое-то',
@@ -102,6 +102,16 @@ export const LOC1_REVIEWS: Review[] = [
     },
     rating: 2,
     requiredProgress: 50,
+  },
+  {
+    id: nanoid(),
+    username: 'anna_parabellum',
+    text: {
+      ru: 'Я ставила оценку **1**, почему здесь отображается **5?!** Меня опять забанили! Удаляю этот треклятый **HApp** навсегда!',
+      en: "I gave it a 1-star rating, why the hell does it show 5?! I'm banned again! Deleting this damn HApp forever!",
+    },
+    rating: 5,
+    requiredProgress: 100,
   },
   {
     id: nanoid(),
@@ -119,16 +129,6 @@ export const LOC1_REVIEWS: Review[] = [
     text: {
       ru: 'Есть незначительные баги, но в целом пользоваться довольно приятно',
       en: 'Has a few minor glitches here and there, but on the whole, it’s a really nice app to use.',
-    },
-    rating: 4,
-    requiredProgress: 100,
-  },
-  {
-    id: nanoid(),
-    username: 'anna99',
-    text: {
-      ru: 'Давно не заходила в приложение, но теперь вижу что разрабы проделали действительно хорошую работу!',
-      en: "Haven't logged in for ages, but I can tell the devs have put in some serious work! Really good job.",
     },
     rating: 4,
     requiredProgress: 100,
@@ -155,10 +155,21 @@ export const LOC1_REVIEWS: Review[] = [
   },
   {
     id: nanoid(),
+    username: 'anna_parabellum',
+    text: {
+      ru: 'Почините оценки! Что вообще происходит?! Откуда такие оценки у этого **HApp**, откуда столько скачиваний?! Откуда такие отзывы?!',
+      en: 'Fix the ratings! What on earth is going on?! Where did **HApp** get these ratings, where did all these downloads come from?! And where did these reviews come from?!',
+    },
+    rating: 5,
+    requiredProgress: 100,
+    isPerfectOnly: true,
+  },
+  {
+    id: nanoid(),
     username: 'dravynor',
     text: {
-      ru: 'У этого приложения нет конкурентов',
-      en: 'This app has no competition',
+      ru: 'Интерфейс интуитивно понятный, ни одного бага, ни единого лага, только чистый, кристальный восторг. Рекомендую скачивать всем жителям планеты, даже если у вас нет дома!',
+      en: 'Super intuitive interface, zero bugs, zero lag—just pure, crystal-clear bliss. Highly recommend downloading it to every single person on Earth, even if you’re homeless!',
     },
     rating: 5,
     requiredProgress: 100,
@@ -192,17 +203,6 @@ export const LOC1_REVIEWS: Review[] = [
     text: {
       ru: 'Удивительно отзывчивое комьюнити! Вчера я случайно оставил в лифте пакет с мусором, так соседи нашли меня через чат, сами донесли его до бака, а в комментариях пожелали мне хорошего дня и крепкого здоровья!',
       en: 'An amazingly responsive community! Yesterday I accidentally left a trash bag in the elevator, and my neighbors found me through the chat, carried it to the dumpster themselves, and wished me a great day and good health in the comments!',
-    },
-    rating: 5,
-    requiredProgress: 100,
-    isPerfectOnly: true,
-  },
-  {
-    id: nanoid(),
-    username: 'anna99',
-    text: {
-      ru: 'Интерфейс интуитивно понятный, ни одного бага, ни единого лага, только чистый, кристальный восторг. Рекомендую скачивать всем жителям планеты, даже если у вас нет дома!',
-      en: 'Super intuitive interface, zero bugs, zero lag—just pure, crystal-clear bliss. Highly recommend downloading it to every single person on Earth, even if you’re homeless!',
     },
     rating: 5,
     requiredProgress: 100,

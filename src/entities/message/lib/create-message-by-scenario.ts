@@ -1,5 +1,3 @@
-import { nanoid } from 'nanoid';
-
 import type { Scenario } from '@/entities/scenario';
 import { i18n } from '@/features/i18n';
 import { randomArrayItem, randomNumberInRange } from '@/shared/lib';
@@ -155,7 +153,7 @@ export const createMessageByScenario = (
   });
 
   return {
-    id: nanoid(),
+    id: `${Date.now()}`,
     side: getRandomSide(),
     speed: getRandomSpeed(scenario.messageSpeedRange),
     avatarKey: getRandomAvatarKey(user),

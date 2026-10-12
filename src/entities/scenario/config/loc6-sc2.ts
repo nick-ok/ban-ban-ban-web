@@ -58,8 +58,8 @@ export const LOC6_SC2: Scenario = {
     },
   ],
   order: 2,
-  messageSpeedRange: [0.5, 0.9],
-  spawnSpeed: 0.8,
+  messageSpeedRange: [0.3, 0.8],
+  spawnSpeed: 0.6,
   startWorktime: timeToMinutes('15:23'),
   endWorktime: timeToMinutes('23:42'),
   worktime: '15:23 - 23:42',
@@ -72,12 +72,12 @@ export const LOC6_SC2: Scenario = {
       {
         user: ['male'],
         content: ['normal'],
-        title: ['empty', 'vip', 'hype'],
+        title: ['empty', 'vip'],
       },
       {
         user: ['female'],
         content: ['normal'],
-        title: ['verified', 'empty', 'hype'],
+        title: ['verified', 'empty'],
       },
       {
         user: 'ai',
@@ -90,7 +90,7 @@ export const LOC6_SC2: Scenario = {
       {
         user: ['female', 'male'],
         content: ['fwords', 'caps'],
-        title: ['angry'],
+        title: ['angry', 'hype'],
       },
     ],
   },
