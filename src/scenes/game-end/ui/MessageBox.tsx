@@ -23,6 +23,7 @@ export const MessageBox = ({ text, onNext, isEnterBtn }: Props) => {
           variant={isEnterBtn ? 'accent' : 'accentBlue'}
           className={styles.nextBtn}
           onClick={onNext}
+          soundType={isEnterBtn ? 'soft' : 'default'}
         >
           {t(isEnterBtn ? 'screens.gameend.enter' : 'screens.gameend.next')}
         </Button>

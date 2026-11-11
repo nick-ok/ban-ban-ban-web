@@ -23,13 +23,13 @@ class AudioServiceClass {
         }
 
         const audioConfig = AUDIO_ASSETS[key];
-        const isMusic = audioConfig.type === 'music';
+        // const isMusic = audioConfig.type === 'music';
 
         const sound = new Howl({
           src: [audioConfig.src],
           html5: false,
           preload: true,
-          loop: isMusic,
+          // loop: isMusic,
           onload: () => resolve(),
           onloaderror: (error) => {
             console.error(
@@ -73,11 +73,12 @@ class AudioServiceClass {
       const randomVolume = randomize
         ? volume * (0.95 + Math.random() * 0.05)
         : volume;
+
       sound.volume(randomVolume, soundId);
     }
   }
 
-  playMusic(key: AudioAssetKey) {
+  playMusic(key: AudioAssetKey, loop = true) {
     const { isMusicEnabled } = useGameSettingsStore.getState();
 
     if (!isMusicEnabled) {
@@ -118,11 +119,45 @@ class AudioServiceClass {
 
     const musicId = sound.play();
 
+    sound.loop(loop, musicId);
+
     sound.volume(0, musicId);
     sound.fade(0, 1, this.fadeDuration, musicId);
 
+    if (!loop) {
+      sound.once(
+        'end',
+        () => {
+          if (this.currentMusicId === musicId) {
+            this.currentMusicKey = null;
+            this.currentMusicId = null;
+          }
+        },
+        musicId,
+      );
+    }
+
     this.currentMusicKey = key;
     this.currentMusicId = musicId;
+  }
+
+  setMusicVolume(volume: number) {
+    if (this.currentMusicKey === null || this.currentMusicId === null) {
+      return;
+    }
+
+    const sound = this.sounds.get(this.currentMusicKey);
+
+    if (sound) {
+      const clampedVolume = Math.max(0, Math.min(1, volume));
+
+      sound.fade(
+        sound.volume(this.currentMusicId) as number,
+        clampedVolume,
+        this.fadeDuration,
+        this.currentMusicId,
+      );
+    }
   }
 
   stopMusic() {

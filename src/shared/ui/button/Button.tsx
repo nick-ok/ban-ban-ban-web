@@ -20,6 +20,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: ButtonVariant;
   withSound?: boolean;
+  soundType?: 'default' | 'soft';
   bordered?: boolean;
   glow?: boolean;
   className?: string;
@@ -30,6 +31,7 @@ export const Button = ({
   className,
   variant = 'text',
   withSound = true,
+  soundType = 'default',
   bordered = false,
   glow = false,
   type = 'button',
@@ -51,7 +53,10 @@ export const Button = ({
     }
 
     if (withSound) {
-      AudioService.play({ key: 'click' });
+      AudioService.play({
+        key: soundType === 'default' ? 'click' : 'clickSoft',
+        volume: 0.5,
+      });
     }
 
     onPointerDown?.(e);

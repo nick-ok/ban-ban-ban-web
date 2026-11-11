@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
+import clsx from 'clsx';
 import { motion } from 'motion/react';
 
+import { usePlayerProgressStore } from '@/entities/player-progress';
 import { randomNumberInRange } from '@/shared/lib';
 
 import styles from './AnimatedBackground.module.css';
@@ -17,12 +19,14 @@ const getRandomTarget = () => ({
 });
 
 export const AnimatedBackground = () => {
+  const progress = usePlayerProgressStore();
+
   const [state, setState] = useState(getRandomTarget);
 
   return (
     <motion.img
       src="/images/wallpaper.webp"
-      className={styles.root}
+      className={clsx(styles.root, progress.isGlobalAIActive && styles.gameend)}
       animate={state.target}
       transition={{
         duration: state.duration,

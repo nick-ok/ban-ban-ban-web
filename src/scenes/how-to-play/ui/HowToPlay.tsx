@@ -58,6 +58,7 @@ export const HowToPlay = () => {
           variant={'accentBlue'}
           onClick={handleGotIt}
           className={styles.gotItBtn}
+          soundType={'soft'}
         >
           {t('screens.howToPlay.gotIt')}
         </Button>

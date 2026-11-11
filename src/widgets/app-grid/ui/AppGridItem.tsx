@@ -1,9 +1,10 @@
 import clsx from 'clsx';
 import { motion } from 'motion/react';
 
-import type { LocationApp } from '@/entities/location';
+import type { LocationApp, LocationId } from '@/entities/location';
 import { obfuscateToBinary } from '@/entities/message';
 import { useNavigationStore } from '@/entities/navigation';
+import { AudioService } from '@/features/audio';
 import { Icon, ProgressBar } from '@/shared/ui';
 
 import styles from './AppGridItem.module.css';
@@ -34,6 +35,11 @@ export const AppGridItem = ({
   const scenarioProgress =
     stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0;
 
+  const handleAppClick = (locationId: LocationId) => {
+    AudioService.play({ key: 'clickSoft', volume: 0.5 });
+    navigateToPreview(locationId);
+  };
+
   return (
     <div className={styles.root}>
       <motion.button
@@ -51,7 +57,7 @@ export const AppGridItem = ({
         whileTap={
           isLocked ? {} : { scale: 0.95, transition: { duration: 0.1 } }
         }
-        onClick={() => navigateToPreview(id)}
+        onClick={() => handleAppClick(id)}
       >
         <motion.div layoutId={`app-icon-${id}`} className={styles.iconWrapper}>
           <Icon

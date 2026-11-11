@@ -71,12 +71,12 @@ export const LOC6_SC2: Scenario = {
     none: [
       {
         user: ['male'],
-        content: ['normal'],
+        content: ['audio'],
         title: ['empty', 'vip'],
       },
       {
         user: ['female'],
-        content: ['normal'],
+        content: ['audio'],
         title: ['verified', 'empty'],
       },
       {
@@ -85,11 +85,11 @@ export const LOC6_SC2: Scenario = {
         title: ['empty', 'virus'],
       },
     ],
-    ban: [{ user: ['female', 'male'], content: 'audio' }],
+    ban: [{ user: ['female', 'male'], content: ['normal'] }],
     longBan: [
       {
         user: ['female', 'male'],
-        content: ['fwords', 'caps'],
+        content: ['fwords', 'caps', 'blurred'],
         title: ['angry', 'hype'],
       },
     ],

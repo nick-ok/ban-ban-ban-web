@@ -52,9 +52,9 @@ export const LOC6_SC3: Scenario = {
   order: 3,
   messageSpeedRange: [0.7, 1.3],
   spawnSpeed: 0.9,
-  startWorktime: timeToMinutes('03:42'),
-  endWorktime: timeToMinutes('11:57'),
-  worktime: '03:42 - 11:57',
+  startWorktime: timeToMinutes('03:02'),
+  endWorktime: timeToMinutes('13:31'),
+  worktime: '03:02 - 13:31',
 
   hasLikes: false,
   hasReports: false,

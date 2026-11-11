@@ -1,4 +1,3 @@
-import type { LocationId } from '@/entities/location';
 import type { Scene } from '@/entities/navigation';
 
 interface AudioConfigItem {
@@ -8,19 +7,31 @@ interface AudioConfigItem {
 
 export const AUDIO_ASSETS = {
   click: {
-    src: '/audio/sfx/ui-click.mp3',
+    src: '/audio/sfx/click.ogg',
     type: 'sfx',
   },
-  drawer: {
-    src: '/audio/sfx/ui-drawer.mp3',
+  clickSoft: {
+    src: '/audio/sfx/click_soft.ogg',
     type: 'sfx',
   },
   chatMessage: {
-    src: '/audio/sfx/chat-message.mp3',
+    src: '/audio/sfx/message.ogg',
     type: 'sfx',
   },
   notification: {
-    src: '/audio/sfx/chat-message.mp3',
+    src: '/audio/sfx/notification.ogg',
+    type: 'sfx',
+  },
+  ban: {
+    src: '/audio/sfx/ban.ogg',
+    type: 'sfx',
+  },
+  banError: {
+    src: '/audio/sfx/ban_error.ogg',
+    type: 'sfx',
+  },
+  tadam: {
+    src: '/audio/sfx/tadam.ogg',
     type: 'sfx',
   },
   welcomeTheme: {
@@ -31,8 +42,16 @@ export const AUDIO_ASSETS = {
     src: '/audio/music/Broken-New-World.ogg',
     type: 'music',
   },
-  gameTheme: {
+  involution: {
     src: '/audio/music/Involution.ogg',
+    type: 'music',
+  },
+  brokenWorld: {
+    src: '/audio/music/Broken-New-World.ogg',
+    type: 'music',
+  },
+  game: {
+    src: '/audio/music/Game.ogg',
     type: 'music',
   },
   gameEndTheme: {
@@ -43,8 +62,7 @@ export const AUDIO_ASSETS = {
 
 export type AudioAssetKey = keyof typeof AUDIO_ASSETS;
 
-type SoundMapValue =
-  AudioAssetKey | null | ((locationId: LocationId) => AudioAssetKey | null);
+type SoundMapValue = AudioAssetKey | null;
 
 export const SCENE_SOUND_MAP: Record<Scene, SoundMapValue> = {
   lock: 'welcomeTheme',
@@ -54,19 +72,7 @@ export const SCENE_SOUND_MAP: Record<Scene, SoundMapValue> = {
   preview: 'welcomeTheme',
   briefing: null,
   bootstrap: null,
-  dayend: 'gameTheme',
-  gameend: 'gameEndTheme',
-
-  game: (locationId: LocationId): AudioAssetKey => {
-    const locationMusic: Record<LocationId, AudioAssetKey> = {
-      loc1: 'gameTheme',
-      loc2: 'gameTheme',
-      loc3: 'gameTheme',
-      loc4: 'gameTheme',
-      loc5: 'gameTheme',
-      loc6: 'gameTheme',
-    };
-
-    return locationMusic[locationId] ?? 'gameTheme';
-  },
+  dayend: null,
+  gameend: null,
+  game: null,
 };
