@@ -12,6 +12,7 @@ const config: InitOptions = {
   },
   fallbackLng: 'en',
   interpolation: { escapeValue: false },
+  returnEmptyString: true,
   detection: {
     order: ['localStorage', 'navigator'],
     caches: ['localStorage'],

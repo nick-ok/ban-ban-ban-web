@@ -10,6 +10,7 @@ process.env.VITE_APP_VERSION = packageJson.version;
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
     react(),
     svgr({

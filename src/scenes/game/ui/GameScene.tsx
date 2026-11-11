@@ -94,12 +94,6 @@ export const GameScene = () => {
   }, [isAutoModerationEnabled, isGlobalAIActive]);
 
   useEffect(() => {
-    if (location?.id === 'loc6' && !isLastScenario && !isGlobalAIActive) {
-      AudioService.playMusic('game');
-    }
-  }, [location?.id, isLastScenario, isGlobalAIActive]);
-
-  useEffect(() => {
     if (isLastScenario && !isGlobalAIActive && !isAutoModerationEnabled) {
       AudioService.playMusic('involution', false);
     }

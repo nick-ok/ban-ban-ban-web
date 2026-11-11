@@ -19,7 +19,7 @@ import { AppGrid } from '@/widgets/app-grid';
 
 import styles from './LobbyScene.module.css';
 
-const WALLPAPPER_IMG = '/images/wallpaper-lobby.webp';
+const WALLPAPPER_IMG = 'images/wallpaper-lobby.webp';
 
 export const LobbyScene = () => {
   const { t } = useTranslation();

@@ -21,22 +21,22 @@ const GAME_CLUE_USERS: Record<UserType, ReactNode> = {
   male: (
     <img
       className={styles.avatarImg}
-      src="/images/message/male/avatar-male-11.webp"
+      src="images/message/male/avatar-male-11.webp"
     />
   ),
   female: (
     <img
       className={styles.avatarImg}
-      src="/images/message/female/avatar-female-15.webp"
+      src="images/message/female/avatar-female-15.webp"
     />
   ),
   anonymous: (
-    <img className={styles.avatarImg} src="/images/message/avatar-anon.webp" />
+    <img className={styles.avatarImg} src="images/message/avatar-anon.webp" />
   ),
   bot: (
-    <img className={styles.avatarImg} src="/images/message/avatar-bot.webp" />
+    <img className={styles.avatarImg} src="images/message/avatar-bot.webp" />
   ),
-  ai: <img className={styles.avatarImg} src="/images/message/avatar-ai.webp" />,
+  ai: <img className={styles.avatarImg} src="images/message/avatar-ai.webp" />,
 };
 
 export const GameClueCard = ({ template }: Props) => {
@@ -44,13 +44,13 @@ export const GameClueCard = ({ template }: Props) => {
 
   const gameClueTitles: Record<TitleType, ReactNode> = {
     empty: <div className={styles.emptyTitle}>{t('screens.game.empty')}</div>,
-    hype: <img className={styles.titleImg} src="/images/message/fire.webp" />,
-    angry: <img className={styles.titleImg} src="/images/message/angry.webp" />,
+    hype: <img className={styles.titleImg} src="images/message/fire.webp" />,
+    angry: <img className={styles.titleImg} src="images/message/angry.webp" />,
     verified: (
-      <img className={styles.titleImg} src="/images/message/verified.png" />
+      <img className={styles.titleImg} src="images/message/verified.png" />
     ),
-    vip: <img className={styles.titleImg} src="/images/message/vip.png" />,
-    virus: <img className={styles.titleImg} src="/images/message/virus.png" />,
+    vip: <img className={styles.titleImg} src="images/message/vip.png" />,
+    virus: <img className={styles.titleImg} src="images/message/virus.png" />,
   };
 
   const gameClueContents: Record<ContentType, ReactNode> = {
@@ -75,7 +75,7 @@ export const GameClueCard = ({ template }: Props) => {
     audio: (
       <img
         className={styles.voiceMessageImg}
-        src="/images/message/voice-message.webp"
+        src="images/message/voice-message.webp"
       />
     ),
   };
@@ -125,7 +125,7 @@ export const GameClueCard = ({ template }: Props) => {
           {likes && (
             <div className={styles.counter}>
               <img
-                src="/images/message/like.png"
+                src="images/message/like.png"
                 className={styles.counterImg}
               />
               <span>{likes}</span>
@@ -135,7 +135,7 @@ export const GameClueCard = ({ template }: Props) => {
           {reports && (
             <div className={styles.counter}>
               <img
-                src="/images/message/warning.png"
+                src="images/message/warning.png"
                 className={styles.counterImg}
               />
               <span>{reports}</span>

@@ -111,7 +111,7 @@ export const BootstrapScene = () => {
       <div className={styles.logo}>
         <img
           ref={scope}
-          src="/images/ban-stamp.png"
+          src="images/ban-stamp.png"
           className={styles.imageLogo}
           alt="BanBanBan logo"
           draggable={false}
