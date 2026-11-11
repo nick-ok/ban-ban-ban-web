@@ -18,7 +18,6 @@ export const GameSettingsDrawer = ({ containerRef }: Props) => {
       direction={'top'}
       onOpenChange={gameSettings.toggleSettingsDrawer}
       open={gameSettings.isSettingsOpen}
-      withSound={false}
       backgroundColor={'var(--color-white)'}
     >
       {() => (

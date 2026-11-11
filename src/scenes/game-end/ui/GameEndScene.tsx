@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { AnimatePresence, motion } from 'motion/react';
 
 import { GameSettingsContent } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
+import { AudioService } from '@/features/audio';
 import { useTranslation } from '@/features/i18n';
 import {
   Button,
@@ -51,6 +52,10 @@ export const GameEndScene = () => {
     }
   };
 
+  useEffect(() => {
+    AudioService.playMusic('gameEndTheme', false);
+  }, []);
+
   return (
     <ZoomMotion duration={0.8} className={styles.root}>
       <AnimatePresence mode={'popLayout'}>
@@ -71,7 +76,12 @@ export const GameEndScene = () => {
 
           <Icon className={styles.shieldIcon} name={'shield'} />
           <ShineFX>
-            <Button variant={'white'} glow className={styles.shieldTitle}>
+            <Button
+              variant={'white'}
+              glow
+              className={styles.shieldTitle}
+              withSound={false}
+            >
               <GIPAIICon className={styles.aiIcon} />
               {t('screens.gameend.title')}
             </Button>

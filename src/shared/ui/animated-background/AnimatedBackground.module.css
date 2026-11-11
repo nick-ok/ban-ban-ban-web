@@ -6,4 +6,8 @@
   object-fit: cover;
 
   filter: blur(3px);
+
+  &.gameend {
+    filter: saturate(0.1) brightness(0.8);
+  }
 }

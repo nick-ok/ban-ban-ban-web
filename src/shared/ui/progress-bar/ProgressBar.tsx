@@ -24,7 +24,7 @@ const AnimatedPercent = ({
 }: {
   motionValue: ReturnType<typeof useMotionValue<number>>;
 }) => {
-  const rounded = useTransform(motionValue, (v) => Math.round(v));
+  const rounded = useTransform(motionValue, (v) => Math.floor(v));
 
   return <motion.span>{rounded}</motion.span>;
 };

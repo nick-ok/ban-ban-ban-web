@@ -1,4 +1,3 @@
-import type { LocationId } from '@/entities/location';
 import type { Scene } from '@/entities/navigation';
 
 import type { AudioAssetKey } from '../config/audio';
@@ -6,24 +5,22 @@ import { SCENE_SOUND_MAP } from '../config/audio';
 
 interface Options {
   scene: Scene;
-  locationId: LocationId | null;
+  gameEnded?: boolean;
 }
 
 export const getMusicForScene = ({
   scene,
-  locationId,
+  gameEnded = false,
 }: Options): AudioAssetKey | null => {
-  const mapValue = SCENE_SOUND_MAP[scene];
+  if (gameEnded) {
+    return 'brokenWorld';
+  }
 
-  if (mapValue === null) {
+  const musicKey = SCENE_SOUND_MAP[scene];
+
+  if (musicKey === null) {
     return null;
   }
 
-  if (typeof mapValue === 'function') {
-    const activeLocation = locationId ?? 'loc1';
-
-    return mapValue(activeLocation);
-  }
-
-  return mapValue;
+  return musicKey;
 };

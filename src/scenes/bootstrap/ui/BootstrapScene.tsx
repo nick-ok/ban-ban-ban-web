@@ -144,7 +144,7 @@ export const BootstrapScene = () => {
 
         <div className={styles.appInfo}>
           <span>{VERSION}</span>
-          <span>&copy; hoxma games</span>
+          <span>&copy; hoXma games</span>
         </div>
       </div>
     </div>

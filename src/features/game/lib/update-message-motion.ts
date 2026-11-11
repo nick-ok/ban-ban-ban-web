@@ -4,6 +4,7 @@ import {
   destroyGameMessage,
   type ExtendedPixiMessageContainer,
 } from '@/entities/message';
+import { AudioService } from '@/features/audio';
 
 import type { StatKeyType } from '../model/types';
 import type { ScreenGlitch } from './screen-glitch';
@@ -28,6 +29,7 @@ export const updateMessageMotion = (
   child.y -= moveAmount;
 
   const bounds = child.getBounds();
+
   if (bounds.y + bounds.height < -MARGIN) {
     const banAction = child.messageData?.banAction;
 
@@ -35,9 +37,13 @@ export const updateMessageMotion = (
 
     if (banAction === 'ban') {
       incrementStat('missed');
+
+      AudioService.play({ key: 'banError', volume: 0.3 });
       shouldGlitch = true;
     } else if (banAction === 'longBan') {
       incrementStat('missedLong');
+
+      AudioService.play({ key: 'banError', volume: 0.3 });
       shouldGlitch = true;
     }
 

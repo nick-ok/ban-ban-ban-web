@@ -61,7 +61,11 @@ export const GameDrawerContent = ({ location, onClose }: Props) => {
           <Button
             className={styles.menuBtn}
             variant={'accentBlue'}
-            onClick={() => navigateToPreview(location.id)}
+            onClick={() => {
+              onClose();
+              navigateToPreview(location.id);
+            }}
+            soundType={'soft'}
           >
             {t('screens.game.preview')}
           </Button>
@@ -70,7 +74,11 @@ export const GameDrawerContent = ({ location, onClose }: Props) => {
             className={styles.menuBtn}
             variant={'success'}
             bordered
-            onClick={() => setScene('lobby')}
+            onClick={() => {
+              onClose();
+              setScene('lobby');
+            }}
+            soundType={'soft'}
           >
             {t('screens.game.appGrid')}
           </Button>
@@ -79,7 +87,11 @@ export const GameDrawerContent = ({ location, onClose }: Props) => {
             className={styles.menuBtn}
             variant={'success'}
             bordered
-            onClick={() => setScene('lock')}
+            onClick={() => {
+              onClose();
+              setScene('lock');
+            }}
+            soundType={'soft'}
           >
             {t('screens.game.mainMenu')}
           </Button>

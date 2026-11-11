@@ -85,7 +85,7 @@ export const BriefingScene = () => {
 
   const handleScreenClick = () => {
     if (!isLastStep) {
-      AudioService.play({ key: 'chatMessage', randomize: false });
+      AudioService.play({ key: 'chatMessage', volume: 0.3 });
       setCurrentStep((prev) => prev + 1);
     }
   };
@@ -218,6 +218,7 @@ export const BriefingScene = () => {
             <Button
               onClick={() => setScene('game')}
               className={styles.actionStartBtn}
+              soundType={'soft'}
             >
               {t('scenarios.start')}
             </Button>

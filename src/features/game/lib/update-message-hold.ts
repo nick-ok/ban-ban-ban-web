@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 
 import { type ExtendedPixiMessageContainer } from '@/entities/message';
+import { AudioService } from '@/features/audio';
 
 import type { StatKeyType } from '../model/types';
 
@@ -26,12 +27,18 @@ export const updateMessageHold = (
 
       if (banAction === 'ban') {
         incrementStat('banned');
+
+        AudioService.play({ key: 'ban' });
         child.dyingEffect = { particles: 'positive', shake: 5 };
       } else if (banAction === 'longBan') {
         incrementStat('longBanned');
+
+        AudioService.play({ key: 'ban' });
         child.dyingEffect = { particles: 'positive', shake: 20 };
       } else {
         incrementStat('wrongBanned');
+
+        AudioService.play({ key: 'banError', volume: 0.3 });
         child.dyingEffect = { particles: 'negative', shake: 100 };
       }
 

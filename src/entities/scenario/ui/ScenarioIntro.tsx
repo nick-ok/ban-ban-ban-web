@@ -74,6 +74,7 @@ export const ScenarioIntro = ({
             variant={'accentBlue'}
             className={styles.toWorkBtn}
             onClick={onClose}
+            soundType={'soft'}
           >
             {t('scenarios.toWork')}
           </Button>

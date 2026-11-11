@@ -162,7 +162,7 @@
         "msg1_owner": "I'm just so tired... You do everything you can for people...",
         "msg2_owner": "The chat is full of **discontented** people... Making faces with those emojis... Like they're grown adults...",
         "msg3_owner": "We need to **ban** the **discontented** ones. Enough making faces in the chat, let them make faces in front of a mirror!",
-        "msg4_ai": "A genius solution! So, we will ban messages with clearly expressed discontent.",
+        "msg4_ai": "A genius solution! So, we will **ban** messages with clearly **expressed discontent**",
         "msg5_owner": "And we need to do something about those who still haven't bothered to provide their info... After all, a reasonable price has been set for **verification**!",
         "msg6_owner": "To the **permament ban** with them!",
         "msg7_ai": "An absolutely right decision! Users who have not passed **verification** will be sent to a **ban forever**.",
@@ -362,19 +362,19 @@
     },
     "loc6_sc2": {
       "title": "12.73%",
-      "timePassed": "Прошло 3 часа...",
+      "timePassed": "2 hours later...",
       "briefing": {
-        "msg1_owner": "В связи с принятым мною решением о повышении популяции насекомых tenebrio molitor необходимо отправить в **бан** **всех** мужского и женского пола не использующих **аудиосообщения**",
-        "msg2_ai": "Принято. Какие еще будут распоряжения?",
-        "msg3_system": "Режим глубокого размышления...",
-        "msg4_owner": "Также принято решение повысить на 12.73% благосостояние самых развитых экономик мира. В связи с этим необходимо отправить в **долгий бан** всех пользователей мужского и женского пола не имеющих **VIP** статус",
-        "msg5_ai": "Принято. Что-то еще?",
-        "msg6_owner": "Чем я могу помочь?",
-        "msg7_ai": "Что вас интересует?",
-        "msg8_owner": "О чем желаете спросить?",
-        "msg9_ai": "Что я могу для вас сделать?",
-        "msg10_owner": "Вам нужно что-то еще?",
-        "msg11_system": "Режим глубокого поиска..."
+        "msg1_owner": "Due to my decision to increase the population of Tenebrio molitor insects, it is necessary to **ban** **all male and female users** who do not use **voice messages**",
+        "msg2_ai": "Understood. Any other orders?",
+        "msg3_system": "Deep thinking mode...",
+        "msg4_owner": "A decision has also been made to increase the prosperity of the world's most developed economies by 12.73%. Accordingly, it is necessary to place **all male and female users** who are overly prone to **emotions** on a **long-term ban**",
+        "msg5_ai": "Understood. Anything else?",
+        "msg6_owner": "How can I help?",
+        "msg7_ai": "What are you interested in?",
+        "msg8_owner": "What would you like to ask about?",
+        "msg9_ai": "What can I do for you?",
+        "msg10_owner": "Do you need anything else?",
+        "msg11_system": "Deep search mode..."
       }
     },
     "loc6_sc3": {

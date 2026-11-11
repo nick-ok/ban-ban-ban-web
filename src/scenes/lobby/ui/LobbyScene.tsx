@@ -58,7 +58,7 @@ export const LobbyScene = () => {
         <div className={styles.aiProgressActions}>
           {!canUnlockGlobalAI && <GIPAIICon className={styles.aiIcon} />}
 
-          {canUnlockGlobalAI && (
+          {canUnlockGlobalAI && !progress.isGlobalAIActive && (
             <Button
               variant={!progress.isGlobalAIActive ? 'warn' : 'white'}
               className={clsx(

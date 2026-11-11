@@ -1,8 +1,33 @@
 import { useGameSettingsStore } from '@/entities/game-settings';
 import { useNavigationStore } from '@/entities/navigation';
+import { usePlayerProgressStore } from '@/entities/player-progress';
 
 import { AudioService } from './audio-service';
 import { getMusicForScene } from './get-music-for-scene';
+
+const syncMusic = () => {
+  const { isMusicEnabled } = useGameSettingsStore.getState();
+
+  if (!isMusicEnabled) {
+    AudioService.stopMusic();
+    return;
+  }
+
+  const { scene } = useNavigationStore.getState();
+  const { isGlobalAIActive } = usePlayerProgressStore.getState();
+
+  const musicKey = getMusicForScene({
+    scene,
+    gameEnded: isGlobalAIActive,
+  });
+
+  if (musicKey === null) {
+    AudioService.stopMusic();
+    return;
+  }
+
+  AudioService.playMusic(musicKey);
+};
 
 export const subscribeAudioToStores = () => {
   useNavigationStore.subscribe((state, prev) => {
@@ -14,18 +39,7 @@ export const subscribeAudioToStores = () => {
       return;
     }
 
-    const musicKey = getMusicForScene({
-      scene: state.scene,
-      locationId: state.selectedLocationId,
-    });
-
-    if (musicKey === null) {
-      AudioService.stopMusic();
-
-      return;
-    }
-
-    AudioService.playMusic(musicKey);
+    syncMusic();
   });
 
   useGameSettingsStore.subscribe((state, prev) => {
@@ -33,21 +47,14 @@ export const subscribeAudioToStores = () => {
       return;
     }
 
-    if (!state.isMusicEnabled) {
-      AudioService.stopMusic();
+    syncMusic();
+  });
 
+  usePlayerProgressStore.subscribe((state, prev) => {
+    if (state.isGlobalAIActive === prev.isGlobalAIActive) {
       return;
     }
 
-    const navState = useNavigationStore.getState();
-
-    const musicKey = getMusicForScene({
-      scene: navState.scene,
-      locationId: navState.selectedLocationId,
-    });
-
-    if (musicKey !== null) {
-      AudioService.playMusic(musicKey);
-    }
+    syncMusic();
   });
 };
