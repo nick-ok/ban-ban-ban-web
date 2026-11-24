@@ -163,10 +163,10 @@
         "msg2_owner": "The chat is full of **discontented** people... Making faces with those emojis... Like they're grown adults...",
         "msg3_owner": "We need to **ban** the **discontented** ones. Enough making faces in the chat, let them make faces in front of a mirror!",
         "msg4_ai": "A genius solution! So, we will **ban** messages with clearly **expressed discontent**",
-        "msg5_owner": "And we need to do something about those who still haven't bothered to provide their info... After all, a reasonable price has been set for **verification**!",
-        "msg6_owner": "To the **permament ban** with them!",
+        "msg5_owner": "And we need to do something about those who still haven't bothered to provide their details... We set a perfectly reasonable price for **verification**, after all! The best artists designed that **verification** badge—so many focus groups, meetings, sleepless nights...",
+        "msg6_owner": "I've made up my mind. There is no place in **HApp** for users without a **verification** badge! Hit them all with a **permoment ban**!",
         "msg7_ai": "An absolutely right decision! Users who have not passed **verification** will be sent to a **ban forever**.",
-        "msg8_owner": "I'm done, I'm off to vacation! I just bought a little island house right on the oceanfront! You guys can handle this chaos without me!"
+        "msg8_owner": "I'm done, I'm off to vacation! You guys can handle this chaos without me!"
       }
     },
     "loc2_sc1": {
@@ -206,8 +206,8 @@
       "timePassed": "40 days later...",
       "briefing": {
         "msg1_owner": "The book is a total blast! You say any phrase from there, and it hits the bullseye every single time!",
-        "msg2_owner": "Anyway, screw this **SoulSpace**! Get this - I've already got lines out the door here! Shoots, appearances, lectures are booked solid for five years, damn.",
-        "msg3_owner": "How do I put it... Hold on...",
+        "msg2_owner": "Anyway, screw **SoulSpace**! I'm on my own path now. Even named my book 'My Own Path.' Author: Atya Ads, just to make it sound more mysterious...",
+        "msg3_owner": "How does Atya Ads say it... How do I say it... Hold on...",
         "msg4_owner": "\"'Push the falling, and the sky will get closer.' There! In short, **SoulSpace** is basically my competition now, it turns out...",
         "msg5_owner": "Let's just send absolutely everyone to a **ban**! **Men, women** — everyone!",
         "msg6_ai": "This is a very far-sighted business strategy! Noted - sending **all users** without exception to a **ban**!",

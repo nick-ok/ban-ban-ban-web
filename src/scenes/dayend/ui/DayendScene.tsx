@@ -101,8 +101,7 @@ export const DayEndScene = () => {
   };
 
   useEffect(() => {
-    AudioService.setMusicVolume(0.3);
-    AudioService.play({ key: 'tadam', volume: 0.5 });
+    AudioService.play({ key: 'tadam', volume: 0.3 });
   }, []);
 
   return (

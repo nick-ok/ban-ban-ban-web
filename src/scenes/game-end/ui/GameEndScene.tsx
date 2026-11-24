@@ -41,8 +41,8 @@ export const GameEndScene = () => {
 
   const backgroundSrc =
     currentMessageIdx <= 1
-      ? '/images/gameend/solution.webp'
-      : '/images/gameend/global.webp';
+      ? 'images/gameend/solution.webp'
+      : 'images/gameend/global.webp';
 
   const handleNext = () => {
     if (!isLastMessage) {

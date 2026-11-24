@@ -25,7 +25,7 @@ export const AnimatedBackground = () => {
 
   return (
     <motion.img
-      src="/images/wallpaper.webp"
+      src="images/wallpaper.webp"
       className={clsx(styles.root, progress.isGlobalAIActive && styles.gameend)}
       animate={state.target}
       transition={{

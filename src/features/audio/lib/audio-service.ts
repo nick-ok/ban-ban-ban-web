@@ -23,13 +23,11 @@ class AudioServiceClass {
         }
 
         const audioConfig = AUDIO_ASSETS[key];
-        // const isMusic = audioConfig.type === 'music';
 
         const sound = new Howl({
           src: [audioConfig.src],
           html5: false,
           preload: true,
-          // loop: isMusic,
           onload: () => resolve(),
           onloaderror: (error) => {
             console.error(

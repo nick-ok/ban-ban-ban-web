@@ -7,55 +7,55 @@ interface AudioConfigItem {
 
 export const AUDIO_ASSETS = {
   click: {
-    src: '/audio/sfx/click.ogg',
+    src: 'audio/sfx/click.ogg',
     type: 'sfx',
   },
   clickSoft: {
-    src: '/audio/sfx/click_soft.ogg',
+    src: 'audio/sfx/click_soft.ogg',
     type: 'sfx',
   },
   chatMessage: {
-    src: '/audio/sfx/message.ogg',
+    src: 'audio/sfx/message.ogg',
     type: 'sfx',
   },
   notification: {
-    src: '/audio/sfx/notification.ogg',
+    src: 'audio/sfx/notification.ogg',
     type: 'sfx',
   },
   ban: {
-    src: '/audio/sfx/ban.ogg',
+    src: 'audio/sfx/ban.ogg',
     type: 'sfx',
   },
   banError: {
-    src: '/audio/sfx/ban_error.ogg',
+    src: 'audio/sfx/ban_error.ogg',
     type: 'sfx',
   },
   tadam: {
-    src: '/audio/sfx/tadam.ogg',
+    src: 'audio/sfx/tadam.ogg',
     type: 'sfx',
   },
   welcomeTheme: {
-    src: '/audio/music/Welcome.ogg',
+    src: 'audio/music/Welcome.ogg',
     type: 'music',
   },
   welcomeBNWTheme: {
-    src: '/audio/music/Broken-New-World.ogg',
+    src: 'audio/music/Broken-New-World.ogg',
     type: 'music',
   },
   involution: {
-    src: '/audio/music/Involution.ogg',
+    src: 'audio/music/Involution.ogg',
     type: 'music',
   },
   brokenWorld: {
-    src: '/audio/music/Broken-New-World.ogg',
+    src: 'audio/music/Broken-New-World.ogg',
     type: 'music',
   },
   game: {
-    src: '/audio/music/Game.ogg',
+    src: 'audio/music/Game.ogg',
     type: 'music',
   },
   gameEndTheme: {
-    src: '/audio/music/BNW.ogg',
+    src: 'audio/music/BNW.ogg',
     type: 'music',
   },
 } as const satisfies Record<string, AudioConfigItem>;
